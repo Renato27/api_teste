@@ -1,0 +1,73 @@
+<?php
+
+namespace Tests\Feature\Repositories;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
+use App\Repositories\Contracts\{repository_name};
+
+class {repository_name}Test extends TestCase
+{
+    /**
+     * Repositório de chamados.
+     *
+     * @var {repository_name}
+     */
+    protected {repository_name} $repository;
+
+    /**
+     * Realiza a instancia do recurso.
+     *
+     * @return void
+     */
+    private function testGetRecurso()
+    {
+        $this->repository = app({repository_name}::class);
+    }
+
+    /**
+     * Retorna {recurso} baseado no ID.
+     *
+     */
+    public function testGet{recurso}()
+    {
+
+    }
+
+    /**
+     * Retorna uma coleção de {recurso} baseado em uma associação.
+     *
+     */
+    public function testGet{recurso}s()
+    {
+
+    }
+
+    /**
+     * Cria um novo {recurso}
+     *
+     */    
+    public function testCreate{recurso}()
+    {
+
+    }
+
+    /**
+     * Atualiza um {recurso}
+     *
+     */ 
+    public function testUpdate{recurso}()
+    {
+
+    }
+
+    /**
+     * Deleta um {recurso}
+     *
+     */ 
+    public function testDelete{recurso}()
+    {
+
+    }
+}
