@@ -2,10 +2,9 @@
 
 namespace App\Models\clientes;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class cliente extends Model
+class Cliente extends Model
 {
-    use HasFactory;
+    protected $fillable = ['razao_social', 'nome_fantasia', 'cpf_cnpj', 'inscricao_estadual', 'inscricao_municipal'];
 }
