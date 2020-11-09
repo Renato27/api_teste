@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class DadoFuncionario extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['telefone', 'rg', 'cpf', 'titulo_eleitor', 'secao_titulo_eleitor', 'ctps', 'email'];
 }

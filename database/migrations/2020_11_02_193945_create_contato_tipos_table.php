@@ -16,10 +16,10 @@ class CreateContatoTiposTable extends Migration
         Schema::create('contato_tipos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('contato_id');
-            $table->foreignId('tipo_id');
+            $table->foreignId('tipo_contato_id');
 
             $table->foreign('contato_id')->references('id')->on('contatos');
-            $table->foreign('tipo_id')->references('id')->on('tipo_contatos');
+            $table->foreign('tipo_contato_id')->references('id')->on('tipo_contatos');
 
             $table->timestamps();
         });
