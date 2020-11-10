@@ -136,6 +136,11 @@ return [
 
     'providers' => [
 
+        /**
+         * Providers SGL
+         */
+        App\Providers\RepositoryProvider::class,
+
         /*
          * Laravel Framework Service Providers...
          */

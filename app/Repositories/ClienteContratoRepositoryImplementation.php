@@ -8,15 +8,19 @@ use Illuminate\Support\Collection;
 
 class ClienteContratoRepositoryImplementation implements ClienteContratoRepository
 {
+    use BaseEloquentRepository;
+
     /**
      * Retorna ClienteContrato baseado no ID.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getClienteContrato(int $id): ?Model
+    public function getClienteByContrato(int $contrato): ?Model
     {
+        $associacao = $this->where(['contrato_id' => $contrato])->first();
 
+        return $associacao->cliente;
     }
 
     /**
@@ -26,9 +30,22 @@ class ClienteContratoRepositoryImplementation implements ClienteContratoReposito
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getClienteContratos(int $id, int $associacao): ?Collection
+    public function getContratosByCliente(int $cliente): ?Collection
     {
+        $associacoes = $this->where(['cliente_id' => $cliente])->get();
 
+        if(is_null($associacoes)) return null;
+
+        $contratos = collect();
+
+        foreach ($associacoes as $associacao){
+
+            if(!is_null($associacao->contrato)){
+                $contratos->add($associacao->contrato);
+            }
+        }
+
+        return $contratos;
     }
 
     /**
@@ -39,7 +56,7 @@ class ClienteContratoRepositoryImplementation implements ClienteContratoReposito
      */    
     public function createClienteContrato(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +68,7 @@ class ClienteContratoRepositoryImplementation implements ClienteContratoReposito
      */ 
     public function updateClienteContrato(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +80,10 @@ class ClienteContratoRepositoryImplementation implements ClienteContratoReposito
      */ 
     public function deleteClienteContrato(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

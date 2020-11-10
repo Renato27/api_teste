@@ -8,27 +8,45 @@ use Illuminate\Support\Collection;
 
 class ContatoContratoRepositoryImplementation implements ContatoContratoRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
-     * Retorna ContatoContrato baseado no ID.
+     * Retorna ContatoContrato baseado no contrato.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getContatoContrato(int $id): ?Model
+    public function getContatoContrato(int $contrato): ?Model
     {
+        $associacao = $this->where(['contrato_id' => $contrato])->first();
 
+        return $associacao->contato;
     }
 
     /**
-     * Retorna uma coleção de ContatoContrato baseado em uma associação.
+     * Retorna uma coleção de ContatoContrato baseado em um contato.
      *
      * @param integer $id
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContatoContratos(int $id, int $associacao): ?Collection
+    public function getContratosByContato(int $contato): ?Collection
     {
+        $associacoes = $this->where(['contato_id' => $contato])->get();
 
+        if(is_null($associacoes)) return null;
+
+        $contratos = collect();
+
+        foreach($associacoes as $associacao){
+
+            if(!is_null($associacao->contrato)){
+                $contratos->add($associacao->contrato);
+            }
+        }
+
+        return $contratos;
     }
 
     /**
@@ -39,7 +57,7 @@ class ContatoContratoRepositoryImplementation implements ContatoContratoReposito
      */    
     public function createContatoContrato(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +69,7 @@ class ContatoContratoRepositoryImplementation implements ContatoContratoReposito
      */ 
     public function updateContatoContrato(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +81,10 @@ class ContatoContratoRepositoryImplementation implements ContatoContratoReposito
      */ 
     public function deleteContatoContrato(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

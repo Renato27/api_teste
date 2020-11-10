@@ -31,7 +31,20 @@ class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoReposito
      */
     public function getClienteEnderecos(int $cliente): ?Collection
     {
-        return $this->where(['cliente_id' => $cliente])->get();
+        $associacoes = $this->where(['cliente_id' => $cliente])->get();
+
+        if(is_null($associacoes)) return null;
+
+        $enderecos = collect();
+
+        foreach($associacoes as $associacao){
+
+            if(!is_null($associacao->endereco)){
+                $enderecos->add($associacao->endereco);
+            }
+        }
+
+        return $enderecos;
     }
 
     /**

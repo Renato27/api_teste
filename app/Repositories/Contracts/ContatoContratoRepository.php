@@ -8,12 +8,12 @@ use Illuminate\Support\Collection;
 interface ContatoContratoRepository
 {
     /**
-     * Retorna ContatoContrato baseado no ID.
+     * Retorna ContatoContrato baseado no contrato.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getContatoContrato(int $id): ?Model;
+    public function getContatoContrato(int $contrato): ?Model;
 
     /**
      * Retorna uma coleção de ContatoContrato baseado em uma associação.
@@ -22,7 +22,7 @@ interface ContatoContratoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContatoContratos(int $id, int $associacao): ?Collection;
+    public function getContratosByContato(int $contato): ?Collection;
     
     /**
      * Cria um novo ContatoContrato

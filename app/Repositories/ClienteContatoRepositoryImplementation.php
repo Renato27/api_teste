@@ -8,15 +8,17 @@ use Illuminate\Support\Collection;
 
 class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
 {
+    use BaseEloquentRepository;
+
     /**
      * Retorna ClienteContato baseado no ID.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getClienteContato(int $id): ?Model
+    public function getAssociacaoByContato(int $contato): ?Model
     {
-
+        return $this->where(['contato_id' => $contato])->first();
     }
 
     /**
@@ -26,9 +28,9 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getClienteContatos(int $id, int $associacao): ?Collection
+    public function getClientesByContato(int $contato): ?Collection
     {
-
+        return $this->where(['contato_id' => $contato])->get();
     }
 
     /**
@@ -39,7 +41,7 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
      */    
     public function createClienteContato(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +53,7 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
      */ 
     public function updateClienteContato(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +65,10 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
      */ 
     public function deleteClienteContato(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

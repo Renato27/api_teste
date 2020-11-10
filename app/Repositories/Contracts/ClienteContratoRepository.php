@@ -13,7 +13,7 @@ interface ClienteContratoRepository
      * @param integer $id
      * @return Model|null
      */
-    public function getClienteContrato(int $id): ?Model;
+    public function getClienteByContrato(int $contrato): ?Model;
 
     /**
      * Retorna uma coleção de ClienteContrato baseado em uma associação.
@@ -22,7 +22,7 @@ interface ClienteContratoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getClienteContratos(int $id, int $associacao): ?Collection;
+    public function getContratosByCliente(int $cliente): ?Collection;
     
     /**
      * Cria um novo ClienteContrato

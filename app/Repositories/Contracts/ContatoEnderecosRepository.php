@@ -7,22 +7,25 @@ use Illuminate\Support\Collection;
 
 interface ContatoEnderecosRepository
 {
+   
+    
+
     /**
-     * Retorna ContatoEnderecos baseado no ID.
+     * Retorna ContatoEnderecos baseado no endereco.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getContatoEnderecos(int $id): ?Model;
+    public function getContatoEndereco(int $endereco): ?Model;
 
     /**
-     * Retorna uma coleção de ContatoEnderecos baseado em uma associação.
+     * Retorna uma coleção de ContatoEnderecos baseado em um endereco.
      *
      * @param integer $id
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContatoEnderecoss(int $id, int $associacao): ?Collection;
+    public function getContatosEnderecos(int $endereco): ?Collection;
     
     /**
      * Cria um novo ContatoEnderecos

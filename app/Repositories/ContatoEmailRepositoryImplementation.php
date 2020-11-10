@@ -8,15 +8,17 @@ use Illuminate\Support\Collection;
 
 class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
 {
+    use BaseEloquentRepository;
+
     /**
      * Retorna ContatoEmail baseado no ID.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getContatoEmail(int $id): ?Model
+    public function getContatoEmail(int $contato): ?Model
     {
-
+        return $this->where(['contato_id' => $contato])->first();
     }
 
     /**
@@ -26,9 +28,9 @@ class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContatoEmails(int $id, int $associacao): ?Collection
+    public function getContatoEmails(int $contato): ?Collection
     {
-
+        return $this->where(['contato_id' => $contato])->get();
     }
 
     /**
@@ -39,7 +41,7 @@ class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
      */    
     public function createContatoEmail(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -49,9 +51,11 @@ class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
      * @param array $detalhes
      * @return Model|null
      */ 
-    public function updateContatoEmail(int $id, array $detalhes): ?Model
+    public function updateContatoEmail(int $contato, array $detalhes): ?Model
     {
+        $email = $this->where(['contato_id' => $contato])->first();
 
+        return $this->update($email->id, $detalhes);
     }
 
     /**
@@ -63,6 +67,10 @@ class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
      */ 
     public function deleteContatoEmail(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

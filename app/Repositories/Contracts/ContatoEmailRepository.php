@@ -8,21 +8,21 @@ use Illuminate\Support\Collection;
 interface ContatoEmailRepository
 {
     /**
-     * Retorna ContatoEmail baseado no ID.
+     * Retorna ContatoEmail baseado no contato.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getContatoEmail(int $id): ?Model;
+    public function getContatoEmail(int $contato): ?Model;
 
     /**
-     * Retorna uma coleção de ContatoEmail baseado em uma associação.
+     * Retorna uma coleção de ContatoEmail baseado em um contato.
      *
      * @param integer $id
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContatoEmails(int $id, int $associacao): ?Collection;
+    public function getContatoEmails(int $contato): ?Collection;
     
     /**
      * Cria um novo ContatoEmail
@@ -39,7 +39,7 @@ interface ContatoEmailRepository
      * @param array $detalhes
      * @return Model|null
      */ 
-    public function updateContatoEmail(int $id, array $detalhes): ?Model;
+    public function updateContatoEmail(int $contato, array $detalhes): ?Model;
 
     /**
      * Deleta um ContatoEmail
