@@ -13,7 +13,7 @@ interface ContatoTipoRepository
      * @param integer $id
      * @return Model|null
      */
-    public function getContatoTipo(int $id): ?Model;
+    public function getContatoTipo(int $contato): ?Model;
 
     /**
      * Retorna uma coleção de ContatoTipo baseado em uma associação.
@@ -22,7 +22,7 @@ interface ContatoTipoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContatoTipos(int $id, int $associacao): ?Collection;
+    public function getTipoContatos(int $tipo): ?Collection;
     
     /**
      * Cria um novo ContatoTipo

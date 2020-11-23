@@ -13,7 +13,7 @@ interface ContratoPagamentoMetodoRepository
      * @param integer $id
      * @return Model|null
      */
-    public function getContratoPagamentoMetodo(int $id): ?Model;
+    public function getContratoPagamentoMetodo(int $contrato): ?Model;
 
     /**
      * Retorna uma coleção de ContratoPagamentoMetodo baseado em uma associação.
@@ -22,7 +22,7 @@ interface ContratoPagamentoMetodoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContratoPagamentoMetodos(int $id, int $associacao): ?Collection;
+    public function getPagamentoMetodoContratos(int $metodo): ?Collection;
     
     /**
      * Cria um novo ContratoPagamentoMetodo

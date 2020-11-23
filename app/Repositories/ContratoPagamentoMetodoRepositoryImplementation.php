@@ -8,15 +8,18 @@ use Illuminate\Support\Collection;
 
 class ContratoPagamentoMetodoRepositoryImplementation implements ContratoPagamentoMetodoRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna ContratoPagamentoMetodo baseado no ID.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getContratoPagamentoMetodo(int $id): ?Model
+    public function getContratoPagamentoMetodo(int $contrato): ?Model
     {
-
+        return $this->where(['contrato_id' => $contrato])->first();
     }
 
     /**
@@ -26,9 +29,9 @@ class ContratoPagamentoMetodoRepositoryImplementation implements ContratoPagamen
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContratoPagamentoMetodos(int $id, int $associacao): ?Collection
+    public function getPagamentoMetodoContratos(int $metodo): ?Collection
     {
-
+        return $this->where(['pagamento_metodo_id' => $metodo])->get();
     }
 
     /**
@@ -39,7 +42,7 @@ class ContratoPagamentoMetodoRepositoryImplementation implements ContratoPagamen
      */    
     public function createContratoPagamentoMetodo(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +54,7 @@ class ContratoPagamentoMetodoRepositoryImplementation implements ContratoPagamen
      */ 
     public function updateContratoPagamentoMetodo(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +66,10 @@ class ContratoPagamentoMetodoRepositoryImplementation implements ContratoPagamen
      */ 
     public function deleteContratoPagamentoMetodo(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

@@ -8,15 +8,18 @@ use Illuminate\Support\Collection;
 
 class ContratosRepositoryImplementation implements ContratosRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna Contratos baseado no ID.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getContratos(int $id): ?Model
+    public function getContrato(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -26,9 +29,9 @@ class ContratosRepositoryImplementation implements ContratosRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContratoss(int $id, int $associacao): ?Collection
+    public function getContratos(): ?Collection
     {
-
+        return $this->getAll();
     }
 
     /**
@@ -37,9 +40,9 @@ class ContratosRepositoryImplementation implements ContratosRepository
      * @param array $detalhes
      * @return Model|null
      */    
-    public function createContratos(array $detalhes): ?Model
+    public function createContrato(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -49,9 +52,9 @@ class ContratosRepositoryImplementation implements ContratosRepository
      * @param array $detalhes
      * @return Model|null
      */ 
-    public function updateContratos(int $id, array $detalhes): ?Model
+    public function updateContrato(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -61,8 +64,12 @@ class ContratosRepositoryImplementation implements ContratosRepository
      * @param array $detalhes
      * @return Model|null
      */ 
-    public function deleteContratos(int $id): bool
+    public function deleteContrato(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

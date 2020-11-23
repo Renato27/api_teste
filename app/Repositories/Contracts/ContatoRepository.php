@@ -22,7 +22,7 @@ interface ContatoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContatos(int $id, int $associacao): ?Collection;
+    public function getContatos(): ?Collection;
     
     /**
      * Cria um novo Contato

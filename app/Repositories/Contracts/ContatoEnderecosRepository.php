@@ -8,8 +8,6 @@ use Illuminate\Support\Collection;
 interface ContatoEnderecosRepository
 {
    
-    
-
     /**
      * Retorna ContatoEnderecos baseado no endereco.
      *
@@ -25,7 +23,7 @@ interface ContatoEnderecosRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContatosEnderecos(int $endereco): ?Collection;
+    public function getContatosEnderecos(int $contato): ?Collection;
     
     /**
      * Cria um novo ContatoEnderecos

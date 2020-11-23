@@ -7,7 +7,7 @@ use App\Models\ContratoPedido\ContratoPedido;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Contratos extends Model
+class Contrato extends Model
 {
     use HasFactory;
 

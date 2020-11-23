@@ -13,7 +13,7 @@ interface ContratoMedicoTipoRepository
      * @param integer $id
      * @return Model|null
      */
-    public function getContratoMedicaoTipo(int $id): ?Model;
+    public function getContratoMedicaoTipo(int $contrato): ?Model;
 
     /**
      * Retorna uma coleção de ContratoMedicaoTipo baseado em uma associação.
@@ -22,7 +22,7 @@ interface ContratoMedicoTipoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContratoMedicaoTipos(int $id, int $associacao): ?Collection;
+    public function getMedicaoTipoContratos(int $medicao): ?Collection;
     
     /**
      * Cria um novo ContratoMedicaoTipo

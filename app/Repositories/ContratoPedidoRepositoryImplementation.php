@@ -8,15 +8,18 @@ use Illuminate\Support\Collection;
 
 class ContratoPedidoRepositoryImplementation implements ContratoPedidoRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna ContratoPedido baseado no ID.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getContratoPedido(int $id): ?Model
+    public function getContratoPedido(int $pedido): ?Model
     {
-
+        return $this->where(['pedido_id' => $pedido])->first();
     }
 
     /**
@@ -26,9 +29,9 @@ class ContratoPedidoRepositoryImplementation implements ContratoPedidoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContratoPedidos(int $id, int $associacao): ?Collection
+    public function getContratoPedidos(int $contrato): ?Collection
     {
-
+        return $this->where(['contrato_id' => $contrato])->get();
     }
 
     /**
@@ -39,7 +42,7 @@ class ContratoPedidoRepositoryImplementation implements ContratoPedidoRepository
      */    
     public function createContratoPedido(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +54,7 @@ class ContratoPedidoRepositoryImplementation implements ContratoPedidoRepository
      */ 
     public function updateContratoPedido(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +66,10 @@ class ContratoPedidoRepositoryImplementation implements ContratoPedidoRepository
      */ 
     public function deleteContratoPedido(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

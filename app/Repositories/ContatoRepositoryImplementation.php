@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class ContatoRepositoryImplementation implements ContatoRepository
 {
+
+    use  BaseEloquentRepository;
+
     /**
      * Retorna Contato baseado no ID.
      *
@@ -16,7 +19,7 @@ class ContatoRepositoryImplementation implements ContatoRepository
      */
     public function getContato(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -26,9 +29,9 @@ class ContatoRepositoryImplementation implements ContatoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContatos(int $id, int $associacao): ?Collection
+    public function getContatos(): ?Collection
     {
-
+        return $this->getAll();
     }
 
     /**
@@ -39,7 +42,7 @@ class ContatoRepositoryImplementation implements ContatoRepository
      */    
     public function createContato(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +54,7 @@ class ContatoRepositoryImplementation implements ContatoRepository
      */ 
     public function updateContato(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +66,10 @@ class ContatoRepositoryImplementation implements ContatoRepository
      */ 
     public function deleteContato(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

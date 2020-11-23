@@ -13,7 +13,7 @@ interface ContratoPedidoRepository
      * @param integer $id
      * @return Model|null
      */
-    public function getContratoPedido(int $id): ?Model;
+    public function getContratoPedido(int $pedido): ?Model;
 
     /**
      * Retorna uma coleção de ContratoPedido baseado em uma associação.
@@ -22,7 +22,7 @@ interface ContratoPedidoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContratoPedidos(int $id, int $associacao): ?Collection;
+    public function getContratoPedidos(int $contrato): ?Collection;
     
     /**
      * Cria um novo ContratoPedido

@@ -8,15 +8,18 @@ use Illuminate\Support\Collection;
 
 class ContratoMedicoTipoRepositoryImplementation implements ContratoMedicoTipoRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna ContratoMedicaoTipo baseado no ID.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getContratoMedicaoTipo(int $id): ?Model
+    public function getContratoMedicaoTipo(int $contrato): ?Model
     {
-
+        return $this->where(['contrato_id' => $contrato])->first();
     }
 
     /**
@@ -26,9 +29,9 @@ class ContratoMedicoTipoRepositoryImplementation implements ContratoMedicoTipoRe
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getContratoMedicaoTipos(int $id, int $associacao): ?Collection
+    public function getMedicaoTipoContratos(int $medicao): ?Collection
     {
-
+        return $this->where(['medicao_tipo_id' => $medicao])->get();
     }
 
     /**
@@ -39,7 +42,7 @@ class ContratoMedicoTipoRepositoryImplementation implements ContratoMedicoTipoRe
      */    
     public function createContratoMedicaoTipo(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +54,7 @@ class ContratoMedicoTipoRepositoryImplementation implements ContratoMedicoTipoRe
      */ 
     public function updateContratoMedicaoTipo(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +66,10 @@ class ContratoMedicoTipoRepositoryImplementation implements ContratoMedicoTipoRe
      */ 
     public function deleteContratoMedicaoTipo(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }
