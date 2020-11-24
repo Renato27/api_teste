@@ -8,15 +8,17 @@ use Illuminate\Support\Collection;
 
 class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRepository
 {
+    use BaseEloquentRepository;
+
     /**
      * Retorna PedidoStatusPedido baseado no ID.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getPedidoStatusPedido(int $id): ?Model
+    public function getPedidoStatusPedido(int $pedido): ?Model
     {
-
+        return $this->where(['pedido_id' => $pedido])->fisrt();
     }
 
     /**
@@ -26,9 +28,9 @@ class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRe
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getPedidoStatusPedidos(int $id, int $associacao): ?Collection
+    public function getPedidoStatusPedidos(int $status): ?Collection
     {
-
+        return $this->where(['status_pedido_id' => $status])->get();
     }
 
     /**
@@ -39,7 +41,7 @@ class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRe
      */    
     public function createPedidoStatusPedido(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +53,7 @@ class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRe
      */ 
     public function updatePedidoStatusPedido(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +65,10 @@ class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRe
      */ 
     public function deletePedidoStatusPedido(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

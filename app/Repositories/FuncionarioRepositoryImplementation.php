@@ -8,6 +8,8 @@ use Illuminate\Support\Collection;
 
 class FuncionarioRepositoryImplementation implements FuncionarioRepository
 {
+    use BaseEloquentRepository;
+
     /**
      * Retorna Funcionario baseado no ID.
      *
@@ -16,7 +18,7 @@ class FuncionarioRepositoryImplementation implements FuncionarioRepository
      */
     public function getFuncionario(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -26,9 +28,9 @@ class FuncionarioRepositoryImplementation implements FuncionarioRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getFuncionarios(int $id, int $associacao): ?Collection
+    public function getFuncionarios(): ?Collection
     {
-
+        return $this->getAll();
     }
 
     /**
@@ -39,7 +41,7 @@ class FuncionarioRepositoryImplementation implements FuncionarioRepository
      */    
     public function createFuncionario(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +53,7 @@ class FuncionarioRepositoryImplementation implements FuncionarioRepository
      */ 
     public function updateFuncionario(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +65,10 @@ class FuncionarioRepositoryImplementation implements FuncionarioRepository
      */ 
     public function deleteFuncionario(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

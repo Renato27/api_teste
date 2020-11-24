@@ -13,7 +13,7 @@ interface PedidoStatusPedidoRepository
      * @param integer $id
      * @return Model|null
      */
-    public function getPedidoStatusPedido(int $id): ?Model;
+    public function getPedidoStatusPedido(int $pedido): ?Model;
 
     /**
      * Retorna uma coleção de PedidoStatusPedido baseado em uma associação.
@@ -22,7 +22,7 @@ interface PedidoStatusPedidoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getPedidoStatusPedidos(int $id, int $associacao): ?Collection;
+    public function getPedidoStatusPedidos(int $status): ?Collection;
     
     /**
      * Cria um novo PedidoStatusPedido

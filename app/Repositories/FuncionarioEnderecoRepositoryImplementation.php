@@ -8,15 +8,17 @@ use Illuminate\Support\Collection;
 
 class FuncionarioEnderecoRepositoryImplementation implements FuncionarioEnderecoRepository
 {
+    use BaseEloquentRepository;
+
     /**
      * Retorna FuncionarioEndereco baseado no ID.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getFuncionarioEndereco(int $id): ?Model
+    public function getFuncionarioEndereco(int $funcionario): ?Model
     {
-
+        return $this->where(['funcionario_id' => $funcionario])->first();
     }
 
     /**
@@ -27,8 +29,8 @@ class FuncionarioEnderecoRepositoryImplementation implements FuncionarioEndereco
      * @return Model|null
      */
     public function getFuncionarioEnderecos(int $id, int $associacao): ?Collection
-    {
-
+    {   
+        return $this;
     }
 
     /**
@@ -39,7 +41,7 @@ class FuncionarioEnderecoRepositoryImplementation implements FuncionarioEndereco
      */    
     public function createFuncionarioEndereco(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +53,7 @@ class FuncionarioEnderecoRepositoryImplementation implements FuncionarioEndereco
      */ 
     public function updateFuncionarioEndereco(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +65,10 @@ class FuncionarioEnderecoRepositoryImplementation implements FuncionarioEndereco
      */ 
     public function deleteFuncionarioEndereco(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

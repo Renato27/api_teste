@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class EnderecoRepositoryImplementation implements EnderecoRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna Endereco baseado no ID.
      *
@@ -16,7 +19,7 @@ class EnderecoRepositoryImplementation implements EnderecoRepository
      */
     public function getEndereco(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -28,7 +31,7 @@ class EnderecoRepositoryImplementation implements EnderecoRepository
      */
     public function getEnderecos(int $id, int $associacao): ?Collection
     {
-
+        return $this;
     }
 
     /**
@@ -39,7 +42,7 @@ class EnderecoRepositoryImplementation implements EnderecoRepository
      */    
     public function createEndereco(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +54,7 @@ class EnderecoRepositoryImplementation implements EnderecoRepository
      */ 
     public function updateEndereco(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +66,10 @@ class EnderecoRepositoryImplementation implements EnderecoRepository
      */ 
     public function deleteEndereco(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

@@ -8,6 +8,8 @@ use Illuminate\Support\Collection;
 
 class TipoContatoRepositoryImplementation implements TipoContatoRepository
 {
+    use BaseEloquentRepository;
+
     /**
      * Retorna TipoContato baseado no ID.
      *
@@ -16,7 +18,7 @@ class TipoContatoRepositoryImplementation implements TipoContatoRepository
      */
     public function getTipoContato(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -28,7 +30,7 @@ class TipoContatoRepositoryImplementation implements TipoContatoRepository
      */
     public function getTipoContatos(int $id, int $associacao): ?Collection
     {
-
+        return $this;
     }
 
     /**
@@ -39,7 +41,7 @@ class TipoContatoRepositoryImplementation implements TipoContatoRepository
      */    
     public function createTipoContato(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +53,7 @@ class TipoContatoRepositoryImplementation implements TipoContatoRepository
      */ 
     public function updateTipoContato(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +65,10 @@ class TipoContatoRepositoryImplementation implements TipoContatoRepository
      */ 
     public function deleteTipoContato(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

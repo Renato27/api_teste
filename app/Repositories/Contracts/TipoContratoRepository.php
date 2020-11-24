@@ -13,7 +13,7 @@ interface TipoContratoRepository
      * @param integer $id
      * @return Model|null
      */
-    public function getTipoContrato(int $id): ?Model;
+    public function getTipoContrato(int $contrato): ?Model;
 
     /**
      * Retorna uma coleção de TipoContrato baseado em uma associação.
@@ -22,7 +22,7 @@ interface TipoContratoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getTipoContratos(int $id, int $associacao): ?Collection;
+    public function getTipoContratos(int $tipo): ?Collection;
     
     /**
      * Cria um novo TipoContrato

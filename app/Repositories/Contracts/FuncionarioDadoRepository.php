@@ -13,7 +13,7 @@ interface FuncionarioDadoRepository
      * @param integer $id
      * @return Model|null
      */
-    public function getFuncionarioDado(int $id): ?Model;
+    public function getFuncionarioDado(int $funcionario): ?Model;
 
     /**
      * Retorna uma coleção de FuncionarioDado baseado em uma associação.

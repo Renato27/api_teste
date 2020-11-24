@@ -13,7 +13,7 @@ interface FuncionarioEnderecoRepository
      * @param integer $id
      * @return Model|null
      */
-    public function getFuncionarioEndereco(int $id): ?Model;
+    public function getFuncionarioEndereco(int $funcionario): ?Model;
 
     /**
      * Retorna uma coleção de FuncionarioEndereco baseado em uma associação.

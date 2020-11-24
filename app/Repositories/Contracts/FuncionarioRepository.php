@@ -22,7 +22,7 @@ interface FuncionarioRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getFuncionarios(int $id, int $associacao): ?Collection;
+    public function getFuncionarios(): ?Collection;
     
     /**
      * Cria um novo Funcionario

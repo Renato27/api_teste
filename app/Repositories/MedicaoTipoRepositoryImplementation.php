@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class MedicaoTipoRepositoryImplementation implements MedicaoTipoRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna MedicaoTipo baseado no ID.
      *
@@ -16,7 +19,7 @@ class MedicaoTipoRepositoryImplementation implements MedicaoTipoRepository
      */
     public function getMedicaoTipo(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -28,7 +31,7 @@ class MedicaoTipoRepositoryImplementation implements MedicaoTipoRepository
      */
     public function getMedicaoTipos(int $id, int $associacao): ?Collection
     {
-
+        return $this;
     }
 
     /**
@@ -39,7 +42,7 @@ class MedicaoTipoRepositoryImplementation implements MedicaoTipoRepository
      */    
     public function createMedicaoTipo(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +54,7 @@ class MedicaoTipoRepositoryImplementation implements MedicaoTipoRepository
      */ 
     public function updateMedicaoTipo(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +66,10 @@ class MedicaoTipoRepositoryImplementation implements MedicaoTipoRepository
      */ 
     public function deleteMedicaoTipo(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if($retorno) return false;
+
+        return true;
     }
 }

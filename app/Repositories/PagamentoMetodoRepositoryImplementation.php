@@ -8,6 +8,8 @@ use Illuminate\Support\Collection;
 
 class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoRepository
 {
+    use BaseEloquentRepository;
+
     /**
      * Retorna PagamentoMetodo baseado no ID.
      *
@@ -16,7 +18,7 @@ class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoReposito
      */
     public function getPagamentoMetodo(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -28,7 +30,7 @@ class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoReposito
      */
     public function getPagamentoMetodos(int $id, int $associacao): ?Collection
     {
-
+        return $this;
     }
 
     /**
@@ -39,7 +41,7 @@ class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoReposito
      */    
     public function createPagamentoMetodo(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +53,7 @@ class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoReposito
      */ 
     public function updatePagamentoMetodo(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +65,10 @@ class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoReposito
      */ 
     public function deletePagamentoMetodo(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if($retorno) return false;
+
+        return true;
     }
 }

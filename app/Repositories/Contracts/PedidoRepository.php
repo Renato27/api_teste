@@ -22,7 +22,7 @@ interface PedidoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getPedidos(int $id, int $associacao): ?Collection;
+    public function getPedidos(): ?Collection;
     
     /**
      * Cria um novo Pedido

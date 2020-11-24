@@ -23,25 +23,98 @@ class RepositoryProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind(\App\Repositories\Contracts\ClienteRepository::class, function($app){
+        $this->app->bind(\App\Repositories\Contracts\ClienteRepository::class, function ($app) {
             return new \App\Repositories\ClienteRepositoryImplementation(new \App\Models\Clientes\Cliente());
         });
 
-        $this->app->bind(\App\Repositories\Contracts\ClienteContatoRepository::class, function($app){
+        $this->app->bind(\App\Repositories\Contracts\ClienteContatoRepository::class, function ($app) {
             return new \App\Repositories\ClienteContatoRepositoryImplementation(new \App\Models\ClienteContato\ClienteContato());
         });
 
-        $this->app->bind(\App\Repositories\Contracts\ClienteContratoRepository::class, function($app){
+        $this->app->bind(\App\Repositories\Contracts\ClienteContratoRepository::class, function ($app) {
             return new \App\Repositories\ClienteContratoRepositoryImplementation(new \App\Models\ClienteContrato\ClienteContrato());
         });
 
-        $this->app->bind(\App\Repositories\Contracts\ClienteEnderecoRepository::class, function($app){
+        $this->app->bind(\App\Repositories\Contracts\ClienteEnderecoRepository::class, function ($app) {
             return new \App\Repositories\ClienteEnderecoRepositoryImplementation(new \App\Models\ClienteEndereco\ClienteEndereco());
         });
 
-        $this->app->bind(\App\Repositories\Contracts\ContatoContratoRepository::class, function($app){
+        $this->app->bind(\App\Repositories\Contracts\ContatoContratoRepository::class, function ($app) {
             return new \App\Repositories\ContatoContratoRepositoryImplementation(new \App\Models\ContatoContrato\ContatoContrato());
         });
-        
+
+        $this->app->bind(\App\Repositories\Contracts\ContatoEmailRepository::class, function ($app) {
+            return new \App\Repositories\ContatoEmailRepositoryImplementation(new \App\Models\ContatoEmail\ContatoEmail());
+        });
+        $this->app->bind(\App\Repositories\Contracts\ContatoEnderecosRepository::class, function ($app) {
+            return new \App\Repositories\ContatoEnderecosRepositoryImplementation(new \App\Models\ContatoEnderecos\ContatoEnderecos());
+        });
+        $this->app->bind(\App\Repositories\Contracts\ContatoRepository::class, function ($app) {
+            return new \App\Repositories\ContatoRepositoryImplementation(new \App\Models\Contato\Contato());
+        });
+        $this->app->bind(\App\Repositories\Contracts\ContatoTipoRepository::class, function ($app) {
+            return new \App\Repositories\ContatoTipoRepositoryImplementation(new \App\Models\ContatoTipo\ContatoTipo());
+        });
+        $this->app->bind(\App\Repositories\Contracts\ContratoMedicoTipoRepository::class, function ($app) {
+            return new \App\Repositories\ContratoMedicoTipoRepositoryImplementation(new \App\Models\ContratoMedicaoTipo\ContratoMedicaoTipo());
+        });
+        $this->app->bind(\App\Repositories\Contracts\ContratoPagamentoMetodoRepository::class, function ($app) {
+            return new \App\Repositories\ContratoPagamentoMetodoRepositoryImplementation(new \App\Models\ContratoPagamentoMetodo\ContratoPagamentoMetodo());
+        });
+        $this->app->bind(\App\Repositories\Contracts\ContratoPedidoRepository::class, function ($app) {
+            return new \App\Repositories\ContratoPedidoRepositoryImplementation(new \App\Models\ContratoPedido\ContratoPedido());
+        });
+        $this->app->bind(\App\Repositories\Contracts\ContratosRepository::class, function ($app) {
+            return new \App\Repositories\ContratosRepositoryImplementation(new \App\Models\Contratos\Contrato());
+        });
+        $this->app->bind(\App\Repositories\Contracts\ContratoTipoRepository::class, function ($app) {
+            return new \App\Repositories\ContratoTipoRepositoryImplementation(new \App\Models\ContratoTipo\ContratoTipo());
+        });
+        $this->app->bind(\App\Repositories\Contracts\DadoFuncionarioRepository::class, function ($app) {
+            return new \App\Repositories\DadoFuncionarioRepositoryImplementation(new \App\Models\DadoFuncionario\DadoFuncionario());
+        });
+        $this->app->bind(\App\Repositories\Contracts\EnderecoFuncionarioRepository::class, function ($app) {
+            return new \App\Repositories\EnderecoFuncionarioRepositoryImplementation(new \App\Models\EnderecoFuncionario\EnderecoFuncionario());
+        });
+        $this->app->bind(\App\Repositories\Contracts\EnderecoRepository::class, function ($app) {
+            return new \App\Repositories\EnderecoRepositoryImplementation(new \App\Models\Endereco\Endereco());
+        });
+        $this->app->bind(\App\Repositories\Contracts\FuncionarioDadoRepository::class, function ($app) {
+            return new \App\Repositories\FuncionarioDadoRepositoryImplementation(new \App\Models\FuncionarioDado\FuncionarioDado());
+        });
+        $this->app->bind(\App\Repositories\Contracts\FuncionarioEnderecoRepository::class, function ($app) {
+            return new \App\Repositories\FuncionarioEnderecoRepositoryImplementation(new \App\Models\FuncionarioEndereco\FuncionarioEndereco());
+        });
+        $this->app->bind(\App\Repositories\Contracts\FuncionarioRepository::class, function ($app) {
+            return new \App\Repositories\FuncionarioRepositoryImplementation(new \App\Models\Funcionario\Funcionario());
+        });
+        $this->app->bind(\App\Repositories\Contracts\ItemPedidoRepository::class, function ($app) {
+            return new \App\Repositories\ItemPedidoRepositoryImplementation(new \App\Models\ItemPedido\ItemPedido());
+        });
+        $this->app->bind(\App\Repositories\Contracts\MedicaoTipoRepository::class, function ($app) {
+            return new \App\Repositories\MedicaoTipoRepositoryImplementation(new \App\Models\MedicaoTipo\MedicaoTipo());
+        });
+        $this->app->bind(\App\Repositories\Contracts\PagamentoMetodoRepository::class, function ($app) {
+            return new \App\Repositories\PagamentoMetodoRepositoryImplementation(new \App\Models\PagamentoMetodo\PagamentoMetodo());
+        });
+        $this->app->bind(\App\Repositories\Contracts\PedidoItemRepository::class, function ($app) {
+            return new \App\Repositories\PedidoItemRepositoryImplementation(new \App\Models\PedidoItem\PedidoItem());
+        });
+        $this->app->bind(\App\Repositories\Contracts\PedidoRepository::class, function ($app) {
+            return new \App\Repositories\PedidoRepositoryImplementation(new \App\Models\Pedido\Pedido());
+        });
+        $this->app->bind(\App\Repositories\Contracts\PedidoStatusPedidoRepository::class, function ($app) {
+            return new \App\Repositories\PedidoStatusPedidoRepositoryImplementation(new \App\Models\PedidoStatusPedido\PedidoStatusPedido());
+        });
+        $this->app->bind(\App\Repositories\Contracts\StatusPedidoRepository::class, function ($app) {
+            return new \App\Repositories\StatusPedidoRepositoryImplementation(new \App\Models\StatusPedido\StatusPedido());
+        });
+        $this->app->bind(\App\Repositories\Contracts\TipoContatoRepository::class, function ($app) {
+            return new \App\Repositories\TipoContatoRepositoryImplementation(new \App\Models\TipoContato\TipoContato());
+        });
+        $this->app->bind(\App\Repositories\Contracts\TipoContratoRepository::class, function ($app) {
+            return new \App\Repositories\TipoContratoRepositoryImplementation(new \App\Models\TipoContrato\TipoContrato());
+        });
+
     }
 }

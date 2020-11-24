@@ -8,6 +8,8 @@ use Illuminate\Support\Collection;
 
 class DadoFuncionarioRepositoryImplementation implements DadoFuncionarioRepository
 {
+    use BaseEloquentRepository;
+
     /**
      * Retorna DadoFuncionario baseado no ID.
      *
@@ -16,7 +18,7 @@ class DadoFuncionarioRepositoryImplementation implements DadoFuncionarioReposito
      */
     public function getDadoFuncionario(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -28,7 +30,7 @@ class DadoFuncionarioRepositoryImplementation implements DadoFuncionarioReposito
      */
     public function getDadoFuncionarios(int $id, int $associacao): ?Collection
     {
-
+        return $this;
     }
 
     /**
@@ -39,7 +41,7 @@ class DadoFuncionarioRepositoryImplementation implements DadoFuncionarioReposito
      */    
     public function createDadoFuncionario(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +53,7 @@ class DadoFuncionarioRepositoryImplementation implements DadoFuncionarioReposito
      */ 
     public function updateDadoFuncionario(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +65,10 @@ class DadoFuncionarioRepositoryImplementation implements DadoFuncionarioReposito
      */ 
     public function deleteDadoFuncionario(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

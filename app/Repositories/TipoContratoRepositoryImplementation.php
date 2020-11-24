@@ -8,15 +8,17 @@ use Illuminate\Support\Collection;
 
 class TipoContratoRepositoryImplementation implements TipoContratoRepository
 {
+    use BaseEloquentRepository;
+
     /**
      * Retorna TipoContrato baseado no ID.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getTipoContrato(int $id): ?Model
+    public function getTipoContrato(int $contrato): ?Model
     {
-
+        return $this->where(['cotrato_id' => $contrato])->first();
     }
 
     /**
@@ -26,9 +28,9 @@ class TipoContratoRepositoryImplementation implements TipoContratoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getTipoContratos(int $id, int $associacao): ?Collection
+    public function getTipoContratos(int $tipo): ?Collection
     {
-
+        return $this->where(['contrato_tipo_id' => $tipo])->get();
     }
 
     /**
@@ -39,7 +41,7 @@ class TipoContratoRepositoryImplementation implements TipoContratoRepository
      */    
     public function createTipoContrato(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +53,7 @@ class TipoContratoRepositoryImplementation implements TipoContratoRepository
      */ 
     public function updateTipoContrato(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +65,10 @@ class TipoContratoRepositoryImplementation implements TipoContratoRepository
      */ 
     public function deleteTipoContrato(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

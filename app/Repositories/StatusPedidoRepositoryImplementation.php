@@ -8,6 +8,8 @@ use Illuminate\Support\Collection;
 
 class StatusPedidoRepositoryImplementation implements StatusPedidoRepository
 {
+    use BaseEloquentRepository;
+
     /**
      * Retorna StatusPedido baseado no ID.
      *
@@ -16,8 +18,8 @@ class StatusPedidoRepositoryImplementation implements StatusPedidoRepository
      */
     public function getStatusPedido(int $id): ?Model
     {
-
-    }
+        return $this->find($id);
+    }   
 
     /**
      * Retorna uma coleção de StatusPedido baseado em uma associação.
@@ -28,7 +30,7 @@ class StatusPedidoRepositoryImplementation implements StatusPedidoRepository
      */
     public function getStatusPedidos(int $id, int $associacao): ?Collection
     {
-
+        return $this;
     }
 
     /**
@@ -39,7 +41,7 @@ class StatusPedidoRepositoryImplementation implements StatusPedidoRepository
      */    
     public function createStatusPedido(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +53,7 @@ class StatusPedidoRepositoryImplementation implements StatusPedidoRepository
      */ 
     public function updateStatusPedido(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +65,10 @@ class StatusPedidoRepositoryImplementation implements StatusPedidoRepository
      */ 
     public function deleteStatusPedido(int $id): bool
     {
+        $retorno =  $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

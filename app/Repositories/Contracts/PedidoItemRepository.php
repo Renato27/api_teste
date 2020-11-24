@@ -13,7 +13,7 @@ interface PedidoItemRepository
      * @param integer $id
      * @return Model|null
      */
-    public function getPedidoItem(int $id): ?Model;
+    public function getPedidoItem(int $item): ?Model;
 
     /**
      * Retorna uma coleção de PedidoItem baseado em uma associação.
@@ -22,7 +22,7 @@ interface PedidoItemRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getPedidoItems(int $id, int $associacao): ?Collection;
+    public function getPedidoItems(int $pedido): ?Collection;
     
     /**
      * Cria um novo PedidoItem

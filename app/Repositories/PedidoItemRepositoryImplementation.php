@@ -8,15 +8,17 @@ use Illuminate\Support\Collection;
 
 class PedidoItemRepositoryImplementation implements PedidoItemRepository
 {
+    use BaseEloquentRepository;
+
     /**
      * Retorna PedidoItem baseado no ID.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getPedidoItem(int $id): ?Model
+    public function getPedidoItem(int $item): ?Model
     {
-
+        return $this->where(['item_id' => $item])->first();
     }
 
     /**
@@ -26,9 +28,9 @@ class PedidoItemRepositoryImplementation implements PedidoItemRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getPedidoItems(int $id, int $associacao): ?Collection
+    public function getPedidoItems(int $pedido): ?Collection
     {
-
+        return $this->where(['pedido_id' => $pedido])->get();
     }
 
     /**
@@ -39,7 +41,7 @@ class PedidoItemRepositoryImplementation implements PedidoItemRepository
      */    
     public function createPedidoItem(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -51,7 +53,7 @@ class PedidoItemRepositoryImplementation implements PedidoItemRepository
      */ 
     public function updatePedidoItem(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -63,6 +65,10 @@ class PedidoItemRepositoryImplementation implements PedidoItemRepository
      */ 
     public function deletePedidoItem(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }
