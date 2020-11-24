@@ -19,7 +19,7 @@ class CreateFuncionarioDadosTable extends Migration
             $table->foreignId('dado_funcionario_id');
 
             $table->foreign('funcionario_id')->references('id')->on('funcionarios');
-            $table->foreign('dado_id')->references('id')->on('dado_funcionarios');
+            $table->foreign('dado_funcionario_id')->references('id')->on('dado_funcionarios');
             $table->timestamps();
         });
     }
