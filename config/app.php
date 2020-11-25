@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Sao_Paulo',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt-br',
 
     /*
     |--------------------------------------------------------------------------
@@ -136,11 +136,6 @@ return [
 
     'providers' => [
 
-        /**
-         * Providers SGL
-         */
-        App\Providers\RepositoryProvider::class,
-
         /*
          * Laravel Framework Service Providers...
          */
@@ -179,6 +174,17 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+         /**
+         * Providers SGL
+         */
+            App\Providers\RepositoryProvider::class,
+
+        /**
+         * Serviços da Aplicação SGL
+         */
+
+         App\Providers\Services\Clientes\CadastrarClienteServiceProvider::class,
 
     ],
 
