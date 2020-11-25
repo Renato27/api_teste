@@ -23,6 +23,8 @@ class CreateDadoFuncionariosTable extends Migration
             $table->string('ctps')->nullable();
             $table->string('email')->unique()->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

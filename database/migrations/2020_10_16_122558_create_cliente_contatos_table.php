@@ -22,6 +22,8 @@ class CreateClienteContatosTable extends Migration
             $table->foreign('contato_id')->references('id')->on('contatos');
 
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

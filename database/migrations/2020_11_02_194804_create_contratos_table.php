@@ -25,8 +25,10 @@ class CreateContratosTable extends Migration
             $table->bigInteger('dia_periodo_inicio_nota')->nullable();
             $table->bigInteger('dia_periodo_fim_nota')->nullable();
             $table->string('responsavel')->nullable();
-            
+
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

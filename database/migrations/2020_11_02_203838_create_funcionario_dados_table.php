@@ -21,6 +21,8 @@ class CreateFuncionarioDadosTable extends Migration
             $table->foreign('funcionario_id')->references('id')->on('funcionarios');
             $table->foreign('dado_funcionario_id')->references('id')->on('dado_funcionarios');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

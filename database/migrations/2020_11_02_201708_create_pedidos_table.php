@@ -18,6 +18,8 @@ class CreatePedidosTable extends Migration
             $table->date('data_entrega')->nullable();
             $table->date('data_retirada')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

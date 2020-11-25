@@ -18,8 +18,10 @@ class CreateItemPedidosTable extends Migration
             $table->decimal('valor', 10,2)->nullable();
             $table->bigInteger('quantidade')->nullable();
             $table->string('informacoes')->nullable();
-            
+
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

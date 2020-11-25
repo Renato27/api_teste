@@ -21,6 +21,8 @@ class CreateClientesTable extends Migration
             $table->string('inscricao_estadual')->nullable();
             $table->string('inscricao_municipal')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

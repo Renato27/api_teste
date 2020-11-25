@@ -20,8 +20,10 @@ class CreateContratoMedicaoTiposTable extends Migration
 
             $table->foreign('contrato_id')->references('id')->on('contratos');
             $table->foreign('medicao_tipo_id')->references('id')->on('medicao_tipos');
-            
+
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
