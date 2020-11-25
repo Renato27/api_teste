@@ -7,7 +7,9 @@ use App\Http\Requests\ClienteRequest;
 use App\Http\Resources\ClienteResource;
 use App\Models\Clientes\Cliente;
 use App\Repositories\Contracts\ClienteRepository;
+use App\Services\Clientes\AtualizarCliente\Contracts\AtualizarClienteService;
 use App\Services\Clientes\CadastrarCliente\Contracts\CadastrarClienteService;
+use App\Services\Clientes\ExcluirCliente\Contracts\ExcluirClienteService;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -59,9 +61,16 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ClienteRequest $request, $cliente, )
+    public function update(Cliente $cliente, Request $request,  AtualizarClienteService $serviceCliente)
     {
-        //
+        try {
+            $serviceCliente->setCliente($cliente->id);
+            $clienteAtualizado = $serviceCliente->setDados($request->all())->handle();
+            
+            return new ClienteResource($clienteAtualizado);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
@@ -70,8 +79,15 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cliente $cliente, ExcluirClienteService $service)
     {
-        //
+        try {
+            $service->setCliente($cliente->id);
+            $service->handle();
+
+            return response()->json([], 200);
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }
