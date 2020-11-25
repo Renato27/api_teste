@@ -18,7 +18,7 @@ class TipoContratoRepositoryImplementation implements TipoContratoRepository
      */
     public function getTipoContrato(int $contrato): ?Model
     {
-        return $this->where(['cotrato_id' => $contrato])->first();
+        return $this->where(['contrato_id' => $contrato])->first();
     }
 
     /**
@@ -38,7 +38,7 @@ class TipoContratoRepositoryImplementation implements TipoContratoRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createTipoContrato(array $detalhes): ?Model
     {
         return $this->create($detalhes);
@@ -50,7 +50,7 @@ class TipoContratoRepositoryImplementation implements TipoContratoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateTipoContrato(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
@@ -62,7 +62,7 @@ class TipoContratoRepositoryImplementation implements TipoContratoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteTipoContrato(int $id): bool
     {
         $retorno = $this->delete($id);
