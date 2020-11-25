@@ -20,6 +20,8 @@ class CreateContatosTable extends Migration
             $table->string('telefone')->nullable();
             $table->string('celular')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

@@ -20,8 +20,10 @@ class CreatePedidoStatusPedidosTable extends Migration
 
             $table->foreign('pedido_id')->references('id')->on('pedidos');
             $table->foreign('status_pedido_id')->references('id')->on('status_pedidos');
-            
+
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

@@ -20,8 +20,10 @@ class CreateContatoEmailsTable extends Migration
             $table->foreignId('contato_id')->nullable();
 
             $table->foreign('contato_id')->references('id')->on('contatos');
-            
+
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

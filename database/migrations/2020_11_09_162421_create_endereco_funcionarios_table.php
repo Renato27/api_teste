@@ -22,6 +22,8 @@ class CreateEnderecoFuncionariosTable extends Migration
             $table->string('cidade')->nullable();
             $table->string('cep')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

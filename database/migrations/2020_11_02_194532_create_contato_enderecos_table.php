@@ -20,8 +20,10 @@ class CreateContatoEnderecosTable extends Migration
 
             $table->foreign('contato_id')->references('id')->on('contatos');
             $table->foreign('endereco_id')->references('id')->on('enderecos');
-            
+
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

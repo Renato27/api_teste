@@ -22,6 +22,8 @@ class CreateClienteEnderecosTable extends Migration
             $table->foreign('endereco_id')->references('id')->on('enderecos');
 
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

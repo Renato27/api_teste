@@ -20,8 +20,10 @@ class CreateFuncionarioEnderecosTable extends Migration
 
             $table->foreign('funcionario_id')->references('id')->on('funcionarios');
             $table->foreign('endereco_funcionario_id')->references('id')->on('endereco_funcionarios');
-            
+
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

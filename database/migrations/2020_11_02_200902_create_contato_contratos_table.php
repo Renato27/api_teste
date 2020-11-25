@@ -20,8 +20,10 @@ class CreateContatoContratosTable extends Migration
 
             $table->foreign('contato_id')->references('id')->on('contatos');
             $table->foreign('contrato_id')->references('id')->on('contratos');
-            
+
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

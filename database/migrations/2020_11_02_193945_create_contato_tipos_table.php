@@ -22,6 +22,8 @@ class CreateContatoTiposTable extends Migration
             $table->foreign('tipo_contato_id')->references('id')->on('tipo_contatos');
 
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

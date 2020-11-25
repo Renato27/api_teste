@@ -21,6 +21,8 @@ class CreatePedidoItemsTable extends Migration
             $table->foreign('pedido_id')->references('id')->on('pedidos');
             $table->foreign('item_id')->references('id')->on('item_pedidos');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
