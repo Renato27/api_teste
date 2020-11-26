@@ -22,7 +22,7 @@ class StatusPedidoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nome'          => $this->faker->name()
         ];
     }
 }

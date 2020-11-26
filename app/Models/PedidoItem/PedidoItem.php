@@ -11,7 +11,7 @@ class PedidoItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['pedido_id', 'item_id'];
+    protected $fillable = ['pedido_id', 'item_pedido_id'];
 
     public function pedido()
     {
@@ -20,6 +20,6 @@ class PedidoItem extends Model
 
     public function item()
     {
-        return $this->belongsTo(ItemPedido::class, 'item_id');
+        return $this->belongsTo(ItemPedido::class, 'item_pedido_id');
     }
 }

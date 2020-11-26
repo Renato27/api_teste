@@ -2,6 +2,8 @@
 
 namespace Database\Factories\PedidoItem;
 
+use App\Models\ItemPedido\ItemPedido;
+use App\Models\Pedido\Pedido;
 use App\Models\PedidoItem\PedidoItem;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +24,8 @@ class PedidoItemFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'pedido_id'         => Pedido::factory()->create(),
+            'item_pedido_id'    => ItemPedido::factory()->create()
         ];
     }
 }

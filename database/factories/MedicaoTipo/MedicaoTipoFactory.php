@@ -22,7 +22,7 @@ class MedicaoTipoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nome'              => $this->faker->name(1)
         ];
     }
 }
