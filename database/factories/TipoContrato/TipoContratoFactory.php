@@ -2,6 +2,8 @@
 
 namespace Database\Factories\TipoContrato;
 
+use App\Models\Contratos\Contrato;
+use App\Models\ContratoTipo\ContratoTipo;
 use App\Models\TipoContrato\TipoContrato;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +24,8 @@ class TipoContratoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'contrato_id'               => Contrato::factory()->create(),
+            'contrato_tipo_id'          => ContratoTipo::factory()->create()
         ];
     }
 }
