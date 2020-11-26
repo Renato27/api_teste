@@ -17,8 +17,10 @@ class CreateFuncionariosTable extends Migration
             $table->id();
             $table->string('nome')->nullable();
             $table->string('cargo')->nullable();
-            
+
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

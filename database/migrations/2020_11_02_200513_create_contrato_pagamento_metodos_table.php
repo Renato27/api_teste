@@ -20,8 +20,10 @@ class CreateContratoPagamentoMetodosTable extends Migration
 
             $table->foreign('contrato_id')->references('id')->on('contratos');
             $table->foreign('pagamento_metodo_id')->references('id')->on('pagamento_metodos');
-            
+
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

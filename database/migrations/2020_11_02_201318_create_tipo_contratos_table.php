@@ -21,6 +21,8 @@ class CreateTipoContratosTable extends Migration
             $table->foreign('contrato_id')->references('id')->on('contratos');
             $table->foreign('contrato_tipo_id')->references('id')->on('contrato_tipos');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

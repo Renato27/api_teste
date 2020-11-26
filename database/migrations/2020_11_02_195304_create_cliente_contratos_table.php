@@ -20,8 +20,10 @@ class CreateClienteContratosTable extends Migration
 
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->foreign('contrato_id')->references('id')->on('contratos');
-            
+
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

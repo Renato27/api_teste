@@ -18,6 +18,8 @@ class CreatePagamentoMetodosTable extends Migration
             $table->string('nome');
             $table->string('detalhes');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

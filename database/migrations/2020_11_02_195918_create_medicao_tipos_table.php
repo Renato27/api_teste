@@ -17,6 +17,8 @@ class CreateMedicaoTiposTable extends Migration
             $table->id();
             $table->string('nome');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
