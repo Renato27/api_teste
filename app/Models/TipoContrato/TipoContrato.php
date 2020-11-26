@@ -2,20 +2,24 @@
 
 namespace App\Models\TipoContrato;
 
+use App\Models\Contratos\Contrato;
 use App\Models\Contratos\Contratos;
 use App\Models\ContratoTipo\ContratoTipo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TipoContrato extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['contrato_id', 'contrato_tipo_id'];
+    use SoftDeletes;
+
+    protected $fillable = ['contrato_id', 'contrato_tipo_id', 'deleted_at'];
 
     public function contrato()
     {
-        return $this->belongsTo(Contratos::class, 'contrato_id');
+        return $this->belongsTo(Contrato::class, 'contrato_id');
     }
 
     public function contrato_tipo()

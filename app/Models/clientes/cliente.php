@@ -5,11 +5,17 @@ namespace App\Models\Clientes;
 use App\Models\ClienteContato\ClienteContato;
 use App\Models\ClienteContrato\ClienteContrato;
 use App\Models\ClienteEndereco\ClienteEndereco;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cliente extends Model
 {
-    protected $fillable = ['razao_social', 'nome_fantasia', 'cpf_cnpj', 'inscricao_estadual', 'inscricao_municipal'];
+    use HasFactory;
+
+    use SoftDeletes;
+
+    protected $fillable = ['razao_social', 'nome_fantasia', 'cpf_cnpj', 'inscricao_estadual', 'inscricao_municipal', 'deleted_at'];
 
     public function hasEnderecos()
     {
@@ -26,5 +32,5 @@ class Cliente extends Model
         return $this->hasMany(ClienteContrato::class, 'cliente_id', 'id');
     }
 
-    
+
 }
