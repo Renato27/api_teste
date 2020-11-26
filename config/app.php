@@ -185,6 +185,11 @@ return [
          */
 
          App\Providers\Services\Clientes\CadastrarClienteServiceProvider::class,
+         App\Providers\Services\Clientes\AtualizarClienteServiceProvider::class,
+         App\Providers\Services\Clientes\ExcluirClienteServiceProvider::class,
+         App\Providers\Services\Enderecos\CadastrarEnderecoServiceProvider::class,
+         App\Providers\Services\Enderecos\AtualizarEnderecoServiceProvider::class,
+         App\Providers\Services\Enderecos\ExcluirEnderecoServiceProvider::class,
 
     ],
 

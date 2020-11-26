@@ -22,7 +22,7 @@ interface EnderecoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getEnderecos(int $id, int $associacao): ?Collection;
+    public function getEnderecos(): ?Collection;
     
     /**
      * Cria um novo Endereco
