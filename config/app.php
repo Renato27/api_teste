@@ -190,6 +190,9 @@ return [
          App\Providers\Services\Enderecos\CadastrarEnderecoServiceProvider::class,
          App\Providers\Services\Enderecos\AtualizarEnderecoServiceProvider::class,
          App\Providers\Services\Enderecos\ExcluirEnderecoServiceProvider::class,
+         App\Providers\Services\Contatos\CadastrarContatoServiceProvider::class,
+         App\Providers\Services\Contatos\AtualizarContatoServiceProvider::class,
+         App\Providers\Services\Contatos\ExcluirContatoServiceProvider::class,
 
     ],
 
