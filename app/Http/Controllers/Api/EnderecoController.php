@@ -36,6 +36,9 @@ class EnderecoController extends Controller
         try {
             $endereco = $service->setDados($request->all())->handle();
 
+            $endereco->hasCliente()->save($endereco->id);
+            $endereco->refresh();
+
             return new EnderecoResource($endereco);
         } catch (\Throwable $th) {
             throw $th;
