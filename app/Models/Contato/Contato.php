@@ -2,6 +2,7 @@
 
 namespace App\Models\Contato;
 
+use App\Models\ClienteContato\ClienteContato;
 use App\Models\ContatoContrato\ContatoContrato;
 use App\Models\ContatoEmail\ContatoEmail;
 use App\Models\ContatoEnderecos\ContatoEnderecos;
@@ -27,5 +28,10 @@ class Contato extends Model
     public function hasEnderecos()
     {
         return $this->hasMany(ContatoEnderecos::class, 'contato_id', 'id');
+    }
+
+    public function hasCliente()
+    {
+        return $this->hasOne(ClienteContato::class, 'contato_id', 'id');
     }
 }

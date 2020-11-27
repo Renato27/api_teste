@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClienteRequest;
+use App\Http\Resources\ClienteContatoEnderecoResource;
 use App\Http\Resources\ClienteResource;
 use App\Models\Clientes\Cliente;
 use App\Repositories\Contracts\ClienteRepository;
@@ -37,10 +38,7 @@ class ClienteController extends Controller
 
             $cliente = $serviceCliente->setDados($clienteRequest->all())->handle();
 
-            $cliente->hasEnderecos()->save($cliente->id);
-            $cliente->refresh();
-
-            return new ClienteResource($cliente);
+            return new ClienteContatoEnderecoResource($cliente);
         } catch (\Throwable $th) {
             throw $th;
         }

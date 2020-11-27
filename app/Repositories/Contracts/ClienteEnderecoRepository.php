@@ -49,4 +49,12 @@ interface ClienteEnderecoRepository
      * @return Model|null
      */ 
     public function deleteClienteEndereco(int $id): bool;
+
+    /**
+     * Verifica se existe algum endereço principal.
+     *
+     * @param integer $cliente
+     * @return boolean
+     */
+    public function existeAlgumPrincipal(int $cliente) : bool;
 }
