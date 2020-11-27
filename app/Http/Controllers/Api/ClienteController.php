@@ -37,6 +37,9 @@ class ClienteController extends Controller
 
             $cliente = $serviceCliente->setDados($clienteRequest->all())->handle();
 
+            $cliente->hasEnderecos()->save($cliente->id);
+            $cliente->refresh();
+
             return new ClienteResource($cliente);
         } catch (\Throwable $th) {
             throw $th;
