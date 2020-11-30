@@ -2,11 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ContratoMedicoTipoRepository;
+use App\Repositories\Contracts\ContratoMedicaoTipoRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
-class ContratoMedicoTipoRepositoryImplementation implements ContratoMedicoTipoRepository
+class ContratoMedicaoTipoRepositoryImplementation implements ContratoMedicaoTipoRepository
 {
 
     use BaseEloquentRepository;
@@ -39,7 +39,7 @@ class ContratoMedicoTipoRepositoryImplementation implements ContratoMedicoTipoRe
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createContratoMedicaoTipo(array $detalhes): ?Model
     {
         return $this->create($detalhes);
@@ -51,7 +51,7 @@ class ContratoMedicoTipoRepositoryImplementation implements ContratoMedicoTipoRe
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateContratoMedicaoTipo(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
@@ -63,7 +63,7 @@ class ContratoMedicoTipoRepositoryImplementation implements ContratoMedicoTipoRe
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteContratoMedicaoTipo(int $id): bool
     {
         $retorno = $this->delete($id);

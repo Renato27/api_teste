@@ -3,6 +3,8 @@
 namespace Database\Factories\ContratoPagamentoMetodo;
 
 use App\Models\ContratoPagamentoMetodo\ContratoPagamentoMetodo;
+use App\Models\Contratos\Contrato;
+use App\Models\PagamentoMetodo\PagamentoMetodo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ContratoPagamentoMetodoFactory extends Factory
@@ -22,7 +24,8 @@ class ContratoPagamentoMetodoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'contrato_id'           => Contrato::factory()->create(),
+            'pagamento_metodo_id'   => PagamentoMetodo::factory()->create()
         ];
     }
 }

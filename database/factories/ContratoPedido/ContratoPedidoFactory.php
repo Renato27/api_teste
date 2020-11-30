@@ -3,6 +3,8 @@
 namespace Database\Factories\ContratoPedido;
 
 use App\Models\ContratoPedido\ContratoPedido;
+use App\Models\Contratos\Contrato;
+use App\Models\Pedido\Pedido;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ContratoPedidoFactory extends Factory
@@ -22,7 +24,8 @@ class ContratoPedidoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'pedido_id'                 => Pedido::factory()->create(),
+            'contrato_id'               => Contrato::factory()->create()
         ];
     }
 }
