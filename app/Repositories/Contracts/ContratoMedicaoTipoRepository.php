@@ -5,7 +5,7 @@ namespace App\Repositories\Contracts;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
-interface ContratoMedicoTipoRepository
+interface ContratoMedicaoTipoRepository
 {
     /**
      * Retorna ContratoMedicaoTipo baseado no ID.
@@ -23,13 +23,13 @@ interface ContratoMedicoTipoRepository
      * @return Model|null
      */
     public function getMedicaoTipoContratos(int $medicao): ?Collection;
-    
+
     /**
      * Cria um novo ContratoMedicaoTipo
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createContratoMedicaoTipo(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface ContratoMedicoTipoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateContratoMedicaoTipo(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,6 @@ interface ContratoMedicoTipoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteContratoMedicaoTipo(int $id): bool;
 }

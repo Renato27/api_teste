@@ -3,7 +3,7 @@
 namespace App\Models\ContatoContrato;
 
 use App\Models\Contato\Contato;
-use App\Models\Contratos\Contratos;
+use App\Models\Contratos\Contrato;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,6 +20,6 @@ class ContatoContrato extends Model
 
     public function contrato()
     {
-        return $this->belongsTo(Contratos::class, 'contrato_id');
+        return $this->belongsTo(Contrato::class, 'contrato_id');
     }
 }

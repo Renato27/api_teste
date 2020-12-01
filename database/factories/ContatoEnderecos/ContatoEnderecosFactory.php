@@ -2,7 +2,9 @@
 
 namespace Database\Factories\ContatoEnderecos;
 
+use App\Models\Contato\Contato;
 use App\Models\ContatoEnderecos\ContatoEnderecos;
+use App\Models\Endereco\Endereco;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ContatoEnderecosFactory extends Factory
@@ -22,7 +24,8 @@ class ContatoEnderecosFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'contato_id'            => Contato::factory()->create(),
+            'endereco_id'           => Endereco::factory()->create()
         ];
     }
 }

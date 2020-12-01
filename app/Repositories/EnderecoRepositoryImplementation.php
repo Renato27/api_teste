@@ -39,7 +39,7 @@ class EnderecoRepositoryImplementation implements EnderecoRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createEndereco(array $detalhes): ?Model
     {
         return $this->create($detalhes);
@@ -51,7 +51,7 @@ class EnderecoRepositoryImplementation implements EnderecoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateEndereco(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
@@ -63,7 +63,7 @@ class EnderecoRepositoryImplementation implements EnderecoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteEndereco(int $id): bool
     {
         $retorno = $this->delete($id);

@@ -3,6 +3,8 @@
 namespace Database\Factories\ClienteContrato;
 
 use App\Models\ClienteContrato\ClienteContrato;
+use App\Models\Clientes\Cliente;
+use App\Models\Contratos\Contrato;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ClienteContratoFactory extends Factory
@@ -22,7 +24,8 @@ class ClienteContratoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'cliente_id'                => Cliente::factory()->create(),
+            'contrato_id'               => Contrato::factory()->create()
         ];
     }
 }

@@ -22,7 +22,9 @@ class ItemPedidoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'valor'         => $this->faker->numberBetween(10,2),
+            'quantidade'    => $this->faker->numberBetween(1,100),
+            'informacoes'   => $this->faker->text()
         ];
     }
 }
