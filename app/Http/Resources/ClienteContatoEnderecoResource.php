@@ -14,11 +14,12 @@ class ClienteContatoEnderecoResource extends JsonResource
      */
     public function toArray($request)
     {
-        dd($this->resource->hasContatos);
+      
+       
         return [
-            // 'cliente'   => new ClienteResource($this->resource),
-            // 'endereco'  => EnderecoResource::collection($this->resource->hasEnderecos->endereco),
-            // 'contato'   => ContatoResource::collection($this->resource->hasContatos->endereco)  
+            'cliente'   => new ClienteResource($this->resource),
+            'endereco'  => EnderecoResource::collection($this->whenLoaded('cliente_enderecos')),
+            'contato'   => ContatoResource::collection($this->whenLoaded('cliente_contatos'))
         ];
     }
 }

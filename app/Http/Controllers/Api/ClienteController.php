@@ -38,7 +38,7 @@ class ClienteController extends Controller
 
             $cliente = $serviceCliente->setDados($clienteRequest->all())->handle();
 
-            return new ClienteContatoEnderecoResource($cliente);
+            return new ClienteResource($cliente);
         } catch (\Throwable $th) {
             throw $th;
         }
