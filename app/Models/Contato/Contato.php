@@ -7,10 +7,15 @@ use App\Models\ContatoEmail\ContatoEmail;
 use App\Models\ContatoEnderecos\ContatoEnderecos;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contato extends Model
 {
     use HasFactory;
+
+    use SoftDeletes;
+
+    protected $date = ['deleted_at'];
 
     protected $fillable = ['nome', 'cargo', 'telefone', 'celular'];
 

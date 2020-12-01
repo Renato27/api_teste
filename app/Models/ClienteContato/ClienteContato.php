@@ -6,10 +6,15 @@ use App\Models\clientes\Cliente;
 use App\Models\Contato\Contato;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ClienteContato extends Model
 {
     use HasFactory;
+
+    use SoftDeletes;
+
+    protected $date = ['deleted_at'];
 
     protected $fillable = ['contato_id', 'cliente_id', 'principal'];
 

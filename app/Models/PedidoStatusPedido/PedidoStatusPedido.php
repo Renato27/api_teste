@@ -6,10 +6,15 @@ use App\Models\Pedido\Pedido;
 use App\Models\StatusPedido\StatusPedido;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PedidoStatusPedido extends Model
 {
     use HasFactory;
+
+    use SoftDeletes;
+
+    protected $date = ['deleted_at'];
 
     protected $fillable = ['pedido_id', 'status_pedido_id'];
 

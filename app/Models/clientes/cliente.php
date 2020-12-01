@@ -15,7 +15,9 @@ class Cliente extends Model
 
     use SoftDeletes;
 
-    protected $fillable = ['razao_social', 'nome_fantasia', 'cpf_cnpj', 'inscricao_estadual', 'inscricao_municipal', 'deleted_at'];
+    protected $date = ['deleted_at'];
+
+    protected $fillable = ['razao_social', 'nome_fantasia', 'cpf_cnpj', 'inscricao_estadual', 'inscricao_municipal'];
 
     public function hasEnderecos()
     {

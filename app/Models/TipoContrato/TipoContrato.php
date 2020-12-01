@@ -15,7 +15,9 @@ class TipoContrato extends Model
 
     use SoftDeletes;
 
-    protected $fillable = ['contrato_id', 'contrato_tipo_id', 'deleted_at'];
+    protected $date = ['deleted_at'];
+
+    protected $fillable = ['contrato_id', 'contrato_tipo_id'];
 
     public function contrato()
     {

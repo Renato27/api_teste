@@ -8,10 +8,15 @@ use App\Models\PedidoItem\PedidoItem;
 use App\Models\PedidoStatusPedido\PedidoStatusPedido;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pedido extends Model
 {
     use HasFactory;
+
+    use SoftDeletes;
+
+    protected $date = ['deleted_at'];
 
     protected $fillable = ['data_entrega', 'data_retirada'];
 
