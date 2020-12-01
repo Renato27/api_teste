@@ -22,7 +22,8 @@ class PedidoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'data_entrega'      => $this->faker->date(),
+            'data_retirada'     => $this->faker->date()
         ];
     }
 }

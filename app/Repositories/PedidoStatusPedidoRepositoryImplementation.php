@@ -18,7 +18,7 @@ class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRe
      */
     public function getPedidoStatusPedido(int $pedido): ?Model
     {
-        return $this->where(['pedido_id' => $pedido])->fisrt();
+        return $this->where(['pedido_id' => $pedido])->first();
     }
 
     /**
@@ -38,7 +38,7 @@ class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRe
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createPedidoStatusPedido(array $detalhes): ?Model
     {
         return $this->create($detalhes);
@@ -50,7 +50,7 @@ class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRe
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updatePedidoStatusPedido(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
@@ -62,7 +62,7 @@ class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRe
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deletePedidoStatusPedido(int $id): bool
     {
         $retorno = $this->delete($id);
