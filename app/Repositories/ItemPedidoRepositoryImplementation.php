@@ -38,7 +38,7 @@ class ItemPedidoRepositoryImplementation implements ItemPedidoRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createItemPedido(array $detalhes): ?Model
     {
         return $this->create($detalhes);
@@ -50,7 +50,7 @@ class ItemPedidoRepositoryImplementation implements ItemPedidoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateItemPedido(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
@@ -62,7 +62,7 @@ class ItemPedidoRepositoryImplementation implements ItemPedidoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteItemPedido(int $id): bool
     {
         $retorno = $this->delete($id);

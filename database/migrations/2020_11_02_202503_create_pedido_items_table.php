@@ -16,10 +16,10 @@ class CreatePedidoItemsTable extends Migration
         Schema::create('pedido_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pedido_id');
-            $table->foreignId('item_id');
+            $table->foreignId('item_pedido_id');
 
             $table->foreign('pedido_id')->references('id')->on('pedidos');
-            $table->foreign('item_id')->references('id')->on('item_pedidos');
+            $table->foreign('item_pedido_id')->references('id')->on('item_pedidos');
             $table->timestamps();
 
             $table->softDeletes();

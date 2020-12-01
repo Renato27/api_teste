@@ -55,8 +55,8 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\ContatoTipoRepository::class, function ($app) {
             return new \App\Repositories\ContatoTipoRepositoryImplementation(new \App\Models\ContatoTipo\ContatoTipo());
         });
-        $this->app->bind(\App\Repositories\Contracts\ContratoMedicoTipoRepository::class, function ($app) {
-            return new \App\Repositories\ContratoMedicoTipoRepositoryImplementation(new \App\Models\ContratoMedicaoTipo\ContratoMedicaoTipo());
+        $this->app->bind(\App\Repositories\Contracts\ContratoMedicaoTipoRepository::class, function ($app) {
+            return new \App\Repositories\ContratoMedicaoTipoRepositoryImplementation(new \App\Models\ContratoMedicaoTipo\ContratoMedicaoTipo());
         });
         $this->app->bind(\App\Repositories\Contracts\ContratoPagamentoMetodoRepository::class, function ($app) {
             return new \App\Repositories\ContratoPagamentoMetodoRepositoryImplementation(new \App\Models\ContratoPagamentoMetodo\ContratoPagamentoMetodo());

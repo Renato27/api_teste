@@ -16,9 +16,9 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
      * @param integer $id
      * @return Model|null
      */
-    public function getAssociacaoByContato(int $contato): ?Model
+    public function getAssociacaoByCliente(int $cliente): ?Model
     {
-        return $this->where(['contato_id' => $contato])->first();
+        return $this->where(['cliente_id' => $cliente])->first();
     }
 
     /**
@@ -28,9 +28,9 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getClientesByContato(int $contato): ?Collection
+    public function getContatosByCliente(int $cliente): ?Collection
     {
-        return $this->where(['contato_id' => $contato])->get();
+        return $this->where(['cliente_id' => $cliente])->get();
     }
 
     /**
@@ -70,5 +70,27 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
         if(!$retorno) return false;
 
         return true;
+    }
+
+    /**
+     * Verifica se existe algum contato principal.
+     *
+     * @param integer $cliente
+     * @return boolean
+     */
+    public function existeAlgumPrincipal(int $cliente) : bool
+    {
+        $associacoes = $this->where(['cliente_id' => $cliente])->get();
+
+        if(count($associacoes) > 0){
+
+            foreach($associacoes as $associacao){
+
+                if($associacao->principal == 1) 
+                    return true;
+            }
+        }
+
+        return false;
     }
 }

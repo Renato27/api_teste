@@ -5,6 +5,9 @@ namespace App\Models\Clientes;
 use App\Models\ClienteContato\ClienteContato;
 use App\Models\ClienteContrato\ClienteContrato;
 use App\Models\ClienteEndereco\ClienteEndereco;
+use App\Models\Contato\Contato;
+use App\Models\Contratos\Contrato;
+use App\Models\Endereco\Endereco;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,19 +22,19 @@ class Cliente extends Model
 
     protected $fillable = ['razao_social', 'nome_fantasia', 'cpf_cnpj', 'inscricao_estadual', 'inscricao_municipal'];
 
-    public function hasEnderecos()
+    public function enderecos()
     {
-        return $this->hasMany(ClienteEndereco::class, 'cliente_id', 'id');
+        return $this->belongsToMany(Endereco::class)->using(ClienteEndereco::class);
     }
 
-    public function hasContatos()
+    public function contatos()
     {
-        return $this->hasMany(ClienteContato::class, 'cliente_id', 'id');
+        return $this->belongsToMany(Contato::class)->using(ClienteContato::class);
     }
 
-    public function hasContratos()
+    public function contratos()
     {
-        return $this->hasMany(ClienteContrato::class, 'cliente_id', 'id');
+        return $this->belongsToMany(Contrato::class)->using(ClienteContrato::class);
     }
 
 

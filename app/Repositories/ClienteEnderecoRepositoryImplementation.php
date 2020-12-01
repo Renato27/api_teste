@@ -85,4 +85,26 @@ class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoReposito
 
         return true;
     }
+
+    /**
+     * Verifica se existe algum endereço principal.
+     *
+     * @param integer $cliente
+     * @return boolean
+     */
+    public function existeAlgumPrincipal(int $cliente) : bool
+    {
+        $associacoes = $this->where(['cliente_id' => $cliente])->get();
+
+        if(count($associacoes) > 0){
+
+            foreach($associacoes as $associacao){
+
+                if($associacao->principal == 1) 
+                    return true;
+            }
+        }
+
+        return false;
+    }
 }

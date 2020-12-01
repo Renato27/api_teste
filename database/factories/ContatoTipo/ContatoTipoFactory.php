@@ -2,7 +2,9 @@
 
 namespace Database\Factories\ContatoTipo;
 
+use App\Models\Contato\Contato;
 use App\Models\ContatoTipo\ContatoTipo;
+use App\Models\TipoContato\TipoContato;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ContatoTipoFactory extends Factory
@@ -22,7 +24,8 @@ class ContatoTipoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'contato_id'            => Contato::factory()->create(),
+            'tipo_contato_id'       => TipoContato::factory()->create()
         ];
     }
 }

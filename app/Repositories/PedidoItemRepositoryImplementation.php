@@ -18,7 +18,7 @@ class PedidoItemRepositoryImplementation implements PedidoItemRepository
      */
     public function getPedidoItem(int $item): ?Model
     {
-        return $this->where(['item_id' => $item])->first();
+        return $this->where(['item_pedido_id' => $item])->first();
     }
 
     /**
@@ -38,7 +38,7 @@ class PedidoItemRepositoryImplementation implements PedidoItemRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createPedidoItem(array $detalhes): ?Model
     {
         return $this->create($detalhes);
@@ -50,7 +50,7 @@ class PedidoItemRepositoryImplementation implements PedidoItemRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updatePedidoItem(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
@@ -62,7 +62,7 @@ class PedidoItemRepositoryImplementation implements PedidoItemRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deletePedidoItem(int $id): bool
     {
         $retorno = $this->delete($id);
