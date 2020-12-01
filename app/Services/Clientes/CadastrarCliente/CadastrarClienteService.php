@@ -20,6 +20,13 @@ class CadastrarClienteService extends CadastrarClienteServiceAbstract
         DB::transaction(function () use(&$cliente) {
             
             $cliente =  $this->cadastrarCliente();
+            $endereco = $this->cadastrarEnderecoService->setDados($this->dados)->handle();
+            $contato = $this->cadastrarContatoService->setDados($this->dados)->handle();
+
+            $this->associarClienteContatoService->setCliente($cliente->id)->setContato($contato->id)->handle();
+            $this->associarClienteEnderecoService->setCliente($cliente->id)->setEndereco($endereco->id)->handle();
+            
+            
         });
 
         return $cliente;

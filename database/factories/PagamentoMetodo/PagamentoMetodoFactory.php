@@ -22,8 +22,8 @@ class PagamentoMetodoFactory extends Factory
     public function definition()
     {
         return [
-            'nome'              => $this->faker->name(),
-            'detalhes'          => $this->faker->text()
+            'nome'          => $this->faker->name(),
+            'detalhes'      => $this->faker->text()
         ];
     }
 }

@@ -38,7 +38,7 @@ class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoReposito
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createPagamentoMetodo(array $detalhes): ?Model
     {
         return $this->create($detalhes);
@@ -50,7 +50,7 @@ class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoReposito
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updatePagamentoMetodo(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
@@ -62,7 +62,7 @@ class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoReposito
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deletePagamentoMetodo(int $id): bool
     {
         $retorno = $this->delete($id);

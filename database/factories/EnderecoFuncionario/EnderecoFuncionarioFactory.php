@@ -22,7 +22,12 @@ class EnderecoFuncionarioFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'rua'                   => $this->faker->address,
+            'numero'                => $this->faker->numberBetween(1, 100),
+            'bairro'               => $this->faker->name(2),
+            'complemento'           => $this->faker->text(10),
+            'cidade'                => $this->faker->city,
+            'cep'                   => $this->faker->numberBetween(11111111, 99999999)
         ];
     }
 }
