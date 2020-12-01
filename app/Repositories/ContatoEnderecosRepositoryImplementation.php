@@ -39,7 +39,7 @@ class ContatoEnderecosRepositoryImplementation implements ContatoEnderecosReposi
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createContatoEnderecos(array $detalhes): ?Model
     {
         return $this->create($detalhes);
@@ -51,7 +51,7 @@ class ContatoEnderecosRepositoryImplementation implements ContatoEnderecosReposi
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateContatoEnderecos(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
@@ -63,7 +63,7 @@ class ContatoEnderecosRepositoryImplementation implements ContatoEnderecosReposi
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteContatoEnderecos(int $id): bool
     {
         $retorno = $this->delete($id);

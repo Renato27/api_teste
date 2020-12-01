@@ -38,7 +38,7 @@ class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createContatoEmail(array $detalhes): ?Model
     {
         return $this->create($detalhes);
@@ -50,7 +50,7 @@ class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateContatoEmail(int $contato, array $detalhes): ?Model
     {
         $email = $this->where(['contato_id' => $contato])->first();
@@ -64,7 +64,7 @@ class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteContatoEmail(int $id): bool
     {
         $retorno = $this->delete($id);

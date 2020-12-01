@@ -22,7 +22,11 @@ class clienteFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'razao_social'              => $this->faker->name(5),
+            'nome_fantasia'             => $this->faker->name(3),
+            'cpf_cnpj'                  => $this->faker->numberBetween(10000000000001, 99999999999999),
+            'inscricao_estadual'        => $this->faker->numberBetween(100000000, 999999999),
+            'inscricao_municipal'       => $this->faker->numberBetween(10000000000, 99999999999)
         ];
     }
 }
