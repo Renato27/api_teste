@@ -22,7 +22,8 @@ class FuncionarioFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nome'              => $this->faker->name(),
+            'cargo'             => $this->faker->name()
         ];
     }
 }

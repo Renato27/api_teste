@@ -2,6 +2,8 @@
 
 namespace Database\Factories\FuncionarioDado;
 
+use App\Models\DadoFuncionario\DadoFuncionario;
+use App\Models\Funcionario\Funcionario;
 use App\Models\FuncionarioDado\FuncionarioDado;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,7 +24,8 @@ class FuncionarioDadoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'funcionario_id'            => Funcionario::factory()->create(),
+            'dado_funcionario_id'       => DadoFuncionario::factory()->create()
         ];
     }
 }
