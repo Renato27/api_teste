@@ -13,7 +13,7 @@ interface ClienteContatoRepository
      * @param integer $id
      * @return Model|null
      */
-    public function getAssociacaoByContato(int $contato): ?Model;
+    public function getAssociacaoByCliente(int $cliente): ?Model;
 
     /**
      * Retorna uma coleção de ClienteContato baseado em uma associação.
@@ -22,7 +22,7 @@ interface ClienteContatoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getClientesByContato(int $contato): ?Collection;
+    public function getContatosByCliente(int $cliente): ?Collection;
     
     /**
      * Cria um novo ClienteContato
@@ -49,4 +49,12 @@ interface ClienteContatoRepository
      * @return Model|null
      */ 
     public function deleteClienteContato(int $id): bool;
+
+    /**
+     * Verifica se existe algum contato principal.
+     *
+     * @param integer $cliente
+     * @return boolean
+     */
+    public function existeAlgumPrincipal(int $cliente) : bool;
 }
