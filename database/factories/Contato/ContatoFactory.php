@@ -22,7 +22,10 @@ class ContatoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nome'              => $this->faker->name(),
+            'cargo'             => $this->faker->name(1),
+            'telefone'          => $this->faker->numberBetween(20000001, 29999999),
+            'celular'           => $this->faker->numberBetween(900000000, 999999999)
         ];
     }
 }
