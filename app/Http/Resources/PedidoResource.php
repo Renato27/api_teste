@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ClienteContatoResource extends JsonResource
+class PedidoResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,8 +15,11 @@ class ClienteContatoResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'cliente' => new ClienteResource($this->resource),
-            'contato' => ContatoResource::collection($this->resource)
+            'id'                => $this->id,
+            'data_entrega'      => $this->data_entrega,
+            'data_retirada'     => $this->data_retirada,
+            'created_at'        => $this->created_at,
+            'updated_at'        => $this->updated_at
         ];
     }
 }
