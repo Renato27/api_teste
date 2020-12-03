@@ -183,6 +183,9 @@ return [
         /**
          * Serviços da Aplicação SGL
          */
+        App\Providers\Services\Funcionarios\CadastrarFuncionarioServiceProvider::class,
+        App\Providers\Services\Funcionarios\AtualizarFuncionarioServiceProvider::class,
+        App\Providers\Services\Funcionarios\ExcluirFuncionarioServiceProvider::class,
         App\Providers\Services\ClienteAssociacoes\ClienteContatoProvider::class,
         App\Providers\Services\ClienteAssociacoes\ClienteEnderecoProvider::class,
         App\Providers\Services\Enderecos\CadastrarEnderecoServiceProvider::class,
