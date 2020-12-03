@@ -17,7 +17,7 @@ class ExcluirContatoService extends ExcluirContatoServiceAbstract
         $contatoExcluido = false;
 
         DB::transaction(function ()  use(&$contatoExcluido){
-            
+
             $contatoExcluido = $this->excluirContato();
         });
 

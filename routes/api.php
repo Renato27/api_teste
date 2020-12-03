@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\ContatoController;
 use App\Http\Controllers\Api\ContratoController;
 use App\Http\Controllers\Api\EnderecoController;
+use App\Http\Controllers\Api\PedidoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,7 @@ Route::group(['api.'], function () {
         'clientes'      => ClienteController::class,
         'enderecos'     => EnderecoController::class,
         'contatos'      => ContatoController::class,
+        'pedidos'       => PedidoController::class,
         'contratos'     => ContratoController::class
     ]);
 });
