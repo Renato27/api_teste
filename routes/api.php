@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\ContatoController;
 use App\Http\Controllers\Api\EnderecoController;
+use App\Http\Controllers\Api\FuncionarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,10 +23,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['api.'], function () {
-    
+
     Route::apiResources([
         'clientes'      => ClienteController::class,
         'enderecos'     => EnderecoController::class,
-        'contatos'      => ContatoController::class
+        'contatos'      => ContatoController::class,
+        'funcionarios'  => FuncionarioController::class
     ]);
 });
