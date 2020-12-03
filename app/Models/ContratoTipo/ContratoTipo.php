@@ -13,7 +13,9 @@ class ContratoTipo extends Model
 
     use SoftDeletes;
 
-    protected $fillable = ['nome', 'deleted_at'];
+    protected $date = ['deleted_at'];
+
+    protected $fillable = ['nome'];
 
     public function hasContratos()
     {

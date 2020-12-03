@@ -194,9 +194,15 @@ return [
         App\Providers\Services\Contatos\CadastrarContatoServiceProvider::class,
         App\Providers\Services\Contatos\AtualizarContatoServiceProvider::class,
         App\Providers\Services\Contatos\ExcluirContatoServiceProvider::class,
+        App\Providers\Services\Contratos\CadastrarContratoServiceProvider::class,
+        App\Providers\Services\Contratos\AtualizarContratoServiceProvider::class,
+        App\Providers\Services\Contratos\ExcluirContratoServiceProvider::class,
         App\Providers\Services\Clientes\CadastrarClienteServiceProvider::class,
         App\Providers\Services\Clientes\AtualizarClienteServiceProvider::class,
         App\Providers\Services\Clientes\ExcluirClienteServiceProvider::class,
+        App\Providers\Services\Pedidos\CadastrarPedidoServiceProvider::class,
+        App\Providers\Services\Pedidos\AtualizarPedidoServiceProvider::class,
+        App\Providers\Services\Pedidos\ExcluirPedidoServiceProvider::class
 
     ],
 
