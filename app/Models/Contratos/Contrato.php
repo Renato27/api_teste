@@ -6,12 +6,17 @@ use App\Models\ClienteContrato\ClienteContrato;
 use App\Models\ContratoPedido\ContratoPedido;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contrato extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome', 'inicio', 'fim', 'detalhes', 'detalhes_nota', 'dia_emissao_nota', 
+    use SoftDeletes;
+
+    protected $date = ['deleted_at'];
+
+    protected $fillable = ['nome', 'inicio', 'fim', 'detalhes', 'detalhes_nota', 'dia_emissao_nota',
     'dia_vencimento_nota', 'dia_periodo_inicio_nota', 'dia_periodo_fim_nota', 'responsavel'];
 
     public function hasCliente()

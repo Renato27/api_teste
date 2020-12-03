@@ -6,10 +6,15 @@ use App\Models\FuncionarioDado\FuncionarioDado;
 use App\Models\FuncionarioEndereco\FuncionarioEndereco;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Funcionario extends Model
 {
     use HasFactory;
+
+    use SoftDeletes;
+
+    protected $date = ['deleted_at'];
 
     protected $fillable = ['nome', 'cargo'];
 

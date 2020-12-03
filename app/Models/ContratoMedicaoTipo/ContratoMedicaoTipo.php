@@ -6,10 +6,15 @@ use App\Models\Contratos\Contratos;
 use App\Models\MedicaoTipo\MedicaoTipo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ContratoMedicaoTipo extends Model
 {
     use HasFactory;
+
+    use SoftDeletes;
+
+    protected $date = ['deleted_at'];
 
     protected $fillable = ['contrato_id', 'medicao_tipo_id'];
 
