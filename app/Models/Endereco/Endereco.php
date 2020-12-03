@@ -23,8 +23,8 @@ class Endereco extends Model
         return $this->hasMany(ContatoEnderecos::class, 'endereco_id', 'id');
     }
 
-    public function hasCliente()
+    public function cliente()
     {
-        return $this->hasOne(ClienteEndereco::class, 'endereco_id', 'id');
+        return $this->belongsToMany(Cliente::class, ClienteEndereco::class, 'endereco_id', 'id');
     }
 }

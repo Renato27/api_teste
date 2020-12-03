@@ -23,8 +23,8 @@ class CadastrarClienteService extends CadastrarClienteServiceAbstract
             $endereco = $this->cadastrarEnderecoService->setDados($this->dados)->handle();
             $contato = $this->cadastrarContatoService->setDados($this->dados)->handle();
 
-            $this->associarClienteContatoService->setCliente($cliente->id)->setContato($contato->id)->handle();
-            $this->associarClienteEnderecoService->setCliente($cliente->id)->setEndereco($endereco->id)->handle();
+            $cliente->enderecos()->attach($endereco->id, ['principal' => 1]);
+            $cliente->contatos()->attach($contato->id, ['principal' => 1]);
             
             
         });

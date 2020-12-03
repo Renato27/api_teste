@@ -28,4 +28,9 @@ class Contrato extends Model
     {
         return $this->hasMany(ContratoPedido::class, 'contrato_id', 'id');
     }
+
+    public function contato()
+    {
+        return $this->morphMany(Contato::class, 'assinatura');
+    }
 }

@@ -35,8 +35,13 @@ class Contato extends Model
         return $this->hasMany(ContatoEnderecos::class, 'contato_id', 'id');
     }
 
-    public function hasCliente()
+    public function cliente()
     {
-        return $this->hasOne(ClienteContato::class, 'contato_id', 'id');
+        return $this->belongsToMany(Cliente::class, ClienteContato::class, 'cliente_id', 'id');
+    }
+
+    public function assinatura()
+    {
+        return $this->morphTo();
     }
 }
