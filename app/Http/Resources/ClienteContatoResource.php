@@ -16,7 +16,7 @@ class ClienteContatoResource extends JsonResource
     {
         return [
             'cliente' => new ClienteResource($this->resource),
-            'contato' => ContatoResource::collection($this->resource-)
+            'contato' => ContatoResource::collection($this->resource)
         ];
     }
 }

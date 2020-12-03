@@ -183,14 +183,17 @@ return [
         /**
          * Serviços da Aplicação SGL
          */
-        App\Providers\Services\ClienteAssociacoes\ClienteContatoProvider::class, 
-        App\Providers\Services\ClienteAssociacoes\ClienteEnderecoProvider::class, 
+        App\Providers\Services\ClienteAssociacoes\ClienteContatoProvider::class,
+        App\Providers\Services\ClienteAssociacoes\ClienteEnderecoProvider::class,
         App\Providers\Services\Enderecos\CadastrarEnderecoServiceProvider::class,
         App\Providers\Services\Enderecos\AtualizarEnderecoServiceProvider::class,
         App\Providers\Services\Enderecos\ExcluirEnderecoServiceProvider::class,
         App\Providers\Services\Contatos\CadastrarContatoServiceProvider::class,
         App\Providers\Services\Contatos\AtualizarContatoServiceProvider::class,
         App\Providers\Services\Contatos\ExcluirContatoServiceProvider::class,
+        App\Providers\Services\Contratos\CadastrarContratoServiceProvider::class,
+        App\Providers\Services\Contratos\AtualizarContratoServiceProvider::class,
+        App\Providers\Services\Contratos\ExcluirContratoServiceProvider::class,
         App\Providers\Services\Clientes\CadastrarClienteServiceProvider::class,
         App\Providers\Services\Clientes\AtualizarClienteServiceProvider::class,
         App\Providers\Services\Clientes\ExcluirClienteServiceProvider::class,
