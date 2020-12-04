@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContratoRequest;
 use App\Http\Resources\ContratoResource;
+use App\Models\Clientes\Cliente;
 use App\Models\Contratos\Contrato;
 use App\Repositories\Contracts\ContratosRepository;
 use App\Services\Contratos\AtualizarContrato\Contracts\AtualizarContratoService;
@@ -32,14 +33,16 @@ class ContratoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ContratoRequest $request, CadastrarContratoService $service)
+    public function store(ContratoRequest $request, Cliente $cliente, CadastrarContratoService $service)
     {
+       
         try {
             $contrato = $service->setDados($request->all())->handle();
+            $cliente->contratos()->attach($contrato->id);
 
             return new ContratoResource($contrato);
         } catch (\Throwable $th) {
-            throw $th;
+            throw $th->getMessage();
         }
     }
 
@@ -78,9 +81,11 @@ class ContratoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contrato $contrato, ExcluirContratoService $service)
+    public function destroy(Cliente $cliente, Contrato $contrato, ExcluirContratoService $service)
     {
         try{
+
+            $cliente->contratos()->detach($contrato->id);
             $service->setContrato($contrato->id);
             $service->handle();
 

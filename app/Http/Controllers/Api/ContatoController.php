@@ -79,9 +79,11 @@ class ContatoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contato $contato, ExcluirContatoService $service)
+    public function destroy(Cliente $cliente, Contato $contato, ExcluirContatoService $service)
     {
         try {
+
+            $cliente->contatos()->detach($contato->id);
             $service->setContato($contato->id);
             $service->handle();
 

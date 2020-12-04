@@ -20,6 +20,7 @@ class ClienteContatoEnderecoResource extends JsonResource
             'cliente'       => new ClienteResource($this->resource),
             'enderecos'     => EnderecoResource::collection($this->resource->enderecos),
             'contatos'      => ContatoResource::collection($this->resource->contatos),
+            'contratos'     => ContratoResource::collection($this->resource->contratos),
         ];
     }
 }

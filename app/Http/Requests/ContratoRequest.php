@@ -25,7 +25,7 @@ class ContratoRequest extends FormRequest
     {
         return [
             'inicio'    =>'required|date',
-            'fim'       =>'required|date'
+            'fim'       =>'required|date',
         ];
     }
 }

@@ -13,18 +13,18 @@ class CreatePedidoStatusPedidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pedido_status_pedidos', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('pedido_id');
-            $table->foreignId('status_pedido_id');
+        // Schema::create('pedido_status_pedidos', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('pedido_id');
+        //     $table->foreignId('status_pedido_id');
 
-            $table->foreign('pedido_id')->references('id')->on('pedidos');
-            $table->foreign('status_pedido_id')->references('id')->on('status_pedidos');
+        //     $table->foreign('pedido_id')->references('id')->on('pedidos');
+        //     $table->foreign('status_pedido_id')->references('id')->on('status_pedidos');
 
-            $table->timestamps();
+        //     $table->timestamps();
 
-            $table->softDeletes();
-        });
+        //     $table->softDeletes();
+        // });
     }
 
     /**
@@ -34,6 +34,6 @@ class CreatePedidoStatusPedidosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pedido_status_pedidos');
+        // Schema::dropIfExists('pedido_status_pedidos');
     }
 }

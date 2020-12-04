@@ -3,6 +3,7 @@
 namespace App\Services\Contatos\CadastrarContato\Contracts;
 
 use App\Models\Contato\Contato;
+use App\Repositories\Contracts\ContatoEmailRepository;
 use App\Repositories\Contracts\ContatoRepository;
 
 interface CadastrarContatoService
@@ -22,6 +23,14 @@ interface CadastrarContatoService
      * @return CadastrarContatoService
      */
     public function setContatoRepository(ContatoRepository $contatoRepository) : CadastrarContatoService;
+
+    /**
+     * Seta o repositório de contato email.
+     *
+     * @param ContatoEmailRepository $contatoEmailRepository
+     * @return CadastrarContatoService
+     */
+    public function setContatoEmailRepository(ContatoEmailRepository $contatoEmailRepository) : CadastrarContatoService;
 
     /**
      * Processa os dados para cadastrar um contato.

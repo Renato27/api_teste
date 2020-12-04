@@ -20,6 +20,7 @@ class CadastrarContatoService extends CadastrarContatoServiceAbstract
         DB::transaction(function () use(&$contato){
             
             $contato = $this->cadastrarContato();
+            $this->cadastrarEmailContato($contato);
         });
 
         return $contato;

@@ -13,17 +13,17 @@ class CreateTipoContratosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_contratos', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('contrato_id');
-            $table->foreignId('contrato_tipo_id');
+        // Schema::create('tipo_contratos', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('contrato_id');
+        //     $table->foreignId('contrato_tipo_id');
 
-            $table->foreign('contrato_id')->references('id')->on('contratos');
-            $table->foreign('contrato_tipo_id')->references('id')->on('contrato_tipos');
-            $table->timestamps();
+        //     $table->foreign('contrato_id')->references('id')->on('contratos');
+        //     $table->foreign('contrato_tipo_id')->references('id')->on('contrato_tipos');
+        //     $table->timestamps();
 
-            $table->softDeletes();
-        });
+        //     $table->softDeletes();
+        // });
     }
 
     /**
@@ -33,6 +33,6 @@ class CreateTipoContratosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_contratos');
+        // Schema::dropIfExists('tipo_contratos');
     }
 }

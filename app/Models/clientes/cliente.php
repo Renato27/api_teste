@@ -34,7 +34,7 @@ class Cliente extends Model
 
     public function contratos()
     {
-        return $this->belongsToMany(Contrato::class, ClienteContrato::class, 'contrato_id', 'id');
+        return $this->belongsToMany(Contrato::class, ClienteContrato::class, 'cliente_id', 'contrato_id')->withTimestamps();
     }
 
 

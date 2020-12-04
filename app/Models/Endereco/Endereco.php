@@ -18,13 +18,13 @@ class Endereco extends Model
 
     protected $fillable = ['rua', 'numero', 'bairro', 'complemento', 'cidade', 'estado', 'cep'];
 
-    public function hasContatos()
+    public function contatos()
     {
-        return $this->hasMany(ContatoEnderecos::class, 'endereco_id', 'id');
+        return $this->belongsToMany(Cliente::class, ContatoEnderecos::class, 'endereco_id', 'id')->withTimestamps();
     }
 
     public function cliente()
     {
-        return $this->belongsToMany(Cliente::class, ClienteEndereco::class, 'endereco_id', 'id');
+        return $this->hasOne(ClienteEndereco::class, 'endereco_id', 'id');
     }
 }

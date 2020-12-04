@@ -13,17 +13,17 @@ class CreateFuncionarioDadosTable extends Migration
      */
     public function up()
     {
-        Schema::create('funcionario_dados', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('funcionario_id');
-            $table->foreignId('dado_funcionario_id');
+        // Schema::create('funcionario_dados', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('funcionario_id');
+        //     $table->foreignId('dado_funcionario_id');
 
-            $table->foreign('funcionario_id')->references('id')->on('funcionarios');
-            $table->foreign('dado_funcionario_id')->references('id')->on('dado_funcionarios');
-            $table->timestamps();
+        //     $table->foreign('funcionario_id')->references('id')->on('funcionarios');
+        //     $table->foreign('dado_funcionario_id')->references('id')->on('dado_funcionarios');
+        //     $table->timestamps();
 
-            $table->softDeletes();
-        });
+        //     $table->softDeletes();
+        // });
     }
 
     /**
@@ -33,6 +33,6 @@ class CreateFuncionarioDadosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('funcionario_dados');
+        // Schema::dropIfExists('funcionario_dados');
     }
 }
