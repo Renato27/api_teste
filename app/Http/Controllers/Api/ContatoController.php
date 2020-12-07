@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ContatoResource;
+use App\Models\Clientes\Cliente;
 use App\Models\Contato\Contato;
 use App\Repositories\Contracts\ContatoRepository;
 use App\Services\Contatos\AtualizarContato\Contracts\AtualizarContatoService;
@@ -31,10 +32,11 @@ class ContatoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, CadastrarContatoService $service)
+    public function store(Request $request, Cliente $cliente, CadastrarContatoService $service)
     {
         try {
             $contato = $service->setDados($request->all())->handle();
+            $cliente->contatos()->attach($contato->id);
 
             return new ContatoResource($contato);
         } catch (\Throwable $th) {

@@ -94,6 +94,18 @@ trait BaseEloquentRepository
     }
 
     /**
+     * Cria um item caso não exista.
+     *
+     * @param array $data
+     * @return Model
+     */
+    public function firstOrCreate(array $data)
+    {
+        $this->entity = $this->model->firstOrCreate($data);
+        return $this->entity;
+    }
+
+    /**
      * Atualiza um item da model.
      *
      * @param integer $id

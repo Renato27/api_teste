@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EnderecoResource;
+use App\Models\Clientes\Cliente;
 use App\Models\Endereco\Endereco;
 use App\Repositories\Contracts\EnderecoRepository;
 use App\Services\Enderecos\AtualizarEndereco\Contracts\AtualizarEnderecoService;
@@ -31,10 +32,11 @@ class EnderecoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, CadastrarEnderecoService $service)
+    public function store(Request $request, Cliente $cliente, CadastrarEnderecoService $service)
     {
         try {
             $endereco = $service->setDados($request->all())->handle();
+            $cliente->enderecos()->attach($endereco->id);
 
             return new EnderecoResource($endereco);
         } catch (\Throwable $th) {

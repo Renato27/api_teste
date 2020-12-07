@@ -24,17 +24,17 @@ class Cliente extends Model
 
     public function enderecos()
     {
-        return $this->belongsToMany(Endereco::class)->using(ClienteEndereco::class);
+        return $this->belongsToMany(Endereco::class, ClienteEndereco::class, 'cliente_id', 'endereco_id')->withTimestamps();
     }
 
     public function contatos()
     {
-        return $this->belongsToMany(Contato::class)->using(ClienteContato::class);
+        return $this->belongsToMany(Contato::class, ClienteContato::class, 'cliente_id', 'contato_id')->withTimestamps();
     }
 
     public function contratos()
     {
-        return $this->belongsToMany(Contrato::class)->using(ClienteContrato::class);
+        return $this->belongsToMany(Contrato::class, ClienteContrato::class, 'contrato_id', 'id');
     }
 
 
