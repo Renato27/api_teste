@@ -2,6 +2,7 @@
 
 namespace App\Models\TipoContato;
 
+use App\Models\Contato\Contato;
 use App\Models\ContatoTipo\ContatoTipo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,8 +18,13 @@ class TipoContato extends Model
 
     protected $fillable = ['nome'];
 
-    public function hasContatos()
+    const FINANCEIRO        = 1;
+    const RESPONSAVEL_LEGAL = 2;
+    const USUARIO_SISTEMA   = 3;
+    const OUTRO             = 4;
+
+    public function contatos()
     {
-        return $this->hasMany(ContatoTipo::class, 'tipo_contato_id', 'id');
+        return $this->belongsToMany(Contato::class, ContatoTipo::class, 'tipo_contato_id', 'id')->withTimestamps();
     }
 }

@@ -13,18 +13,18 @@ class CreateContratoPagamentoMetodosTable extends Migration
      */
     public function up()
     {
-        Schema::create('contrato_pagamento_metodos', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('contrato_id');
-            $table->foreignId('pagamento_metodo_id');
+        // Schema::create('contrato_pagamento_metodos', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('contrato_id');
+        //     $table->foreignId('pagamento_metodo_id');
 
-            $table->foreign('contrato_id')->references('id')->on('contratos');
-            $table->foreign('pagamento_metodo_id')->references('id')->on('pagamento_metodos');
+        //     $table->foreign('contrato_id')->references('id')->on('contratos');
+        //     $table->foreign('pagamento_metodo_id')->references('id')->on('pagamento_metodos');
 
-            $table->timestamps();
+        //     $table->timestamps();
 
-            $table->softDeletes();
-        });
+        //     $table->softDeletes();
+        // });
     }
 
     /**
@@ -34,6 +34,6 @@ class CreateContratoPagamentoMetodosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contrato_pagamento_metodos');
+        // Schema::dropIfExists('contrato_pagamento_metodos');
     }
 }

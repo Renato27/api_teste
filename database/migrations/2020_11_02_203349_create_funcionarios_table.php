@@ -17,6 +17,13 @@ class CreateFuncionariosTable extends Migration
             $table->id();
             $table->string('nome')->nullable();
             $table->string('cargo')->nullable();
+            $table->string('telefone')->nullable();
+            $table->string('rg')->nullable();
+            $table->string('cpf')->nullable();
+            $table->string('titulo_eleitor')->nullable();
+            $table->string('secao_titulo_eleitor')->nullable();
+            $table->string('ctps')->nullable();
+            $table->string('email')->unique()->nullable();
 
             $table->timestamps();
 

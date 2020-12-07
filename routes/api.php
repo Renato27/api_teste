@@ -27,11 +27,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['api.'], function () {
 
     Route::apiResources([
-        'clientes'      => ClienteController::class,
-        'enderecos'     => EnderecoController::class,
-        'contatos'      => ContatoController::class,
-        'funcionarios'  => FuncionarioController::class,
-        'pedidos'       => PedidoController::class,
-        'contratos'     => ContratoController::class
+        'clientes'              => ClienteController::class,
+        'cliente.enderecos'     => EnderecoController::class,
+        'cliente.contatos'      => ContatoController::class,
+        'funcionarios'          => FuncionarioController::class,
+        'pedidos'               => PedidoController::class,
+        'cliente.contratos'     => ContratoController::class
     ]);
 });

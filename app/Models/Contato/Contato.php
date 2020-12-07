@@ -6,6 +6,8 @@ use App\Models\ClienteContato\ClienteContato;
 use App\Models\ContatoContrato\ContatoContrato;
 use App\Models\ContatoEmail\ContatoEmail;
 use App\Models\ContatoEnderecos\ContatoEnderecos;
+use App\Models\ContatoTipo\ContatoTipo;
+use App\Models\TipoContato\TipoContato;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,8 +37,18 @@ class Contato extends Model
         return $this->hasMany(ContatoEnderecos::class, 'contato_id', 'id');
     }
 
-    public function hasCliente()
+    public function cliente()
     {
-        return $this->hasOne(ClienteContato::class, 'contato_id', 'id');
+        return $this->belongsToMany(Cliente::class, ClienteContato::class, 'cliente_id', 'id');
+    }
+
+    public function tipo_contatos()
+    {
+        return $this->belongsToMany(TipoContato::class, ContatoTipo::class, 'tipo_contato_id', 'id')->withTimestamps();
+    }
+
+    public function assinatura()
+    {
+        return $this->morphTo();
     }
 }

@@ -13,19 +13,19 @@ class CreateDadoFuncionariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('dado_funcionarios', function (Blueprint $table) {
-            $table->id();
-            $table->string('telefone')->nullable();
-            $table->string('rg')->nullable();
-            $table->string('cpf')->nullable();
-            $table->string('titulo_eleitor')->nullable();
-            $table->string('secao_titulo_eleitor')->nullable();
-            $table->string('ctps')->nullable();
-            $table->string('email')->unique()->nullable();
-            $table->timestamps();
+        // Schema::create('dado_funcionarios', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('telefone')->nullable();
+        //     $table->string('rg')->nullable();
+        //     $table->string('cpf')->nullable();
+        //     $table->string('titulo_eleitor')->nullable();
+        //     $table->string('secao_titulo_eleitor')->nullable();
+        //     $table->string('ctps')->nullable();
+        //     $table->string('email')->unique()->nullable();
+        //     $table->timestamps();
 
-            $table->softDeletes();
-        });
+        //     $table->softDeletes();
+        // });
     }
 
     /**
@@ -35,6 +35,6 @@ class CreateDadoFuncionariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dado_funcionarios');
+        // Schema::dropIfExists('dado_funcionarios');
     }
 }

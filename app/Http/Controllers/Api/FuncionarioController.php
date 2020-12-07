@@ -20,7 +20,7 @@ class FuncionarioController extends Controller
      */
     public function index(FuncionarioRepository $funcionarioRepository)
     {
-        $funcionario = $funcionarioRepository->getFuncionario();
+        $funcionario = $funcionarioRepository->getFuncionarios();
 
         return FuncionarioResource::collection($funcionario);
     }

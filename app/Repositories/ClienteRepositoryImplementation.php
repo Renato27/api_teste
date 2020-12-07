@@ -40,7 +40,7 @@ class ClienteRepositoryImplementation implements ClienteRepository
      */    
     public function createcliente(array $detalhes): ?Model
     {
-        return $this->create($detalhes);
+        return $this->firstOrCreate($detalhes);
     }
 
     /**
