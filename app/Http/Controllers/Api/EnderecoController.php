@@ -80,9 +80,11 @@ class EnderecoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Endereco $endereco, ExcluirEnderecoService $service)
+    public function destroy(Cliente $cliente, Endereco $endereco, ExcluirEnderecoService $service)
     {
         try {
+        
+            $cliente->enderecos()->detach($endereco->id);
             $service->setEndereco($endereco->id);
             $service->handle();
 

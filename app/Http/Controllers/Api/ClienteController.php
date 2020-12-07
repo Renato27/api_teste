@@ -52,7 +52,7 @@ class ClienteController extends Controller
      */
     public function show(Cliente $cliente)
     {
-        return new ClienteResource($cliente);
+        return new ClienteContatoEnderecoResource($cliente);
     }
 
     /**

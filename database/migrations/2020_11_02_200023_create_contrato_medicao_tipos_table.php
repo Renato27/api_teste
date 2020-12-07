@@ -13,18 +13,18 @@ class CreateContratoMedicaoTiposTable extends Migration
      */
     public function up()
     {
-        Schema::create('contrato_medicao_tipos', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('contrato_id');
-            $table->foreignId('medicao_tipo_id');
+        // Schema::create('contrato_medicao_tipos', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->foreignId('contrato_id');
+        //     $table->foreignId('medicao_tipo_id');
 
-            $table->foreign('contrato_id')->references('id')->on('contratos');
-            $table->foreign('medicao_tipo_id')->references('id')->on('medicao_tipos');
+        //     $table->foreign('contrato_id')->references('id')->on('contratos');
+        //     $table->foreign('medicao_tipo_id')->references('id')->on('medicao_tipos');
 
-            $table->timestamps();
+        //     $table->timestamps();
 
-            $table->softDeletes();
-        });
+        //     $table->softDeletes();
+        // });
     }
 
     /**
@@ -34,6 +34,6 @@ class CreateContratoMedicaoTiposTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contrato_medicao_tipos');
+        // Schema::dropIfExists('contrato_medicao_tipos');
     }
 }
