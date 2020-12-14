@@ -23,7 +23,7 @@ class ClienteController extends Controller
     public function index(ClienteRepository $clienteRepository)
     {
         $clientes = $clienteRepository->getclientes();
-        return ClienteContatoEnderecoResource::collection($clientes);
+        return ClienteResource::collection($clientes);
     }
 
     /**
@@ -67,7 +67,7 @@ class ClienteController extends Controller
         try {
             $serviceCliente->setCliente($cliente->id);
             $clienteAtualizado = $serviceCliente->setDados($request->all())->handle();
-            
+
             return new ClienteResource($clienteAtualizado);
         } catch (\Throwable $th) {
             throw $th;
