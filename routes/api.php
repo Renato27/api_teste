@@ -35,3 +35,10 @@ Route::group(['api.'], function () {
         'cliente.contratos'     => ContratoController::class
     ]);
 });
+
+Route::fallback(function(){
+
+    return response()->json([
+        'message' => 'Página não encontrada. Se o erro perssistir, entre em contato com renato.maldonado@logicatecnologia.com.br'
+    ], 404);
+});

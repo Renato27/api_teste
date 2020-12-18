@@ -8,6 +8,8 @@ use App\Models\ClienteEndereco\ClienteEndereco;
 use App\Models\Contato\Contato;
 use App\Models\Contratos\Contrato;
 use App\Models\Endereco\Endereco;
+use App\Models\Usuario\Usuario;
+use App\Models\UsuarioCliente\UsuarioCliente;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,6 +37,11 @@ class Cliente extends Model
     public function contratos()
     {
         return $this->belongsToMany(Contrato::class, ClienteContrato::class, 'cliente_id', 'contrato_id')->withTimestamps();
+    }
+
+    public function usuarios()
+    {
+        return $this->belongsToMany(Usuario::class, UsuarioCliente::class, 'cliente_id', 'usuario_id')->withTimestamps();
     }
 
 

@@ -40,7 +40,7 @@ class ClienteController extends Controller
 
             return new ClienteContatoEnderecoResource($cliente);
         } catch (\Throwable $th) {
-            throw $th;
+            throw $th->getMessage();
         }
     }
 

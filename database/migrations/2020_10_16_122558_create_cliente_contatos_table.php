@@ -17,7 +17,6 @@ class CreateClienteContatosTable extends Migration
             $table->id();
             $table->foreignId('cliente_id');
             $table->foreignId('contato_id');
-            $table->boolean('principal')->default(0);
 
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->foreign('contato_id')->references('id')->on('contatos');
