@@ -21,6 +21,7 @@ class CreateUsuariosTable extends Migration
             $table->foreignId('funcionario_id')->nullable();
             $table->foreignId('contato_id')->nullable();
             $table->foreignId('cliente_visualizacao_patrimonio_id')->nullable();
+            $table->rememberToken();
 
             $table->foreign('tipo_usuario_id')->references('id')->on('tipo_usuarios');
             $table->foreign('funcionario_id')->references('id')->on('funcionarios');

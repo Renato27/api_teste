@@ -3,9 +3,11 @@
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\ContatoController;
 use App\Http\Controllers\Api\ContratoController;
+use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\EnderecoController;
 use App\Http\Controllers\Api\FuncionarioController;
 use App\Http\Controllers\Api\PedidoController;
+use App\Http\Controllers\Api\UsuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,17 +26,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['api.'], function () {
+Route::group(['middleware' => ['api']], function () {
 
-    Route::apiResources([
-        'clientes'              => ClienteController::class,
-        'cliente.enderecos'     => EnderecoController::class,
-        'cliente.contatos'      => ContatoController::class,
-        'funcionarios'          => FuncionarioController::class,
-        'pedidos'               => PedidoController::class,
-        'cliente.contratos'     => ContratoController::class
-    ]);
+    Route::post('login', [DashboardController::class, 'login']);
+    Route::post('register', [UsuarioController::class, 'register']);
+
+    Route::group(['middleware' => 'jwt.verify'], function () {
+        Route::apiResources([
+            'clientes'              => ClienteController::class,
+            'cliente.enderecos'     => EnderecoController::class,
+            'cliente.contatos'      => ContatoController::class,
+            'funcionarios'          => FuncionarioController::class,
+            'pedidos'               => PedidoController::class,
+            'cliente.contratos'     => ContratoController::class
+        ]);
+    });
 });
+
+
 
 Route::fallback(function(){
 

@@ -16,7 +16,7 @@ class Funcionario extends Model
 
     protected $date = ['deleted_at'];
 
-    protected $fillable = ['nome', 'cargo'];
+    protected $fillable = ['nome', 'cargo', 'telefone', 'rg', 'cpf', 'titulo_eleitor', 'secao_titulo_eleitor', 'ctps', 'email'];
 
     public function hasEndereco()
     {

@@ -22,14 +22,14 @@ interface UsuarioRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getUsuarios(int $id, int $associacao): ?Collection;
-    
+    public function getUsuarios(): ?Collection;
+
     /**
      * Cria um novo Usuario
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createUsuario(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface UsuarioRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateUsuario(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,8 @@ interface UsuarioRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteUsuario(int $id): bool;
+
+    public function verificarCredenciasUsuario(string $email, string $senha) : ?Model;
 }

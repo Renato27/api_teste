@@ -17,6 +17,11 @@ class StatusPedido extends Model
 
     protected $fillable = ['nome'];
 
+    const AGUARDANDO_EXPEDICAO  = 1;
+    const AGUARDANDO_ENTREGA    = 2;
+    const ENTREGUE              = 3;
+    const CANCELADO             = 4;
+
     public function hasPedidos()
     {
         return $this->hasMany(PedidoStatusPedido::class, 'status_pedido_id', 'id');

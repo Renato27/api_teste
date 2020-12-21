@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class UsuarioRepositoryImplementation implements UsuarioRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna Usuario baseado no ID.
      *
@@ -16,7 +19,7 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
      */
     public function getUsuario(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -26,9 +29,9 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getUsuarios(int $id, int $associacao): ?Collection
+    public function getUsuarios(): ?Collection
     {
-
+        return $this->getAll();
     }
 
     /**
@@ -36,10 +39,17 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createUsuario(array $detalhes): ?Model
     {
-
+        return $this->create([
+            'email'                                 => $detalhes['email'],
+            'senha'                                 => md5(sha1($detalhes['senha'])),
+            'tipo_usuario_id'                       => $detalhes['tipo_usuario_id'],
+            'funcionario_id'                        => $detalhes['funcionario_id'],
+            'contato_id'                            => $detalhes['contato_id'],
+            'cliente_visualizacao_patrimonio_id'    => $detalhes['cliente_visualizacao_patrimonio_id']
+        ]);
     }
 
     /**
@@ -48,7 +58,7 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateUsuario(int $id, array $detalhes): ?Model
     {
 
@@ -60,9 +70,23 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteUsuario(int $id): bool
     {
 
+    }
+
+    public function verificarCredenciasUsuario(string $email, string $senha) : ?Model
+    {
+        //$usuario = $this->where(['email'.'@logicatecnologia.com.br' => $email])->first();
+        $usuario = $this->where(['email' => $email])->first();
+
+        if(!$usuario)
+            return null;
+
+        if(md5(sha1($senha)) != $usuario->senha)
+            return null;
+
+        return $usuario;
     }
 }
