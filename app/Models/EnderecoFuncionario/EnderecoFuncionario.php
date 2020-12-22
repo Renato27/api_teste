@@ -17,8 +17,8 @@ class EnderecoFuncionario extends Model
 
     protected $fillable = ['rua', 'numero', 'bairro', 'complemento', 'cidade', 'cep'];
 
-    public function hasFuncionario()
+    public function funcionario()
     {
-        return $this->hasOne(FuncionarioEndereco::class, 'endereco_funcionario_id', 'id');
+        return $this->hasOneThrough(Funcionario::class, FuncionarioEndereco::class, 'endereco_funcionario_id', 'id');
     }
 }

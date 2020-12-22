@@ -2,6 +2,7 @@
 
 namespace App\Models\StatusPedido;
 
+use App\Models\Pedido\Pedido;
 use App\Models\PedidoStatusPedido\PedidoStatusPedido;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,8 +23,8 @@ class StatusPedido extends Model
     const ENTREGUE              = 3;
     const CANCELADO             = 4;
 
-    public function hasPedidos()
+    public function pedidos()
     {
-        return $this->hasMany(PedidoStatusPedido::class, 'status_pedido_id', 'id');
+        return $this->hasMany(Pedido::class, 'status_pedido_id', 'id');
     }
 }

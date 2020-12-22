@@ -3,6 +3,7 @@
 namespace App\Models\Pedido;
 
 use App\Models\ContratoPedido\ContratoPedido;
+use App\Models\Contratos\Contrato;
 use App\Models\ItemPedido\ItemPedido;
 use App\Models\PedidoItem\PedidoItem;
 use App\Models\PedidoStatusPedido\PedidoStatusPedido;
@@ -20,18 +21,14 @@ class Pedido extends Model
 
     protected $fillable = ['data_entrega', 'data_retirada'];
 
-    public function hasItens()
+    public function itens()
     {
-        return $this->hasMany(PedidoItem::class, 'pedido_id', 'id');
+        return $this->hasManyThrough(ItemPedido::class, PedidoItem::class, 'pedido_id', 'id');
     }
 
-    public function hasContrato()
+    public function contrato()
     {
-        return $this->hasOne(ContratoPedido::class, 'pedido_id', 'id');
+        return $this->hasOneThrough(Contrato::class, ContratoPedido::class, 'pedido_id', 'id');
     }
 
-    public function hasStatus()
-    {
-        return $this->hasOne(PedidoStatusPedido::class, 'pedido_id', 'id');
-    }
 }

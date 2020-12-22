@@ -2,6 +2,7 @@
 
 namespace App\Models\Funcionario;
 
+use App\Models\EnderecoFuncionario\EnderecoFuncionario;
 use App\Models\FuncionarioDado\FuncionarioDado;
 use App\Models\FuncionarioEndereco\FuncionarioEndereco;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,11 +21,7 @@ class Funcionario extends Model
 
     public function hasEndereco()
     {
-        return $this->hasOne(FuncionarioEndereco::class, 'funcionario_id', 'id');
+        return $this->hasOneThrough(EnderecoFuncionario::class, FuncionarioEndereco::class, 'funcionario_id', 'id');
     }
 
-    public function hasDados()
-    {
-        return $this->hasOne(FuncionarioDado::class, 'funcionario_id', 'id');
-    }
 }

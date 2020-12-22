@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
             TipoContatoSeeder::class,
             MedicaoTipoSeeder::class,
             ClienteVisualizacaoPatrimonioSeeder::class,
+            TipoLicencaSeeder::class,
+            EstadoPatrimonioSeeder::class,
+
 
         ]);
     }
