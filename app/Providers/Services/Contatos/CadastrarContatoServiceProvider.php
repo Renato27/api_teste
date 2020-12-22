@@ -2,6 +2,7 @@
 
 namespace App\Providers\Services\Contatos;
 
+use App\Repositories\Contracts\ContatoEmailRepository;
 use App\Repositories\Contracts\ContatoRepository;
 use App\Services\Contatos\CadastrarContato\CadastrarContatoService;
 use App\Services\Contatos\CadastrarContato\Contracts\CadastrarContatoService as ContractsCadastrarContatoService;
@@ -28,6 +29,7 @@ class CadastrarContatoServiceProvider extends ServiceProvider
     {
         $service = new CadastrarContatoService();
         $service->setContatoRepository(app(ContatoRepository::class));
+        $service->setContatoEmailRepository(app(ContatoEmailRepository::class));
 
         $this->app->bind(ContractsCadastrarContatoService::class, function($app) use($service){
             return $service;

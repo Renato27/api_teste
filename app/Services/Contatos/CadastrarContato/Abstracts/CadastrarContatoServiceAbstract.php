@@ -48,12 +48,12 @@ abstract class CadastrarContatoServiceAbstract implements CadastrarContatoServic
                 'telefone'  => $dados['telefone'],
                 'celular'   => $dados['celular']
             ],
-            
+
             'email' => [
                 'email'     => $dados['email'],
                 'principal' => $dados['principal'] ?? 0,
             ]
-          
+
         ];
 
         $this->dados = $dadosContato;
@@ -96,19 +96,23 @@ abstract class CadastrarContatoServiceAbstract implements CadastrarContatoServic
     {
         $contatoCadastrado = $this->contatoRepository->createContato($this->dados['contato']);
 
-        if(!isset($contatoCadastrado->id)) 
+        if(!isset($contatoCadastrado->id))
             throw new Exception("Não foi possível cadastrar o contato. Verifique os dados e tente novamente.");
 
-        return $contatoCadastrado;    
+        return $contatoCadastrado;
     }
 
     protected function cadastrarEmailContato(Contato $contato) : bool
     {
-        $emailCadastrado = $this->contatoEmailRepository->createContatoEmail([$this->dados['email'], 'contato_id' => $contato->id]);
+        $emailCadastrado = $this->contatoEmailRepository->createContatoEmail([
+            'email' => $this->dados['email']['email'],
+            'princiapl' =>  $this->dados['email']['principal'],
+            'contato_id' => $contato->id
+            ]);
 
-        if(!isset($emailCadastrado->id)) 
+        if(!isset($emailCadastrado->id))
             throw new Exception("Não foi possível cadastrar o email para o contato {$contato->nome}. Verifique os dados e tente novamente.");
 
-        return true;    
+        return true;
     }
 }

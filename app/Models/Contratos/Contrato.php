@@ -16,7 +16,7 @@ class Contrato extends Model
 
     protected $date = ['deleted_at'];
 
-    protected $fillable = ['nome', 'inicio', 'fim', 'detalhes', 'detalhes_nota', 'dia_emissao_nota',
+    protected $fillable = ['nome', 'inicio', 'fim', 'medicao_tipo_id', 'pagamento_metodo_id', 'contrato_tipo_id', 'detalhes', 'detalhes_nota', 'dia_emissao_nota',
     'dia_vencimento_nota', 'dia_periodo_inicio_nota', 'dia_periodo_fim_nota', 'responsavel'];
 
     public function hasCliente()

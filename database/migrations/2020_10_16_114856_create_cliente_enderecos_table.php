@@ -17,7 +17,6 @@ class CreateClienteEnderecosTable extends Migration
             $table->id();
             $table->foreignId('cliente_id');
             $table->foreignId('endereco_id');
-            $table->boolean('principal')->default(0);
 
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->foreign('endereco_id')->references('id')->on('enderecos');

@@ -115,6 +115,9 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\TipoContratoRepository::class, function ($app) {
             return new \App\Repositories\TipoContratoRepositoryImplementation(new \App\Models\TipoContrato\TipoContrato());
         });
+        $this->app->bind(\App\Repositories\Contracts\UsuarioRepository::class, function ($app) {
+            return new \App\Repositories\UsuarioRepositoryImplementation(new \App\Models\Usuario\Usuario());
+        });
 
     }
 }
