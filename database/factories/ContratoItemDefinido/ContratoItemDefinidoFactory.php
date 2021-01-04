@@ -1,18 +1,18 @@
 <?php
 
-namespace Database\Factories\Models\cliente;
+namespace Database\Factories\ContratoItemDefinido;
 
-use App\Models\Models\cliente\recurso=cliente;
+use App\Models\ContratoItemDefinido\ContratoItemDefinido;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class recurso=clienteFactory extends Factory
+class ContratoItemDefinidoFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = recurso=cliente::class;
+    protected $model = ContratoItemDefinido::class;
 
     /**
      * Define the model's default state.
