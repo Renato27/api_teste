@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class LicencaPatrimonioRepositoryImplementation implements LicencaPatrimonioRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna LicencaPatrimonio baseado no ID.
      *
@@ -16,7 +19,7 @@ class LicencaPatrimonioRepositoryImplementation implements LicencaPatrimonioRepo
      */
     public function getLicencaPatrimonio(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -28,7 +31,7 @@ class LicencaPatrimonioRepositoryImplementation implements LicencaPatrimonioRepo
      */
     public function getLicencaPatrimonios(int $id, int $associacao): ?Collection
     {
-
+        return collect();
     }
 
     /**
@@ -36,10 +39,10 @@ class LicencaPatrimonioRepositoryImplementation implements LicencaPatrimonioRepo
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createLicencaPatrimonio(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +51,10 @@ class LicencaPatrimonioRepositoryImplementation implements LicencaPatrimonioRepo
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateLicencaPatrimonio(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +63,13 @@ class LicencaPatrimonioRepositoryImplementation implements LicencaPatrimonioRepo
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteLicencaPatrimonio(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

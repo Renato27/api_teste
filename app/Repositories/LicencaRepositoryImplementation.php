@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class LicencaRepositoryImplementation implements LicencaRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna Licenca baseado no ID.
      *
@@ -16,7 +19,7 @@ class LicencaRepositoryImplementation implements LicencaRepository
      */
     public function getLicenca(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -26,9 +29,9 @@ class LicencaRepositoryImplementation implements LicencaRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getLicencas(int $id, int $associacao): ?Collection
+    public function getLicencasByTipo(int $tipo): ?Collection
     {
-
+        return $this->where(['tipo_licenca_id' => $tipo])->get();
     }
 
     /**
@@ -36,10 +39,10 @@ class LicencaRepositoryImplementation implements LicencaRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createLicenca(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +51,10 @@ class LicencaRepositoryImplementation implements LicencaRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateLicenca(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +63,13 @@ class LicencaRepositoryImplementation implements LicencaRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteLicenca(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

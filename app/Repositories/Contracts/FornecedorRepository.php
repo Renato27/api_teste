@@ -22,14 +22,14 @@ interface FornecedorRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getFornecedors(int $id, int $associacao): ?Collection;
-    
+    public function getFornecedores(int $id, int $associacao): ?Collection;
+
     /**
      * Cria um novo Fornecedor
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createFornecedor(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface FornecedorRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateFornecedor(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,6 @@ interface FornecedorRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteFornecedor(int $id): bool;
 }

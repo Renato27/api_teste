@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class ModeloRepositoryImplementation implements ModeloRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna Modelo baseado no ID.
      *
@@ -16,7 +19,7 @@ class ModeloRepositoryImplementation implements ModeloRepository
      */
     public function getModelo(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -28,7 +31,7 @@ class ModeloRepositoryImplementation implements ModeloRepository
      */
     public function getModelos(int $id, int $associacao): ?Collection
     {
-
+        return collect();
     }
 
     /**
@@ -36,10 +39,10 @@ class ModeloRepositoryImplementation implements ModeloRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createModelo(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +51,10 @@ class ModeloRepositoryImplementation implements ModeloRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateModelo(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +63,13 @@ class ModeloRepositoryImplementation implements ModeloRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteModelo(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

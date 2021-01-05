@@ -36,7 +36,7 @@ class TipoUsuarioRepositoryImplementation implements TipoUsuarioRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createTipoUsuario(array $detalhes): ?Model
     {
 
@@ -48,7 +48,7 @@ class TipoUsuarioRepositoryImplementation implements TipoUsuarioRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateTipoUsuario(int $id, array $detalhes): ?Model
     {
 
@@ -60,7 +60,7 @@ class TipoUsuarioRepositoryImplementation implements TipoUsuarioRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteTipoUsuario(int $id): bool
     {
 

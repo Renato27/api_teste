@@ -22,14 +22,14 @@ interface PatrimonioRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getPatrimonios(int $id, int $associacao): ?Collection;
-    
+    public function getPatrimonios(): ?Collection;
+
     /**
      * Cria um novo Patrimonio
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createPatrimonio(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface PatrimonioRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updatePatrimonio(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,6 @@ interface PatrimonioRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deletePatrimonio(int $id): bool;
 }

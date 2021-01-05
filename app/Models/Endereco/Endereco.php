@@ -3,6 +3,7 @@
 namespace App\Models\Endereco;
 
 use App\Models\ClienteEndereco\ClienteEndereco;
+use App\Models\Clientes\Cliente;
 use App\Models\ContatoEnderecos\ContatoEnderecos;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,7 +17,7 @@ class Endereco extends Model
 
     protected $date = ['deleted_at'];
 
-    protected $fillable = ['rua', 'numero', 'bairro', 'complemento', 'cidade', 'estado', 'cep'];
+    protected $fillable = ['rua', 'numero', 'bairro', 'complemento', 'cidade', 'estado', 'cep', 'principal'];
 
     public function contatos()
     {
@@ -25,6 +26,6 @@ class Endereco extends Model
 
     public function cliente()
     {
-        return $this->hasOne(ClienteEndereco::class, 'endereco_id', 'id');
+        return $this->hasOneThrough(Cliente::class, ClienteEndereco::class, 'endereco_id', 'id');
     }
 }

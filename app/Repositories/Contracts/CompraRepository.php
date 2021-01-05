@@ -23,13 +23,13 @@ interface CompraRepository
      * @return Model|null
      */
     public function getCompras(int $id, int $associacao): ?Collection;
-    
+
     /**
      * Cria um novo Compra
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createCompra(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface CompraRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateCompra(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,6 @@ interface CompraRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteCompra(int $id): bool;
 }

@@ -61,7 +61,7 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
      */
     public function updateUsuario(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -73,7 +73,11 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
      */
     public function deleteUsuario(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 
     public function verificarCredenciasUsuario(string $email, string $senha) : ?Model

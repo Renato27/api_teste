@@ -38,7 +38,7 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createClienteContato(array $detalhes): ?Model
     {
         return $this->create($detalhes);
@@ -50,7 +50,7 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateClienteContato(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
@@ -62,7 +62,7 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteClienteContato(int $id): bool
     {
         $retorno = $this->delete($id);
@@ -72,25 +72,25 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
         return true;
     }
 
-    /**
-     * Verifica se existe algum contato principal.
-     *
-     * @param integer $cliente
-     * @return boolean
-     */
-    public function existeAlgumPrincipal(int $cliente) : bool
-    {
-        $associacoes = $this->where(['cliente_id' => $cliente])->get();
+    // /**
+    //  * Verifica se existe algum contato principal.
+    //  *
+    //  * @param integer $cliente
+    //  * @return boolean
+    //  */
+    // public function existeAlgumPrincipal(int $cliente) : bool
+    // {
+    //     $associacoes = $this->where(['cliente_id' => $cliente])->get();
 
-        if(count($associacoes) > 0){
+    //     if(count($associacoes) > 0){
 
-            foreach($associacoes as $associacao){
+    //         foreach($associacoes as $associacao){
 
-                if($associacao->principal == 1) 
-                    return true;
-            }
-        }
+    //             if($associacao->principal == 1)
+    //                 return true;
+    //         }
+    //     }
 
-        return false;
-    }
+    //     return false;
+    // }
 }

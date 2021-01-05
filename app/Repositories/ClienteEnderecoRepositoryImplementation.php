@@ -52,7 +52,7 @@ class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoReposito
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createClienteEndereco(array $detalhes): ?Model
     {
         return $this->create($detalhes);
@@ -64,7 +64,7 @@ class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoReposito
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateClienteEndereco(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
@@ -76,7 +76,7 @@ class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoReposito
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteClienteEndereco(int $id): bool
     {
         $retorno =  $this->delete($id);
@@ -86,25 +86,25 @@ class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoReposito
         return true;
     }
 
-    /**
-     * Verifica se existe algum endereço principal.
-     *
-     * @param integer $cliente
-     * @return boolean
-     */
-    public function existeAlgumPrincipal(int $cliente) : bool
-    {
-        $associacoes = $this->where(['cliente_id' => $cliente])->get();
+    // /**
+    //  * Verifica se existe algum endereço principal.
+    //  *
+    //  * @param integer $cliente
+    //  * @return boolean
+    //  */
+    // public function existeAlgumPrincipal(int $cliente) : bool
+    // {
+    //     $associacoes = $this->where(['cliente_id' => $cliente])->get();
 
-        if(count($associacoes) > 0){
+    //     if(count($associacoes) > 0){
 
-            foreach($associacoes as $associacao){
+    //         foreach($associacoes as $associacao){
 
-                if($associacao->principal == 1) 
-                    return true;
-            }
-        }
+    //             if($associacao->principal == 1)
+    //                 return true;
+    //         }
+    //     }
 
-        return false;
-    }
+    //     return false;
+    // }
 }

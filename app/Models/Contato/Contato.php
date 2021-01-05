@@ -7,6 +7,8 @@ use App\Models\ContatoContrato\ContatoContrato;
 use App\Models\ContatoEmail\ContatoEmail;
 use App\Models\ContatoEnderecos\ContatoEnderecos;
 use App\Models\ContatoTipo\ContatoTipo;
+use App\Models\Contratos\Contrato;
+use App\Models\Endereco\Endereco;
 use App\Models\TipoContato\TipoContato;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,21 +22,21 @@ class Contato extends Model
 
     protected $date = ['deleted_at'];
 
-    protected $fillable = ['nome', 'cargo', 'telefone', 'celular'];
+    protected $fillable = ['nome', 'cargo', 'telefone', 'celular', 'principal'];
 
     public function emails()
     {
         return $this->hasMany(ContatoEmail::class, 'contato_id', 'id');
     }
 
-    public function hasContratos()
+    public function contratos()
     {
-        return $this->hasMany(ContatoContrato::class, 'contato_id', 'id');
+        return $this->hasManyThrough(Contrato::class, ContatoContrato::class, 'contato_id', 'id');
     }
 
-    public function hasEnderecos()
+    public function enderecos()
     {
-        return $this->hasMany(ContatoEnderecos::class, 'contato_id', 'id');
+        return $this->hasManyThrough(Endereco::class, ContatoEnderecos::class, 'contato_id', 'id');
     }
 
     public function cliente()

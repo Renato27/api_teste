@@ -36,7 +36,7 @@ class StatusChamadoRepositoryImplementation implements StatusChamadoRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createStatusChamado(array $detalhes): ?Model
     {
 
@@ -48,7 +48,7 @@ class StatusChamadoRepositoryImplementation implements StatusChamadoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateStatusChamado(int $id, array $detalhes): ?Model
     {
 
@@ -60,7 +60,7 @@ class StatusChamadoRepositoryImplementation implements StatusChamadoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteStatusChamado(int $id): bool
     {
 

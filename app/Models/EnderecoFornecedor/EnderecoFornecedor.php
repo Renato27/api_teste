@@ -15,7 +15,7 @@ class EnderecoFornecedor extends Model
     protected $date = ['deleted_at'];
     protected $fillable = ['rua', 'numero', 'bairro', 'complemento', 'cidade', 'estado', 'cep'];
 
-    public function endereco()
+    public function fornecedor()
     {
         return $this->hasOneThrough(Fornecedor::class, FornecedorEndereco::class, 'endereco_fornecedor_id', 'id');
     }

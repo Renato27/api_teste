@@ -23,13 +23,13 @@ interface EnderecoFornecedorRepository
      * @return Model|null
      */
     public function getEnderecoFornecedors(int $id, int $associacao): ?Collection;
-    
+
     /**
      * Cria um novo EnderecoFornecedor
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createEnderecoFornecedor(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface EnderecoFornecedorRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateEnderecoFornecedor(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,6 @@ interface EnderecoFornecedorRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteEnderecoFornecedor(int $id): bool;
 }

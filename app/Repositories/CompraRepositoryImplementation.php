@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class CompraRepositoryImplementation implements CompraRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna Compra baseado no ID.
      *
@@ -16,7 +19,7 @@ class CompraRepositoryImplementation implements CompraRepository
      */
     public function getCompra(int $id): ?Model
     {
-
+        return $this->find($id)
     }
 
     /**
@@ -36,10 +39,10 @@ class CompraRepositoryImplementation implements CompraRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createCompra(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +51,10 @@ class CompraRepositoryImplementation implements CompraRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateCompra(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +63,13 @@ class CompraRepositoryImplementation implements CompraRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteCompra(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

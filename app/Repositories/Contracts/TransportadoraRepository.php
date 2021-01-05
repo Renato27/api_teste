@@ -22,14 +22,14 @@ interface TransportadoraRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getTransportadoras(int $id, int $associacao): ?Collection;
-    
+    public function getTransportadoras(): ?Collection;
+
     /**
      * Cria um novo Transportadora
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createTransportadora(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface TransportadoraRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateTransportadora(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,6 @@ interface TransportadoraRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteTransportadora(int $id): bool;
 }

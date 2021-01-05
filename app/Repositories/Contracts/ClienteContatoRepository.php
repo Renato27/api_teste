@@ -23,13 +23,13 @@ interface ClienteContatoRepository
      * @return Model|null
      */
     public function getContatosByCliente(int $cliente): ?Collection;
-    
+
     /**
      * Cria um novo ClienteContato
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createClienteContato(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface ClienteContatoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateClienteContato(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,14 +47,14 @@ interface ClienteContatoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteClienteContato(int $id): bool;
 
-    /**
-     * Verifica se existe algum contato principal.
-     *
-     * @param integer $cliente
-     * @return boolean
-     */
-    public function existeAlgumPrincipal(int $cliente) : bool;
+    // /**
+    //  * Verifica se existe algum contato principal.
+    //  *
+    //  * @param integer $cliente
+    //  * @return boolean
+    //  */
+    // public function existeAlgumPrincipal(int $cliente) : bool;
 }

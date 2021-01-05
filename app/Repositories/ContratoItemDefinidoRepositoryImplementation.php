@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class ContratoItemDefinidoRepositoryImplementation implements ContratoItemDefinidoRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna ContratoItemDefinido baseado no ID.
      *
@@ -16,7 +19,7 @@ class ContratoItemDefinidoRepositoryImplementation implements ContratoItemDefini
      */
     public function getContratoItemDefinido(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -36,10 +39,10 @@ class ContratoItemDefinidoRepositoryImplementation implements ContratoItemDefini
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createContratoItemDefinido(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +51,10 @@ class ContratoItemDefinidoRepositoryImplementation implements ContratoItemDefini
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateContratoItemDefinido(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +63,13 @@ class ContratoItemDefinidoRepositoryImplementation implements ContratoItemDefini
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteContratoItemDefinido(int $id): bool
     {
+        $retorno =  $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

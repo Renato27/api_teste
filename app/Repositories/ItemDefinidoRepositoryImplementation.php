@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class ItemDefinidoRepositoryImplementation implements ItemDefinidoRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna ItemDefinido baseado no ID.
      *
@@ -16,7 +19,7 @@ class ItemDefinidoRepositoryImplementation implements ItemDefinidoRepository
      */
     public function getItemDefinido(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -26,9 +29,9 @@ class ItemDefinidoRepositoryImplementation implements ItemDefinidoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getItemDefinidos(int $id, int $associacao): ?Collection
+    public function getItemDefinidosByTipo(int $tipo): ?Collection
     {
-
+        return $this->where(['tipo_patrimonio_id' => $tipo])->get();
     }
 
     /**
@@ -36,10 +39,10 @@ class ItemDefinidoRepositoryImplementation implements ItemDefinidoRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createItemDefinido(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +51,10 @@ class ItemDefinidoRepositoryImplementation implements ItemDefinidoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateItemDefinido(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +63,13 @@ class ItemDefinidoRepositoryImplementation implements ItemDefinidoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteItemDefinido(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

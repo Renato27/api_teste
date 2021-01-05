@@ -23,13 +23,13 @@ interface ClienteEnderecoRepository
      * @return Model|null
      */
     public function getClienteEnderecos(int $cliente): ?Collection;
-    
+
     /**
      * Cria um novo ClienteEndereco
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createClienteEndereco(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface ClienteEnderecoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateClienteEndereco(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,14 +47,14 @@ interface ClienteEnderecoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteClienteEndereco(int $id): bool;
 
-    /**
-     * Verifica se existe algum endereço principal.
-     *
-     * @param integer $cliente
-     * @return boolean
-     */
-    public function existeAlgumPrincipal(int $cliente) : bool;
+    // /**
+    //  * Verifica se existe algum endereço principal.
+    //  *
+    //  * @param integer $cliente
+    //  * @return boolean
+    //  */
+    // public function existeAlgumPrincipal(int $cliente) : bool;
 }

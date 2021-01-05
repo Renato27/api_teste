@@ -8,27 +8,29 @@ use Illuminate\Support\Collection;
 
 class ChamadoArquivoRepositoryImplementation implements ChamadoArquivoRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna ChamadoArquivo baseado no ID.
      *
      * @param integer $id
      * @return Model|null
      */
-    public function getChamadoArquivo(int $id): ?Model
+    public function getArquivosByChamado(int $chamado): ?Collection
     {
-
+        return $this->where(['chamado_id' => $chamado])->get();
     }
 
     /**
-     * Retorna uma coleção de ChamadoArquivo baseado em uma associação.
+     * Retorna ChamadoArquivo baseado no ID.
      *
      * @param integer $id
-     * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getChamadoArquivos(int $id, int $associacao): ?Collection
+    public function getArquivosByUsuario(int $usuario): ?Collection
     {
-
+        return $this->where(['usuario_id' => $usuario])->get();
     }
 
     /**
@@ -36,10 +38,10 @@ class ChamadoArquivoRepositoryImplementation implements ChamadoArquivoRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createChamadoArquivo(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +50,10 @@ class ChamadoArquivoRepositoryImplementation implements ChamadoArquivoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateChamadoArquivo(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +62,13 @@ class ChamadoArquivoRepositoryImplementation implements ChamadoArquivoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteChamadoArquivo(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

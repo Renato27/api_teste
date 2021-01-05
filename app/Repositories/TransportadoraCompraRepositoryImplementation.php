@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class TransportadoraCompraRepositoryImplementation implements TransportadoraCompraRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna TransportadoraCompra baseado no ID.
      *
@@ -16,7 +19,7 @@ class TransportadoraCompraRepositoryImplementation implements TransportadoraComp
      */
     public function getTransportadoraCompra(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -36,10 +39,10 @@ class TransportadoraCompraRepositoryImplementation implements TransportadoraComp
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createTransportadoraCompra(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +51,10 @@ class TransportadoraCompraRepositoryImplementation implements TransportadoraComp
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateTransportadoraCompra(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +63,13 @@ class TransportadoraCompraRepositoryImplementation implements TransportadoraComp
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteTransportadoraCompra(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

@@ -22,14 +22,50 @@ interface ChamadoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getChamados(int $id, int $associacao): ?Collection;
-    
+    public function getChamadosByUsuario(int $usuario): ?Collection;
+
+    /**
+     * Retorna uma coleção de Chamado baseado em uma associação.
+     *
+     * @param integer $id
+     * @param integer $segundo_recurso
+     * @return Model|null
+     */
+    public function getChamadosByTipo(int $tipo): ?Collection;
+
+    /**
+     * Retorna uma coleção de Chamado baseado em uma associação.
+     *
+     * @param integer $id
+     * @param integer $segundo_recurso
+     * @return Model|null
+     */
+    public function getChamadosByContato(int $contato): ?Collection;
+
+    /**
+     * Retorna uma coleção de Chamado baseado em uma associação.
+     *
+     * @param integer $id
+     * @param integer $segundo_recurso
+     * @return Model|null
+     */
+    public function getChamadosByEndereco(int $endereco): ?Collection;
+
+    /**
+     * Retorna uma coleção de Chamado baseado em uma associação.
+     *
+     * @param integer $id
+     * @param integer $segundo_recurso
+     * @return Model|null
+     */
+    public function getChamadosByPedido(int $pedido): ?Collection;
+
     /**
      * Cria um novo Chamado
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createChamado(array $detalhes): ?Model;
 
     /**
@@ -38,7 +74,7 @@ interface ChamadoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateChamado(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +83,6 @@ interface ChamadoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteChamado(int $id): bool;
 }

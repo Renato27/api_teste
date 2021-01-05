@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class EnderecoFornecedorRepositoryImplementation implements EnderecoFornecedorRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna EnderecoFornecedor baseado no ID.
      *
@@ -16,7 +19,7 @@ class EnderecoFornecedorRepositoryImplementation implements EnderecoFornecedorRe
      */
     public function getEnderecoFornecedor(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -28,7 +31,7 @@ class EnderecoFornecedorRepositoryImplementation implements EnderecoFornecedorRe
      */
     public function getEnderecoFornecedors(int $id, int $associacao): ?Collection
     {
-
+        return collect();
     }
 
     /**
@@ -36,10 +39,10 @@ class EnderecoFornecedorRepositoryImplementation implements EnderecoFornecedorRe
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createEnderecoFornecedor(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +51,10 @@ class EnderecoFornecedorRepositoryImplementation implements EnderecoFornecedorRe
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateEnderecoFornecedor(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +63,13 @@ class EnderecoFornecedorRepositoryImplementation implements EnderecoFornecedorRe
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteEnderecoFornecedor(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

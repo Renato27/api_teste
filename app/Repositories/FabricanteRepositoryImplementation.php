@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class FabricanteRepositoryImplementation implements FabricanteRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna Fabricante baseado no ID.
      *
@@ -16,7 +19,7 @@ class FabricanteRepositoryImplementation implements FabricanteRepository
      */
     public function getFabricante(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -28,7 +31,7 @@ class FabricanteRepositoryImplementation implements FabricanteRepository
      */
     public function getFabricantes(int $id, int $associacao): ?Collection
     {
-
+        return collect();
     }
 
     /**
@@ -36,10 +39,10 @@ class FabricanteRepositoryImplementation implements FabricanteRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createFabricante(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +51,10 @@ class FabricanteRepositoryImplementation implements FabricanteRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateFabricante(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +63,13 @@ class FabricanteRepositoryImplementation implements FabricanteRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteFabricante(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

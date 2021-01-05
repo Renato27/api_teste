@@ -2,6 +2,7 @@
 
 namespace App\Models\ContratoTipo;
 
+use App\Models\Contratos\Contrato;
 use App\Models\TipoContrato\TipoContrato;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,8 +22,8 @@ class ContratoTipo extends Model
     const SUPORTE       = 2;
     const VALOR_FIXO    = 3;
 
-    public function hasContratos()
+    public function contratos()
     {
-        return $this->hasMany(TipoContrato::class, 'contrato_tipo_id', 'id');
+        return $this->hasManyThrough(Contrato::class, TipoContrato::class, 'contrato_tipo_id', 'id');
     }
 }

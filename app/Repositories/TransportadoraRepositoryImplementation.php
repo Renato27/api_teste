@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class TransportadoraRepositoryImplementation implements TransportadoraRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna Transportadora baseado no ID.
      *
@@ -16,7 +19,7 @@ class TransportadoraRepositoryImplementation implements TransportadoraRepository
      */
     public function getTransportadora(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -26,9 +29,9 @@ class TransportadoraRepositoryImplementation implements TransportadoraRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getTransportadoras(int $id, int $associacao): ?Collection
+    public function getTransportadoras(): ?Collection
     {
-
+        return $this->getAll();
     }
 
     /**
@@ -36,10 +39,10 @@ class TransportadoraRepositoryImplementation implements TransportadoraRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createTransportadora(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +51,10 @@ class TransportadoraRepositoryImplementation implements TransportadoraRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateTransportadora(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +63,13 @@ class TransportadoraRepositoryImplementation implements TransportadoraRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteTransportadora(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

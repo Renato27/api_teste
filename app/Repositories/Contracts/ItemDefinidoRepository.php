@@ -22,14 +22,14 @@ interface ItemDefinidoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getItemDefinidos(int $id, int $associacao): ?Collection;
-    
+    public function getItemDefinidosByTipo(int $tipo): ?Collection;
+
     /**
      * Cria um novo ItemDefinido
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createItemDefinido(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface ItemDefinidoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateItemDefinido(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,6 @@ interface ItemDefinidoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteItemDefinido(int $id): bool;
 }

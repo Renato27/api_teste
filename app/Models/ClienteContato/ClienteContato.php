@@ -16,7 +16,7 @@ class ClienteContato extends Model
 
     protected $date = ['deleted_at'];
 
-    protected $fillable = ['contato_id', 'cliente_id', 'principal'];
+    protected $fillable = ['contato_id', 'cliente_id'];
 
     public function cliente()
     {
