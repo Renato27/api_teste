@@ -7,6 +7,7 @@ use App\Models\Contratos\Contrato;
 use App\Models\ItemPedido\ItemPedido;
 use App\Models\PedidoItem\PedidoItem;
 use App\Models\PedidoStatusPedido\PedidoStatusPedido;
+use App\Models\StatusPedido\StatusPedido;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,7 +20,7 @@ class Pedido extends Model
 
     protected $date = ['deleted_at'];
 
-    protected $fillable = ['data_entrega', 'data_retirada'];
+    protected $fillable = ['data_entrega', 'data_retirada', 'status_pedido_id'];
 
     public function itens()
     {
@@ -29,6 +30,11 @@ class Pedido extends Model
     public function contrato()
     {
         return $this->hasOneThrough(Contrato::class, ContratoPedido::class, 'pedido_id', 'id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(StatusPedido::class, 'status_pedido_id');
     }
 
 }

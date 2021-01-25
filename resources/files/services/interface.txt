@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Services\{referencia_service}\{acao_service}\Contracts;
+
+use App\Models\{model}\{model}
+
+interface {service_name}
+{
+    /**
+     * Seta a mode de {model}.
+     *
+     * @param {model}
+     * @return {service_name}
+     */
+    public function set{model}({model} ${model}): service_name;
+
+    /**
+     * Seta o repositório de {repository}.
+     *
+     * @param {repository} ${repository}
+     * @return {service_name}
+     */
+    public function set{repository}({repository} ${repository}): service_name;
+
+    /**
+     * Processa os dados
+     *
+     * @return boolean
+     */
+    public function handle(): bool;
+}

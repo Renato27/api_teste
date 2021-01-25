@@ -1,0 +1,46 @@
+<?php
+
+namespace App\Services\{referencia_service}\{acao_service}\Abstracts;
+
+use App\Services\{acao_service}\Contracts\{service_name};
+
+abstract class {service_name}Base implements {service_name}
+{
+    /**
+     * Model de {model}.
+     *
+     * @var {model}
+     */
+    protected {model} ${model};
+
+    /**
+     * Repositório de {repository}.
+     *
+     * @var {repository}
+     */
+    protected {repository} ${repository};
+
+   /**
+     * Seta a model de {model}.
+     *
+     * @param {model}
+     * @return {service_name}
+     */
+    public function set{model}({model} ${model}): service_name
+    {
+        $this->{model} = ${model};
+        return $this;
+    }
+
+    /**
+     * Seta o repositório de {repository}.
+     *
+     * @param {repository} ${repository}
+     * @return {service_name}
+     */
+    public function set{repository}({repository} ${repository}): service_name
+    {
+        $this->{repository} = ${repository};
+        return $this;
+    }
+}

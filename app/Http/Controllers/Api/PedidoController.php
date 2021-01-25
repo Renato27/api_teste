@@ -18,9 +18,9 @@ class PedidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(PedidoRepository $pedidoRepository)
+    public function index()
     {
-        $pedidos = $pedidoRepository->getPedidos();
+        $pedidos = Pedido::paginate(25);
 
         return PedidoResource::collection($pedidos);
     }
