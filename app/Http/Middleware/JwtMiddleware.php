@@ -29,23 +29,14 @@ class JwtMiddleware extends BaseMiddleware
             if($th instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
 
                 return response()->json([
-                    'data'      => null,
-                    'status'    => false,
-                    'err_'      => [
-                        'message' => 'Token Inválido',
-                        'code'    => 1
-                    ]
+                    'message' => 'Token Inválido',
                 ]);
 
             }else if($th instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
 
                 return response()->json([
-                    'data'      => null,
-                    'status'    => false,
-                    'err_'      => [
-                        'message'   => 'Token Expirado!',
-                        'code'      => 1
-                    ]
+
+                    'message'   => 'Token Expirado!',
                 ]);
 
             }else{
@@ -53,23 +44,16 @@ class JwtMiddleware extends BaseMiddleware
                 if($th->getMessage() === 'Usuário não encontrado!'){
 
                     return response()->json([
-                        'data'      => null,
-                        'status'    => false,
-                        'err_'      => [
-                            'message'   => 'Usuário não encontrado!',
-                            'code'      => 1
-                        ]
+
+                        'message'   => 'Usuário não encontrado!',
+
                     ]);
                 }
             }
 
             return response()->json([
-                'data'      => null,
-                'status'    => false,
-                'err_'      => [
+
                     'message'   => 'Token de autorização não encontrado!',
-                    'code'      => 1
-                ]
             ]);
         }
         return $next($request);

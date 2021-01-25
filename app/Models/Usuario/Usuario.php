@@ -20,6 +20,16 @@ class Usuario extends Authenticatable implements JWTSubject
 {
     use HasFactory, SoftDeletes, Notifiable;
 
+    protected $date = ['deleted_at'];
+
+    protected $fillable = ['email', 'password', 'tipo_usuario_id', 'funcionario_id', 'contato_id',
+    'cliente_visualizacao_patrimonio_id'];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
@@ -29,16 +39,6 @@ class Usuario extends Authenticatable implements JWTSubject
     {
         return [];
     }
-
-    protected $date = ['deleted_at'];
-
-    protected $fillable = ['email', 'senha', 'tipo_usuario_id', 'funcionario_id', 'contato_id',
-    'cliente_visualizacao_patrimonio_id'];
-
-    protected $hidden = [
-        'senha',
-        'remember_token',
-    ];
 
     public function tipo_usuario()
     {

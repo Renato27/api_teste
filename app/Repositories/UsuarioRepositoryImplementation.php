@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Repositories\Contracts\UsuarioRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioRepositoryImplementation implements UsuarioRepository
 {
@@ -44,7 +45,7 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
     {
         return $this->create([
             'email'                                 => $detalhes['email'],
-            'senha'                                 => md5(sha1($detalhes['senha'])),
+            'password'                                 => Hash::make($detalhes['password']),
             'tipo_usuario_id'                       => $detalhes['tipo_usuario_id'],
             'funcionario_id'                        => $detalhes['funcionario_id'],
             'contato_id'                            => $detalhes['contato_id'],
@@ -80,7 +81,7 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
         return true;
     }
 
-    public function verificarCredenciasUsuario(string $email, string $senha) : ?Model
+    public function verificarCredenciasUsuario(string $email, string $password) : ?Model
     {
         //$usuario = $this->where(['email'.'@logicatecnologia.com.br' => $email])->first();
         $usuario = $this->where(['email' => $email])->first();
@@ -88,7 +89,7 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
         if(!$usuario)
             return null;
 
-        if(md5(sha1($senha)) != $usuario->senha)
+        if(md5(sha1($password)) != $usuario->password)
             return null;
 
         return $usuario;

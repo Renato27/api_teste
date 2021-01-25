@@ -50,5 +50,6 @@ interface UsuarioRepository
      */
     public function deleteUsuario(int $id): bool;
 
-    public function verificarCredenciasUsuario(string $email, string $senha) : ?Model;
+    public function verificarCredenciasUsuario(string $email, string $password) : ?Model;
 }
+

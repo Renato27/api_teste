@@ -12,6 +12,7 @@ use App\Services\Clientes\AtualizarCliente\Contracts\AtualizarClienteService;
 use App\Services\Clientes\CadastrarCliente\Contracts\CadastrarClienteService;
 use App\Services\Clientes\ExcluirCliente\Contracts\ExcluirClienteService;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ClienteController extends Controller
 {
@@ -20,10 +21,9 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ClienteRepository $clienteRepository)
+    public function index()
     {
-        $clientes = $clienteRepository->getclientes();
-        return ClienteResource::collection($clientes);
+        return ClienteResource::collection(Cliente::paginate(20));
     }
 
     /**
@@ -40,7 +40,7 @@ class ClienteController extends Controller
 
             return new ClienteContatoEnderecoResource($cliente);
         } catch (\Throwable $th) {
-            throw $th->getMessage();
+            throw new HttpException(400, $th->getMessage());
         }
     }
 

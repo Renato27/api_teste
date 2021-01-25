@@ -184,6 +184,6 @@ abstract class CadastrarClienteServiceAbstract implements CadastrarClienteServic
         if(!isset($clienteCadastrado->id))
             throw new Exception("Erro ao cadastrar o cliente. Verifique as informações e tente novamente");
 
-        return $clienteCadastrado;    
+        return $clienteCadastrado;
     }
 }
