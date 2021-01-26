@@ -12,17 +12,16 @@ class MakeRepositoryCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:sgl_repository {repository_name} {recurso} {--model=}';
+    protected $signature = 'make:repository {model}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Cria um repositório baseado no Eloquent; 
-                                Criar repositório = TesteRepository;
-                                Criar métodos do repositório = Teste; 
-                                Criar Model = --model=Teste';
+    protected $description = 'Cria um repositório baseado no Eloquent;
+                              Criar repositório = (Referência) ex.: Cliente';
+
 
     /**
      * Create a new command instance.
@@ -41,10 +40,10 @@ class MakeRepositoryCommand extends Command
      */
     public function handle()
     {
-        $repositoryName    = $this->argument('repository_name');
-        $recurso           = $this->argument('recurso');
-        $model             = $this->option('model');
-        
+        $model              = $this->argument('model');
+        $recurso            = $model;
+        $repositoryName     = $model . "Repository";
+
         $repositoryCommand = new CriarRepositorioService();
         $repositoryCommand->handle($repositoryName, $recurso, $model);
     }

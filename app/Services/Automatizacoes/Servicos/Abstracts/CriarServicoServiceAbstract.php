@@ -4,6 +4,8 @@ namespace App\Services\Automatizacoes\Servicos\Abstracts;
 
 use App\Services\Automatizacoes\Servicos\Contracts\CriarServicoService;
 
+define('BASE_PATH', dirname(__FILE__) . "/../../../../../");
+
 abstract class CriarServicoServiceAbstract implements CriarServicoService
 {
     /**
@@ -24,18 +26,11 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
     protected string $referencia_service;
 
     /**
-     * Nome do repositório
-     */
-    protected string $repository;
-
-    /**
      * Nome da model
      *
      * @var string
      */
-    protected string $model;
-
-    const CAMINHO_BASE = __DIR__ . "/../../../../../";
+    protected string $modelRepository;
 
     /**
      * Caminhos dos arquivos.
@@ -43,20 +38,19 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
      * @var array
      */
     protected array $paths = [
-        'modelo_interface'       => SELF::CAMINHO_BASE . 'resources/files/services/interface.txt',
-        'modelo_implementation'  => SELF::CAMINHO_BASE . 'resources/files/services/implementation.txt',
-        'modelo_base'            => SELF::CAMINHO_BASE . 'resources/files/services/base.txt',
-        'modelo_client'          => SELF::CAMINHO_BASE . 'resources/files/services/client.txt',
-        'modelo_test'            => SELF::CAMINHO_BASE . 'resources/files/services/test.txt',
-        'modelo_provider'        => SELF::CAMINHO_BASE . 'resources/files/services/provider.txt',
+        'modelo_interface'       => BASE_PATH . 'resources/files/services/interface.txt',
+        'modelo_implementation'  => BASE_PATH . 'resources/files/services/implementation.txt',
+        'modelo_base'            => BASE_PATH . 'resources/files/services/base.txt',
+        'modelo_client'          => BASE_PATH . 'resources/files/services/client.txt',
+        'modelo_test'            => BASE_PATH . 'resources/files/services/test.txt',
+        'modelo_provider'        => BASE_PATH . 'resources/files/services/provider.txt',
 
-        'caminho_contrato'       => SELF::CAMINHO_BASE . 'app/Services/',
-        'caminho_implementacao'  => SELF::CAMINHO_BASE . 'app/Services/',
-        'caminho_base'           => SELF::CAMINHO_BASE . 'app/Services/',
-        'caminho_client'         => SELF::CAMINHO_BASE . 'app/Services/',
-        'caminho_teste'          => SELF::CAMINHO_BASE . 'tests/Feature/Services/',
-        'caminho_provider'       => SELF::CAMINHO_BASE . 'app/Providers/Services/',
+        'caminho_service'        => BASE_PATH . 'app/Services/',
+        'caminho_teste'          => BASE_PATH . 'tests/Feature/Services/',
+        'caminho_provider'       => BASE_PATH . 'app/Providers/Services/',
+        'caminho_provider_register'       => BASE_PATH . 'config/app.php',
     ];
+
 
     /**
      * Cria a interface.
@@ -65,7 +59,7 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
      */
     protected function criarInterface()
     {
-        $interface = $this->abrirOuCriarArquivo($this->paths['caminho_contrato'], $this->referencia_service, $this->acao_service, $this->service_name, '.php');
+        $interface = $this->abrirOuCriarArquivo($this->paths['caminho_service'], $this->referencia_service, $this->acao_service . '/Contracts', $this->service_name, '.php');
 
         if(!$interface)
             throw new \Exception("Houve um erro ao criar a interface.");
@@ -92,7 +86,7 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
      */
     protected function criarAbstract()
     {
-        $implementacao   = $this->abrirOuCriarArquivo($this->paths['caminho_implementacao'], $this->referencia_service, $this->acao_service, $this->service_name . 'Abstract', '.php');
+        $implementacao = $this->abrirOuCriarArquivo($this->paths['caminho_service'], $this->referencia_service, $this->acao_service . '/Abstracts', $this->service_name . 'Abstract', '.php');
 
         if(!$implementacao)
             throw new \Exception("Houve ao criar a implementação.");
@@ -100,7 +94,7 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
         $conteudoImplementacao = $this->getConteudoArquivo($this->paths['modelo_implementation']);
 
         if(fwrite($implementacao, $conteudoImplementacao)){
-            print('A implementação foi criada' . PHP_EOL);
+            print('A abstração foi criada' . PHP_EOL);
             return;
         };
 
@@ -111,7 +105,8 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
 
     protected function criarBase()
     {
-        $implementacao   = $this->abrirOuCriarArquivo($this->paths['caminho_base'], $this->referencia_service, $this->acao_service, $this->service_name . 'Base', '.php');
+
+        $implementacao = $this->abrirOuCriarArquivo($this->paths['caminho_service'], $this->referencia_service, $this->acao_service . '/Base', $this->service_name . 'Base', '.php');
 
         if(!$implementacao)
             throw new \Exception("Houve ao criar a implementação.");
@@ -119,7 +114,7 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
         $conteudoImplementacao = $this->getConteudoArquivo($this->paths['modelo_base']);
 
         if(fwrite($implementacao, $conteudoImplementacao)){
-            print('A implementação foi criada' . PHP_EOL);
+            print('A base foi criada' . PHP_EOL);
             return;
         };
 
@@ -130,7 +125,8 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
 
     protected function criarClient()
     {
-        $implementacao   = $this->abrirOuCriarArquivo($this->paths['caminho_client'], $this->referencia_service, $this->acao_service, $this->service_name, '.php');
+
+        $implementacao = $this->abrirOuCriarArquivo($this->paths['caminho_service'], $this->referencia_service, $this->acao_service, $this->service_name, '.php');
 
         if(!$implementacao)
             throw new \Exception("Houve ao criar a implementação.");
@@ -138,7 +134,7 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
         $conteudoImplementacao = $this->getConteudoArquivo($this->paths['modelo_client']);
 
         if(fwrite($implementacao, $conteudoImplementacao)){
-            print('A implementação foi criada' . PHP_EOL);
+            print('O client foi criado' . PHP_EOL);
             return;
         };
 
@@ -171,6 +167,47 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
         throw new \Exception("Houve um erro ao associar test e o conteúdo.");
     }
 
+    protected function criarProvider()
+    {
+        $implementacao   = $this->abrirOuCriarArquivo($this->paths['caminho_provider'], $this->referencia_service, $this->acao_service, $this->service_name . 'Provider', '.php');
+
+        if(!$implementacao)
+            throw new \Exception("Houve erro ao criar o teste.");
+
+        $conteudoImplementacao = $this->getConteudoArquivo($this->paths['modelo_provider']);
+
+        if(fwrite($implementacao, $conteudoImplementacao)){
+            print('O provider foi criado.'  . PHP_EOL);
+            return;
+        };
+
+        fclose($implementacao);
+
+        throw new \Exception("Houve um erro ao associar test e o conteúdo.");
+    }
+
+    protected function registerProvider()
+    {
+        $appProvider = fopen($this->paths['caminho_provider_register'], 'r+');
+
+        if($appProvider){
+
+            while(!feof($appProvider)){
+
+                $buffer = fgets($appProvider);
+                if(strpos($buffer, "novos") !== false){
+                    nl2br($buffer . "\n" . fwrite($appProvider, "App\Providers\Services" . "\\" . $this->referencia_service . "\\" .$this->service_name . "Provider::class, \n"));
+                }
+
+            }
+
+            fclose($appProvider);
+        }
+
+
+        return false;
+    }
+
     /**
      * Abre ou cria um novo arquivo.
      *
@@ -181,8 +218,7 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
      */
     private function abrirOuCriarArquivo(string $caminho, string $referencia_service, string $acao_service, string $service_name,  string $extensao = '.php')
     {
-
-        return fopen($caminho . $referencia_service . '/' . $acao_service . '/' . $service_name . $extensao, 'x');
+        return fopen($caminho . '/' . $referencia_service . '/' . $acao_service . '/' . $service_name . $extensao, 'x');
     }
 
     /**
@@ -198,11 +234,20 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
         if(!$conteudo)
             throw new \Exception("O conteúdo do arquivo " . $caminho . " não existe.");
 
-        $string = str_replace('{repository}', $this->repository, $conteudo);
-        $string = str_replace('{model}', $this->model, $string);
-
+        $string = str_replace('{referencia_service}', $this->referencia_service, $conteudo);
+        $string = str_replace('{acao_service}', $this->acao_service, $string);
+        $string = str_replace('{service_name}', $this->service_name, $string);
+        $string = str_replace('{modelRepository}', $this->modelRepository, $string);
 
         return $string;
+    }
+
+    public function criarPasta(string $caminho, string $referencia_service, string $acao_service)
+    {
+        mkdir($caminho . $referencia_service . '/' . $acao_service . '/Contracts', 0755, true);
+        mkdir($caminho . $referencia_service . '/' . $acao_service . '/Abstracts', 0755, true);
+        mkdir($caminho . $referencia_service . '/' . $acao_service . '/Base', 0755, true);
+        mkdir($this->paths['caminho_provider'] . $referencia_service . '/' . $acao_service, 0755, true);
     }
 
     /**

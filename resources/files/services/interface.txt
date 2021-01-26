@@ -2,25 +2,26 @@
 
 namespace App\Services\{referencia_service}\{acao_service}\Contracts;
 
-use App\Models\{model}\{model}
+use App\Models\{modelRepository}\{modelRepository};
+use App\Repositories\Contracts\{modelRepository}Repository;
 
 interface {service_name}
 {
     /**
-     * Seta a mode de {model}.
+     * Seta a model de {modelRepository}.
      *
-     * @param {model}
+     * @param {modelRepository}
      * @return {service_name}
      */
-    public function set{model}({model} ${model}): service_name;
+    public function set{modelRepository}({modelRepository} ${modelRepository}): {service_name};
 
     /**
-     * Seta o repositório de {repository}.
+     * Seta o repositório de {modelRepository}Repository.
      *
-     * @param {repository} ${repository}
+     * @param {modelRepository}Repository ${modelRepository}Repository
      * @return {service_name}
      */
-    public function set{repository}({repository} ${repository}): service_name;
+    public function set{modelRepository}Repository({modelRepository}Repository ${modelRepository}Repository): {service_name};
 
     /**
      * Processa os dados

@@ -2,45 +2,17 @@
 
 namespace App\Services\{referencia_service}\{acao_service}\Abstracts;
 
-use App\Services\{acao_service}\Contracts\{service_name};
+use App\Services\{referencia_service}\{acao_service}\Base\{service_name}Base;
 
 abstract class {service_name}Abstract extends {service_name}Base
 {
     /**
-     * Model de {model}.
+     * Implementação do código.
      *
-     * @var {model}
+     * @return boolean
      */
-    protected {model} ${model};
-
-    /**
-     * Repositório de {repository}.
-     *
-     * @var {repository}
-     */
-    protected {repository} ${repository};
-
-   /**
-     * Seta a model de {model}.
-     *
-     * @param {model}
-     * @return {service_name}
-     */
-    public function set{model}({model} ${model}): service_name
+    protected function {acao_service}() : bool
     {
-        $this->{model} = ${model};
-        return $this;
-    }
 
-    /**
-     * Seta o repositório de {repository}.
-     *
-     * @param {repository} ${repository}
-     * @return {service_name}
-     */
-    public function set{repository}({repository} ${repository}): service_name
-    {
-        $this->{repository} = ${repository};
-        return $this;
     }
 }

@@ -12,35 +12,27 @@ class CriarServicoService extends CriarServicoServiceAbstract
      * @param string $repositorio
      * @return boolean
      */
-    public function handle(string $referencia_service, string $acao_service, string $service_name, array $model, array $repository)
+    public function handle(string $referencia_service, string $acao_service, string $service_name, string $modelRepository)
     {
         try{
-
-            foreach($model as $m){
-
-                $this->model = $m;
-
-            }
-
-            foreach($repository as $r){
-
-                $this->repository  = $r;
-            }
-
+            $this->modelRepository = $modelRepository;
             $this->referencia_service   = $referencia_service;
             $this->acao_service         = $acao_service;
             $this->service_name         = $service_name;
 
-            // $this->verificarSeArquivoExiste(self::CAMINHO_BASE . 'app/Repositories/Contracts/' . $repositorio);
-            // $this->verificarSeArquivoExiste(self::CAMINHO_BASE . 'app/Repositories/' . $repositorio . 'Implementation');
-            // $this->verificarSeArquivoExiste(self::CAMINHO_BASE . 'tests/Feature/Repositories/' . $repositorio . 'Test');
+            $this->verificarSeArquivoExiste($this->paths['caminho_service'] . '/' . $this->referencia_service . '/' . $this->acao_service . '/Contracts' . '/' . $this->service_name);
+            $this->verificarSeArquivoExiste($this->paths['caminho_service'] . '/' . $this->referencia_service . '/' . $this->acao_service . '/Abstracts' . '/' . $this->service_name . 'Abstract');
+            $this->verificarSeArquivoExiste($this->paths['caminho_service'] . '/' . $this->referencia_service . '/' .  $this->acao_service . '/Base' . '/' . $this->service_name . 'Base');
+            $this->verificarSeArquivoExiste($this->paths['caminho_service'] . '/' . $this->referencia_service . '/' . $this->acao_service . '/' . $this->service_name);
 
 
+            $this->criarPasta($this->paths['caminho_service'], $this->referencia_service, $this->acao_service);
             $this->criarInterface();
             $this->criarAbstract();
             $this->criarBase();
             $this->criarClient();
-            $this->criarTeste();
+            $this->criarProvider();
+            $this->registerProvider();
 
         }catch(\Exception $e){
             print($e->getMessage());

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Services\Automatizacoes\Repositorios\Abstracts;
 
@@ -41,7 +41,7 @@ abstract class CriarRepositorioServiceAbstract implements CriarRepositorioServic
      */
     protected function criarInterface()
     {
-        $interface = $this->abrirOuCriarArquivo($this->paths['caminho_contrato'], $this->repository, '.php'); 
+        $interface = $this->abrirOuCriarArquivo($this->paths['caminho_contrato'], $this->repository, '.php');
 
         if(!$interface)
             throw new \Exception("Houve um erro ao criar a interface.");
@@ -53,11 +53,11 @@ abstract class CriarRepositorioServiceAbstract implements CriarRepositorioServic
             fclose($interface);
             return;
         };
-    
+
         fclose($interface);
 
         dd('teste');
-    
+
         throw new \Exception("Houve um erro ao associar a interface e o conteúdo.");
     }
 
@@ -69,7 +69,7 @@ abstract class CriarRepositorioServiceAbstract implements CriarRepositorioServic
     protected function criarImplementacao()
     {
         $implementacao   = $this->abrirOuCriarArquivo($this->paths['caminho_implementacao'], $this->repository, 'Implementation.php');
-        
+
         if(!$implementacao)
             throw new \Exception("Houve ao criar a implementação.");
 
@@ -93,7 +93,7 @@ abstract class CriarRepositorioServiceAbstract implements CriarRepositorioServic
     protected function criarTeste()
     {
         $implementacao   = $this->abrirOuCriarArquivo($this->paths['caminho_teste'], $this->repository . 'Test', '.php');
-        
+
         if(!$implementacao)
             throw new \Exception("Houve erro ao criar o teste.");
 
@@ -119,7 +119,7 @@ abstract class CriarRepositorioServiceAbstract implements CriarRepositorioServic
      */
     private function abrirOuCriarArquivo(string $caminho, string $nome, string $extensao = '.php')
     {
-   
+
         return fopen($caminho . $nome . $extensao, 'x');
     }
 

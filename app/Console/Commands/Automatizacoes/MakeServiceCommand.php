@@ -12,14 +12,23 @@ class MakeServiceCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:sgl_service {referencia_service} {acao_service} {service_name} {[model]} {[repository]}';
+    protected $signature = 'make:service {referencia_service} {acao_service}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Cria um serviço e sua implentação';
+    protected $description = 'Cria um serviço para regra de negócios;
+                              Primeiro parametro = (Referência) ex.: Clientes;
+                              Segundo parametro = (Ação) ex.: Cadastrar';
+
+
+    protected $acao;
+
+    protected $service;
+
+    protected $model;
 
     /**
      * Create a new command instance.
@@ -39,13 +48,34 @@ class MakeServiceCommand extends Command
     public function handle()
     {
         $referencia = $this->argument('referencia_service');
-        $acao       = $this->argument('acao_service');
-        $service    = $this->argument('service_name');
-        $model      = $this->argument(['model']);
-        $repository = $this->argument(['repository']);
+
+        $ultimaLetra = substr($referencia, -1);
+
+        if($ultimaLetra == "s"){
+
+            $referenciaService = substr($referencia, 0, -1);
+
+            $acao       = $this->argument('acao_service') . $referenciaService;
+            $service    = $acao . "Service";
+            $model      = $referenciaService;
+
+            $this->acao = $acao;
+            $this->service = $service;
+            $this->model = $model;
+
+        }else{
+
+            $acao       = $this->argument('acao_service') . $referencia;
+            $service    = $acao . "Service";
+            $model      = $referencia;
+
+            $this->acao = $acao;
+            $this->service = $service;
+            $this->model = $model;
+        }
 
         $serviceCommand = new CriarServicoService();
-        $serviceCommand->handle($referencia, $acao, $service, $model, $repository);
+        $serviceCommand->handle($referencia, $this->acao, $this->service, $this->model);
 
 
     }

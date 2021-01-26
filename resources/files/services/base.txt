@@ -1,46 +1,48 @@
 <?php
 
-namespace App\Services\{referencia_service}\{acao_service}\Abstracts;
+namespace App\Services\{referencia_service}\{acao_service}\Base;
 
-use App\Services\{acao_service}\Contracts\{service_name};
+use App\Services\{referencia_service}\{acao_service}\Contracts\{service_name};
+use App\Models\{modelRepository}\{modelRepository};
+use App\Repositories\Contracts\{modelRepository}Repository;
 
 abstract class {service_name}Base implements {service_name}
 {
     /**
-     * Model de {model}.
+     * Model de {modelRepository}.
      *
-     * @var {model}
+     * @var {modelRepository}
      */
-    protected {model} ${model};
+    protected {modelRepository} ${modelRepository};
 
     /**
-     * Repositório de {repository}.
+     * Repositório de {modelRepository}Repository.
      *
-     * @var {repository}
+     * @var {modelRepository}
      */
-    protected {repository} ${repository};
+    protected {modelRepository}Repository ${modelRepository}Repository;
 
    /**
-     * Seta a model de {model}.
+     * Seta a model de {modelRepository}.
      *
-     * @param {model}
+     * @param {modelRepository}
      * @return {service_name}
      */
-    public function set{model}({model} ${model}): service_name
+    public function set{modelRepository}({modelRepository} ${modelRepository}): {service_name}
     {
-        $this->{model} = ${model};
+        $this->{modelRepository} = ${modelRepository};
         return $this;
     }
 
     /**
-     * Seta o repositório de {repository}.
+     * Seta o repositório de {modelRepository}Repository.
      *
-     * @param {repository} ${repository}
+     * @param {modelRepository}Repository ${modelRepository}Repository
      * @return {service_name}
      */
-    public function set{repository}({repository} ${repository}): service_name
+    public function set{modelRepository}Repository({modelRepository}Repository ${modelRepository}Repository): {service_name}
     {
-        $this->{repository} = ${repository};
+        $this->{modelRepository}Repository = ${modelRepository}Repository;
         return $this;
     }
 }
