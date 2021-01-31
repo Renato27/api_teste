@@ -203,7 +203,8 @@ return [
         App\Providers\Services\Clientes\ExcluirClienteServiceProvider::class,
         App\Providers\Services\Pedidos\CadastrarPedidoServiceProvider::class,
         App\Providers\Services\Pedidos\AtualizarPedidoServiceProvider::class,
-        App\Providers\Services\Pedidos\ExcluirPedidoServiceProvider::class
+        App\Providers\Services\Pedidos\ExcluirPedidoServiceProvider::class,
+        App\Providers\Services\ItemPedido\CadastrarItemPedidoServiceProvider::class,
 
     ],
 

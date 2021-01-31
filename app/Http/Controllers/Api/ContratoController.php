@@ -20,9 +20,9 @@ class ContratoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ContratosRepository $contratoRepository)
+    public function index()
     {
-        $contratos = $contratoRepository->getContratos();
+        $contratos = Contrato::paginate(25);
 
         return ContratoResource::collection($contratos);
     }
@@ -35,7 +35,7 @@ class ContratoController extends Controller
      */
     public function store(ContratoRequest $request, Cliente $cliente, CadastrarContratoService $service)
     {
-       
+
         try {
             $contrato = $service->setDados($request->all())->handle();
             $cliente->contratos()->attach($contrato->id);

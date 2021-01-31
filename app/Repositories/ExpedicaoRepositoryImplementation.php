@@ -8,6 +8,8 @@ use Illuminate\Support\Collection;
 
 class ExpedicaoRepositoryImplementation implements ExpedicaoRepository
 {
+    use BaseEloquentRepository;
+
     /**
      * Retorna Expedicao baseado no ID.
      *
@@ -16,7 +18,7 @@ class ExpedicaoRepositoryImplementation implements ExpedicaoRepository
      */
     public function getExpedicao(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -26,9 +28,20 @@ class ExpedicaoRepositoryImplementation implements ExpedicaoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getExpedicaos(int $id, int $associacao): ?Collection
+    public function getExpedicaos(): ?Collection
     {
+        return $this->getAll();
+    }
 
+    /**
+     * Undocumented function
+     *
+     * @param integer $pedido
+     * @return Model|null
+     */
+    public function getExpedicaoByPedido(int $pedido) : ?Model
+    {
+        return $this->where(['pedido_id' => $pedido])->get();
     }
 
     /**
@@ -36,10 +49,10 @@ class ExpedicaoRepositoryImplementation implements ExpedicaoRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createExpedicao(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +61,10 @@ class ExpedicaoRepositoryImplementation implements ExpedicaoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateExpedicao(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +73,13 @@ class ExpedicaoRepositoryImplementation implements ExpedicaoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteExpedicao(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

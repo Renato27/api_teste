@@ -55,12 +55,6 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\ContatoTipoRepository::class, function ($app) {
             return new \App\Repositories\ContatoTipoRepositoryImplementation(new \App\Models\ContatoTipo\ContatoTipo());
         });
-        $this->app->bind(\App\Repositories\Contracts\ContratoMedicaoTipoRepository::class, function ($app) {
-            return new \App\Repositories\ContratoMedicaoTipoRepositoryImplementation(new \App\Models\ContratoMedicaoTipo\ContratoMedicaoTipo());
-        });
-        $this->app->bind(\App\Repositories\Contracts\ContratoPagamentoMetodoRepository::class, function ($app) {
-            return new \App\Repositories\ContratoPagamentoMetodoRepositoryImplementation(new \App\Models\ContratoPagamentoMetodo\ContratoPagamentoMetodo());
-        });
         $this->app->bind(\App\Repositories\Contracts\ContratoPedidoRepository::class, function ($app) {
             return new \App\Repositories\ContratoPedidoRepositoryImplementation(new \App\Models\ContratoPedido\ContratoPedido());
         });
@@ -70,17 +64,11 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\ContratoTipoRepository::class, function ($app) {
             return new \App\Repositories\ContratoTipoRepositoryImplementation(new \App\Models\ContratoTipo\ContratoTipo());
         });
-        $this->app->bind(\App\Repositories\Contracts\DadoFuncionarioRepository::class, function ($app) {
-            return new \App\Repositories\DadoFuncionarioRepositoryImplementation(new \App\Models\DadoFuncionario\DadoFuncionario());
-        });
         $this->app->bind(\App\Repositories\Contracts\EnderecoFuncionarioRepository::class, function ($app) {
             return new \App\Repositories\EnderecoFuncionarioRepositoryImplementation(new \App\Models\EnderecoFuncionario\EnderecoFuncionario());
         });
         $this->app->bind(\App\Repositories\Contracts\EnderecoRepository::class, function ($app) {
             return new \App\Repositories\EnderecoRepositoryImplementation(new \App\Models\Endereco\Endereco());
-        });
-        $this->app->bind(\App\Repositories\Contracts\FuncionarioDadoRepository::class, function ($app) {
-            return new \App\Repositories\FuncionarioDadoRepositoryImplementation(new \App\Models\FuncionarioDado\FuncionarioDado());
         });
         $this->app->bind(\App\Repositories\Contracts\FuncionarioEnderecoRepository::class, function ($app) {
             return new \App\Repositories\FuncionarioEnderecoRepositoryImplementation(new \App\Models\FuncionarioEndereco\FuncionarioEndereco());
@@ -103,9 +91,6 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\PedidoRepository::class, function ($app) {
             return new \App\Repositories\PedidoRepositoryImplementation(new \App\Models\Pedido\Pedido());
         });
-        $this->app->bind(\App\Repositories\Contracts\PedidoStatusPedidoRepository::class, function ($app) {
-            return new \App\Repositories\PedidoStatusPedidoRepositoryImplementation(new \App\Models\PedidoStatusPedido\PedidoStatusPedido());
-        });
         $this->app->bind(\App\Repositories\Contracts\StatusPedidoRepository::class, function ($app) {
             return new \App\Repositories\StatusPedidoRepositoryImplementation(new \App\Models\StatusPedido\StatusPedido());
         });
@@ -117,6 +102,9 @@ class RepositoryProvider extends ServiceProvider
         });
         $this->app->bind(\App\Repositories\Contracts\UsuarioRepository::class, function ($app) {
             return new \App\Repositories\UsuarioRepositoryImplementation(new \App\Models\Usuario\Usuario());
+        });
+        $this->app->bind(\App\Repositories\Contracts\ExpedicaoRepository::class, function ($app) {
+            return new \App\Repositories\ExpedicaoRepositoryImplementation(new \App\Models\Expedicao\Expedicao());
         });
 
     }

@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             ClienteVisualizacaoPatrimonioSeeder::class,
             TipoLicencaSeeder::class,
             EstadoPatrimonioSeeder::class,
-
+            ExpedicaoEstadoSeeder::class,
+            ExpedicaoTipoSeeder::class,
 
         ]);
     }

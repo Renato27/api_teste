@@ -15,6 +15,9 @@ class ExpedicaoTipo extends Model
 
     protected $fillable = ['nome'];
 
+    const ENTREGA  = 1;
+    const RETIRADA = 2;
+
     public function expedicoes()
     {
         return $this->hasMany(Expedicao::class, 'expedicao_tipo_id');

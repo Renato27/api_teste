@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\PedidoItem;
+use App\Listeners\RelationShipsPedidoItem;
+use App\Models\Pedido\Pedido;
+use App\Observers\PedidoObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        PedidoItem::class => [
+            RelationShipsPedidoItem::class,
+        ],
     ];
 
     /**
@@ -27,6 +34,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Pedido::observe(PedidoObserver::class);
     }
 }

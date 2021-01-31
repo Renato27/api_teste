@@ -34,7 +34,8 @@ abstract class CadastrarPedidoServiceAbstract implements CadastrarPedidoService
     {
         $dadosPedido = [
             'data_entrega'      => $dados['data_entrega'],
-            'data_retirada'     => $dados['data_retirada']
+            'data_retirada'     => $dados['data_retirada'],
+            'status_pedido_id'  => $dados['status_pedido_id']
         ];
 
         $this->dados = $dadosPedido;

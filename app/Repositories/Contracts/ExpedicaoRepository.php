@@ -22,15 +22,24 @@ interface ExpedicaoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getExpedicaos(int $id, int $associacao): ?Collection;
-    
+    public function getExpedicaos(): ?Collection;
+
+    /**
+     * Undocumented function
+     *
+     * @param integer $pedido
+     * @return Model|null
+     */
+    public function getExpedicaoByPedido(int $pedido) : ?Model;
+
     /**
      * Cria um novo Expedicao
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createExpedicao(array $detalhes): ?Model;
+
 
     /**
      * Atualiza um Expedicao
@@ -38,7 +47,7 @@ interface ExpedicaoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateExpedicao(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +56,6 @@ interface ExpedicaoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteExpedicao(int $id): bool;
 }

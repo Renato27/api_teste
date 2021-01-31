@@ -6,6 +6,7 @@ use App\Models\Contratos\Contrato;
 use App\Repositories\Contracts\ContratosRepository;
 use App\Services\Contratos\CadastrarContrato\Contracts\CadastrarContratoService;
 use Exception;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 abstract class CadastrarContratoServiceAbstract implements CadastrarContratoService
 {
@@ -36,6 +37,9 @@ abstract class CadastrarContratoServiceAbstract implements CadastrarContratoServ
             'nome'      => $dados['nome'],
             'inicio'     => $dados['inicio'],
             'fim'  => $dados['fim'],
+            'medicao_tipo_id'   => $dados['medicao_tipo_id'],
+            'pagamento_metodo_id' => $dados['pagamento_metodo_id'],
+            'contrato_tipo_id'   => $dados['contrato_tipo_id'],
             'detalhes'   => $dados['detalhes'],
             'detalhes_nota'   => $dados['detalhes_nota'],
             'dia_emissao_nota'   => $dados['dia_emissao_nota'],
@@ -73,7 +77,7 @@ abstract class CadastrarContratoServiceAbstract implements CadastrarContratoServ
         $contratoCadastrado = $this->contratoRepository->createContrato($this->dados);
 
         if(!isset($contratoCadastrado->id))
-            throw new Exception("Não foi possível cadastrar o contrato. Verifique os dados e tente novamente.");
+            throw new HttpException("Não foi possível cadastrar o contrato. Verifique os dados e tente novamente.");
 
         return $contratoCadastrado;
     }

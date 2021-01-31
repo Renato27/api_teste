@@ -19,7 +19,7 @@ class CreateExpedicaosTable extends Migration
             $table->foreignId('expedicao_estado_id')->constrained('expedicao_estados');
             $table->foreignId('expedicao_tipo_id')->constrained('expedicao_tipos');
             $table->foreignId('usuario_id')->constrained('usuarios');
-            $table->foreignId('chamado_id')->constrained('chamados');
+            $table->foreignId('chamado_id')->nullable()->constrained('chamados');
 
             $table->timestamps();
             $table->softDeletes();
