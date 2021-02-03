@@ -33,6 +33,7 @@ abstract class CadastrarContratoServiceAbstract implements CadastrarContratoServ
      */
     public function setDados(array $dados) : CadastrarContratoService
     {
+
         $dadosContrato = [
             'nome'      => $dados['nome'],
             'inicio'     => $dados['inicio'],
@@ -74,6 +75,8 @@ abstract class CadastrarContratoServiceAbstract implements CadastrarContratoServ
      */
     protected function cadastrarContrato() : Contrato
     {
+
+
         $contratoCadastrado = $this->contratoRepository->createContrato($this->dados);
 
         if(!isset($contratoCadastrado->id))

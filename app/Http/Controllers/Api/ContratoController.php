@@ -36,13 +36,14 @@ class ContratoController extends Controller
     public function store(ContratoRequest $request, Cliente $cliente, CadastrarContratoService $service)
     {
 
+
         try {
             $contrato = $service->setDados($request->all())->handle();
             $cliente->contratos()->attach($contrato->id);
 
             return new ContratoResource($contrato);
         } catch (\Throwable $th) {
-            throw $th->getMessage();
+            dd($th->getMessage());
         }
     }
 

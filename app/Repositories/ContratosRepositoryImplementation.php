@@ -39,7 +39,7 @@ class ContratosRepositoryImplementation implements ContratosRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createContrato(array $detalhes): ?Model
     {
         return $this->create($detalhes);
@@ -51,7 +51,7 @@ class ContratosRepositoryImplementation implements ContratosRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateContrato(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
@@ -63,7 +63,7 @@ class ContratosRepositoryImplementation implements ContratosRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteContrato(int $id): bool
     {
         $retorno = $this->delete($id);
