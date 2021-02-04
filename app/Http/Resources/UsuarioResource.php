@@ -17,9 +17,9 @@ class UsuarioResource extends JsonResource
         return [
             'id'                                    => $this->id,
             'email'                                 => $this->email,
-            'tipo_usuario_id'                       => $this->tipo_usuario_id,
-            'funcionario_id'                        => $this->funcionario_id,
-            'contato_id'                            => $this->contato_id,
+            'tipo_usuario_id'                       => new TipoUsuarioResource($this->tipo_usuario),
+            'funcionario_id'                        => new FuncionarioResource($this->funcionario),
+            'contato_id'                            => new ContatoResource($this->contato_id),
             'cliente_visualizacao_patrimonio_id'    => $this->cliente_visualizacao_patrimonio_id
         ];
     }

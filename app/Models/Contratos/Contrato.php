@@ -23,7 +23,7 @@ class Contrato extends Model
 
     public function cliente()
     {
-        return $this->hasOneThrough(Cliente::class, ClienteContrato::class, 'contrato_id', 'id');
+        return $this->hasOneThrough(Cliente::class, ClienteContrato::class, 'contrato_id', 'id', 'id', 'cliente_id');
     }
 
     public function pedidos()

@@ -18,7 +18,9 @@ abstract class CadastrarItemPedidoServiceAbstract extends CadastrarItemPedidoSer
         $dados = [
             'valor' => $this->dados['valor'],
             'quantidade' => $this->dados['quantidade'],
-            'informacoes' => $this->dados['informacoes']
+            'informacoes' => $this->dados['informacoes'],
+            'modelo_id'     => $this->dados['modelo_id'],
+            'item_definido_id'  => $this->dados['item_definido_id']
         ];
 
         return $this->ItemPedidoRepository->createItemPedido($dados);

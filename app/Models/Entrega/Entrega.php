@@ -30,6 +30,6 @@ class Entrega extends Model
 
     public function patrimonios()
     {
-        return $this->hasManyThrough(Patrimonio::class, EntregaPatrimonio::class, 'entrega_id', 'id');
+        return $this->hasManyThrough(Patrimonio::class, EntregaPatrimonio::class, 'entrega_id', 'id', 'id', 'patrimonio_id');
     }
 }

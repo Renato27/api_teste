@@ -205,6 +205,7 @@ return [
         App\Providers\Services\Pedidos\AtualizarPedidoServiceProvider::class,
         App\Providers\Services\Pedidos\ExcluirPedidoServiceProvider::class,
         App\Providers\Services\ItemPedido\CadastrarItemPedidoServiceProvider::class,
+        App\Providers\Services\Entrega\CadastrarEntregaServiceProvider::class,
 
     ],
 

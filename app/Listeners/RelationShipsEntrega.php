@@ -4,8 +4,6 @@ namespace App\Listeners;
 
 use App\Events\Entrega;
 use App\Models\EntregaPatrimonio\EntregaPatrimonio;
-use App\Models\Expedicao\Expedicao;
-use App\Repositories\Contracts\ExpedicaoRepository;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -34,8 +32,6 @@ class RelationShipsEntrega
             "patrimonio_id" => $event->getPatrimonioId()
         ]);
 
-        $expedicaoRepository = app(ExpedicaoRepository::class);
 
-        $expedicaoRepository->updateExpedicao($event->getEntrega()->expedicao_id, ['expedicao_estado_id' => 2]);
     }
 }

@@ -8,6 +8,8 @@ use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\EnderecoController;
 use App\Http\Controllers\Api\FuncionarioController;
 use App\Http\Controllers\Api\PedidoController;
+use App\Http\Controllers\Api\SelecaoController;
+use App\Http\Controllers\Api\SeparacaoController;
 use App\Http\Controllers\Api\UsuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,7 +42,9 @@ Route::group(['middleware' => ['api']], function () {
             'cliente.contatos'      => ContatoController::class,
             'funcionarios'          => FuncionarioController::class,
             'pedidos'               => PedidoController::class,
-            'cliente.contratos'     => ContratoController::class
+            'cliente.contratos'     => ContratoController::class,
+            'selecoes'              => SelecaoController::class,
+            'separacoes'            => SeparacaoController::class,
         ]);
         Route::post('logout', [AuthController::class, 'logout']);
     });

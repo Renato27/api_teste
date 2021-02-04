@@ -106,6 +106,9 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\ExpedicaoRepository::class, function ($app) {
             return new \App\Repositories\ExpedicaoRepositoryImplementation(new \App\Models\Expedicao\Expedicao());
         });
+        $this->app->bind(\App\Repositories\Contracts\EntregaRepository::class, function ($app) {
+            return new \App\Repositories\EntregaRepositoryImplementation(new \App\Models\Entrega\Entrega());
+        });
 
     }
 }

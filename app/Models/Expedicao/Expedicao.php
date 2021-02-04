@@ -3,6 +3,7 @@
 namespace App\Models\Expedicao;
 
 use App\Models\Chamado\Chamado;
+use App\Models\Entrega\Entrega;
 use App\Models\ExpedicaoEstado\ExpedicaoEstado;
 use App\Models\ExpedicaoTipo\ExpedicaoTipo;
 use App\Models\Pedido\Pedido;
@@ -41,5 +42,10 @@ class Expedicao extends Model
     public function chamado()
     {
         return $this->belongsTo(Chamado::class, 'chamado_id');
+    }
+
+    public function entrega()
+    {
+        return $this->hasOne(Entrega::class, 'expedicao_id', 'id');
     }
 }

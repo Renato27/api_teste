@@ -23,6 +23,6 @@ class Fornecedor extends Model
 
     public function compras()
     {
-        return $this->hasManyThrough(Compra::class, FornecedorCompra::class, 'fornecedor_id', 'id');
+        return $this->hasManyThrough(Compra::class, FornecedorCompra::class, 'fornecedor_id', 'id', 'id', 'compra_id');
     }
 }

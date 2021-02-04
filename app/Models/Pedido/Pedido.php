@@ -24,12 +24,12 @@ class Pedido extends Model
 
     public function itens()
     {
-        return $this->hasManyThrough(ItemPedido::class, PedidoItem::class, 'pedido_id', 'id');
+        return $this->hasManyThrough(ItemPedido::class, PedidoItem::class, 'pedido_id', 'id', 'id', 'item_pedido_id');
     }
 
     public function contrato()
     {
-        return $this->hasOneThrough(Contrato::class, ContratoPedido::class, 'pedido_id', 'id');
+        return $this->hasOneThrough(Contrato::class, ContratoPedido::class, 'pedido_id', 'id', 'id', 'contrato_id');
     }
 
     public function status()

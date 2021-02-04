@@ -20,11 +20,11 @@ class Compra extends Model
 
     public function fornecedor()
     {
-        return $this->hasOneThrough(Fornecedor::class, FornecedorCompra::class, 'compra_id', 'id');
+        return $this->hasOneThrough(Fornecedor::class, FornecedorCompra::class, 'compra_id', 'id', 'id', 'fornecedor_id');
     }
 
     public function transportadora()
     {
-        return $this->hasOneThrough(Transportadora::class, TransportadoraCompra::class, 'compra_id', 'id');
+        return $this->hasOneThrough(Transportadora::class, TransportadoraCompra::class, 'compra_id', 'id', 'id', 'transportadora_id');
     }
 }

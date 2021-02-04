@@ -19,7 +19,7 @@ class CompraRepositoryImplementation implements CompraRepository
      */
     public function getCompra(int $id): ?Model
     {
-        return $this->find($id)
+        return $this->find($id);
     }
 
     /**

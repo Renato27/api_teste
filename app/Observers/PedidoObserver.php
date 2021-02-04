@@ -6,6 +6,7 @@ use App\Models\ExpedicaoEstado\ExpedicaoEstado;
 use App\Models\ExpedicaoTipo\ExpedicaoTipo;
 use App\Models\Pedido\Pedido;
 use App\Repositories\Contracts\ExpedicaoRepository;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class PedidoObserver
 {
@@ -23,8 +24,8 @@ class PedidoObserver
             'pedido_id' => $pedido->id,
             'expedicao_estado_id' => ExpedicaoEstado::AGUARDANDO_SELECAO,
             'expedicao_tipo_id' => ExpedicaoTipo::ENTREGA,
-            'usuario_id' => 1
-            //'chamado_id' => null,
+            'usuario_id' => JWTAuth::user()->id,
+            'chamado_id' => null,
         ];
 
         $expedicaoRepository->createExpedicao($detalhesExpedicao);
