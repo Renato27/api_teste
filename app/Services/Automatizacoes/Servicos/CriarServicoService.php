@@ -32,7 +32,7 @@ class CriarServicoService extends CriarServicoServiceAbstract
             $this->criarBase();
             $this->criarClient();
             $this->criarProvider();
-            $this->registerProvider();
+            //$this->registerProvider();
 
         }catch(\Exception $e){
             print($e->getMessage());

@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\Entrega\Entrega as EntregaEntrega;
+use App\Models\Entrega\Entrega;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -11,16 +11,17 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class Entrega
+class EntregaPatrimonio
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    /**
+
+     /**
      * Model de entrega
      *
      * @var Entrega
      */
-    private EntregaEntrega $entrega;
+    private Entrega $entrega;
 
     /**
      * ID do Patrimônio
@@ -41,12 +42,11 @@ class Entrega
      *
      * @return void
      */
-    public function __construct(EntregaEntrega $entrega, int $patrimonio, ?bool $checked = false)
+    public function __construct(Entrega $entrega, int $patrimonio, ?bool $checked = false)
     {
         $this->entrega = $entrega;
         $this->patrimonio = $patrimonio;
         $this->checked = $checked;
-
     }
 
     /**

@@ -43,8 +43,8 @@ Route::group(['middleware' => ['api']], function () {
             'funcionarios'          => FuncionarioController::class,
             'pedidos'               => PedidoController::class,
             'cliente.contratos'     => ContratoController::class,
-            'selecoes'              => SelecaoController::class,
-            'separacoes'            => SeparacaoController::class,
+            'expedicao.selecoes'    => SelecaoController::class,
+            'expedicao.separacoes'  => SeparacaoController::class,
         ]);
         Route::post('logout', [AuthController::class, 'logout']);
     });

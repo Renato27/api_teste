@@ -18,6 +18,8 @@ class CreatePedidosTable extends Migration
             $table->date('data_entrega')->nullable();
             $table->date('data_retirada')->nullable();
             $table->foreignId('status_pedido_id');
+            $table->foreignId('contato_id')->constrained('contatos');
+            $table->foreignId('endereco_id')->constrained('enderecos');
 
             $table->foreign('status_pedido_id')->references('id')->on('status_pedidos');
             $table->timestamps();

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\EntregaPatrimonio;
 use Illuminate\Http\Request;
 use App\Models\Expedicao\Expedicao;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SeparacaoResource;
+use App\Models\Entrega\Entrega;
 
 class SeparacaoController extends Controller
 {
@@ -26,9 +28,11 @@ class SeparacaoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Expedicao $expedicao)
     {
-        //
+        $entrega = Entrega::where('expedicao_id', $expedicao->id)->first();
+
+        event(new EntregaPatrimonio($entrega, $request->patrimonio, true));
     }
 
     /**

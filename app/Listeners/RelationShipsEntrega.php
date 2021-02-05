@@ -32,6 +32,5 @@ class RelationShipsEntrega
             "patrimonio_id" => $event->getPatrimonioId()
         ]);
 
-
     }
 }

@@ -43,7 +43,7 @@ class Patrimonio extends Model
 
     public function fornecedor()
     {
-        return $this->belongsTo(Fornecedor::class. 'fornecedor_id');
+        return $this->belongsTo(Fornecedor::class, 'fornecedor_id');
     }
 
     public function estado_patrimonio()

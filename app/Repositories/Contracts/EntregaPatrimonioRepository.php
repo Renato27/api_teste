@@ -13,7 +13,7 @@ interface EntregaPatrimonioRepository
      * @param integer $id
      * @return Model|null
      */
-    public function getEntregaPatrimonio(int $entrega): ?Model;
+    public function getEntregaPatrimonio(int $entrega, int $patrimonio): ?Model;
 
     /**
      * Retorna uma coleção de EntregaPatrimonio baseado em uma associação.
@@ -22,7 +22,23 @@ interface EntregaPatrimonioRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getEntregaPatrimonios(int $patrimonio): ?Collection;
+    public function getEntregaPatrimonios(int $entrega): ?Collection;
+
+    /**
+     * Retorna todos os patrimônios checados.
+     *
+     * @param integer $entrega
+     * @return Collection|null
+     */
+    public function getPatrimoniosChecked(int $entrega) : ?Collection;
+
+    /**
+     * Verifica se todos os patrimônios da entrega foram checados.
+     *
+     * @param integer $entrega
+     * @return boolean
+     */
+    public function verififyIfAllPatrimoniosChecked(int $entrega) : bool;
 
     /**
      * Cria um novo EntregaPatrimonio

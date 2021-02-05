@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Expedicao\Expedicao;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SelecaoResource;
+use App\Http\Resources\SeparacaoResource;
 use App\Services\Entrega\CadastrarEntrega\Contracts\CadastrarEntregaService;
 
 class SelecaoController extends Controller
@@ -31,10 +32,10 @@ class SelecaoController extends Controller
     public function store(Request $request, Expedicao $expedicao, CadastrarEntregaService $service)
     {
         try {
-            $service->setExpedicao($expedicao->id);
+            $service->setExpedicao($expedicao);
             $service->setPatrimonios($request->patrimonios)->handle();
 
-
+            return new SeparacaoResource($expedicao);
         } catch (\Throwable $th) {
             dd($th->getMessage());
         }

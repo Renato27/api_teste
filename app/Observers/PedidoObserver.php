@@ -20,11 +20,19 @@ class PedidoObserver
     {
         $expedicaoRepository = app(ExpedicaoRepository::class);
 
+        $token = JWTAuth::getToken();
+
+        if(!$token = JWTAuth::parseToken()){
+            $usuario = JWTAuth::toUser($token);
+        }else{
+            $usuario = JWTAuth::toUser($token);
+        }
+
         $detalhesExpedicao = [
             'pedido_id' => $pedido->id,
             'expedicao_estado_id' => ExpedicaoEstado::AGUARDANDO_SELECAO,
             'expedicao_tipo_id' => ExpedicaoTipo::ENTREGA,
-            'usuario_id' => JWTAuth::user()->id,
+            'usuario_id' => $usuario->id,
             'chamado_id' => null,
         ];
 

@@ -18,6 +18,8 @@ class PedidoResource extends JsonResource
             'id'                => $this->id,
             'data_entrega'      => $this->data_entrega,
             'data_retirada'     => $this->data_retirada,
+            'contato'           => new ContatoResource($this->contato),
+            'endereco'          => new EnderecoResource($this->endereco),
             'created_at'        => $this->created_at,
             'updated_at'        => $this->updated_at,
             'deleted_at'        => $this->deleted_at

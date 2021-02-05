@@ -17,9 +17,9 @@ class EntregaPatrimonioRepositoryImplementation implements EntregaPatrimonioRepo
      * @param integer $id
      * @return Model|null
      */
-    public function getEntregaPatrimonio(int $entrega): ?Model
+    public function getEntregaPatrimonio(int $entrega, int $patrimonio): ?Model
     {
-        return $this->where(['entrega_id' => $entrega])->first();
+        return $this->where(['entrega_id' => $entrega, 'patrimonio_id' => $patrimonio])->first();
     }
 
     /**
@@ -29,9 +29,36 @@ class EntregaPatrimonioRepositoryImplementation implements EntregaPatrimonioRepo
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getEntregaPatrimonios(int $patrimonio): ?Collection
+    public function getEntregaPatrimonios(int $entrega): ?Collection
     {
-        return $this->where(['patrimonio_id' => $patrimonio])->get();
+        return $this->where(['entrega_id' => $entrega])->get();
+    }
+
+    /**
+     * Retorna todos os patrimônios checados.
+     *
+     * @param integer $entrega
+     * @return Collection|null
+     */
+    public function getPatrimoniosChecked(int $entrega) : ?Collection
+    {
+        return $this->where(['entrega_id' => $entrega, 'checked' => 1])->get();
+    }
+
+    /**
+     * Verifica se todos os patrimônios da entrega foram checados.
+     *
+     * @param integer $entrega
+     * @return boolean
+     */
+    public function verififyIfAllPatrimoniosChecked(int $entrega) : bool
+    {
+        $checkeds = $this->getPatrimoniosChecked($entrega);
+        $patrimonios = $this->getEntregaPatrimonios($entrega);
+
+        if(count($checkeds) != count($patrimonios)) return false;
+
+        return true;
     }
 
     /**

@@ -47,8 +47,8 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
 
         'caminho_service'        => BASE_PATH . 'app/Services/',
         'caminho_teste'          => BASE_PATH . 'tests/Feature/Services/',
-        'caminho_provider'       => BASE_PATH . 'app/Providers/Services/',
-        'caminho_provider_register'       => BASE_PATH . 'config/app.php',
+        //'caminho_provider'       => BASE_PATH . 'app/Providers/Services/',
+        //'caminho_provider_register'       => BASE_PATH . 'config/app.php',
     ];
 
 
@@ -73,8 +73,6 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
         };
 
         fclose($interface);
-
-        dd('teste');
 
         throw new \Exception("Houve um erro ao associar a interface e o conteúdo.");
     }
@@ -169,21 +167,25 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
 
     protected function criarProvider()
     {
-        $implementacao   = $this->abrirOuCriarArquivo($this->paths['caminho_provider'], $this->referencia_service, $this->acao_service, $this->service_name . 'Provider', '.php');
 
-        if(!$implementacao)
-            throw new \Exception("Houve erro ao criar o teste.");
+        $comando = "@php artisan make:provider " . 'Services/' . $this->referencia_service . '/' . $this->service_name . 'Provider';
+        echo shell_exec($comando);
 
-        $conteudoImplementacao = $this->getConteudoArquivo($this->paths['modelo_provider']);
+        // $implementacao   = $this->abrirOuCriarArquivo($this->paths['caminho_provider'], $this->referencia_service, $this->acao_service, $this->service_name . 'Provider', '.php');
 
-        if(fwrite($implementacao, $conteudoImplementacao)){
-            print('O provider foi criado.'  . PHP_EOL);
-            return;
-        };
+        // if(!$implementacao)
+        //     throw new \Exception("Houve erro ao criar o teste.");
 
-        fclose($implementacao);
+        // $conteudoImplementacao = $this->getConteudoArquivo($this->paths['modelo_provider']);
 
-        throw new \Exception("Houve um erro ao associar test e o conteúdo.");
+        // if(fwrite($implementacao, $conteudoImplementacao)){
+        //     print('O provider foi criado.'  . PHP_EOL);
+        //     return;
+        // };
+
+        // fclose($implementacao);
+
+        // throw new \Exception("Houve um erro ao associar test e o conteúdo.");
     }
 
     protected function registerProvider()

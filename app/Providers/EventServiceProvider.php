@@ -2,11 +2,14 @@
 
 namespace App\Providers;
 
-use App\Events\Entrega;
+use App\Events\EntregaPatrimonio;
 use App\Events\PedidoItem;
 use App\Listeners\RelationShipsEntrega;
 use App\Listeners\RelationShipsPedidoItem;
+use App\Listeners\UpdateEntregaPatrimonio;
+use App\Models\Entrega\Entrega;
 use App\Models\Pedido\Pedido;
+use App\Observers\EntregaObserver;
 use App\Observers\PedidoObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -29,7 +32,11 @@ class EventServiceProvider extends ServiceProvider
         ],
         Entrega::class => [
             RelationShipsEntrega::class,
+
         ],
+        EntregaPatrimonio::class => [
+            UpdateEntregaPatrimonio::class,
+        ]
     ];
 
     /**
@@ -40,5 +47,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         Pedido::observe(PedidoObserver::class);
+        Entrega::observe(EntregaObserver::class);
     }
 }
