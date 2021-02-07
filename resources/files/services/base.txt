@@ -16,6 +16,13 @@ abstract class {service_name}Base implements {service_name}
     protected {modelRepository} ${modelRepository};
 
     /**
+     * Array de dados.
+     *
+     * @var array
+     */
+    protected array $dados;
+
+    /**
      * Repositório de {modelRepository}Repository.
      *
      * @var {modelRepository}
@@ -31,6 +38,18 @@ abstract class {service_name}Base implements {service_name}
     public function set{modelRepository}({modelRepository} ${modelRepository}): {service_name}
     {
         $this->{modelRepository} = ${modelRepository};
+        return $this;
+    }
+
+    /**
+     * Seta os dados para {modelRepository}.
+     *
+     * @param array $dados
+     * @return {service_name};
+     */
+    public function setDados(array $dados): {service_name};
+    {
+        $this->dados = $dados;
         return $this;
     }
 

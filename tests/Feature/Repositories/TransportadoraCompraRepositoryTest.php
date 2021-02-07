@@ -47,7 +47,7 @@ class TransportadoraCompraRepositoryTest extends TestCase
     /**
      * Cria um novo TransportadoraCompra
      *
-     */    
+     */
     public function testCreateTransportadoraCompra()
     {
 
@@ -56,7 +56,7 @@ class TransportadoraCompraRepositoryTest extends TestCase
     /**
      * Atualiza um TransportadoraCompra
      *
-     */ 
+     */
     public function testUpdateTransportadoraCompra()
     {
 
@@ -65,7 +65,7 @@ class TransportadoraCompraRepositoryTest extends TestCase
     /**
      * Deleta um TransportadoraCompra
      *
-     */ 
+     */
     public function testDeleteTransportadoraCompra()
     {
 

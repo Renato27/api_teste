@@ -47,8 +47,8 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
 
         'caminho_service'        => BASE_PATH . 'app/Services/',
         'caminho_teste'          => BASE_PATH . 'tests/Feature/Services/',
-        //'caminho_provider'       => BASE_PATH . 'app/Providers/Services/',
-        //'caminho_provider_register'       => BASE_PATH . 'config/app.php',
+        'caminho_provider'       => BASE_PATH . 'app/Providers/Services/',
+        'caminho_provider_register'       => BASE_PATH . 'config/app.php',
     ];
 
 

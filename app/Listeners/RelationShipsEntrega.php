@@ -4,6 +4,8 @@ namespace App\Listeners;
 
 use App\Events\Entrega;
 use App\Models\EntregaPatrimonio\EntregaPatrimonio;
+use App\Models\EstadoPatrimonio\EstadoPatrimonio;
+use App\Models\Patrimonio\Patrimonio;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -31,6 +33,10 @@ class RelationShipsEntrega
             "entrega_id" => $event->getEntrega()->id,
             "patrimonio_id" => $event->getPatrimonioId()
         ]);
+
+        $patrimonio = Patrimonio::find($event->getPatrimonioId());
+        $patrimonio->estado_patrimonio_id = EstadoPatrimonio::MARCADO_ENTREGA;
+        $patrimonio->save();
 
     }
 }

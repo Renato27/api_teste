@@ -4,7 +4,9 @@ namespace App\Models\Chamado;
 
 use App\Models\Contato\Contato;
 use App\Models\Endereco\Endereco;
+use App\Models\Entrega\Entrega;
 use App\Models\Pedido\Pedido;
+use App\Models\Retirada\Retirada;
 use App\Models\StatusChamado\StatusChamado;
 use App\Models\TipoChamado\TipoChamado;
 use App\Models\Usuario\Usuario;
@@ -48,5 +50,15 @@ class Chamado extends Model
     public function endereco()
     {
         return $this->belongsTo(Endereco::class, 'endereco_id');
+    }
+
+    public function entrega()
+    {
+        return $this->hasOne(Entrega::class, 'chamado_id', 'id');
+    }
+
+    public function retirada()
+    {
+        return $this->hasOne(Retirada::class, 'chamado_id', 'id');
     }
 }

@@ -16,6 +16,14 @@ interface {service_name}
     public function set{modelRepository}({modelRepository} ${modelRepository}): {service_name};
 
     /**
+     * Seta os dados para {modelRepository}.
+     *
+     * @param array $dados
+     * @return {service_name};
+     */
+    public function setDados(array $dados): {service_name};
+
+    /**
      * Seta o repositório de {modelRepository}Repository.
      *
      * @param {modelRepository}Repository ${modelRepository}Repository

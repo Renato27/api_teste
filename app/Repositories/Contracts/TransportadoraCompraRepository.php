@@ -23,13 +23,13 @@ interface TransportadoraCompraRepository
      * @return Model|null
      */
     public function getTransportadoraCompras(int $id, int $associacao): ?Collection;
-    
+
     /**
      * Cria um novo TransportadoraCompra
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createTransportadoraCompra(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface TransportadoraCompraRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateTransportadoraCompra(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,6 @@ interface TransportadoraCompraRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteTransportadoraCompra(int $id): bool;
 }
