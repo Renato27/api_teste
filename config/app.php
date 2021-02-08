@@ -206,6 +206,7 @@ return [
         App\Providers\Services\Pedidos\ExcluirPedidoServiceProvider::class,
         App\Providers\Services\ItemPedido\CadastrarItemPedidoServiceProvider::class,
         App\Providers\Services\Entrega\CadastrarEntregaServiceProvider::class,
+        App\Providers\Services\NotaEspelho\GerarNotaEspelhoServiceProvider::class,
 
     ],
 

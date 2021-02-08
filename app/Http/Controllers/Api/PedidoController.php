@@ -37,9 +37,14 @@ class PedidoController extends Controller
     {
         try {
             $pedido = $service->setDados($request->all())->handle();
-            $item = $serviceItem->setDados($request->all())->handle();
+            event(new PedidoItem($pedido, null, $request->contrato_id));
 
-            event(new PedidoItem($pedido, $item, $request->contrato_id));
+            foreach($request->itens as $item){
+                $item = $serviceItem->setDados($item)->handle();
+
+                event(new PedidoItem($pedido, $item, null));
+            }
+
 
             return new PedidoResource($pedido);
         } catch (\Throwable $th) {

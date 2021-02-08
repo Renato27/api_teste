@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             EstadoPatrimonioSeeder::class,
             ExpedicaoEstadoSeeder::class,
             ExpedicaoTipoSeeder::class,
-
+            NotaEspelhoEstadoSeeder::class,
         ]);
     }
 }

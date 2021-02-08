@@ -249,7 +249,7 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
         mkdir($caminho . $referencia_service . '/' . $acao_service . '/Contracts', 0755, true);
         mkdir($caminho . $referencia_service . '/' . $acao_service . '/Abstracts', 0755, true);
         mkdir($caminho . $referencia_service . '/' . $acao_service . '/Base', 0755, true);
-        mkdir($this->paths['caminho_provider'] . $referencia_service . '/' . $acao_service, 0755, true);
+       // mkdir($this->paths['caminho_provider'] . $referencia_service . '/' . $acao_service, 0755, true);
     }
 
     /**

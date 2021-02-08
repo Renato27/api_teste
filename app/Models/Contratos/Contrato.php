@@ -5,6 +5,7 @@ namespace App\Models\Contratos;
 use App\Models\ClienteContrato\ClienteContrato;
 use App\Models\Clientes\Cliente;
 use App\Models\ContratoPedido\ContratoPedido;
+use App\Models\Nota\Nota;
 use App\Models\Pedido\Pedido;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -31,8 +32,8 @@ class Contrato extends Model
         return $this->hasManyThrough(Pedido::class, ContratoPedido::class, 'contrato_id', 'id');
     }
 
-    public function contato()
+    public function notas()
     {
-        return $this->morphMany(Contato::class, 'assinatura');
+        return $this->hasMany(Nota::class, 'contrato_id', 'id');
     }
 }

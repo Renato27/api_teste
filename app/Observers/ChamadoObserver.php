@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\Chamado\Chamado;
 use App\Models\Entrega\Entrega;
 use App\Models\EntregaPatrimonio\EntregaPatrimonio;
+use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Models\Expedicao\Expedicao;
 use App\Models\ExpedicaoEstado\ExpedicaoEstado;
 use App\Models\Pedido\Pedido;
@@ -53,8 +54,10 @@ class ChamadoObserver
 
             $patrimoniosEntrega = EntregaPatrimonio::where('entrega_id', $entrega->id)->get();
 
-            foreach($patrimoniosEntrega as $patrimonio){
-                $patrimonio->delete();
+            foreach($patrimoniosEntrega as $patrimonioEntrega){
+                $patrimonioEntrega->patrimonio->estado_patrimonio_id = EstadoPatrimonio::DISPONIVEL;
+                $patrimonioEntrega->patrimonio->save();
+                $patrimonioEntrega->delete();
             }
 
             $entrega->delete();

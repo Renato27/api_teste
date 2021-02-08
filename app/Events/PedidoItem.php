@@ -18,15 +18,15 @@ class PedidoItem
 
     private Pedido $pedido;
 
-    private ItemPedido $itemPedido;
+    private ?ItemPedido $itemPedido;
 
-    private int $contratoId;
+    private ?int $contratoId;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Pedido $pedido, ItemPedido $itemPedido, int $contratoId)
+    public function __construct(Pedido $pedido, ?ItemPedido $itemPedido = null, ?int $contratoId = null)
     {
         $this->pedido = $pedido;
         $this->itemPedido = $itemPedido;

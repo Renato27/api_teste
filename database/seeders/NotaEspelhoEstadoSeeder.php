@@ -23,5 +23,8 @@ class NotaEspelhoEstadoSeeder extends Seeder
         NotaEspelhoEstado::create([
             'nome' => 'Cancelado'
         ]);
+        NotaEspelhoEstado::create([
+            'nome' => 'Aguardando Chamado'
+        ]);
     }
 }

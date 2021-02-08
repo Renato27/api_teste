@@ -8,6 +8,8 @@ use Illuminate\Support\Collection;
 
 class NotaEspelhoRepositoryImplementation implements NotaEspelhoRepository
 {
+    use BaseEloquentRepository;
+
     /**
      * Retorna NotaEspelho baseado no ID.
      *
@@ -36,10 +38,10 @@ class NotaEspelhoRepositoryImplementation implements NotaEspelhoRepository
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createNotaEspelho(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,7 +50,7 @@ class NotaEspelhoRepositoryImplementation implements NotaEspelhoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateNotaEspelho(int $id, array $detalhes): ?Model
     {
 
@@ -60,7 +62,7 @@ class NotaEspelhoRepositoryImplementation implements NotaEspelhoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteNotaEspelho(int $id): bool
     {
 
