@@ -24,13 +24,13 @@ interface CadastrarEntregaService
      */
     public function setPatrimonios(array $patrimonios): CadastrarEntregaService;
 
-    /**
-     * Seta os itens de um pedido.
-     *
-     * @param array $itens_pedido
-     * @return CadastrarEntregaService
-     */
-    public function setItemPedidos(array $itens_pedido) : CadastrarEntregaService;
+    // /**
+    //  * Seta os itens de um pedido.
+    //  *
+    //  * @param array $itens_pedido
+    //  * @return CadastrarEntregaService
+    //  */
+    // public function setItemPedidos(array $itens_pedido) : CadastrarEntregaService;
 
     /**
      * Seta o repositório de EntregaRepository.

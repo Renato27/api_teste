@@ -13,6 +13,6 @@ class GerarPatrimonioAlugadoService extends GerarPatrimonioAlugadoServiceAbstrac
      */
     public function handle(): bool
     {
-
+        return $this->GerarPatrimonioAlugado();
     }
 }

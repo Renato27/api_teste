@@ -13,7 +13,7 @@ abstract class GerarPatrimonioAlugadoServiceAbstract extends GerarPatrimonioAlug
      */
     protected function GerarPatrimonioAlugado() : bool
     {
-
+        return true;
     }
 
     private function getDados()

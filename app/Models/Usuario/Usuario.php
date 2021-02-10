@@ -35,11 +35,6 @@ class Usuario extends Authenticatable implements JWTSubject
         return $this->getKey();
     }
 
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
-
     public function tipo_usuario()
     {
         return $this->belongsTo(TipoUsuario::class, 'tipo_usuario_id');
@@ -63,5 +58,16 @@ class Usuario extends Authenticatable implements JWTSubject
     public function cliente_visualizacao_patrimonio()
     {
         return $this->belongsTo(ClienteVisualizacaoPatrimonio::class, 'cliente_visualizacao_patrimonio_id');
+    }
+
+    public function getJWTCustomClaims()
+    {
+        $nome = Contato::find($this->contato_id);
+
+        return [
+            'name'          => $nome,
+            'tipo_usuario'  => $this->tipo_usuario_id,
+            'email'         => $this->email
+        ];
     }
 }
