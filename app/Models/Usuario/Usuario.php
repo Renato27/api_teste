@@ -32,7 +32,7 @@ class Usuario extends Authenticatable implements JWTSubject
 
     public function getJWTIdentifier()
     {
-        return $this->getKey();
+        return $this->id;
     }
 
     public function tipo_usuario()
@@ -62,12 +62,14 @@ class Usuario extends Authenticatable implements JWTSubject
 
     public function getJWTCustomClaims()
     {
-        $nome = Contato::find($this->contato_id);
+        $contato = Contato::find($this->contato_id);
+        $tipo_usuario = TipoUsuario::find($this->tipo_usuario_id);
 
         return [
-            'name'          => $nome,
-            'tipo_usuario'  => $this->tipo_usuario_id,
-            'email'         => $this->email
+            'name'              => $contato->nome,
+            'tipo_usuario_id'   => $this->tipo_usuario_id,
+            'tipo_usuario'      => $tipo_usuario->nome,
+            'email'             => $this->email
         ];
     }
 }

@@ -20,6 +20,7 @@ class PedidoResource extends JsonResource
             'data_retirada'     => $this->data_retirada,
             'contato'           => new ContatoResource($this->contato),
             'endereco'          => new EnderecoResource($this->endereco),
+            'cliente'           => !is_null($this->contrato) ? new ClienteResource($this->contrato->cliente) : null,
             'created_at'        => $this->created_at,
             'updated_at'        => $this->updated_at,
             'deleted_at'        => $this->deleted_at
