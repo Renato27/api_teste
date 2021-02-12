@@ -51,8 +51,8 @@ class Patrimonio extends Model
         return $this->belongsTo(EstadoPatrimonio::class, 'estado_patrimonio_id');
     }
 
-    public function alugueis()
+    public function aluguel()
     {
-        return $this->hasMany(PatrimonioAlugado::class, 'patrimonio_id', 'id');
+        return $this->hasOne(PatrimonioAlugado::class, 'patrimonio_id', 'id');
     }
 }

@@ -22,7 +22,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedidos = Pedido::paginate(5);
+        $pedidos = Pedido::paginate(10);
 
         return PedidoResource::collection($pedidos);
     }

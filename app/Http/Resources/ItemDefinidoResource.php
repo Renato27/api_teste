@@ -18,7 +18,7 @@ class ItemDefinidoResource extends JsonResource
         return [
             'id'                    => $this->id,
             'detalhes'              => $this->detalhes,
-            'tipo_patrimonio_id'    => new TipoPatrimonioResource($this->tipo_patrimonio),
+            'tipo_patrimonio'       => new TipoPatrimonioResource($this->tipo_patrimonio),
             'created_at'            => $this->created_at,
             'updated_at'            => $this->updated_td,
             'deleted_at'            => $this->deleted_at

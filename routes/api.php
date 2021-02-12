@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ContratoController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\EnderecoController;
 use App\Http\Controllers\Api\FuncionarioController;
+use App\Http\Controllers\Api\PatrimonioController;
 use App\Http\Controllers\Api\PedidoController;
 use App\Http\Controllers\Api\SelecaoController;
 use App\Http\Controllers\Api\SeparacaoController;
@@ -42,9 +43,10 @@ Route::group(['middleware' => ['api']], function () {
             'cliente.contatos'      => ContatoController::class,
             'funcionarios'          => FuncionarioController::class,
             'pedidos'               => PedidoController::class,
+            'patrimonios'           => PatrimonioController::class,
             'cliente.contratos'     => ContratoController::class,
-            'expedicao.selecoes'    => SelecaoController::class,
-            'expedicao.separacoes'  => SeparacaoController::class,
+            'selecoes'              => SelecaoController::class,
+            'separacoes'            => SeparacaoController::class,
         ]);
         Route::post('logout', [AuthController::class, 'logout']);
     });
@@ -55,6 +57,6 @@ Route::group(['middleware' => ['api']], function () {
 Route::fallback(function(){
 
     return response()->json([
-        'message' => 'Página não encontrada. Se o erro perssistir, entre em contato com renato.maldonado@logicatecnologia.com.br'
+        'message' => 'Página não encontrada. Se o erro continuar, entre em contato com renato.maldonado@logicatecnologia.com.br'
     ], 404);
 });

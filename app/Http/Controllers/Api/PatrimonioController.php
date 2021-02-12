@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PatrimonioCollection;
+use App\Http\Resources\PatrimonioResource;
 use App\Models\Patrimonio\Patrimonio;
 use Illuminate\Http\Request;
 
@@ -16,9 +17,9 @@ class PatrimonioController extends Controller
      */
     public function index()
     {
-        $patrimonios = Patrimonio::paginate(25);
+        $patrimonios = Patrimonio::orderBy('numero_patrimonio')->paginate(25);
 
-        return new PatrimonioCollection($patrimonios);
+        return PatrimonioResource::collection($patrimonios);
     }
 
     /**
@@ -40,7 +41,7 @@ class PatrimonioController extends Controller
      */
     public function show(Patrimonio $patrimonio)
     {
-        //
+        return new PatrimonioResource($patrimonio);
     }
 
     /**
