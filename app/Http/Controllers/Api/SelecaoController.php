@@ -47,9 +47,10 @@ class SelecaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Expedicao $expedicao)
+    public function show($id)
     {
-        return new SelecaoResource($expedicao);
+        $selecao = Expedicao::find($id);
+        return new SelecaoResource($selecao);
     }
 
     /**
