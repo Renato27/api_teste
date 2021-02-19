@@ -31,7 +31,11 @@ class SelecaoController extends Controller
      */
     public function store(Request $request, Expedicao $expedicao, CadastrarEntregaService $service)
     {
+
         try {
+
+            $expedicao = Expedicao::find($request->expedicao);
+
             $service->setExpedicao($expedicao);
             $service->setPatrimonios($request->patrimonios)->handle();
 

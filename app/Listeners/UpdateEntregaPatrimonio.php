@@ -52,6 +52,7 @@ class UpdateEntregaPatrimonio
         if($event->checked()){
             $entregaPatrimonio->checked = 1;
             $entregaPatrimonio->save();
+
         }
 
         $verificacao = $this->entregaPatrimonioRepository->verififyIfAllPatrimoniosChecked($event->getEntrega()->id);

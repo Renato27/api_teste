@@ -41,12 +41,10 @@ class Entrega
      *
      * @return void
      */
-    public function __construct(EntregaEntrega $entrega, int $patrimonio, ?bool $checked = false)
+    public function __construct(EntregaEntrega $entrega, int $patrimonio)
     {
         $this->entrega = $entrega;
         $this->patrimonio = $patrimonio;
-        $this->checked = $checked;
-
     }
 
     /**
@@ -67,10 +65,5 @@ class Entrega
     public function getPatrimonioId()
     {
         return $this->patrimonio;
-    }
-
-    public function checked()
-    {
-        return $this->checked;
     }
 }

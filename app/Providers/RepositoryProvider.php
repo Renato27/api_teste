@@ -115,6 +115,9 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\NotaEspelhoRepository::class, function ($app) {
             return new \App\Repositories\NotaEspelhoRepositoryImplementation(new \App\Models\NotaEspelho\NotaEspelho());
         });
+        $this->app->bind(\App\Repositories\Contracts\ChamadoRepository::class, function ($app) {
+            return new \App\Repositories\ChamadoRepositoryImplementation(new \App\Models\Chamado\Chamado());
+        });
 
     }
 }

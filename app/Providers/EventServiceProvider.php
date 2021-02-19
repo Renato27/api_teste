@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\Entrega as EventsEntrega;
 use App\Events\EntregaPatrimonio;
 use App\Events\PedidoItem;
 use App\Listeners\RelationShipsEntrega;
@@ -30,7 +31,7 @@ class EventServiceProvider extends ServiceProvider
         PedidoItem::class => [
             RelationShipsPedidoItem::class,
         ],
-        Entrega::class => [
+        EventsEntrega::class => [
             RelationShipsEntrega::class,
 
         ],

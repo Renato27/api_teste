@@ -207,6 +207,7 @@ return [
         App\Providers\Services\ItemPedido\CadastrarItemPedidoServiceProvider::class,
         App\Providers\Services\Entrega\CadastrarEntregaServiceProvider::class,
         App\Providers\Services\NotaEspelho\GerarNotaEspelhoServiceProvider::class,
+        App\Providers\Services\Chamado\GerarChamadoServiceProvider::class,
 
     ],
 

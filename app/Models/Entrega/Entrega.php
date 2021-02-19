@@ -32,4 +32,9 @@ class Entrega extends Model
     {
         return $this->hasManyThrough(Patrimonio::class, EntregaPatrimonio::class, 'entrega_id', 'id', 'id', 'patrimonio_id');
     }
+
+    public function entrega_patrimonios()
+    {
+        return $this->hasMany(EntregaPatrimonio::class, 'entrega_id', 'id');
+    }
 }

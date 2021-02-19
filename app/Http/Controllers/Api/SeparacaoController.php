@@ -8,6 +8,7 @@ use App\Models\Expedicao\Expedicao;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SeparacaoResource;
 use App\Models\Entrega\Entrega;
+use App\Models\Patrimonio\Patrimonio;
 
 class SeparacaoController extends Controller
 {
@@ -28,11 +29,13 @@ class SeparacaoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Expedicao $expedicao)
+    public function store(Request $request)
     {
-        $entrega = Entrega::where('expedicao_id', $expedicao->id)->first();
+        $entrega = Entrega::where('expedicao_id', $request->expedicao)->first();
 
-        event(new EntregaPatrimonio($entrega, $request->patrimonio, true));
+        $patrimonio = Patrimonio::where('numero_patrimonio', $request->patrimonio)->first();
+
+        return event(new EntregaPatrimonio($entrega, $patrimonio->id, true));
     }
 
     /**
@@ -41,9 +44,10 @@ class SeparacaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Expedicao $expedicao)
+    public function show($id)
     {
-        return new SeparacaoResource($expedicao);
+        $separacao = Expedicao::find($id);
+        return new SeparacaoResource($separacao);
     }
 
     /**

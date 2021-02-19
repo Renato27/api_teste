@@ -15,7 +15,7 @@ class EntregaPatrimonio extends Model
 
     protected $date = ['deleted_at'];
 
-    protected $fillable = ['entrega_id', 'patrimonio_id', 'item_pedido_id', 'checked'];
+    protected $fillable = ['entrega_id', 'patrimonio_id', 'checked'];
 
     public function entrega()
     {
@@ -25,10 +25,5 @@ class EntregaPatrimonio extends Model
     public function patrimonio()
     {
         return $this->belongsTo(Patrimonio::class, 'patrimonio_id');
-    }
-
-    public function item_pedido()
-    {
-        return $this->belongsTo(ItemPedido::class, 'item_pedido_id');
     }
 }

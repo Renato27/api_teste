@@ -52,11 +52,11 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
     {
         $dadosChamado = [
 
-            'data_acao'             => !is_null($dados['data_acao']) ? $dados['data_acao'] : $dados['data_entrega'],
-            'mensagem'              => $dados['mensagem'],
+            'data_acao'             => isset($dados['data_acao']) ? $dados['data_acao'] : $dados['data_entrega'],
+            'mensagem'              => isset($dados['mensagem']) ? $dados['mensagem'] : null,
             'status_chamado_id'     => StatusChamado::ABERTO,
             'tipo_chamado_id'       => $dados['tipo_chamado_id'],
-            'usuario_id'            => $dados['usuario_id'],
+            'usuario_id'            => isset($dados['usuario_id']) ? $dados['usuario_id'] : null,
             'pedido_id'             => $dados['pedido_id'],
             'contato_id'            => $dados['contato_id'],
             'endereco_id'           => $dados['endereco_id'],
