@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Patrimonio\Patrimonio;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SeparacaoResource extends JsonResource
@@ -21,6 +22,7 @@ class SeparacaoResource extends JsonResource
             'estado'        => $this->expedicao_estado->nome,
             'itens'         => ItensPedidoResource::collection($this->pedido->itens),
             'entrega_patrimonios' => EntregaPatrimonioResource::collection($this->entrega->entrega_patrimonios),
+            'patrimonios'   => Patrimonio::where('estado_patrimonio_id', 1)->get(),
             'created_at'    => $this->created_at,
             'updated_at'    => $this->updated_at,
             'deleted_at'    => $this->deleted_at

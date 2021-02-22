@@ -32,11 +32,12 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ClienteRequest $clienteRequest, CadastrarClienteService $serviceCliente)
+    public function store(Request $request, CadastrarClienteService $serviceCliente)
     {
+        dd($request->all());
         try {
 
-            $cliente = $serviceCliente->setDados($clienteRequest->all())->handle();
+            $cliente = $serviceCliente->setDados($request->all())->handle();
 
             return new ClienteContatoEnderecoResource($cliente);
         } catch (\Throwable $th) {

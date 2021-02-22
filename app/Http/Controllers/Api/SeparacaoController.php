@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\Entrega as EventsEntrega;
 use App\Events\EntregaPatrimonio;
 use Illuminate\Http\Request;
 use App\Models\Expedicao\Expedicao;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\SeparacaoResource;
 use App\Models\Entrega\Entrega;
 use App\Models\Patrimonio\Patrimonio;
+use App\Repositories\Contracts\ExpedicaoRepository;
 
 class SeparacaoController extends Controller
 {
@@ -57,9 +59,19 @@ class SeparacaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, ExpedicaoRepository $expedicaoRepository)
     {
-        //
+        $expedicao = $expedicaoRepository->getExpedicao($id);
+
+        foreach($expedicao->entrega->entrega_patrimonios as $entrega_patrimonio){
+
+            if($entrega_patrimonio->patrimonio_id == $request->patrimonio){
+
+                return $entrega_patrimonio->delete();
+            }
+        }
+
+         return event(new EventsEntrega($expedicao->entrega, $request->patrimonio));
     }
 
     /**

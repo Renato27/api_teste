@@ -58,6 +58,10 @@ class UpdateEntregaPatrimonio
         $verificacao = $this->entregaPatrimonioRepository->verififyIfAllPatrimoniosChecked($event->getEntrega()->id);
 
         if($verificacao){
+
+            $entregaPatrimonio->entrega->expedicao->expedicao_estado_id = 4;
+            $entregaPatrimonio->entrega->expedicao->save();
+
             $this->gerarChamadoService->setDados([
             'data_acao'             => $entregaPatrimonio->entrega->expedicao->pedido->data_entrega,
             'tipo_chamado_id'       => TipoChamado::ENTREGA,
