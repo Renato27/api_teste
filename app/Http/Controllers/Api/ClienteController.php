@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\ClienteEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClienteRequest;
 use App\Http\Resources\ClienteContatoEnderecoResource;
@@ -34,12 +35,14 @@ class ClienteController extends Controller
      */
     public function store(Request $request, CadastrarClienteService $serviceCliente)
     {
-        dd($request->all());
+
         try {
 
-            $cliente = $serviceCliente->setDados($request->all())->handle();
+            $cliente = $serviceCliente->setDados($request->cliente)->handle();
 
-            return new ClienteContatoEnderecoResource($cliente);
+            event(new ClienteEvent($cliente, $request->endereco, $request->contato));
+
+            return new ClienteResource($cliente);
         } catch (\Throwable $th) {
             throw new HttpException(400, $th->getMessage());
         }
