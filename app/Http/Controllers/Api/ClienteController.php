@@ -22,9 +22,11 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return ClienteResource::collection(Cliente::paginate(20));
+        $clientes = $request->has('all') ? Cliente::get() : Cliente::paginate(1);
+
+        return ClienteResource::collection($clientes);
     }
 
     /**

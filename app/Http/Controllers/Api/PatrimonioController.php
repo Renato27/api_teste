@@ -15,9 +15,9 @@ class PatrimonioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $patrimonios = Patrimonio::orderBy('numero_patrimonio')->paginate(25);
+        $patrimonios = Patrimonio::orderBy($request->sortColumn, $request->sortOrder)->paginate($request->pageSize);
 
         return PatrimonioResource::collection($patrimonios);
     }
