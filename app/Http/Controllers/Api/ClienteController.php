@@ -24,7 +24,7 @@ class ClienteController extends Controller
      */
     public function index(Request $request)
     {
-        $clientes = $request->has('all') ? Cliente::get() : Cliente::paginate(1);
+        $clientes = Cliente::get();
 
         return ClienteResource::collection($clientes);
     }

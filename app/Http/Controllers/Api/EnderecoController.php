@@ -67,7 +67,7 @@ class EnderecoController extends Controller
         try {
             $service->setEndereco($endereco->id);
             $enderecoAtualizado = $service->setDados($request->all())->handle();
-            
+
             return new EnderecoResource($enderecoAtualizado);
         } catch (\Throwable $th) {
             throw $th;
@@ -83,7 +83,7 @@ class EnderecoController extends Controller
     public function destroy(Cliente $cliente, Endereco $endereco, ExcluirEnderecoService $service)
     {
         try {
-        
+
             $cliente->enderecos()->detach($endereco->id);
             $service->setEndereco($endereco->id);
             $service->handle();

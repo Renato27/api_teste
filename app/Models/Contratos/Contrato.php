@@ -4,7 +4,11 @@ namespace App\Models\Contratos;
 
 use App\Models\ClienteContrato\ClienteContrato;
 use App\Models\Clientes\Cliente;
+use App\Models\Contato\Contato;
+use App\Models\ContatoContrato\ContatoContrato;
+use App\Models\ContratoItemDefinido\ContratoItemDefinido;
 use App\Models\ContratoPedido\ContratoPedido;
+use App\Models\ItemDefinido\ItemDefinido;
 use App\Models\Nota\Nota;
 use App\Models\Pedido\Pedido;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,9 +31,19 @@ class Contrato extends Model
         return $this->hasOneThrough(Cliente::class, ClienteContrato::class, 'contrato_id', 'id', 'id', 'cliente_id');
     }
 
+    public function contatos()
+    {
+        return $this->hasManyThrough(Contato::class, ContatoContrato::class, 'contrato_id', 'id', 'id', 'contato_id');
+    }
+
     public function pedidos()
     {
         return $this->hasManyThrough(Pedido::class, ContratoPedido::class, 'contrato_id', 'id');
+    }
+
+    public function itens()
+    {
+        return $this->hasManyThrough(ItemDefinido::class, ContratoItemDefinido::class, 'contrato_id', 'id', 'id', 'item_definido_id');
     }
 
     public function notas()

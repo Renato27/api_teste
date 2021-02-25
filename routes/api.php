@@ -39,12 +39,12 @@ Route::group(['middleware' => ['api']], function () {
     Route::group(['middleware' => ['jwt.verify', 'jwt.refresh']], function () {
         Route::apiResources([
             'clientes'              => ClienteController::class,
-            'cliente.enderecos'     => EnderecoController::class,
-            'cliente.contatos'      => ContatoController::class,
+            'enderecos'             => EnderecoController::class,
+            'contatos'              => ContatoController::class,
             'funcionarios'          => FuncionarioController::class,
             'pedidos'               => PedidoController::class,
             'patrimonios'           => PatrimonioController::class,
-            'cliente.contratos'     => ContratoController::class,
+            'contratos'             => ContratoController::class,
             'selecoes'              => SelecaoController::class,
             'separacoes'            => SeparacaoController::class,
         ]);

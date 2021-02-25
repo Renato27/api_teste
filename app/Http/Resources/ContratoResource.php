@@ -29,6 +29,8 @@ class ContratoResource extends JsonResource
             'dia_periodo_inicio_nota'   => $this->dia_periodo_inicio_nota,
             'dia_periodo_fim_nota'      => $this->dia_periodo_fim_nota,
             'responsavel'               => $this->responsavel,
+            'contato'                   => ContatoResource::collection($this->contatos),
+            'itens'                     => ItemDefinidoResource::collection($this->itens),
             'created_at'                => $this->created_at,
             'updated_at'                => $this->updated_at
         ];
