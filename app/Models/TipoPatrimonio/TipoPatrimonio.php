@@ -2,6 +2,7 @@
 
 namespace App\Models\TipoPatrimonio;
 
+use App\Models\Modelo\Modelo;
 use App\Models\Patrimonio\Patrimonio;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,5 +18,10 @@ class TipoPatrimonio extends Model
     public function patrimonios()
     {
         return $this->hasMany(Patrimonio::class, 'tipo_patrimonio_id', 'id');
+    }
+
+    public function modelos()
+    {
+        return $this->hasMany(Modelo::class, 'tipo_patrimonio_id', 'id');
     }
 }

@@ -17,6 +17,7 @@ class TipoPatrimonioResource extends JsonResource
         return [
             'id'            => $this->id,
             'nome'          => $this->nome,
+            'modelos'       => ModeloResource::collection($this->modelos),
             'created_at'    => $this->created_at,
             'updated_at'    => $this->updated_td,
             'deleted_at'    => $this->deleted_at

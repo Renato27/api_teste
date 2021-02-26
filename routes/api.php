@@ -7,10 +7,12 @@ use App\Http\Controllers\Api\ContratoController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\EnderecoController;
 use App\Http\Controllers\Api\FuncionarioController;
+use App\Http\Controllers\Api\ItemDefinidoController;
 use App\Http\Controllers\Api\PatrimonioController;
 use App\Http\Controllers\Api\PedidoController;
 use App\Http\Controllers\Api\SelecaoController;
 use App\Http\Controllers\Api\SeparacaoController;
+use App\Http\Controllers\Api\TipoPatrimonioController;
 use App\Http\Controllers\Api\UsuarioController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +49,8 @@ Route::group(['middleware' => ['api']], function () {
             'contratos'             => ContratoController::class,
             'selecoes'              => SelecaoController::class,
             'separacoes'            => SeparacaoController::class,
+            'item_definidos'        => ItemDefinidoController::class,
+            'tipo_patrimonios'      => TipoPatrimonioController::class,
         ]);
         Route::post('logout', [AuthController::class, 'logout']);
     });
