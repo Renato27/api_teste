@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ListaPatrimoniosResource;
 use App\Http\Resources\PatrimonioCollection;
 use App\Http\Resources\PatrimonioResource;
 use App\Models\Patrimonio\Patrimonio;
@@ -17,9 +18,12 @@ class PatrimonioController extends Controller
      */
     public function index(Request $request)
     {
-        $patrimonios = Patrimonio::orderBy($request->sortColumn, $request->sortOrder)->paginate($request->pageSize);
+        $patrimonios = Patrimonio::with(['fabricante:id,nome', 'aluguel.cliente:id,nome_fantasia', 'tipo_patrimonio:id,nome', 'estado_patrimonio:id,nome', 'modelo:id,nome'])->get();
 
-        return PatrimonioResource::collection($patrimonios);
+        // $patrimonios->load('fabricante', 'aluguel', 'tipo_patrimonio', 'estado_patrimonio', 'modelo');
+
+
+        return ListaPatrimoniosResource::collection($patrimonios);
     }
 
     /**

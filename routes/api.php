@@ -51,8 +51,10 @@ Route::group(['middleware' => ['api']], function () {
             'separacoes'            => SeparacaoController::class,
             'item_definidos'        => ItemDefinidoController::class,
             'tipo_patrimonios'      => TipoPatrimonioController::class,
+
         ]);
         Route::post('logout', [AuthController::class, 'logout']);
+        Route::get('dashboard_gestao', [DashboardController::class, 'gestao']);
     });
 });
 

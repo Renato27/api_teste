@@ -38,7 +38,7 @@ class Patrimonio extends Model
 
     public function fabricante()
     {
-        return $this->belongsTo(Fabricante::class, 'fabricante_id')->orderBy('id');
+        return $this->belongsTo(Fabricante::class, 'fabricante_id');
     }
 
     public function fornecedor()
