@@ -2,6 +2,7 @@
 
 namespace App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Abstracts;
 
+use App\Models\PatrimonioAlugado\PatrimonioAlugado;
 use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Base\GerarPatrimonioAlugadoServiceBase;
 
 abstract class GerarPatrimonioAlugadoServiceAbstract extends GerarPatrimonioAlugadoServiceBase
@@ -11,16 +12,17 @@ abstract class GerarPatrimonioAlugadoServiceAbstract extends GerarPatrimonioAlug
      *
      * @return boolean
      */
-    protected function GerarPatrimonioAlugado() : bool
+    protected function GerarPatrimonioAlugado() : ?PatrimonioAlugado
     {
         $aluguel = $this->PatrimonioAlugadoRepository->createPatrimonioAlugado($this->getDados());
 
-        if(!isset($aluguel->id)) return false;
+        if(!isset($aluguel->id)) return null;
 
-        return true;
+        return $aluguel;
     }
 
-    private function getDados()
+    //Corrigir, pois vai dar erro quando criar o aluguel.
+    private function getDados() : array
     {
         foreach($this->chamado->entrega->patrimonios as $entregaPatrimonio){
 

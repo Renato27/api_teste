@@ -45,7 +45,6 @@ class PedidoController extends Controller
                 event(new PedidoItem($pedido, $item, null));
             }
 
-
             return new PedidoResource($pedido);
         } catch (\Throwable $th) {
             throw $th;

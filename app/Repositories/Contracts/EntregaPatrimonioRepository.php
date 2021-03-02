@@ -33,6 +33,14 @@ interface EntregaPatrimonioRepository
     public function getPatrimoniosChecked(int $entrega) : ?Collection;
 
     /**
+     * Seta os patrimôniosda entrega como disponível e exclui da tabela.
+     *
+     * @param integer $entrega
+     * @return boolean|null
+     */
+    public function setPatrimonioEntregaDisponivel(int $entrega) : ?bool;
+
+    /**
      * Verifica se todos os patrimônios da entrega foram checados.
      *
      * @param integer $entrega

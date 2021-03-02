@@ -49,4 +49,12 @@ interface RetiradaPatrimonioRepository
      * @return Model|null
      */
     public function deleteRetiradaPatrimonio(int $id): bool;
+
+    /**
+     * Seta os patrimônios da retirada como alugado e exclui da tabela.
+     *
+     * @param integer $retirada
+     * @return boolean|null
+     */
+    public function setPatrimonioRetiradaAlugado(int $retirada) : ?bool;
 }

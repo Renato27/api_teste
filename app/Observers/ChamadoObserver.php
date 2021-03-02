@@ -9,9 +9,15 @@ use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Models\ExpedicaoEstado\ExpedicaoEstado;
 use App\Models\Expedicao\Expedicao;
 use App\Models\Pedido\Pedido;
+use App\Models\Retirada\Retirada;
+use App\Models\RetiradaPatrimonio\RetiradaPatrimonio;
 use App\Models\StatusChamado\StatusChamado;
 use App\Models\StatusPedido\StatusPedido;
 use App\Models\TipoChamado\TipoChamado;
+use App\Repositories\Contracts\EntregaPatrimonioRepository;
+use App\Repositories\Contracts\ExpedicaoRepository;
+use App\Repositories\Contracts\PedidoRepository;
+use App\Repositories\Contracts\RetiradaPatrimonioRepository;
 use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Contracts\GerarPatrimonioAlugadoService;
 
 class ChamadoObserver
@@ -46,30 +52,38 @@ class ChamadoObserver
     public function updated(Chamado $chamado)
     {
 
+        $entregaPatrimonioRepository = app(EntregaPatrimonioRepository::class);
+        $retiradaPatrimonioRepository = app(RetiradaPatrimonioRepository::class);
+        $pedidoRepository = app(PedidoRepository::class);
+        $expedicaoRepository = app(ExpedicaoRepository::class);
+
         switch ($chamado->status_chamado_id) {
             case StatusChamado::CANCELADO:
 
                 switch ($chamado->tipo_chamado_id) {
                     case TipoChamado::ENTREGA:
+
                         $expedicao = Expedicao::where('chamado_id', $chamado->id)->first();
-                        $expedicao->expedicao_estado_id = ExpedicaoEstado::CANCELADA;
-                        $expedicao->save();
+                        $expedicaoRepository->updateExpedicao($expedicao->id, ['expedicao_estado_id' => ExpedicaoEstado::CANCELADA]);
 
                         $entrega = Entrega::where('chamado_id', $chamado->id)->first();
 
-                        $patrimoniosEntrega = EntregaPatrimonio::where('entrega_id', $entrega->id)->get();
-
-                        foreach ($patrimoniosEntrega as $patrimonioEntrega) {
-                            $patrimonioEntrega->patrimonio->estado_patrimonio_id = EstadoPatrimonio::DISPONIVEL;
-                            $patrimonioEntrega->patrimonio->save();
-                            $patrimonioEntrega->delete();
-                        }
+                        $entregaPatrimonioRepository->setPatrimonioEntregaDisponivel($entrega->id);
 
                         $entrega->delete();
 
-                        $pedido = Pedido::find($chamado->pedido_id);
-                        $pedido->status_pedido_id = StatusPedido::CANCELADO;
-                        $pedido->save();
+                        $pedidoRepository->updatePedido($chamado->pedido_id, ['status_pedido_id' => StatusPedido::CANCELADO]);
+
+                        break;
+
+                    case TipoChamado::TROCA:
+
+                        $entrega = Entrega::where('chamado_id', $chamado->id)->first();
+                        $retirada = Retirada::where('chamado_id', $chamado->id)->first();
+
+                        $entregaPatrimonioRepository->setPatrimonioEntregaDisponivel($entrega->id);
+
+                        $retiradaPatrimonioRepository->setPatrimonioRetiradaAlugado($retirada->id);
 
                         break;
 
@@ -81,11 +95,28 @@ class ChamadoObserver
                 break;
 
             case StatusChamado::ENCERRADO:
-                $entrega = Entrega::where('chamado_id', $chamado->id)->first();
 
-                $alugarPatrimonioService = app(GerarPatrimonioAlugadoService::class);
-                $alugarPatrimonioService->setChamado($chamado)->handle();
-                //Colocar em nota espelho patrimonio.
+                switch ($chamado->tipo_chamado_id) {
+                    case TipoChamado::ENTREGA:
+
+                        $entrega = Entrega::where('chamado_id', $chamado->id)->first();
+
+                        //Corrigir serviço de patrimônio alugado.
+                        $alugarPatrimonioService = app(GerarPatrimonioAlugadoService::class);
+                        $alugarPatrimonioService->setChamado($chamado)->handle();
+
+
+                        //Colocar em nota espelho patrimonio.
+                        break;
+
+                    case TipoChamado::TROCA:
+
+                        break;
+
+                    default:
+                            # code...
+                            break;
+
                 break;
 
             case StatusChamado::FECHADO:

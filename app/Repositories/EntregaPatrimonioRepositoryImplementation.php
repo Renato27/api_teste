@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Repositories\Contracts\EntregaPatrimonioRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -32,6 +33,25 @@ class EntregaPatrimonioRepositoryImplementation implements EntregaPatrimonioRepo
     public function getEntregaPatrimonios(int $entrega): ?Collection
     {
         return $this->where(['entrega_id' => $entrega])->get();
+    }
+
+    /**
+     * Seta os patrimôniosda entrega como disponível e exclui da tabela.
+     *
+     * @param integer $entrega
+     * @return boolean|null
+     */
+    public function setPatrimonioEntregaDisponivel(int $entrega) : ?bool
+    {
+        $patrimoniosEntrega = $this->where('entrega_id', $entrega)->get();
+
+        foreach ($patrimoniosEntrega as $patrimonioEntrega) {
+            $patrimonioEntrega->patrimonio->estado_patrimonio_id = EstadoPatrimonio::DISPONIVEL;
+            $patrimonioEntrega->patrimonio->save();
+            $patrimonioEntrega->delete();
+        }
+
+        return true;
     }
 
     /**

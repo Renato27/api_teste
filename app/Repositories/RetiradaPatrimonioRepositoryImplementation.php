@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Repositories\Contracts\RetiradaPatrimonioRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -69,6 +70,25 @@ class RetiradaPatrimonioRepositoryImplementation implements RetiradaPatrimonioRe
         $retorno = $this->delete($id);
 
         if(!$retorno) return false;
+
+        return true;
+    }
+
+    /**
+     * Seta os patrimônios da retirada como alugado e exclui da tabela.
+     *
+     * @param integer $retirada
+     * @return boolean|null
+     */
+    public function setPatrimonioRetiradaAlugado(int $retirada) : ?bool
+    {
+        $patrimoniosRetirada = $this->where('retirada_id', $retirada)->get();
+
+        foreach($patrimoniosRetirada as $patrimonioRetirada){
+            $patrimonioRetirada->patrimonio->estado_patrimonio_id = EstadoPatrimonio::Alugado;
+            $patrimonioRetirada->patrimonio->save();
+            $patrimonioRetirada->delete();
+        }
 
         return true;
     }
