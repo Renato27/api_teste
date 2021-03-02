@@ -118,6 +118,12 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\ChamadoRepository::class, function ($app) {
             return new \App\Repositories\ChamadoRepositoryImplementation(new \App\Models\Chamado\Chamado());
         });
+        $this->app->bind(\App\Repositories\Contracts\PatrimonioAlugadoRepository::class, function ($app) {
+            return new \App\Repositories\PatrimonioAlugadoRepositoryImplementation(new \App\Models\PatrimonioAlugado\PatrimonioAlugado());
+        });
+        $this->app->bind(\App\Repositories\Contracts\FichaRepository::class, function ($app) {
+            return new \App\Repositories\FichaRepositoryImplementation(new \App\Models\Ficha\Ficha());
+        });
 
     }
 }

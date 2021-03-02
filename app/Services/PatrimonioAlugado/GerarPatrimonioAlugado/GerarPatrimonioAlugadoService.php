@@ -3,6 +3,7 @@
 namespace App\Services\PatrimonioAlugado\GerarPatrimonioAlugado;
 
 use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Abstracts\GerarPatrimonioAlugadoServiceAbstract;
+use Illuminate\Support\Facades\DB;
 
 class GerarPatrimonioAlugadoService extends GerarPatrimonioAlugadoServiceAbstract
 {
@@ -13,6 +14,11 @@ class GerarPatrimonioAlugadoService extends GerarPatrimonioAlugadoServiceAbstrac
      */
     public function handle(): bool
     {
-        return $this->GerarPatrimonioAlugado();
+        DB::transaction(function () {
+
+            $this->GerarPatrimonioAlugado();
+        });
+
+        return true;
     }
 }

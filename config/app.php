@@ -208,6 +208,7 @@ return [
         App\Providers\Services\Entrega\CadastrarEntregaServiceProvider::class,
         App\Providers\Services\NotaEspelho\GerarNotaEspelhoServiceProvider::class,
         App\Providers\Services\Chamado\GerarChamadoServiceProvider::class,
+        App\Providers\Services\PatrimonioAlugado\GerarPatrimonioAlugadoServiceProvider::class,
 
     ],
 

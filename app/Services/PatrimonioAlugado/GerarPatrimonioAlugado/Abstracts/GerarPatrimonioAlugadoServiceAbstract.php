@@ -13,6 +13,10 @@ abstract class GerarPatrimonioAlugadoServiceAbstract extends GerarPatrimonioAlug
      */
     protected function GerarPatrimonioAlugado() : bool
     {
+        $aluguel = $this->PatrimonioAlugadoRepository->createPatrimonioAlugado($this->getDados());
+
+        if(!isset($aluguel->id)) return false;
+
         return true;
     }
 
@@ -31,10 +35,5 @@ abstract class GerarPatrimonioAlugadoServiceAbstract extends GerarPatrimonioAlug
                 'endereco_id'       => $this->chamado->endereco_id
             ];
         }
-    }
-
-    private function gerarFicha()
-    {
-
     }
 }

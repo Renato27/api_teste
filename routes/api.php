@@ -38,7 +38,7 @@ Route::group(['middleware' => ['api']], function () {
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('register', [UsuarioController::class, 'register']);
 
-    Route::group(['middleware' => ['jwt.verify', 'jwt.refresh']], function () {
+    Route::group(['middleware' => ['jwt.verify']], function () {
         Route::apiResources([
             'clientes'              => ClienteController::class,
             'enderecos'             => EnderecoController::class,
@@ -51,10 +51,10 @@ Route::group(['middleware' => ['api']], function () {
             'separacoes'            => SeparacaoController::class,
             'item_definidos'        => ItemDefinidoController::class,
             'tipo_patrimonios'      => TipoPatrimonioController::class,
+            'dashboard_gestao'      => DashboardController::class,
 
         ]);
         Route::post('logout', [AuthController::class, 'logout']);
-        Route::get('dashboard_gestao', [DashboardController::class, 'gestao']);
     });
 });
 

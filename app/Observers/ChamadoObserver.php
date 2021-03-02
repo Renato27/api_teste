@@ -3,15 +3,16 @@
 namespace App\Observers;
 
 use App\Models\Chamado\Chamado;
-use App\Models\Entrega\Entrega;
 use App\Models\EntregaPatrimonio\EntregaPatrimonio;
+use App\Models\Entrega\Entrega;
 use App\Models\EstadoPatrimonio\EstadoPatrimonio;
-use App\Models\Expedicao\Expedicao;
 use App\Models\ExpedicaoEstado\ExpedicaoEstado;
+use App\Models\Expedicao\Expedicao;
 use App\Models\Pedido\Pedido;
 use App\Models\StatusChamado\StatusChamado;
 use App\Models\StatusPedido\StatusPedido;
 use App\Models\TipoChamado\TipoChamado;
+use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Contracts\GerarPatrimonioAlugadoService;
 
 class ChamadoObserver
 {
@@ -23,7 +24,7 @@ class ChamadoObserver
      */
     public function created(Chamado $chamado)
     {
-        if(!is_null($chamado->pedido)){
+        if (!is_null($chamado->pedido)) {
 
             $expedicao = Expedicao::where('pedido_id', $chamado->pedido_id)->first();
             $expedicao->chamado_id = $chamado->id;
@@ -44,39 +45,58 @@ class ChamadoObserver
      */
     public function updated(Chamado $chamado)
     {
-        if($chamado->status_chamado_id == StatusChamado::CANCELADO && $chamado->tipo_chamado_id == TipoChamado::ENTREGA){
 
-            $expedicao = Expedicao::where('chamado_id', $chamado->id)->first();
-            $expedicao->expedicao_estado_id = ExpedicaoEstado::CANCELADA;
-            $expedicao->save();
+        switch ($chamado->status_chamado_id) {
+            case StatusChamado::CANCELADO:
 
-            $entrega = Entrega::where('chamado_id', $chamado->id)->first();
+                switch ($chamado->tipo_chamado_id) {
+                    case TipoChamado::ENTREGA:
+                        $expedicao = Expedicao::where('chamado_id', $chamado->id)->first();
+                        $expedicao->expedicao_estado_id = ExpedicaoEstado::CANCELADA;
+                        $expedicao->save();
 
-            $patrimoniosEntrega = EntregaPatrimonio::where('entrega_id', $entrega->id)->get();
+                        $entrega = Entrega::where('chamado_id', $chamado->id)->first();
 
-            foreach($patrimoniosEntrega as $patrimonioEntrega){
-                $patrimonioEntrega->patrimonio->estado_patrimonio_id = EstadoPatrimonio::DISPONIVEL;
-                $patrimonioEntrega->patrimonio->save();
-                $patrimonioEntrega->delete();
-            }
+                        $patrimoniosEntrega = EntregaPatrimonio::where('entrega_id', $entrega->id)->get();
 
-            $entrega->delete();
+                        foreach ($patrimoniosEntrega as $patrimonioEntrega) {
+                            $patrimonioEntrega->patrimonio->estado_patrimonio_id = EstadoPatrimonio::DISPONIVEL;
+                            $patrimonioEntrega->patrimonio->save();
+                            $patrimonioEntrega->delete();
+                        }
 
-            $pedido = Pedido::find($chamado->pedido_id);
-            $pedido->status_pedido_id = StatusPedido::CANCELADO;
-            $pedido->save();
+                        $entrega->delete();
 
+                        $pedido = Pedido::find($chamado->pedido_id);
+                        $pedido->status_pedido_id = StatusPedido::CANCELADO;
+                        $pedido->save();
+
+                        break;
+
+                    default:
+                        # code...
+                        break;
+                }
+
+                break;
+
+            case StatusChamado::ENCERRADO:
+                $entrega = Entrega::where('chamado_id', $chamado->id)->first();
+
+                $alugarPatrimonioService = app(GerarPatrimonioAlugadoService::class);
+                $alugarPatrimonioService->setChamado($chamado)->handle();
+                //Colocar em nota espelho patrimonio.
+                break;
+
+            case StatusChamado::FECHADO:
+
+                break;
+
+            default:
+                # code...
+                break;
         }
 
-        if($chamado->status_chamado_id == StatusChamado::ENCERRADO){
-
-            $entrega = Entrega::where('chamado_id', $chamado->id)->first();
-            $patrimoniosEntrega = EntregaPatrimonio::where('entrega_id', $entrega->id)->get();
-
-            //Colocar em patrimonio alugado.
-            //Colocar em nota espelho patrimonio.
-
-        }
     }
 
     /**

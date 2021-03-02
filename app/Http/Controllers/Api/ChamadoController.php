@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ChamadoResource;
+use App\Models\Chamado\Chamado;
+use App\Services\Chamado\AtualizarChamado\Contracts\AtualizarChamadoService;
+use App\Services\Chamado\GerarChamado\Contracts\GerarChamadoService;
 use Illuminate\Http\Request;
 
 class ChamadoController extends Controller
@@ -14,7 +18,10 @@ class ChamadoController extends Controller
      */
     public function index()
     {
-        //
+        $chamados = Chamado::get();
+
+        //Criar LIsta de chamados para processamento mais rápido.
+        return ChamadoResource::collection($chamados);
     }
 
     /**
@@ -23,9 +30,11 @@ class ChamadoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, GerarChamadoService $gerarChamadoService)
     {
-        //
+        $chamado = $gerarChamadoService->setDados($request->all())->handle();
+
+        return new ChamadoResource($chamado);
     }
 
     /**
@@ -34,9 +43,9 @@ class ChamadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Chamado $chamado)
     {
-        //
+        return new ChamadoResource($chamado);
     }
 
     /**
@@ -46,9 +55,12 @@ class ChamadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Chamado $chamado, AtualizarChamadoService $atualizarChamadoService)
     {
-        //
+        $atualizarChamadoService->setChamado($chamado);
+        $chamado = $atualizarChamadoService->setDados($request->all())->handle();
+
+        return new ChamadoResource($chamado);
     }
 
     /**

@@ -57,7 +57,7 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
             'status_chamado_id'     => StatusChamado::ABERTO,
             'tipo_chamado_id'       => $dados['tipo_chamado_id'],
             'usuario_id'            => isset($dados['usuario_id']) ? $dados['usuario_id'] : null,
-            'pedido_id'             => $dados['pedido_id'],
+            'pedido_id'             => isset($dados['pedido_id']) ? $dados['pedido_id'] : null,
             'contato_id'            => $dados['contato_id'],
             'endereco_id'           => $dados['endereco_id'],
         ];
