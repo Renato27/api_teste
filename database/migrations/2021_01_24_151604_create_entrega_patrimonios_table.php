@@ -17,7 +17,7 @@ class CreateEntregaPatrimoniosTable extends Migration
             $table->id();
             $table->foreignId('entrega_id')->constrained('entregas');
             $table->foreignId('patrimonio_id')->constrained('patrimonios');
-            //$table->foreignId('item_pedido_id')->constrained('item_pedidos');
+            $table->foreignId('item_pedido_id')->constrained('item_pedidos');
             $table->boolean('checked')->default(0);
 
             $table->timestamps();

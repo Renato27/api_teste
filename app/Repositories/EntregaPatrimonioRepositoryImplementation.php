@@ -55,6 +55,25 @@ class EntregaPatrimonioRepositoryImplementation implements EntregaPatrimonioRepo
     }
 
     /**
+     * Seta os patrimôniosda entrega como alugado e exclui da tabela.
+     *
+     * @param integer $entrega
+     * @return boolean|null
+     */
+    public function setPatrimonioEntregaAlugado(int $entrega) : ?bool
+    {
+        $patrimoniosEntrega = $this->where('entrega_id', $entrega)->get();
+
+        foreach ($patrimoniosEntrega as $patrimonioEntrega) {
+            $patrimonioEntrega->patrimonio->estado_patrimonio_id = EstadoPatrimonio::Alugado;
+            $patrimonioEntrega->patrimonio->save();
+            $patrimonioEntrega->delete();
+        }
+
+        return true;
+    }
+
+    /**
      * Retorna todos os patrimônios checados.
      *
      * @param integer $entrega

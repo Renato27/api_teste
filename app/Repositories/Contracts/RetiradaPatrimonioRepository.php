@@ -57,4 +57,12 @@ interface RetiradaPatrimonioRepository
      * @return boolean|null
      */
     public function setPatrimonioRetiradaAlugado(int $retirada) : ?bool;
+
+    /**
+     * Seta os patrimônios da retirada como disponível e exclui da tabela.
+     *
+     * @param integer $entrega
+     * @return boolean|null
+     */
+    public function setPatrimonioRetiradaDisponivel(int $retirada) : ?bool;
 }

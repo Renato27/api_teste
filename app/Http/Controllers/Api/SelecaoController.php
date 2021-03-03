@@ -37,6 +37,7 @@ class SelecaoController extends Controller
             $expedicao = Expedicao::find($request->expedicao);
 
             $service->setExpedicao($expedicao);
+            $service->setItemPedido($request->item_id);
             $service->setPatrimonios($request->patrimonios)->handle();
 
             return new SeparacaoResource($expedicao);

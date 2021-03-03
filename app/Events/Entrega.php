@@ -32,19 +32,20 @@ class Entrega
     /**
      * Undocumented variable
      *
-     * @var bool|null
+     * @var int|null
      */
-    private ?bool $checked;
+    private int $item;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(EntregaEntrega $entrega, int $patrimonio)
+    public function __construct(EntregaEntrega $entrega, int $patrimonio, int $item)
     {
         $this->entrega = $entrega;
         $this->patrimonio = $patrimonio;
+        $this->item = $item;
     }
 
     /**
@@ -65,5 +66,10 @@ class Entrega
     public function getPatrimonioId()
     {
         return $this->patrimonio;
+    }
+
+    public function getItemId()
+    {
+        return $this->item;
     }
 }

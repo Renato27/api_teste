@@ -20,7 +20,7 @@ abstract class CadastrarEntregaServiceAbstract extends CadastrarEntregaServiceBa
 
         foreach($this->patrimonios as $patrimonio){
 
-            event(new Entrega($entrega, $patrimonio));
+            event(new Entrega($entrega, $patrimonio, $this->item_pedido));
         }
 
         return true;

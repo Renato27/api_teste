@@ -5,7 +5,9 @@ namespace App\Providers;
 use App\Events\ClienteEvent;
 use App\Events\Entrega as EventsEntrega;
 use App\Events\EntregaPatrimonio;
+use App\Events\NotaEspelhoPatrimonioEvent;
 use App\Events\PedidoItem;
+use App\Listeners\CreateNotaEspelhoPatrimonio;
 use App\Listeners\RelationShipsClienteCadastro;
 use App\Listeners\RelationShipsEntrega;
 use App\Listeners\RelationShipsPedidoItem;
@@ -43,6 +45,9 @@ class EventServiceProvider extends ServiceProvider
 
         ClienteEvent::class => [
             RelationShipsClienteCadastro::class,
+        ],
+        NotaEspelhoPatrimonioEvent::class => [
+            CreateNotaEspelhoPatrimonio::class,
         ]
     ];
 

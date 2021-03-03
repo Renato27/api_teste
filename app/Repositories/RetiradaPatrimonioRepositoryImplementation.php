@@ -92,4 +92,23 @@ class RetiradaPatrimonioRepositoryImplementation implements RetiradaPatrimonioRe
 
         return true;
     }
+
+    /**
+     * Seta os patrimônios da retirada como disponível e exclui da tabela.
+     *
+     * @param integer $entrega
+     * @return boolean|null
+     */
+    public function setPatrimonioRetiradaDisponivel(int $retirada) : ?bool
+    {
+        $patrimoniosRetirada = $this->where('retirada_id', $retirada)->get();
+
+        foreach($patrimoniosRetirada as $patrimonioRetirada){
+            $patrimonioRetirada->patrimonio->estado_patrimonio_id = EstadoPatrimonio::DISPONIVEL;
+            $patrimonioRetirada->patrimonio->save();
+            $patrimonioRetirada->delete();
+        }
+
+        return true;
+    }
 }

@@ -30,6 +30,13 @@ abstract class CadastrarEntregaServiceBase implements CadastrarEntregaService
      */
     protected array $patrimonios;
 
+    /**
+     * ID do item do pedido
+     *
+     * @var int
+     */
+    protected int $item_pedido;
+
    /**
      * Seta a model de Entrega.
      *
@@ -63,6 +70,18 @@ abstract class CadastrarEntregaServiceBase implements CadastrarEntregaService
     public function setPatrimonios(array $patrimonios): CadastrarEntregaService
     {
         $this->patrimonios = $patrimonios;
+        return $this;
+    }
+
+     /**
+     * Seta o item de um pedido.
+     *
+     * @param array $item_pedido
+     * @return CadastrarEntregaService
+     */
+    public function setItemPedido(int $item_pedido) : CadastrarEntregaService
+    {
+        $this->item_pedido = $item_pedido;
         return $this;
     }
 }

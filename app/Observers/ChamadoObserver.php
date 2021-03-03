@@ -2,12 +2,14 @@
 
 namespace App\Observers;
 
+use App\Events\NotaEspelhoPatrimonioEvent;
 use App\Models\Chamado\Chamado;
 use App\Models\EntregaPatrimonio\EntregaPatrimonio;
 use App\Models\Entrega\Entrega;
 use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Models\ExpedicaoEstado\ExpedicaoEstado;
 use App\Models\Expedicao\Expedicao;
+use App\Models\NotaEspelhoEstado\NotaEspelhoEstado;
 use App\Models\Pedido\Pedido;
 use App\Models\Retirada\Retirada;
 use App\Models\RetiradaPatrimonio\RetiradaPatrimonio;
@@ -30,17 +32,24 @@ class ChamadoObserver
      */
     public function created(Chamado $chamado)
     {
-        if (!is_null($chamado->pedido)) {
+        switch ($chamado->tipo_chamado_id){
+            case TipoChamado::ENTREGA:
+                    $expedicao = Expedicao::where('pedido_id', $chamado->pedido_id)->first();
+                    $expedicao->chamado_id = $chamado->id;
+                    $expedicao->expedicao_estado_id = ExpedicaoEstado::LIBERADO;
+                    $expedicao->save();
 
-            $expedicao = Expedicao::where('pedido_id', $chamado->pedido_id)->first();
-            $expedicao->chamado_id = $chamado->id;
-            $expedicao->expedicao_estado_id = ExpedicaoEstado::LIBERADO;
-            $expedicao->save();
+                    $entrega = Entrega::where('expedicao_id', $expedicao->id)->first();
+                    $entrega->chamado_id = $chamado->id;
+                    $entrega->save();
+                break;
 
-            $entrega = Entrega::where('expedicao_id', $expedicao->id)->first();
-            $entrega->chamado_id = $chamado->id;
-            $entrega->save();
+            case TipoChamado::RETIRADA:
+
+                break;
         }
+
+
     }
 
     /**
@@ -56,6 +65,7 @@ class ChamadoObserver
         $retiradaPatrimonioRepository = app(RetiradaPatrimonioRepository::class);
         $pedidoRepository = app(PedidoRepository::class);
         $expedicaoRepository = app(ExpedicaoRepository::class);
+        $alugarPatrimonioService = app(GerarPatrimonioAlugadoService::class);
 
         switch ($chamado->status_chamado_id) {
             case StatusChamado::CANCELADO:
@@ -99,23 +109,41 @@ class ChamadoObserver
                 switch ($chamado->tipo_chamado_id) {
                     case TipoChamado::ENTREGA:
 
-                        $entrega = Entrega::where('chamado_id', $chamado->id)->first();
+                        foreach($chamado->entrega->entrega_patrimonios as $entregaPatrimonio){
 
-                        //Corrigir serviço de patrimônio alugado.
-                        $alugarPatrimonioService = app(GerarPatrimonioAlugadoService::class);
-                        $alugarPatrimonioService->setChamado($chamado)->handle();
+                            $alugarPatrimonioService->setChamado($chamado);
+                            $aluguel = $alugarPatrimonioService->setEntregaPatrimonio($entregaPatrimonio)->handle();
 
+                            event(new NotaEspelhoPatrimonioEvent($chamado->pedido->nota_espelho, $aluguel));
+                        }
 
-                        //Colocar em nota espelho patrimonio.
+                        $chamado->pedido->nota_espelho->nota_espelho_estado_id = NotaEspelhoEstado::PENDENTE;
+                        $chamado->pedido->nota_espelho->save();
+
                         break;
 
                     case TipoChamado::TROCA:
+
+                        $entrega = Entrega::where('chamado_id', $chamado->id)->first();
+                        $retirada = Retirada::where('chamado_id', $chamado->id)->first();
+
+                        foreach($chamado->entrega->entrega_patrimonios as $entregaPatrimonio){
+
+                            $alugarPatrimonioService->setChamado($chamado);
+                            $aluguel = $alugarPatrimonioService->setEntregaPatrimonio($entregaPatrimonio)->handle();
+
+                        }
+
+                        $entregaPatrimonioRepository->setPatrimonioEntregaAlugado($entrega->id);
+
+                        $retiradaPatrimonioRepository->setPatrimonioRetiradaDisponivel($retirada->id);
 
                         break;
 
                     default:
                             # code...
                             break;
+                }
 
                 break;
 

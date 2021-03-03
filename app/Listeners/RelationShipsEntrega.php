@@ -31,7 +31,8 @@ class RelationShipsEntrega
     {
         EntregaPatrimonio::create([
             "entrega_id" => $event->getEntrega()->id,
-            "patrimonio_id" => $event->getPatrimonioId()
+            "patrimonio_id" => $event->getPatrimonioId(),
+            'item_pedido_id' => $event->getItemId()
         ]);
 
         $patrimonio = Patrimonio::find($event->getPatrimonioId());

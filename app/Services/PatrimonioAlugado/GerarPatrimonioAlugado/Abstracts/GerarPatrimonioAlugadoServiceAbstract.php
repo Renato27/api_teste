@@ -21,21 +21,18 @@ abstract class GerarPatrimonioAlugadoServiceAbstract extends GerarPatrimonioAlug
         return $aluguel;
     }
 
-    //Corrigir, pois vai dar erro quando criar o aluguel.
     private function getDados() : array
     {
-        foreach($this->chamado->entrega->patrimonios as $entregaPatrimonio){
+        return [
+            'data_entrega'      => $this->chamado->pedido->data_entrega,
+            'valor'             => $this->entregaPatrimonio->item_pedido->item_definido->valor,
+            'patrimonio_id'     => $this->entregaPatrimonio->patrimonio_id,
+            'pedido_id'         => $this->chamado->pedido_id,
+            'cliente_id'        => $this->chamado->pedido->contrato->cliente->id,
+            'item_pedido_id'    => $this->entregaPatrimonio->item_pedido_id,
+            'chamado_id'        => $this->chamado->id,
+            'endereco_id'       => $this->chamado->endereco_id
+        ];
 
-            return [
-                'data_entrega'      => $this->chamado->pedido->data_entrega,
-                'valor'             => $entregaPatrimonio->item->item_definido->valor,
-                'patrimonio_id'     => $entregaPatrimonio->patrimonio_id,
-                'pedido_id'         => $this->chamado->pedido_id,
-                'cliente_id'        => $this->chamado->pedido->contrato->cliente->id,
-                'item_pedido_id'    => $entregaPatrimonio->item_id,
-                'chamado_id'        => $this->chamado->id,
-                'endereco_id'       => $this->chamado->endereco_id
-            ];
-        }
     }
 }

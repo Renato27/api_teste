@@ -3,6 +3,7 @@
 namespace App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Contracts;
 
 use App\Models\Chamado\Chamado;
+use App\Models\EntregaPatrimonio\EntregaPatrimonio;
 use App\Models\PatrimonioAlugado\PatrimonioAlugado;
 use App\Repositories\Contracts\PatrimonioAlugadoRepository;
 
@@ -14,7 +15,7 @@ interface GerarPatrimonioAlugadoService
      * @param PatrimonioAlugado|null
      * @return GerarPatrimonioAlugadoService
      */
-    public function setPatrimonioAlugado(?PatrimonioAlugado $PatrimonioAlugado = null): GerarPatrimonioAlugadoService;
+    public function setEntregaPatrimonio(?EntregaPatrimonio $entregaPatrimonio = null): GerarPatrimonioAlugadoService;
 
     /**
      * Seta os dados para PatrimonioAlugado.

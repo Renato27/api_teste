@@ -63,11 +63,11 @@ class UpdateEntregaPatrimonio
             $entregaPatrimonio->entrega->expedicao->save();
 
             $this->gerarChamadoService->setDados([
-            'data_acao'             => $entregaPatrimonio->entrega->expedicao->pedido->data_entrega,
-            'tipo_chamado_id'       => TipoChamado::ENTREGA,
-            'pedido_id'             => $entregaPatrimonio->entrega->expedicao->pedido_id,
-            'contato_id'            => $entregaPatrimonio->entrega->expedicao->pedido->contato_id,
-            'endereco_id'           => $entregaPatrimonio->entrega->expedicao->pedido->endereco_id,
+                'data_acao'             => $entregaPatrimonio->entrega->expedicao->pedido->data_entrega,
+                'tipo_chamado_id'       => TipoChamado::ENTREGA,
+                'pedido_id'             => $entregaPatrimonio->entrega->expedicao->pedido_id,
+                'contato_id'            => $entregaPatrimonio->entrega->expedicao->pedido->contato_id,
+                'endereco_id'           => $entregaPatrimonio->entrega->expedicao->pedido->endereco_id,
             ]);
 
             $chamado = $this->gerarChamadoService->handle();

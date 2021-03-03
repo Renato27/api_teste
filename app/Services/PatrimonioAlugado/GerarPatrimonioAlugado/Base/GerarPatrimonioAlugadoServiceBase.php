@@ -3,6 +3,8 @@
 namespace App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Base;
 
 use App\Models\Chamado\Chamado;
+use App\Models\EntregaPatrimonio\EntregaPatrimonio;
+use App\Models\Patrimonio\Patrimonio;
 use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Contracts\GerarPatrimonioAlugadoService;
 use App\Models\PatrimonioAlugado\PatrimonioAlugado;
 use App\Repositories\Contracts\PatrimonioAlugadoRepository;
@@ -10,11 +12,11 @@ use App\Repositories\Contracts\PatrimonioAlugadoRepository;
 abstract class GerarPatrimonioAlugadoServiceBase implements GerarPatrimonioAlugadoService
 {
     /**
-     * Model de PatrimonioAlugado.
+     * Model de EntregaPatrimonio.
      *
-     * @var PatrimonioAlugado|null
+     * @var EntregaPatrimonio|null
      */
-    protected ?PatrimonioAlugado $PatrimonioAlugado;
+    protected ?EntregaPatrimonio $entregaPatrimonio;
 
     /**
      * Array de dados.
@@ -40,12 +42,12 @@ abstract class GerarPatrimonioAlugadoServiceBase implements GerarPatrimonioAluga
    /**
      * Seta a model de PatrimonioAlugado.
      *
-     * @param PatrimonioAlugado|null
+     * @param EntregaPatrimonio|null
      * @return GerarPatrimonioAlugadoService
      */
-    public function setPatrimonioAlugado(?PatrimonioAlugado $PatrimonioAlugado = null): GerarPatrimonioAlugadoService
+    public function setEntregaPatrimonio(?EntregaPatrimonio $entregaPatrimonio = null): GerarPatrimonioAlugadoService
     {
-        $this->PatrimonioAlugado = $PatrimonioAlugado;
+        $this->entregaPatrimonio = $entregaPatrimonio;
         return $this;
     }
 

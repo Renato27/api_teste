@@ -7,6 +7,7 @@ use App\Models\ContratoPedido\ContratoPedido;
 use App\Models\Contratos\Contrato;
 use App\Models\Endereco\Endereco;
 use App\Models\ItemPedido\ItemPedido;
+use App\Models\NotaEspelho\NotaEspelho;
 use App\Models\PedidoItem\PedidoItem;
 use App\Models\PedidoStatusPedido\PedidoStatusPedido;
 use App\Models\StatusPedido\StatusPedido;
@@ -47,6 +48,11 @@ class Pedido extends Model
     public function endereco()
     {
         return $this->belongsTo(Endereco::class, 'endereco_id');
+    }
+
+    public function nota_espelho()
+    {
+        return $this->hasOne(NotaEspelho::class, 'pedido_id', 'id');
     }
 
 }

@@ -41,6 +41,14 @@ interface EntregaPatrimonioRepository
     public function setPatrimonioEntregaDisponivel(int $entrega) : ?bool;
 
     /**
+     * Seta os patrimôniosda entrega como alugado e exclui da tabela.
+     *
+     * @param integer $entrega
+     * @return boolean|null
+     */
+    public function setPatrimonioEntregaAlugado(int $entrega) : ?bool;
+
+    /**
      * Verifica se todos os patrimônios da entrega foram checados.
      *
      * @param integer $entrega
