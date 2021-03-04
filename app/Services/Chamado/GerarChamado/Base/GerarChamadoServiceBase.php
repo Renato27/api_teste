@@ -79,6 +79,8 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
             'pedido_id'             => isset($dados['pedido_id']) ? $dados['pedido_id'] : null,
             'contato_id'            => $dados['contato_id'],
             'endereco_id'           => $dados['endereco_id'],
+            'login_team_viewer'     => $dados['login_team_viewer'],
+            'senha_team_viewer'     => $dados['senha_team_viewer']
         ];
 
         $this->dados = $dadosChamado;

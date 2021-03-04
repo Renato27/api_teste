@@ -15,10 +15,10 @@ class CreateExpedicaosTable extends Migration
     {
         Schema::create('expedicaos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pedido_id')->constrained('pedidos');
-            $table->foreignId('expedicao_estado_id')->constrained('expedicao_estados');
-            $table->foreignId('expedicao_tipo_id')->constrained('expedicao_tipos');
-            $table->foreignId('usuario_id')->constrained('usuarios');
+            $table->foreignId('pedido_id')->nullable()->constrained('pedidos');
+            $table->foreignId('expedicao_estado_id')->nullable()->constrained('expedicao_estados');
+            $table->foreignId('expedicao_tipo_id')->nullable()->constrained('expedicao_tipos');
+            $table->foreignId('usuario_id')->nullable()->constrained('usuarios');
             $table->foreignId('chamado_id')->nullable()->constrained('chamados');
 
             $table->timestamps();

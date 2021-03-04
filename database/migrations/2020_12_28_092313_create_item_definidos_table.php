@@ -17,7 +17,7 @@ class CreateItemDefinidosTable extends Migration
             $table->id();
             $table->string('detalhes')->nullable();
             $table->decimal('valor', 10, 2)->nullable();
-            $table->foreignId('tipo_patrimonio_id');
+            $table->foreignId('tipo_patrimonio_id')->nullable();
 
             $table->foreign('tipo_patrimonio_id')->references('id')->on('tipo_patrimonios');
 

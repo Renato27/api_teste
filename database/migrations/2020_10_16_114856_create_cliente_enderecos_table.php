@@ -15,8 +15,8 @@ class CreateClienteEnderecosTable extends Migration
     {
         Schema::create('cliente_enderecos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cliente_id');
-            $table->foreignId('endereco_id');
+            $table->foreignId('cliente_id')->nullable();
+            $table->foreignId('endereco_id')->nullable();
 
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->foreign('endereco_id')->references('id')->on('enderecos');

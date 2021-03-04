@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Events\NotaEspelhoPatrimonioEvent;
+use App\Models\AberturaContador\AberturaContador;
 use App\Models\Chamado\Chamado;
 use App\Models\EntregaPatrimonio\EntregaPatrimonio;
 use App\Models\Entrega\Entrega;
@@ -21,6 +22,8 @@ use App\Repositories\Contracts\ExpedicaoRepository;
 use App\Repositories\Contracts\PedidoRepository;
 use App\Repositories\Contracts\RetiradaPatrimonioRepository;
 use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Contracts\GerarPatrimonioAlugadoService;
+use Carbon\Carbon;
+use Carbon\CarbonImmutable;
 
 class ChamadoObserver
 {
@@ -105,6 +108,14 @@ class ChamadoObserver
 
                             $alugarPatrimonioService->setChamado($chamado);
                             $aluguel = $alugarPatrimonioService->setEntregaPatrimonio($entregaPatrimonio)->handle();
+
+                            if($entregaPatrimonio->patrimonio->tipo_patrimonio_id == 11 || $entregaPatrimonio->patrimonio->tipo_patrimonio_id == 16){
+                                AberturaContador::create([
+                                    'dia_abertura' => CarbonImmutable::parse($aluguel->data_entrega)->format('d'),
+                                    'patrimonio_id' => $entregaPatrimonio->patrimonio_id,
+                                    'contato_id' => $chamado->contato_id
+                                ]);
+                            }
 
                             event(new NotaEspelhoPatrimonioEvent($chamado->pedido->nota_espelho, $aluguel));
                         }

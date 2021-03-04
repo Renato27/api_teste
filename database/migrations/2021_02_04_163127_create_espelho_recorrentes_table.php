@@ -17,8 +17,8 @@ class CreateEspelhoRecorrentesTable extends Migration
             $table->id();
             $table->date('dia_emissao');
             $table->date('dia_vencimento');
-            $table->foreignId('contrato_id')->constrained('contratos');
-            $table->foreignId('nota_id')->constrained('notas');
+            $table->foreignId('contrato_id')->nullable()->constrained('contratos');
+            $table->foreignId('nota_id')->nullable()->constrained('notas');
             $table->foreignId('anterior_nota_id');
 
             $table->foreign('anterior_nota_id')->references('id')->on('notas');

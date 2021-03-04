@@ -5,6 +5,8 @@ namespace App\Listeners;
 use App\Events\GenericChamadoEvent;
 use App\Models\Auditoria\Auditoria;
 use App\Models\AuditoriaPatrimonio\AuditoriaPatrimonio;
+use App\Models\Contador\Contador;
+use App\Models\ContadorPatrimonios\ContadorPatrimonios;
 use App\Models\Corretiva\Corretiva;
 use App\Models\CorretivaPatrimonio\CorretivaPatrimonio;
 use App\Models\EstadoPatrimonio\EstadoPatrimonio;
@@ -80,6 +82,12 @@ class GenericChamadoEventRelationShips
         }else if($event->getModel() instanceof Suprimento){
             SuprimentoPatrimonio::create([
                 "suprimento_id"   => $event->getModel()->id,
+                "patrimonio_id"  => $event->getPatrimonioId()
+             ]);
+
+        }else if($event->getModel() instanceof Contador){
+            ContadorPatrimonios::create([
+                "contador_id"   => $event->getModel()->id,
                 "patrimonio_id"  => $event->getPatrimonioId()
              ]);
 

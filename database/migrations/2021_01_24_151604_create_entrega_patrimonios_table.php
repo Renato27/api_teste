@@ -15,9 +15,9 @@ class CreateEntregaPatrimoniosTable extends Migration
     {
         Schema::create('entrega_patrimonios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('entrega_id')->constrained('entregas');
-            $table->foreignId('patrimonio_id')->constrained('patrimonios');
-            $table->foreignId('item_pedido_id')->constrained('item_pedidos');
+            $table->foreignId('entrega_id')->nullable()->constrained('entregas');
+            $table->foreignId('patrimonio_id')->nullable()->constrained('patrimonios');
+            $table->foreignId('item_pedido_id')->nullable()->constrained('item_pedidos');
             $table->boolean('checked')->default(0);
 
             $table->timestamps();

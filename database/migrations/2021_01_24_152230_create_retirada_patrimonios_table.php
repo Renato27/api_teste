@@ -15,8 +15,8 @@ class CreateRetiradaPatrimoniosTable extends Migration
     {
         Schema::create('retirada_patrimonios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('retirada_id')->constrained('retiradas');
-            $table->foreignId('patrimonio_id')->constrained('patrimonios');
+            $table->foreignId('retirada_id')->nullable()->constrained('retiradas');
+            $table->foreignId('patrimonio_id')->nullable()->constrained('patrimonios');
             $table->boolean('checked')->default(0);
 
             $table->timestamps();

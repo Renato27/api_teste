@@ -18,9 +18,9 @@ class CreateNotaEspelhoPatrimoniosTable extends Migration
             $table->date('periodo_inicio');
             $table->date('periodo_fim');
             $table->decimal('valor', 10, 2);
-            $table->foreignId('patrimonio_id')->constrained('patrimonios');
-            $table->foreignId('nota_espelho_id')->constrained('nota_espelhos');
-            $table->foreignId('contrato_id')->constrained('contratos');
+            $table->foreignId('patrimonio_id')->nullable()->constrained('patrimonios');
+            $table->foreignId('nota_espelho_id')->nullable()->constrained('nota_espelhos');
+            $table->foreignId('contrato_id')->nullable()->constrained('contratos');
             $table->foreignId('chamado_id')->nullable()->constrained('chamados');
 
             $table->softDeletes();

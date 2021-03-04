@@ -16,6 +16,8 @@ abstract class AtualizarChamadoServiceAbstract extends AtualizarChamadoServiceBa
     {
         $chamado = $this->ChamadoRepository->updateChamado($this->Chamado->id, $this->dados);
 
+        //Atualizar o contador do chamado se ele for de contador.
+
         return $chamado;
     }
 }

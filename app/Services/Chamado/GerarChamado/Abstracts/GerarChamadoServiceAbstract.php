@@ -5,9 +5,11 @@ namespace App\Services\Chamado\GerarChamado\Abstracts;
 use App\Events\GenericChamadoEvent;
 use App\Models\Auditoria\Auditoria;
 use App\Models\Chamado\Chamado;
+use App\Models\Contador\Contador;
 use App\Models\Corretiva\Corretiva;
 use App\Models\Preventiva\Preventiva;
 use App\Models\Retirada\Retirada;
+use App\Models\Suporte\Suporte;
 use App\Models\Suprimento\Suprimento;
 use App\Models\TipoChamado\TipoChamado;
 use App\Services\Chamado\GerarChamado\Base\GerarChamadoServiceBase;
@@ -38,9 +40,16 @@ abstract class GerarChamadoServiceAbstract extends GerarChamadoServiceBase
             case TipoChamado::CORRETIVA:
                  $this->gerarCorretiva($chamadoGerado);
                 break;
+            case TipoChamado::SUPORTE:
+                 $this->gerarSuporte($chamadoGerado);
+                break;
 
             case TipoChamado::AUDITORIA:
                  $this->gerarAuditoria($chamadoGerado);
+                break;
+
+            case TipoChamado::CONTADOR:
+                 $this->gerarContador($chamadoGerado);
                 break;
 
             case TipoChamado::TROCA:
@@ -81,7 +90,11 @@ abstract class GerarChamadoServiceAbstract extends GerarChamadoServiceBase
 
     private function gerarCorretiva(Chamado $chamado)
     {
-        $corretiva = Corretiva::create(['chamado_id' => $chamado->id]);
+        $corretiva = Corretiva::create([
+            'chamado_id' => $chamado->id,
+            'login_team_viewer' => $this->dados['login_team_viewer'],
+            'senha_team_viewer' => $this->dados['senha_team_viewer']
+        ]);
 
         foreach($this->patrimonios as $patrimonio){
 
@@ -102,6 +115,20 @@ abstract class GerarChamadoServiceAbstract extends GerarChamadoServiceBase
     private function gerarTroca(Chamado $chamado)
     {
 
+    }
+
+    private function gerarContador(Chamado $chamado)
+    {
+        $contador = Contador::create(['chamado_id' => $chamado->id]);
+    }
+
+    private function gerarSuporte(Chamado $chamado)
+    {
+        Suporte::create([
+            'chamado_id' => $chamado->id,
+            'login_team_viewer' => $this->dados['login_team_viewer'],
+            'senha_team_viewer' => $this->dados['senha_team_viewer']
+        ]);
     }
 
     private function gerarSuprimento(Chamado $chamado)

@@ -15,7 +15,7 @@ class CreateRetiradasTable extends Migration
     {
         Schema::create('retiradas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('chamado_id')->constrained('chamados');
+            $table->foreignId('chamado_id')->nullable()->constrained('chamados');
 
             $table->timestamps();
             $table->softDeletes();

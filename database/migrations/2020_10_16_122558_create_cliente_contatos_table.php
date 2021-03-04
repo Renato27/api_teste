@@ -15,8 +15,8 @@ class CreateClienteContatosTable extends Migration
     {
         Schema::create('cliente_contatos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cliente_id');
-            $table->foreignId('contato_id');
+            $table->foreignId('cliente_id')->nullable();
+            $table->foreignId('contato_id')->nullable();
 
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->foreign('contato_id')->references('id')->on('contatos');

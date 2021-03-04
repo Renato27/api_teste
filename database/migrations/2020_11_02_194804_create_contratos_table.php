@@ -18,9 +18,9 @@ class CreateContratosTable extends Migration
             $table->string('nome')->nullable();
             $table->date('inicio')->nullable();
             $table->date('fim')->nullable();
-            $table->foreignId('medicao_tipo_id');
+            $table->foreignId('medicao_tipo_id')->nullable();
             $table->foreignId('pagamento_metodo_id')->nullable();
-            $table->foreignId('contrato_tipo_id');
+            $table->foreignId('contrato_tipo_id')->nullable();
             $table->string('detalhes')->nullable();
             $table->string('detalhes_nota')->nullable();
             $table->bigInteger('dia_emissao_nota')->nullable();

@@ -16,7 +16,7 @@ class CreateEntregasTable extends Migration
         Schema::create('entregas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('chamado_id')->nullable()->constrained('chamados');
-            $table->foreignId('expedicao_id')->constrained('expedicaos');
+            $table->foreignId('expedicao_id')->nullable()->constrained('expedicaos');
 
             $table->timestamps();
             $table->softDeletes();

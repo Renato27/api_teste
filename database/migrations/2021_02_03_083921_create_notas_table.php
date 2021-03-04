@@ -24,9 +24,9 @@ class CreateNotasTable extends Migration
             $table->decimal('valor', 10, 2);
             $table->boolean('antecipacao')->default(0);
             $table->boolean('tem_boleto')->default(0);
-            $table->foreignId('nota_estado_id')->constrained('nota_estados');
-            $table->foreignId('cliente_id')->constrained('clientes');
-            $table->foreignId('contrato_id')->constrained('contratos');
+            $table->foreignId('nota_estado_id')->nullable()->constrained('nota_estados');
+            $table->foreignId('cliente_id')->nullable()->constrained('clientes');
+            $table->foreignId('contrato_id')->nullable()->constrained('contratos');
 
             $table->softDeletes();
             $table->timestamps();
