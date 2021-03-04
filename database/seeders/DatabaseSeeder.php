@@ -28,6 +28,10 @@ class DatabaseSeeder extends Seeder
             ExpedicaoEstadoSeeder::class,
             ExpedicaoTipoSeeder::class,
             NotaEspelhoEstadoSeeder::class,
+            ClienteSeeder::class,
+            ContatoSeeder::class,
+            EnderecoSeeder::class,
+            PatrimonioSeeder::class,
         ]);
     }
 }

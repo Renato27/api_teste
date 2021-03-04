@@ -5,9 +5,11 @@ namespace App\Providers;
 use App\Events\ClienteEvent;
 use App\Events\Entrega as EventsEntrega;
 use App\Events\EntregaPatrimonio;
+use App\Events\GenericChamadoEvent;
 use App\Events\NotaEspelhoPatrimonioEvent;
 use App\Events\PedidoItem;
 use App\Listeners\CreateNotaEspelhoPatrimonio;
+use App\Listeners\GenericChamadoEventRelationShips;
 use App\Listeners\RelationShipsClienteCadastro;
 use App\Listeners\RelationShipsEntrega;
 use App\Listeners\RelationShipsPedidoItem;
@@ -48,6 +50,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         NotaEspelhoPatrimonioEvent::class => [
             CreateNotaEspelhoPatrimonio::class,
+        ],
+        GenericChamadoEvent::class => [
+            GenericChamadoEventRelationShips::class,
         ]
     ];
 

@@ -2,14 +2,16 @@
 
 namespace App\Services\Chamado\GerarChamado\Abstracts;
 
-use App\Events\RetiradaEvent;
+use App\Events\GenericChamadoEvent;
+use App\Models\Auditoria\Auditoria;
 use App\Models\Chamado\Chamado;
+use App\Models\Corretiva\Corretiva;
+use App\Models\Preventiva\Preventiva;
 use App\Models\Retirada\Retirada;
-use App\Models\StatusChamado\StatusChamado;
+use App\Models\Suprimento\Suprimento;
 use App\Models\TipoChamado\TipoChamado;
 use App\Services\Chamado\GerarChamado\Base\GerarChamadoServiceBase;
-use Symfony\Component\HttpKernel\Exception\HttpException;
-use Throwable;
+
 
 abstract class GerarChamadoServiceAbstract extends GerarChamadoServiceBase
 {
@@ -41,10 +43,6 @@ abstract class GerarChamadoServiceAbstract extends GerarChamadoServiceBase
                  $this->gerarAuditoria($chamadoGerado);
                 break;
 
-            case TipoChamado::SUPORTE:
-                 $this->gerarSuporte($chamadoGerado);
-                break;
-
             case TipoChamado::TROCA:
                  $this->gerarTroca($chamadoGerado);
                 break;
@@ -54,8 +52,7 @@ abstract class GerarChamadoServiceAbstract extends GerarChamadoServiceBase
                 break;
 
             default:
-                $th = app(Throwable::class);
-                throw new HttpException(400,  $th->getMessage());
+                return $chamadoGerado;
                 break;
         }
 
@@ -66,30 +63,40 @@ abstract class GerarChamadoServiceAbstract extends GerarChamadoServiceBase
     {
         $retirada = Retirada::create(['chamado_id' => $chamado->id]);
 
-        foreach($this->dados['patrimonios'] as $patrimonio){
+        foreach($this->patrimonios as $patrimonio){
 
-            event(new RetiradaEvent($retirada, $patrimonio));
+            event(new GenericChamadoEvent($retirada, $patrimonio));
         }
     }
 
     private function gerarPreventiva(Chamado $chamado)
     {
+        $preventiva = Preventiva::create(['chamado_id' => $chamado->id]);
 
+        foreach($this->patrimonios as $patrimonio){
+
+            event(new GenericChamadoEvent($preventiva, $patrimonio));
+        }
     }
 
     private function gerarCorretiva(Chamado $chamado)
     {
+        $corretiva = Corretiva::create(['chamado_id' => $chamado->id]);
 
+        foreach($this->patrimonios as $patrimonio){
+
+            event(new GenericChamadoEvent($corretiva, $patrimonio));
+        }
     }
 
     private function gerarAuditoria(Chamado $chamado)
     {
+        $auditoria = Auditoria::create(['chamado_id' => $chamado->id]);
 
-    }
+        foreach($this->patrimonios as $patrimonio){
 
-    private function gerarSuporte(Chamado $chamado)
-    {
-
+            event(new GenericChamadoEvent($auditoria, $patrimonio));
+        }
     }
 
     private function gerarTroca(Chamado $chamado)
@@ -99,6 +106,11 @@ abstract class GerarChamadoServiceAbstract extends GerarChamadoServiceBase
 
     private function gerarSuprimento(Chamado $chamado)
     {
+        $suprimento = Suprimento::create(['chamado_id' => $chamado->id]);
 
+        foreach($this->patrimonios as $patrimonio){
+
+            event(new GenericChamadoEvent($suprimento, $patrimonio));
+        }
     }
 }

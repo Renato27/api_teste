@@ -24,6 +24,11 @@ class Retirada extends Model
 
     public function patrimonios()
     {
-        return $this->hasManyThrough(Patrimonio::class, RetiradaPatrimonio::class, 'retirada_id', 'id');
+        return $this->hasManyThrough(Patrimonio::class, RetiradaPatrimonio::class, 'retirada_id', 'id', 'id', 'patrimonio_id');
+    }
+
+    public function hasPatrimonios()
+    {
+        return $this->hasMany(RetiradaPatrimonio::class, 'retirada_id', 'id');
     }
 }

@@ -24,6 +24,13 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
     protected array $dados;
 
     /**
+     * Array de patrimônios.
+     *
+     * @var array|null
+     */
+    protected ?array $patrimonios;
+
+    /**
      * Repositório de ChamadoRepository.
      *
      * @var Chamado
@@ -39,6 +46,18 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
     public function setChamado(?Chamado $Chamado): GerarChamadoService
     {
         $this->Chamado = $Chamado;
+        return $this;
+    }
+
+     /**
+     * Seta os patrimônios para gerar o chamado.
+     *
+     * @param array|null $patrimonios
+     * @return GerarChamadoService
+     */
+    public function setPatrimonios(?array $patrimonios) : GerarChamadoService
+    {
+        $this->patrimonios = $patrimonios;
         return $this;
     }
 

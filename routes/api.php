@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ChamadoController;
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\ContatoController;
 use App\Http\Controllers\Api\ContratoController;
@@ -52,6 +53,7 @@ Route::group(['middleware' => ['api']], function () {
             'item_definidos'        => ItemDefinidoController::class,
             'tipo_patrimonios'      => TipoPatrimonioController::class,
             'dashboard_gestao'      => DashboardController::class,
+            'chamados'              => ChamadoController::class,
 
         ]);
         Route::post('logout', [AuthController::class, 'logout']);

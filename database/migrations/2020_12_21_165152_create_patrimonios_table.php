@@ -15,7 +15,7 @@ class CreatePatrimoniosTable extends Migration
     {
         Schema::create('patrimonios', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('numero_patrimonio')->unique();
+            $table->bigInteger('numero_patrimonio')->nullable();
             $table->string('numero_serie')->nullable();
             $table->foreignId('modelo_id')->nullable();
             $table->foreignId('tipo_patrimonio_id')->nullable();

@@ -32,24 +32,16 @@ class ChamadoObserver
      */
     public function created(Chamado $chamado)
     {
-        switch ($chamado->tipo_chamado_id){
-            case TipoChamado::ENTREGA:
-                    $expedicao = Expedicao::where('pedido_id', $chamado->pedido_id)->first();
-                    $expedicao->chamado_id = $chamado->id;
-                    $expedicao->expedicao_estado_id = ExpedicaoEstado::LIBERADO;
-                    $expedicao->save();
+        if(!is_null($chamado->pedido_id)){
+            $expedicao = Expedicao::where('pedido_id', $chamado->pedido_id)->first();
+            $expedicao->chamado_id = $chamado->id;
+            $expedicao->expedicao_estado_id = ExpedicaoEstado::LIBERADO;
+            $expedicao->save();
 
-                    $entrega = Entrega::where('expedicao_id', $expedicao->id)->first();
-                    $entrega->chamado_id = $chamado->id;
-                    $entrega->save();
-                break;
-
-            case TipoChamado::RETIRADA:
-
-                break;
+            $entrega = Entrega::where('expedicao_id', $expedicao->id)->first();
+            $entrega->chamado_id = $chamado->id;
+            $entrega->save();
         }
-
-
     }
 
     /**

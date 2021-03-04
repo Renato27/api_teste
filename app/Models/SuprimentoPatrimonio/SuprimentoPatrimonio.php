@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Models\PreventivaPatrimonio;
+namespace App\Models\SuprimentoPatrimonio;
 
 use App\Models\Patrimonio\Patrimonio;
-use App\Models\Preventiva\Preventiva;
+use App\Models\Suprimento\Suprimento;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PreventivaPatrimonio extends Model
+class SuprimentoPatrimonio extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $date = ['deleted_at'];
-    protected $fillable = ['preventiva_id', 'patrimonio_id'];
+    protected $fillable = ['suprimento_id', 'patrimonio_id'];
 
-    public function preventiva()
+    public function suprimento()
     {
-        return $this->belongsTo(Preventiva::class, 'preventiva_id');
+        return $this->belongsTo(Suprimento::class, 'suprimento_id');
     }
 
     public function patrimonio()

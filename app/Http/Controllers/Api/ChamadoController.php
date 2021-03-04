@@ -33,7 +33,9 @@ class ChamadoController extends Controller
     public function store(Request $request, GerarChamadoService $gerarChamadoService)
     {
         try {
-            $chamado = $gerarChamadoService->setDados($request->all())->handle();
+
+            $gerarChamadoService->setDados($request->all());
+            $chamado = $gerarChamadoService->setPatrimonios($request->patrimonios)->handle();
 
             return new ChamadoResource($chamado);
         } catch (\Throwable $th) {

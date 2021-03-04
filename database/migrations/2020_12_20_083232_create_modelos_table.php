@@ -16,6 +16,7 @@ class CreateModelosTable extends Migration
         Schema::create('modelos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
+            $table->foreignId('tipo_patrimonio_id')->nullable()->constrained('tipo_patrimonios');
 
             $table->timestamps();
             $table->softDeletes();
