@@ -58,8 +58,91 @@ abstract class AtualizarChamadoServiceAbstract extends AtualizarChamadoServiceBa
         return $chamado;
     }
 
-    private function getDados()
+    private function gerarRetirada(Chamado $chamado)
     {
+        $retirada = Retirada::where(['chamado_id' => $chamado->id]);
 
+        foreach($this->patrimonios as $patrimonio){
+
+            event(new GenericChamadoEvent($retirada, $patrimonio));
+        }
+    }
+
+    private function gerarPreventiva(Chamado $chamado)
+    {
+        $preventiva = Preventiva::create(['chamado_id' => $chamado->id]);
+
+        foreach($this->patrimonios as $patrimonio){
+
+            event(new GenericChamadoEvent($preventiva, $patrimonio));
+        }
+    }
+
+    private function gerarCorretiva(Chamado $chamado)
+    {
+        $corretiva = Corretiva::create([
+            'chamado_id' => $chamado->id,
+            'login_team_viewer' => $this->dados['login_team_viewer'],
+            'senha_team_viewer' => $this->dados['senha_team_viewer']
+        ]);
+
+        foreach($this->patrimonios as $patrimonio){
+
+            event(new GenericChamadoEvent($corretiva, $patrimonio));
+        }
+    }
+
+    private function gerarAuditoria(Chamado $chamado)
+    {
+        $auditoria = Auditoria::create(['chamado_id' => $chamado->id]);
+
+        foreach($this->patrimonios as $patrimonio){
+
+            event(new GenericChamadoEvent($auditoria, $patrimonio));
+        }
+    }
+
+    private function gerarTroca(Chamado $chamado)
+    {
+        $troca = Troca::create(['chamado_id' => $chamado->id]);
+
+        foreach($this->patrimonios as $patrimonio){
+
+            event(new TrocaEvent($troca, $patrimonio));
+        }
+
+        foreach($this->patrimoniosTrocar as $patrimonioTrocar){
+
+            event(new TrocaEvent($troca, null, $patrimonioTrocar));
+        }
+    }
+
+    private function gerarContador(Chamado $chamado)
+    {
+        $contador = Contador::create(['chamado_id' => $chamado->id]);
+
+        foreach($this->patrimonios as $patrimonio){
+
+            event(new GenericChamadoEvent($contador, $patrimonio));
+        }
+    }
+
+    private function gerarSuporte(Chamado $chamado)
+    {
+        Suporte::create([
+            'chamado_id' => $chamado->id,
+            'login_team_viewer' => $this->dados['login_team_viewer'],
+            'senha_team_viewer' => $this->dados['senha_team_viewer']
+        ]);
+    }
+
+    private function gerarSuprimento(Chamado $chamado)
+    {
+        $suprimento = Suprimento::create(['chamado_id' => $chamado->id]);
+
+        foreach($this->patrimonios as $patrimonio){
+
+            event(new GenericChamadoEvent($suprimento, $patrimonio));
+        }
     }
 }
