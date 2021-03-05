@@ -35,6 +35,7 @@ class ChamadoController extends Controller
         try {
 
             $gerarChamadoService->setDados($request->all());
+            $gerarChamadoService->setPatrimoniosTrocar($request->patrimonios_trocar);
             $chamado = $gerarChamadoService->setPatrimonios($request->patrimonios)->handle();
 
             return new ChamadoResource($chamado);

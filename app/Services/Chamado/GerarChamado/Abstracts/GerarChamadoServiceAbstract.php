@@ -3,6 +3,7 @@
 namespace App\Services\Chamado\GerarChamado\Abstracts;
 
 use App\Events\GenericChamadoEvent;
+use App\Events\TrocaEvent;
 use App\Models\Auditoria\Auditoria;
 use App\Models\Chamado\Chamado;
 use App\Models\Contador\Contador;
@@ -12,6 +13,7 @@ use App\Models\Retirada\Retirada;
 use App\Models\Suporte\Suporte;
 use App\Models\Suprimento\Suprimento;
 use App\Models\TipoChamado\TipoChamado;
+use App\Models\Troca\Troca;
 use App\Services\Chamado\GerarChamado\Base\GerarChamadoServiceBase;
 
 
@@ -40,6 +42,7 @@ abstract class GerarChamadoServiceAbstract extends GerarChamadoServiceBase
             case TipoChamado::CORRETIVA:
                  $this->gerarCorretiva($chamadoGerado);
                 break;
+
             case TipoChamado::SUPORTE:
                  $this->gerarSuporte($chamadoGerado);
                 break;
@@ -114,12 +117,27 @@ abstract class GerarChamadoServiceAbstract extends GerarChamadoServiceBase
 
     private function gerarTroca(Chamado $chamado)
     {
+        $troca = Troca::create(['chamado_id' => $chamado->id]);
 
+        foreach($this->patrimonios as $patrimonio){
+
+            event(new TrocaEvent($troca, $patrimonio));
+        }
+
+        foreach($this->patrimoniosTrocar as $patrimonioTrocar){
+
+            event(new TrocaEvent($troca, null, $patrimonioTrocar));
+        }
     }
 
     private function gerarContador(Chamado $chamado)
     {
         $contador = Contador::create(['chamado_id' => $chamado->id]);
+
+        foreach($this->patrimonios as $patrimonio){
+
+            event(new GenericChamadoEvent($contador, $patrimonio));
+        }
     }
 
     private function gerarSuporte(Chamado $chamado)

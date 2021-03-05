@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Models\TrocaPatrimonio;
+namespace App\Models\TrocaPatrimonioRetirada;
 
-use App\Models\Patrimonio\Patrimonio;
-use App\Models\Troca\Troca;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class TrocaPatrimonio extends Model
+class TrocaPatrimonioRetirada extends Model
 {
     use HasFactory, SoftDeletes;
 

@@ -2,12 +2,17 @@
 
 namespace App\Models\Chamado;
 
+use App\Models\Auditoria\Auditoria;
+use App\Models\Contador\Contador;
 use App\Models\Contato\Contato;
+use App\Models\Corretiva\Corretiva;
 use App\Models\Endereco\Endereco;
 use App\Models\Entrega\Entrega;
 use App\Models\Pedido\Pedido;
+use App\Models\Preventiva\Preventiva;
 use App\Models\Retirada\Retirada;
 use App\Models\StatusChamado\StatusChamado;
+use App\Models\Suporte\Suporte;
 use App\Models\TipoChamado\TipoChamado;
 use App\Models\Usuario\Usuario;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -60,5 +65,35 @@ class Chamado extends Model
     public function retirada()
     {
         return $this->hasOne(Retirada::class, 'chamado_id', 'id');
+    }
+
+    public function troca()
+    {
+        return $this->hasOne(Troca::class, 'chamado_id', 'id');
+    }
+
+    public function corretiva()
+    {
+        return $this->hasOne(Corretiva::class, 'chamado_id', 'id');
+    }
+
+    public function preventiva()
+    {
+        return $this->hasOne(Preventiva::class, 'chamado_id', 'id');
+    }
+
+    public function auditoria()
+    {
+        return $this->hasOne(Auditoria::class, 'chamado_id', 'id');
+    }
+
+    public function suporte()
+    {
+        return $this->hasOne(Suporte::class, 'chamado_id', 'id');
+    }
+
+    public function contador()
+    {
+        return $this->hasOne(Contador::class, 'chamado_id', 'id');
     }
 }

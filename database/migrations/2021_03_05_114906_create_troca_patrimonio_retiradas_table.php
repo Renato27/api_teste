@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTrocaPatrimoniosTable extends Migration
+class CreateTrocaPatrimonioRetiradasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTrocaPatrimoniosTable extends Migration
      */
     public function up()
     {
-        Schema::create('troca_patrimonios', function (Blueprint $table) {
+        Schema::create('troca_patrimonio_retiradas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('troca_id')->nullable()->constrained('trocas');
             $table->foreignId('patrimonio_id')->nullable()->constrained('patrimonios');
@@ -32,6 +32,6 @@ class CreateTrocaPatrimoniosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('troca_patrimonios');
+        Schema::dropIfExists('troca_patrimonio_retiradas');
     }
 }

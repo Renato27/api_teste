@@ -8,16 +8,22 @@ use App\Events\EntregaPatrimonio;
 use App\Events\GenericChamadoEvent;
 use App\Events\NotaEspelhoPatrimonioEvent;
 use App\Events\PedidoItem;
+use App\Events\TrocaEvent;
 use App\Listeners\CreateNotaEspelhoPatrimonio;
 use App\Listeners\GenericChamadoEventRelationShips;
 use App\Listeners\RelationShipsClienteCadastro;
 use App\Listeners\RelationShipsEntrega;
 use App\Listeners\RelationShipsPedidoItem;
+use App\Listeners\RelationShipsTroca;
 use App\Listeners\UpdateEntregaPatrimonio;
+use App\Models\Chamado\Chamado;
 use App\Models\Entrega\Entrega;
 use App\Models\Pedido\Pedido;
+use App\Models\Troca\Troca;
+use App\Observers\ChamadoObserver;
 use App\Observers\EntregaObserver;
 use App\Observers\PedidoObserver;
+use App\Observers\TrocaObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -53,7 +59,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         GenericChamadoEvent::class => [
             GenericChamadoEventRelationShips::class,
-        ]
+        ],
+        TrocaEvent::class => [
+            RelationShipsTroca::class,
+        ],
     ];
 
     /**
@@ -65,5 +74,7 @@ class EventServiceProvider extends ServiceProvider
     {
         Pedido::observe(PedidoObserver::class);
         Entrega::observe(EntregaObserver::class);
+        Chamado::observe(ChamadoObserver::class);
+        Troca::observe(TrocaObserver::class);
     }
 }

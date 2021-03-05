@@ -23,13 +23,13 @@ interface AberturaContadorRepository
      * @return Model|null
      */
     public function getAberturaContadors(int $id, int $associacao): ?Collection;
-    
+
     /**
      * Cria um novo AberturaContador
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createAberturaContador(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface AberturaContadorRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateAberturaContador(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,13 @@ interface AberturaContadorRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteAberturaContador(int $id): bool;
+
+    /**
+     * Retorna os chamados de contador que devem ser abertos hoje.
+     *
+     * @return array
+     */
+    public function getAberturasContadorDoDia() : array;
 }

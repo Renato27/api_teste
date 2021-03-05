@@ -34,6 +34,18 @@ class PatrimonioAlugadoRepositoryImplementation implements PatrimonioAlugadoRepo
         return $this->where(['contrato_id' => $contrato])->get();
     }
 
+    /**
+     * Retorna uma model de PatrimonioAlugado baseado em uma associação.
+     *
+     * @param integer $id
+     * @param integer $segundo_recurso
+     * @return Model|null
+     */
+    public function getPatrimonioAlugadoByPatrimonio(int $patrimonio): ?Model
+    {
+        return $this->where(['patrimonio_id' => $patrimonio])->first();
+    }
+
       /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *

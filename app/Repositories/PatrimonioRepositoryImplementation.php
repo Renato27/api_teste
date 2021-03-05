@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Repositories\Contracts\PatrimonioRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -69,6 +70,38 @@ class PatrimonioRepositoryImplementation implements PatrimonioRepository
         $retorno = $this->delete($id);
 
         if(!$retorno) return false;
+
+        return true;
+    }
+
+    /**
+     * Seta um patrimônio como disponível
+     *
+     * @param Model $model
+     * @return boolean
+     */
+    public function setDisponivel(Model $model): bool
+    {
+        $model->estado_patrimonio_id = EstadoPatrimonio::DISPONIVEL;
+        $model->save();
+
+        if($model->estado_patrimonio_id != EstadoPatrimonio::DISPONIVEL) return false;
+
+        return true;
+    }
+
+    /**
+     * Seta um patrimônio como disponível
+     *
+     * @param Model $model
+     * @return boolean
+     */
+    public function setAlugado(Model $model): bool
+    {
+        $model->estado_patrimonio_id = EstadoPatrimonio::Alugado;
+        $model->save();
+
+        if($model->estado_patrimonio_id != EstadoPatrimonio::Alugado) return false;
 
         return true;
     }

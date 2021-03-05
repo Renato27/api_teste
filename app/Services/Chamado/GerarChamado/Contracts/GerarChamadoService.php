@@ -32,6 +32,14 @@ interface GerarChamadoService
     public function setPatrimonios(?array $patrimonios) : GerarChamadoService;
 
     /**
+     * Seta os patrimônios para gerar o chamado de troca.
+     *
+     * @param array|null $patrimonios
+     * @return GerarChamadoService
+     */
+    public function setPatrimoniosTrocar(?array $patrimoniosTrocar) : GerarChamadoService;
+
+    /**
      * Seta o repositório de ChamadoRepository.
      *
      * @param ChamadoRepository $ChamadoRepository

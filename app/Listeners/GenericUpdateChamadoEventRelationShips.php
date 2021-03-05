@@ -2,29 +2,26 @@
 
 namespace App\Listeners;
 
-use App\Events\GenericChamadoEvent;
-use App\Models\Auditoria\Auditoria;
-use App\Models\AuditoriaPatrimonio\AuditoriaPatrimonio;
 use App\Models\Contador\Contador;
-use App\Models\ContadorPatrimonios\ContadorPatrimonios;
+use App\Models\Retirada\Retirada;
+use App\Models\Auditoria\Auditoria;
 use App\Models\Corretiva\Corretiva;
-use App\Models\CorretivaPatrimonio\CorretivaPatrimonio;
-use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Models\Patrimonio\Patrimonio;
 use App\Models\Preventiva\Preventiva;
-use App\Models\PreventivaPatrimonio\PreventivaPatrimonio;
-use App\Models\Retirada\Retirada;
-use App\Models\RetiradaPatrimonio\RetiradaPatrimonio;
 use App\Models\Suprimento\Suprimento;
-use App\Models\SuprimentoPatrimonio\SuprimentoPatrimonio;
-use App\Models\Troca\Troca;
-use App\Models\TrocaPatrimonio\TrocaPatrimonio;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use App\Events\GenericUpdateChamadoEvent;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Models\EstadoPatrimonio\EstadoPatrimonio;
+use App\Models\RetiradaPatrimonio\RetiradaPatrimonio;
+use App\Models\AuditoriaPatrimonio\AuditoriaPatrimonio;
+use App\Models\ContadorPatrimonios\ContadorPatrimonios;
+use App\Models\CorretivaPatrimonio\CorretivaPatrimonio;
+use App\Models\PreventivaPatrimonio\PreventivaPatrimonio;
+use App\Models\SuprimentoPatrimonio\SuprimentoPatrimonio;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Throwable;
 
-class GenericChamadoEventRelationShips
+class GenericUpdateChamadoEventRelationShips
 {
     /**
      * Create the event listener.
@@ -39,18 +36,23 @@ class GenericChamadoEventRelationShips
     /**
      * Handle the event.
      *
-     * @param  GenericChamadoEvent  $event
+     * @param  GenericUpdateChamadoEvent  $event
      * @return void
      */
-    public function handle(GenericChamadoEvent $event)
+    public function handle(GenericUpdateChamadoEvent $event)
     {
-
         if($event->getModel() instanceof Retirada){
 
-            RetiradaPatrimonio::create([
+            $retirada_patrimonio = RetiradaPatrimonio::where([
                 "retirada_id" => $event->getModel()->id,
-                "patrimonio_id" => $event->getPatrimonioId()
-            ]);
+                "patrimonio_id" => $event->getPatrimonioRetirarId()
+            ])->first();
+
+            $patrimonio = Patrimonio::find($event->getPatrimonioRetirarId());
+            $patrimonio->estado_patrimonio_id = EstadoPatrimonio::Alugado;
+            $patrimonio->save();
+
+            $retirada_patrimonio->delete();
 
             $patrimonio = Patrimonio::find($event->getPatrimonioId());
             $patrimonio->estado_patrimonio_id = EstadoPatrimonio::MARCADO_RETIRADA;
@@ -93,7 +95,7 @@ class GenericChamadoEventRelationShips
 
         }else{
 
-            throw new HttpException(400,  'Não foi encontrato o tipo de chamado');
+            throw new HttpException(400,  'Não foi possível encontrato o tipo de chamado');
         }
     }
 }

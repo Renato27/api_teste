@@ -79,6 +79,15 @@ interface PatrimonioAlugadoRepository
     public function getPatrimonioAlugadosByEndereco(int $endereco): ?Collection;
 
     /**
+     * Retorna uma model de PatrimonioAlugado baseado em uma associação.
+     *
+     * @param integer $id
+     * @param integer $segundo_recurso
+     * @return Model|null
+     */
+    public function getPatrimonioAlugadoByPatrimonio(int $patrimonio): ?Model;
+
+    /**
      * Cria um novo PatrimonioAlugado
      *
      * @param array $detalhes

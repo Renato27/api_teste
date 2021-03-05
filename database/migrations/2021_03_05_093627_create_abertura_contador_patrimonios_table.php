@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAberturaContadorsTable extends Migration
+class CreateAberturaContadorPatrimoniosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateAberturaContadorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('abertura_contadors', function (Blueprint $table) {
+        Schema::create('abertura_contador_patrimonios', function (Blueprint $table) {
             $table->id();
-            $table->integer('dia_abertura')->nullable();
-            $table->foreignId('contato_id')->nullable()->constrained('contatos');
-            $table->foreignId('endereco_id')->nullable()->constrained('enderecos');
+            $table->foreignId('abertura_contador_id')->nullable();
+            $table->foreignId('patrimonio_id')->nullable()->constrained('patrimonios');
+
+            $table->foreign('abertura_contador_id')->references('id')->on('abertura_contadors');
 
             $table->timestamps();
             $table->softDeletes();
@@ -31,6 +32,6 @@ class CreateAberturaContadorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('abertura_contadors');
+        Schema::dropIfExists('abertura_contador_patrimonios');
     }
 }

@@ -7,16 +7,25 @@ use App\Models\EntregaPatrimonio\EntregaPatrimonio;
 use App\Models\Patrimonio\Patrimonio;
 use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Contracts\GerarPatrimonioAlugadoService;
 use App\Models\PatrimonioAlugado\PatrimonioAlugado;
+use App\Models\TrocaPatrimonioRetirada\TrocaPatrimonioRetirada;
 use App\Repositories\Contracts\PatrimonioAlugadoRepository;
+use Illuminate\Database\Eloquent\Model;
 
 abstract class GerarPatrimonioAlugadoServiceBase implements GerarPatrimonioAlugadoService
 {
     /**
      * Model de EntregaPatrimonio.
      *
-     * @var EntregaPatrimonio|null
+     * @var Model|null
      */
-    protected ?EntregaPatrimonio $entregaPatrimonio;
+    protected ?Model $model;
+
+    /**
+     * Model de EntregaPatrimonio.
+     *
+     * @var TrocaPatrimonioRetirada|null
+     */
+    protected ?TrocaPatrimonioRetirada $trocaPatrimonioRetirada;
 
     /**
      * Array de dados.
@@ -42,12 +51,24 @@ abstract class GerarPatrimonioAlugadoServiceBase implements GerarPatrimonioAluga
    /**
      * Seta a model de PatrimonioAlugado.
      *
-     * @param EntregaPatrimonio|null
+     * @param Model|null
      * @return GerarPatrimonioAlugadoService
      */
-    public function setEntregaPatrimonio(?EntregaPatrimonio $entregaPatrimonio = null): GerarPatrimonioAlugadoService
+    public function setEntregaPatrimonio(?Model $model = null): GerarPatrimonioAlugadoService
     {
-        $this->entregaPatrimonio = $entregaPatrimonio;
+        $this->model = $model;
+        return $this;
+    }
+
+    /**
+     * Seta uma model.
+     *
+     * @param TrocaPatrimonioRetirada|null $model
+     * @return GerarPatrimonioAlugadoService
+     */
+    public function setPatrimonioRetirada(?TrocaPatrimonioRetirada $trocaPatrimonioRetirada = null): GerarPatrimonioAlugadoService
+    {
+        $this->trocaPatrimonioRetirada = $trocaPatrimonioRetirada;
         return $this;
     }
 

@@ -2,28 +2,13 @@
 
 namespace App\Observers;
 
-use App\Events\NotaEspelhoPatrimonioEvent;
-use App\Models\AberturaContador\AberturaContador;
 use App\Models\Chamado\Chamado;
-use App\Models\EntregaPatrimonio\EntregaPatrimonio;
 use App\Models\Entrega\Entrega;
-use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Models\ExpedicaoEstado\ExpedicaoEstado;
 use App\Models\Expedicao\Expedicao;
-use App\Models\NotaEspelhoEstado\NotaEspelhoEstado;
-use App\Models\Pedido\Pedido;
-use App\Models\Retirada\Retirada;
-use App\Models\RetiradaPatrimonio\RetiradaPatrimonio;
 use App\Models\StatusChamado\StatusChamado;
-use App\Models\StatusPedido\StatusPedido;
 use App\Models\TipoChamado\TipoChamado;
-use App\Repositories\Contracts\EntregaPatrimonioRepository;
-use App\Repositories\Contracts\ExpedicaoRepository;
-use App\Repositories\Contracts\PedidoRepository;
-use App\Repositories\Contracts\RetiradaPatrimonioRepository;
-use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Contracts\GerarPatrimonioAlugadoService;
-use Carbon\Carbon;
-use Carbon\CarbonImmutable;
+use App\Models\Troca\Troca;
 
 class ChamadoObserver
 {
@@ -35,7 +20,7 @@ class ChamadoObserver
      */
     public function created(Chamado $chamado)
     {
-        if(!is_null($chamado->pedido_id)){
+        if (!is_null($chamado->pedido_id)) {
             $expedicao = Expedicao::where('pedido_id', $chamado->pedido_id)->first();
             $expedicao->chamado_id = $chamado->id;
             $expedicao->expedicao_estado_id = ExpedicaoEstado::LIBERADO;
@@ -55,108 +40,25 @@ class ChamadoObserver
      */
     public function updated(Chamado $chamado)
     {
+        if ($chamado->status_chamado_id == StatusChamado::CANCELADO || $chamado->status_chamado_id == StatusChamado::ENCERRADO) {
 
-        $entregaPatrimonioRepository = app(EntregaPatrimonioRepository::class);
-        $retiradaPatrimonioRepository = app(RetiradaPatrimonioRepository::class);
-        $pedidoRepository = app(PedidoRepository::class);
-        $expedicaoRepository = app(ExpedicaoRepository::class);
-        $alugarPatrimonioService = app(GerarPatrimonioAlugadoService::class);
+            switch ($chamado->tipo_chamado_id) {
+                case TipoChamado::ENTREGA:
 
-        switch ($chamado->status_chamado_id) {
-            case StatusChamado::CANCELADO:
+                    $entrega = Entrega::where('chamado_id', $chamado->id)->first();
 
-                switch ($chamado->tipo_chamado_id) {
-                    case TipoChamado::ENTREGA:
+                    $entrega->delete();
 
-                        $expedicao = Expedicao::where('chamado_id', $chamado->id)->first();
-                        $expedicaoRepository->updateExpedicao($expedicao->id, ['expedicao_estado_id' => ExpedicaoEstado::CANCELADA]);
+                    break;
 
-                        $entrega = Entrega::where('chamado_id', $chamado->id)->first();
+                case TipoChamado::TROCA:
 
-                        $entregaPatrimonioRepository->setPatrimonioEntregaDisponivel($entrega->id);
+                    $troca = Troca::where('chamado_id', $chamado->id)->first();
 
-                        $entrega->delete();
+                    $troca->delete();
 
-                        $pedidoRepository->updatePedido($chamado->pedido_id, ['status_pedido_id' => StatusPedido::CANCELADO]);
-
-                        break;
-
-                    case TipoChamado::TROCA:
-
-                        $entrega = Entrega::where('chamado_id', $chamado->id)->first();
-                        $retirada = Retirada::where('chamado_id', $chamado->id)->first();
-
-                        $entregaPatrimonioRepository->setPatrimonioEntregaDisponivel($entrega->id);
-
-                        $retiradaPatrimonioRepository->setPatrimonioRetiradaAlugado($retirada->id);
-
-                        break;
-
-                    default:
-                        # code...
-                        break;
-                }
-
-                break;
-
-            case StatusChamado::ENCERRADO:
-
-                switch ($chamado->tipo_chamado_id) {
-                    case TipoChamado::ENTREGA:
-
-                        foreach($chamado->entrega->entrega_patrimonios as $entregaPatrimonio){
-
-                            $alugarPatrimonioService->setChamado($chamado);
-                            $aluguel = $alugarPatrimonioService->setEntregaPatrimonio($entregaPatrimonio)->handle();
-
-                            if($entregaPatrimonio->patrimonio->tipo_patrimonio_id == 11 || $entregaPatrimonio->patrimonio->tipo_patrimonio_id == 16){
-                                AberturaContador::create([
-                                    'dia_abertura' => CarbonImmutable::parse($aluguel->data_entrega)->format('d'),
-                                    'patrimonio_id' => $entregaPatrimonio->patrimonio_id,
-                                    'contato_id' => $chamado->contato_id
-                                ]);
-                            }
-
-                            event(new NotaEspelhoPatrimonioEvent($chamado->pedido->nota_espelho, $aluguel));
-                        }
-
-                        $chamado->pedido->nota_espelho->nota_espelho_estado_id = NotaEspelhoEstado::PENDENTE;
-                        $chamado->pedido->nota_espelho->save();
-
-                        break;
-
-                    case TipoChamado::TROCA:
-
-                        $entrega = Entrega::where('chamado_id', $chamado->id)->first();
-                        $retirada = Retirada::where('chamado_id', $chamado->id)->first();
-
-                        foreach($chamado->entrega->entrega_patrimonios as $entregaPatrimonio){
-
-                            $alugarPatrimonioService->setChamado($chamado);
-                            $aluguel = $alugarPatrimonioService->setEntregaPatrimonio($entregaPatrimonio)->handle();
-
-                        }
-
-                        $entregaPatrimonioRepository->setPatrimonioEntregaAlugado($entrega->id);
-
-                        $retiradaPatrimonioRepository->setPatrimonioRetiradaDisponivel($retirada->id);
-
-                        break;
-
-                    default:
-                            # code...
-                            break;
-                }
-
-                break;
-
-            case StatusChamado::FECHADO:
-
-                break;
-
-            default:
-                # code...
-                break;
+                    break;
+            }
         }
 
     }

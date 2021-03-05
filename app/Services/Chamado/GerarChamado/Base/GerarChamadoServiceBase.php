@@ -31,6 +31,13 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
     protected ?array $patrimonios;
 
     /**
+     * Array de patrimônios para trocar.
+     *
+     * @var array|null
+     */
+    protected ?array $patrimoniosTrocar;
+
+    /**
      * Repositório de ChamadoRepository.
      *
      * @var Chamado
@@ -62,6 +69,18 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
     }
 
     /**
+     * Seta os patrimônios para gerar o chamado de troca.
+     *
+     * @param array|null $patrimonios
+     * @return GerarChamadoService
+     */
+    public function setPatrimoniosTrocar(?array $patrimoniosTrocar) : GerarChamadoService
+    {
+        $this->patrimoniosTrocar = $patrimoniosTrocar;
+        return $this;
+    }
+
+    /**
      * Seta os dados para gerar o chamado.
      *
      * @param array $dados
@@ -79,8 +98,8 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
             'pedido_id'             => isset($dados['pedido_id']) ? $dados['pedido_id'] : null,
             'contato_id'            => $dados['contato_id'],
             'endereco_id'           => $dados['endereco_id'],
-            'login_team_viewer'     => $dados['login_team_viewer'],
-            'senha_team_viewer'     => $dados['senha_team_viewer']
+            'login_team_viewer'     => isset($dados['login_team_viewer']) ? $dados['login_team_viewer'] : null,
+            'senha_team_viewer'     => isset($dados['senha_team_viewer']) ? $dados['senha_team_viewer'] : null
         ];
 
         $this->dados = $dadosChamado;

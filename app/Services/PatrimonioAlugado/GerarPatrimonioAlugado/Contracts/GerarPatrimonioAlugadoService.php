@@ -5,17 +5,19 @@ namespace App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Contracts;
 use App\Models\Chamado\Chamado;
 use App\Models\EntregaPatrimonio\EntregaPatrimonio;
 use App\Models\PatrimonioAlugado\PatrimonioAlugado;
+use App\Models\TrocaPatrimonioRetirada\TrocaPatrimonioRetirada;
 use App\Repositories\Contracts\PatrimonioAlugadoRepository;
+use Illuminate\Database\Eloquent\Model;
 
 interface GerarPatrimonioAlugadoService
 {
     /**
-     * Seta a model de PatrimonioAlugado.
+     * Seta uma model.
      *
-     * @param PatrimonioAlugado|null
+     * @param Model|null
      * @return GerarPatrimonioAlugadoService
      */
-    public function setEntregaPatrimonio(?EntregaPatrimonio $entregaPatrimonio = null): GerarPatrimonioAlugadoService;
+    public function setEntregaPatrimonio(?Model $model = null): GerarPatrimonioAlugadoService;
 
     /**
      * Seta os dados para PatrimonioAlugado.
@@ -24,6 +26,14 @@ interface GerarPatrimonioAlugadoService
      * @return GerarPatrimonioAlugadoService;
      */
     public function setDados(?array $dados = null): GerarPatrimonioAlugadoService;
+
+    /**
+     * Seta uma model.
+     *
+     * @param TrocaPatrimonioRetirada|null $model
+     * @return GerarPatrimonioAlugadoService
+     */
+    public function setPatrimonioRetirada(?TrocaPatrimonioRetirada $trocaPatrimonioRetirada = null): GerarPatrimonioAlugadoService;
 
     /**
      * Seta a model de chamado.

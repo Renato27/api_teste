@@ -49,4 +49,20 @@ interface PatrimonioRepository
      * @return Model|null
      */
     public function deletePatrimonio(int $id): bool;
+
+    /**
+     * Seta um patrimônio como disponível
+     *
+     * @param Model $model
+     * @return boolean
+     */
+    public function setDisponivel(Model $model): bool;
+
+    /**
+     * Seta um patrimônio como disponível
+     *
+     * @param Model $model
+     * @return boolean
+     */
+    public function setAlugado(Model $model): bool;
 }

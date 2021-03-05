@@ -124,6 +124,11 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\FichaRepository::class, function ($app) {
             return new \App\Repositories\FichaRepositoryImplementation(new \App\Models\Ficha\Ficha());
         });
-
+        $this->app->bind(\App\Repositories\Contracts\AberturaContadorRepository::class, function ($app) {
+            return new \App\Repositories\AberturaContadorRepositoryImplementation(new \App\Models\AberturaContador\AberturaContador());
+        });
+        $this->app->bind(\App\Repositories\Contracts\AberturaContadorPatrimonioRepository::class, function ($app) {
+            return new \App\Repositories\AberturaContadorPatrimonioRepositoryImplementation(new \App\Models\AberturaContadorPatrimonio\AberturaContadorPatrimonio());
+        });
     }
 }
