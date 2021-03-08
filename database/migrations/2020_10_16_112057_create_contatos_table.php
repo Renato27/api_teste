@@ -19,7 +19,7 @@ class CreateContatosTable extends Migration
             $table->string('cargo')->nullable();
             $table->string('telefone')->nullable();
             $table->string('celular')->nullable();
-            $table->boolean('principal')->default(0);
+            $table->boolean('principal')->nullable()->default(0);
             $table->timestamps();
 
             $table->softDeletes();

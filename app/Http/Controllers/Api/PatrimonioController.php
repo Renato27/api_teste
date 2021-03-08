@@ -6,8 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ListaPatrimoniosResource;
 use App\Http\Resources\PatrimonioCollection;
 use App\Http\Resources\PatrimonioResource;
+use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Models\Patrimonio\Patrimonio;
+use App\Models\PatrimonioAlugado\PatrimonioAlugado;
+use App\Services\Patrimonio\CadastrarPatrimonio\Contracts\CadastrarPatrimonioService;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class PatrimonioController extends Controller
 {
@@ -22,7 +26,6 @@ class PatrimonioController extends Controller
 
         // $patrimonios->load('fabricante', 'aluguel', 'tipo_patrimonio', 'estado_patrimonio', 'modelo');
 
-
         return ListaPatrimoniosResource::collection($patrimonios);
     }
 
@@ -32,9 +35,15 @@ class PatrimonioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, CadastrarPatrimonioService $service)
     {
-        //
+        try {
+            $patrimonio = $service->setDados($request->all())->handle();
+
+            return new PatrimonioResource($patrimonio);
+        } catch (\Throwable $th) {
+            throw new HttpException(400, $th->getMessage());
+        }
     }
 
     /**
@@ -57,7 +66,25 @@ class PatrimonioController extends Controller
      */
     public function update(Request $request, Patrimonio $patrimonio)
     {
-        //
+        try {
+
+            if($patrimonio->estado_patrimonio_id == EstadoPatrimonio::Alugado){
+                $aluguel = PatrimonioAlugado::where('patrimonio_id', $patrimonio->id)->first();
+                $aluguel->fill($request->all());
+                $aluguel->save();
+
+                $patrimonio->fill($request->all());
+                $patrimonio->save();
+
+            }else{
+                $patrimonio->fill($request->all());
+                $patrimonio->save();
+            }
+
+            return new PatrimonioResource($patrimonio);
+        } catch (\Throwable $th) {
+            throw new HttpException(400, $th->getMessage());
+        }
     }
 
     /**

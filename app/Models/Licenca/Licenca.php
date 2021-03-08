@@ -23,6 +23,11 @@ class Licenca extends Model
 
     public function patrimonios()
     {
-        return $this->hasManyThrough(Patrimonio::class, LicencaPatrimonio::class, 'licenca_id', 'id');
+        return $this->hasManyThrough(Patrimonio::class, LicencaPatrimonio::class, 'licenca_id', 'id', 'id', 'patrimonio_id');
+    }
+
+    public function licenca_patrimonios()
+    {
+        return $this->hasMany(LicencaPatrimonio::class, 'licenca_id', 'id');
     }
 }

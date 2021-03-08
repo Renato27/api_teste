@@ -13,7 +13,7 @@ class LicencaPatrimonio extends Model
     use HasFactory, SoftDeletes;
 
     protected $date = ['deleted_at'];
-    protected $fillable = ['licenca_id', 'patrimonio_id'];
+    protected $fillable = ['host_name', 'licenca_id', 'patrimonio_id', 'retirar_licenca'];
 
     public function licenca()
     {

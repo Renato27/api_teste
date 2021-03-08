@@ -26,6 +26,7 @@ class PatrimonioResource extends JsonResource
             'fornecedor'                => new FornecedorResource($this->fornecedor),
             'estado_patrimonio'         => new EstadoPatrimonioResource($this->estado_patrimonio),
             'cliente'                   => !is_null($this->aluguel) ? new ClienteResource($this->aluguel->cliente) : null,
+            'fichas'                    => !is_null($this->fichas) ? FichaResource::collection($this->fichas) : null,
             'created_at'                => $this->created_at,
             'updated_at'                => $this->updated_at,
             'deleted_at'                => $this->deleted_at

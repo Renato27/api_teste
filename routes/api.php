@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\EnderecoController;
 use App\Http\Controllers\Api\FuncionarioController;
 use App\Http\Controllers\Api\ItemDefinidoController;
+use App\Http\Controllers\Api\LicencaController;
 use App\Http\Controllers\Api\PatrimonioController;
 use App\Http\Controllers\Api\PedidoController;
 use App\Http\Controllers\Api\SelecaoController;
@@ -54,6 +55,7 @@ Route::group(['middleware' => ['api']], function () {
             'tipo_patrimonios'      => TipoPatrimonioController::class,
             'dashboard_gestao'      => DashboardController::class,
             'chamados'              => ChamadoController::class,
+            'licencas'              => LicencaController::class,
 
         ]);
         Route::post('logout', [AuthController::class, 'logout']);

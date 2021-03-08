@@ -22,7 +22,7 @@ class CreateEnderecosTable extends Migration
             $table->string('cidade')->nullable();
             $table->string('estado')->nullable();
             $table->string('cep')->nullable();
-            $table->boolean('principal')->default(0);
+            $table->boolean('principal')->nullable()->default(0);
             $table->timestamps();
 
             $table->softDeletes();

@@ -5,6 +5,7 @@ namespace App\Models\Patrimonio;
 use App\Models\Compra\Compra;
 use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Models\Fabricante\Fabricante;
+use App\Models\Ficha\Ficha;
 use App\Models\Fornecedor\Fornecedor;
 use App\Models\Modelo\Modelo;
 use App\Models\PatrimonioAlugado\PatrimonioAlugado;
@@ -54,5 +55,10 @@ class Patrimonio extends Model
     public function aluguel()
     {
         return $this->hasOne(PatrimonioAlugado::class, 'patrimonio_id', 'id');
+    }
+
+    public function fichas()
+    {
+        return $this->hasMany(Ficha::class, 'patrimonio_id', 'id');
     }
 }

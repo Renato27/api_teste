@@ -209,6 +209,7 @@ return [
         App\Providers\Services\NotaEspelho\GerarNotaEspelhoServiceProvider::class,
         App\Providers\Services\Chamado\GerarChamadoServiceProvider::class,
         App\Providers\Services\PatrimonioAlugado\GerarPatrimonioAlugadoServiceProvider::class,
+        App\Providers\Services\Patrimonio\CadastrarPatrimonioServiceProvider::class,
 
     ],
 

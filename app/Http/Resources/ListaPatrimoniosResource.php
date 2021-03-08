@@ -14,7 +14,6 @@ class ListaPatrimoniosResource extends JsonResource
      */
     public function toArray($request)
     {
-
         return [
             'id'                    => $this->id,
             'numero_patrimonio'     => $this->numero_patrimonio,

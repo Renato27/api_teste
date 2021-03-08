@@ -130,5 +130,8 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\AberturaContadorPatrimonioRepository::class, function ($app) {
             return new \App\Repositories\AberturaContadorPatrimonioRepositoryImplementation(new \App\Models\AberturaContadorPatrimonio\AberturaContadorPatrimonio());
         });
+        $this->app->bind(\App\Repositories\Contracts\PatrimonioRepository::class, function ($app) {
+            return new \App\Repositories\PatrimonioRepositoryImplementation(new \App\Models\Patrimonio\Patrimonio());
+        });
     }
 }
