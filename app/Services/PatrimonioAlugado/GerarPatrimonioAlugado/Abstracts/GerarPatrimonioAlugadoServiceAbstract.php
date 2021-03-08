@@ -53,7 +53,6 @@ abstract class GerarPatrimonioAlugadoServiceAbstract extends GerarPatrimonioAlug
                 'chamado_id'        => $aluguelRetirar->chamado_id,
                 'endereco_id'       => $aluguelRetirar->endereco_id
             ];
-
         }
     }
 }

@@ -26,18 +26,18 @@ interface AtualizarChamadoService
     /**
      * Seta os patrimônios para adicionar no chamado.
      *
-     * @param array $patrimonio_adicionar
+     * @param integer $patrimonio_adicionar
      * @return AtualizarChamadoService
      */
-    public function setPatrimoniosAdicionar(array $patrimonio_adicionar): AtualizarChamadoService;
+    public function setPatrimoniosAdicionar(int $patrimonio_adicionar): AtualizarChamadoService;
 
     /**
      * Seta os patrimônios para retirar no chamado.
      *
-     * @param array $patrimonio_retirar
+     * @param integer $patrimonio_retirar
      * @return AtualizarChamadoService
      */
-    public function setPatrimoniosRetirar(array $patrimonio_retirar): AtualizarChamadoService;
+    public function setPatrimoniosRetirar(int $patrimonio_retirar): AtualizarChamadoService;
 
     /**
      * Seta os dados para adicionar uma interação no chamado de suporte.
@@ -46,6 +46,14 @@ interface AtualizarChamadoService
      * @return AtualizarChamadoService
      */
     public function setSuporteInteracoes(array $dadosInteracoes): AtualizarChamadoService;
+
+    /**
+     * Seta o valor para atualizar o contador.
+     *
+     * @param array $dadosContador
+     * @return AtualizarChamadoService
+     */
+    public function setContadorDados(array $dadosContador): AtualizarChamadoService;
 
     /**
      * Seta o repositório de ChamadoRepository.

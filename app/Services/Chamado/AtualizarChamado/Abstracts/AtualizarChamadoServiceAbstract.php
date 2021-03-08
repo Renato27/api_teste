@@ -2,8 +2,20 @@
 
 namespace App\Services\Chamado\AtualizarChamado\Abstracts;
 
+use App\Models\Troca\Troca;
 use App\Models\Chamado\Chamado;
+use App\Models\Suporte\Suporte;
+use App\Models\Contador\Contador;
+use App\Models\Retirada\Retirada;
+use App\Models\Auditoria\Auditoria;
+use App\Models\Corretiva\Corretiva;
+use App\Models\Preventiva\Preventiva;
+use App\Models\Suprimento\Suprimento;
 use App\Models\TipoChamado\TipoChamado;
+use App\Events\GenericUpdateChamadoEvent;
+use App\Models\ContadorPatrimonios\ContadorPatrimonios;
+use App\Models\Entrega\Entrega;
+use App\Models\SuporteInteracao\SuporteInteracao;
 use App\Services\Chamado\AtualizarChamado\Base\AtualizarChamadoServiceBase;
 
 abstract class AtualizarChamadoServiceAbstract extends AtualizarChamadoServiceBase
@@ -11,138 +23,130 @@ abstract class AtualizarChamadoServiceAbstract extends AtualizarChamadoServiceBa
     /**
      * Implementação do código.
      *
-     * @return boolean
+     * @return Chamado|null
      */
     protected function AtualizarChamado() : ?Chamado
     {
         $chamado = $this->ChamadoRepository->updateChamado($this->Chamado->id, $this->dados);
 
+        if(is_null($this->patrimonio_retirar) && is_null($this->patrimonio_adicionar) && is_null($this->dadosInteracoes)) return $chamado;
+
         switch ($this->Chamado->tipo_chamado_id) {
             case TipoChamado::RETIRADA:
-                 $this->gerarRetirada($this->Chamado);
+                 $this->atualizarRetirada($this->Chamado);
                 break;
 
             case TipoChamado::PREVENTIVA:
-                 $this->gerarPreventiva($this->Chamado);
+                 $this->atualizarPreventiva($this->Chamado);
                 break;
 
             case TipoChamado::CORRETIVA:
-                 $this->gerarCorretiva($this->Chamado);
+                 $this->atualizarCorretiva($this->Chamado);
                 break;
 
             case TipoChamado::SUPORTE:
-                 $this->gerarSuporte($this->Chamado);
+                 $this->atualizarSuporte($this->Chamado);
                 break;
 
             case TipoChamado::AUDITORIA:
-                 $this->gerarAuditoria($this->Chamado);
+                 $this->atualizarAuditoria($this->Chamado);
                 break;
 
             case TipoChamado::CONTADOR:
-                 $this->gerarContador($this->Chamado);
+                 $this->atualizarContador($this->Chamado);
                 break;
 
             case TipoChamado::TROCA:
-                 $this->gerarTroca($this->Chamado);
+                 $this->atualizarTroca($this->Chamado);
                 break;
 
             case TipoChamado::SUPRIMENTO:
-                 $this->gerarSuprimento($this->Chamado);
+                 $this->atualizarSuprimento($this->Chamado);
+                break;
+
+            case TipoChamado::ENTREGA:
+                 $this->atualizarEntrega($this->Chamado);
                 break;
 
             default:
-                return $this->Chamado;
+                return $chamado;
                 break;
         }
 
         return $chamado;
     }
 
-    private function gerarRetirada(Chamado $chamado)
+    private function atualizarRetirada(Chamado $chamado)
     {
-        $retirada = Retirada::where(['chamado_id' => $chamado->id]);
+        $entrega = Retirada::where(['chamado_id' => $chamado->id])->first();
 
-        foreach($this->patrimonios as $patrimonio){
+        event(new GenericUpdateChamadoEvent($entrega, $this->patrimonio_adicionar, $this->patrimonio_retirar));
 
-            event(new GenericChamadoEvent($retirada, $patrimonio));
-        }
     }
 
-    private function gerarPreventiva(Chamado $chamado)
+    private function atualizarEntrega(Chamado $chamado)
     {
-        $preventiva = Preventiva::create(['chamado_id' => $chamado->id]);
+        $retirada = Entrega::where(['chamado_id' => $chamado->id])->first();
 
-        foreach($this->patrimonios as $patrimonio){
+        event(new GenericUpdateChamadoEvent($retirada, $this->patrimonio_adicionar, $this->patrimonio_retirar));
 
-            event(new GenericChamadoEvent($preventiva, $patrimonio));
-        }
     }
 
-    private function gerarCorretiva(Chamado $chamado)
+    private function atualizarPreventiva(Chamado $chamado)
     {
-        $corretiva = Corretiva::create([
-            'chamado_id' => $chamado->id,
-            'login_team_viewer' => $this->dados['login_team_viewer'],
-            'senha_team_viewer' => $this->dados['senha_team_viewer']
-        ]);
+        $preventiva = Preventiva::where(['chamado_id' => $chamado->id])->first();
 
-        foreach($this->patrimonios as $patrimonio){
-
-            event(new GenericChamadoEvent($corretiva, $patrimonio));
-        }
+        event(new GenericUpdateChamadoEvent($preventiva, $this->patrimonio_adicionar, $this->patrimonio_retirar));
     }
 
-    private function gerarAuditoria(Chamado $chamado)
+    private function atualizarCorretiva(Chamado $chamado)
     {
-        $auditoria = Auditoria::create(['chamado_id' => $chamado->id]);
+        $corretiva = Corretiva::where(['chamado_id' => $chamado->id,])->first();
 
-        foreach($this->patrimonios as $patrimonio){
-
-            event(new GenericChamadoEvent($auditoria, $patrimonio));
-        }
+        event(new GenericUpdateChamadoEvent($corretiva, $this->patrimonio_adicionar, $this->patrimonio_retirar));
     }
 
-    private function gerarTroca(Chamado $chamado)
+    private function atualizarAuditoria(Chamado $chamado)
     {
-        $troca = Troca::create(['chamado_id' => $chamado->id]);
+        $auditoria = Auditoria::where(['chamado_id' => $chamado->id])->first();
 
-        foreach($this->patrimonios as $patrimonio){
-
-            event(new TrocaEvent($troca, $patrimonio));
-        }
-
-        foreach($this->patrimoniosTrocar as $patrimonioTrocar){
-
-            event(new TrocaEvent($troca, null, $patrimonioTrocar));
-        }
+        event(new GenericUpdateChamadoEvent($auditoria, $this->patrimonio_adicionar, $this->patrimonio_retirar));
     }
 
-    private function gerarContador(Chamado $chamado)
+    private function atualizarTroca(Chamado $chamado)
     {
-        $contador = Contador::create(['chamado_id' => $chamado->id]);
+        $troca = Troca::where(['chamado_id' => $chamado->id])->first();
 
-        foreach($this->patrimonios as $patrimonio){
-
-            event(new GenericChamadoEvent($contador, $patrimonio));
-        }
+        event(new GenericUpdateChamadoEvent($troca, $this->patrimonio_adicionar, $this->patrimonio_retirar));
     }
 
-    private function gerarSuporte(Chamado $chamado)
+    private function atualizarContador(Chamado $chamado)
     {
-        Suporte::create([
-            'chamado_id' => $chamado->id,
-            'login_team_viewer' => $this->dados['login_team_viewer'],
-            'senha_team_viewer' => $this->dados['senha_team_viewer']
+        $contador = Contador::where(['chamado_id' => $chamado->id])->first();
+
+        $contador_patrimonio = ContadorPatrimonios::where(['contador_id' => $contador->id, 'patrimonio_id' => $this->dadosContador['patrimonio_id']])->first();
+
+        $contador_patrimonio->contador = $this->dadosContador['novo_contador'];
+        $contador_patrimonio->save();
+    }
+
+    private function atualizarSuporte(Chamado $chamado)
+    {
+        $suporte = Suporte::where(['chamado_id' => $chamado->id]);
+
+        SuporteInteracao::create([
+            "inicio"        => $this->dadosInteracoes['inicio'],
+            "fim"           => $this->dadosInteracoes['fim'],
+            "detalhes"      => $this->dadosInteracoes['detalhes'],
+            "suporte_id"    => $suporte->id,
+            "usuario_id"    => $this->dadosInteracoes['usuario_id']
         ]);
     }
 
-    private function gerarSuprimento(Chamado $chamado)
+    private function atualizarSuprimento(Chamado $chamado)
     {
-        $suprimento = Suprimento::create(['chamado_id' => $chamado->id]);
+        $suprimento = Suprimento::where(['chamado_id' => $chamado->id]);
 
-        foreach($this->patrimonios as $patrimonio){
-
-            event(new GenericChamadoEvent($suprimento, $patrimonio));
-        }
+        event(new GenericUpdateChamadoEvent($suprimento, $this->patrimonio_adicionar, $this->patrimonio_retirar));
     }
 }

@@ -25,16 +25,16 @@ abstract class AtualizarChamadoServiceBase implements AtualizarChamadoService
     /**
      * Array de patrimônios
      *
-     * @var array
+     * @var integer
      */
-    protected array $patrimonio_adicionar;
+    protected int $patrimonio_adicionar;
 
     /**
      * Array de patrimônios
      *
-     * @var array
+     * @var integer
      */
-    protected array $patrimonio_retirar;
+    protected int $patrimonio_retirar;
 
     /**
      * dados para gerar uma interação.
@@ -42,6 +42,13 @@ abstract class AtualizarChamadoServiceBase implements AtualizarChamadoService
      * @var array
      */
     protected array $dadosInteracoes;
+
+    /**
+     * dados do contador.
+     *
+     * @var array
+     */
+    protected array $dadosContador;
 
     /**
      * Repositório de ChamadoRepository.
@@ -87,10 +94,10 @@ abstract class AtualizarChamadoServiceBase implements AtualizarChamadoService
     /**
      * Seta os patrimônios para adicionar no chamado.
      *
-     * @param array $patrimonio_adicionar
+     * @param integer $patrimonio_adicionar
      * @return AtualizarChamadoService
      */
-    public function setPatrimoniosAdicionar(array $patrimonio_adicionar): AtualizarChamadoService
+    public function setPatrimoniosAdicionar(int $patrimonio_adicionar): AtualizarChamadoService
     {
         $this->patrimonio_adicionar = $patrimonio_adicionar;
         return $this;
@@ -99,10 +106,10 @@ abstract class AtualizarChamadoServiceBase implements AtualizarChamadoService
     /**
      * Seta os patrimônios para retirar no chamado.
      *
-     * @param array $patrimonio_retirar
+     * @param integer $patrimonio_retirar
      * @return AtualizarChamadoService
      */
-    public function setPatrimoniosRetirar(array $patrimonio_retirar): AtualizarChamadoService
+    public function setPatrimoniosRetirar(int $patrimonio_retirar): AtualizarChamadoService
     {
         $this->patrimonio_retirar = $patrimonio_retirar;
         return $this;
@@ -124,6 +131,24 @@ abstract class AtualizarChamadoServiceBase implements AtualizarChamadoService
         ];
 
         $this->dadosInteracoes = $dados;
+        return $this;
+    }
+
+    /**
+     * Seta o valor para atualizar o contador.
+     *
+     * @param array $dadosContador
+     * @return AtualizarChamadoService
+     */
+    public function setContadorDados(array $dadosContador): AtualizarChamadoService
+    {
+        $dadosCo = [
+            'patrimonio_id' => $dadosContador['patrimonio_id'],
+            'novo_contador' => $dadosContador['novo_contador']
+        ];
+
+        $this->dadosContador = $dadosCo;
+
         return $this;
     }
 

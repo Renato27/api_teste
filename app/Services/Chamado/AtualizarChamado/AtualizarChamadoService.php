@@ -11,7 +11,7 @@ class AtualizarChamadoService extends AtualizarChamadoServiceAbstract
     /**
      * Processa os dados
      *
-     * @return boolean
+     * @return Chamado|null
      */
     public function handle(): ?Chamado
     {

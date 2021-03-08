@@ -17,6 +17,8 @@ use App\Models\RetiradaPatrimonio\RetiradaPatrimonio;
 use App\Models\AuditoriaPatrimonio\AuditoriaPatrimonio;
 use App\Models\ContadorPatrimonios\ContadorPatrimonios;
 use App\Models\CorretivaPatrimonio\CorretivaPatrimonio;
+use App\Models\Entrega\Entrega;
+use App\Models\EntregaPatrimonio\EntregaPatrimonio;
 use App\Models\PreventivaPatrimonio\PreventivaPatrimonio;
 use App\Models\SuprimentoPatrimonio\SuprimentoPatrimonio;
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -54,44 +56,89 @@ class GenericUpdateChamadoEventRelationShips
 
             $retirada_patrimonio->delete();
 
-            $patrimonio = Patrimonio::find($event->getPatrimonioId());
+            RetiradaPatrimonio::create([
+                "retirada_id" => $event->getModel()->id,
+                "patrimonio_id" => $event->getPatrimonioAdicionarId()
+            ]);
+
+            $patrimonio = Patrimonio::find($event->getPatrimonioAdicionarId());
             $patrimonio->estado_patrimonio_id = EstadoPatrimonio::MARCADO_RETIRADA;
             $patrimonio->save();
 
+        }else if($event->getModel() instanceof Entrega){
 
+            $entrega_patrimonio = EntregaPatrimonio::where([
+                "entrega_id" => $event->getModel()->id,
+                "patrimonio_id" => $event->getPatrimonioRetirarId()
+            ])->first();
+
+            $patrimonio = Patrimonio::find($event->getPatrimonioRetirarId());
+            $patrimonio->estado_patrimonio_id = EstadoPatrimonio::DISPONIVEL;
+            $patrimonio->save();
+
+            $entrega_patrimonio->delete();
+
+            EntregaPatrimonio::create([
+                "entrega_id" => $event->getModel()->id,
+                "patrimonio_id" => $event->getPatrimonioAdicionarId()
+            ]);
+
+            $patrimonio = Patrimonio::find($event->getPatrimonioAdicionarId());
+            $patrimonio->estado_patrimonio_id = EstadoPatrimonio::MARCADO_ENTREGA;
+            $patrimonio->save();
 
         }else if($event->getModel() instanceof Preventiva){
+            $preventiva_patrimonio = PreventivaPatrimonio::where([
+                "preventiva_id" => $event->getModel()->id,
+                "patrimonio_id" => $event->getPatrimonioRetirarId()
+            ])->first();
+
+            $preventiva_patrimonio->delete();
+
             PreventivaPatrimonio::create([
                 "preventiva_id" => $event->getModel()->id,
-                "patrimonio_id" => $event->getPatrimonioId()
+                "patrimonio_id" => $event->getPatrimonioAdicionarId()
+            ]);
+
+        }else if($event->getModel() instanceof Corretiva){
+            $corretiva_patrimonio = CorretivaPatrimonio::where([
+                "corretiva_id" => $event->getModel()->id,
+                "patrimonio_id" => $event->getPatrimonioRetirarId()
+            ])->first();
+
+            $corretiva_patrimonio->delete();
+
+            CorretivaPatrimonio::create([
+                "corretiva_id" => $event->getModel()->id,
+                "patrimonio_id" => $event->getPatrimonioAdicionarId()
+            ]);
+
+        }else if($event->getModel() instanceof Auditoria){
+            $auditoria_patrimonio = AuditoriaPatrimonio::where([
+                "auditoria_id" => $event->getModel()->id,
+                "patrimonio_id" => $event->getPatrimonioRetirarId()
+            ])->first();
+
+            $auditoria_patrimonio->delete();
+
+            AuditoriaPatrimonio::create([
+                "auditoria_id" => $event->getModel()->id,
+                "patrimonio_id" => $event->getPatrimonioAdicionarId()
             ]);
 
 
-        }else if($event->getModel() instanceof Corretiva){
-             CorretivaPatrimonio::create([
-                 "corretiva_id"   => $event->getModel()->id,
-                 "patrimonio_id"  => $event->getPatrimonioId()
-             ]);
-
-
-        }else if($event->getModel() instanceof Auditoria){
-             AuditoriaPatrimonio::create([
-                "auditoria_id"   => $event->getModel()->id,
-                "patrimonio_id"  => $event->getPatrimonioId()
-             ]);
-
-
         }else if($event->getModel() instanceof Suprimento){
-            SuprimentoPatrimonio::create([
-                "suprimento_id"   => $event->getModel()->id,
-                "patrimonio_id"  => $event->getPatrimonioId()
-             ]);
+            $suprimento_patrimonio = SuprimentoPatrimonio::where([
+                "suprimento_id" => $event->getModel()->id,
+                "patrimonio_id" => $event->getPatrimonioRetirarId()
+            ])->first();
 
-        }else if($event->getModel() instanceof Contador){
-            ContadorPatrimonios::create([
-                "contador_id"   => $event->getModel()->id,
-                "patrimonio_id"  => $event->getPatrimonioId()
-             ]);
+            $suprimento_patrimonio->delete();
+
+            SuprimentoPatrimonio::create([
+                "suprimento_id" => $event->getModel()->id,
+                "patrimonio_id" => $event->getPatrimonioAdicionarId()
+            ]);
 
         }else{
 
