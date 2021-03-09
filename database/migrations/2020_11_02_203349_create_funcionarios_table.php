@@ -23,7 +23,7 @@ class CreateFuncionariosTable extends Migration
             $table->string('titulo_eleitor')->nullable();
             $table->string('secao_titulo_eleitor')->nullable();
             $table->string('ctps')->nullable();
-            $table->string('email')->unique()->nullable();
+            $table->string('email')->nullable();
 
             $table->timestamps();
 

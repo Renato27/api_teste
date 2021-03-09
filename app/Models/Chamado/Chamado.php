@@ -3,6 +3,7 @@
 namespace App\Models\Chamado;
 
 use App\Models\Auditoria\Auditoria;
+use App\Models\Clientes\Cliente;
 use App\Models\Contador\Contador;
 use App\Models\Contato\Contato;
 use App\Models\Corretiva\Corretiva;
@@ -24,7 +25,7 @@ class Chamado extends Model
     use HasFactory, SoftDeletes;
 
     protected $date = ['deleted_at'];
-    protected $fillable = ['data_acao', 'mensagem', 'status_chamado_id', 'tipo_chamado_id', 'usuario_id',
+    protected $fillable = ['data_acao', 'mensagem','cliente_id', 'status_chamado_id', 'tipo_chamado_id', 'usuario_id',
     'pedido_id', 'contato_id', 'endereco_id'];
 
     public function status_chamado()
@@ -95,5 +96,10 @@ class Chamado extends Model
     public function contador()
     {
         return $this->hasOne(Contador::class, 'chamado_id', 'id');
+    }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'cliente_id');
     }
 }

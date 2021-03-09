@@ -20,16 +20,16 @@ class ChamadoObserver
      */
     public function created(Chamado $chamado)
     {
-        if (!is_null($chamado->pedido_id)) {
-            $expedicao = Expedicao::where('pedido_id', $chamado->pedido_id)->first();
-            $expedicao->chamado_id = $chamado->id;
-            $expedicao->expedicao_estado_id = ExpedicaoEstado::LIBERADO;
-            $expedicao->save();
+        // if (!is_null($chamado->pedido_id)) {
+        //     $expedicao = Expedicao::where('pedido_id', $chamado->pedido_id)->first();
+        //     $expedicao->chamado_id = $chamado->id;
+        //     $expedicao->expedicao_estado_id = ExpedicaoEstado::LIBERADO;
+        //     $expedicao->save();
 
-            $entrega = Entrega::where('expedicao_id', $expedicao->id)->first();
-            $entrega->chamado_id = $chamado->id;
-            $entrega->save();
-        }
+        //     $entrega = Entrega::where('expedicao_id', $expedicao->id)->first();
+        //     $entrega->chamado_id = $chamado->id;
+        //     $entrega->save();
+        // }
     }
 
     /**
@@ -40,26 +40,26 @@ class ChamadoObserver
      */
     public function updated(Chamado $chamado)
     {
-        if ($chamado->status_chamado_id == StatusChamado::CANCELADO || $chamado->status_chamado_id == StatusChamado::ENCERRADO) {
+        // if ($chamado->status_chamado_id == StatusChamado::CANCELADO || $chamado->status_chamado_id == StatusChamado::ENCERRADO) {
 
-            switch ($chamado->tipo_chamado_id) {
-                case TipoChamado::ENTREGA:
+        //     switch ($chamado->tipo_chamado_id) {
+        //         case TipoChamado::ENTREGA:
 
-                    $entrega = Entrega::where('chamado_id', $chamado->id)->first();
+        //             $entrega = Entrega::where('chamado_id', $chamado->id)->first();
 
-                    $entrega->delete();
+        //             $entrega->delete();
 
-                    break;
+        //             break;
 
-                case TipoChamado::TROCA:
+        //         case TipoChamado::TROCA:
 
-                    $troca = Troca::where('chamado_id', $chamado->id)->first();
+        //             $troca = Troca::where('chamado_id', $chamado->id)->first();
 
-                    $troca->delete();
+        //             $troca->delete();
 
-                    break;
-            }
-        }
+        //             break;
+        //     }
+        // }
 
     }
 

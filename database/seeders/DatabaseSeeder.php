@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
             ContratoTipoSeeder::class,
             TipoContatoSeeder::class,
             MedicaoTipoSeeder::class,
-            ClienteVisualizacaoPatrimonioSeeder::class,
             TipoLicencaSeeder::class,
             EstadoPatrimonioSeeder::class,
             ExpedicaoEstadoSeeder::class,
@@ -30,9 +29,12 @@ class DatabaseSeeder extends Seeder
             NotaEspelhoEstadoSeeder::class,
             ClienteSeeder::class,
             ContatoSeeder::class,
+            UsuarioSeeder::class,
             EnderecoSeeder::class,
             //TipoPatrimonioSeeder::class,
             PatrimonioSeeder::class,
+            ChamadoSeeder::class,
+
         ]);
     }
 }

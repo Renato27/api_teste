@@ -21,6 +21,12 @@ class StatusChamadoSeeder extends Seeder
             'nome' => 'Fechado'
         ]);
         StatusChamado::create([
+            'nome' => 'Excluir'
+        ]);
+        StatusChamado::create([
+            'nome' => 'Excluir2'
+        ]);
+        StatusChamado::create([
             'nome' => 'Encerrado'
         ]);
         StatusChamado::create([

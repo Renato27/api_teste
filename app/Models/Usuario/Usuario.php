@@ -22,8 +22,7 @@ class Usuario extends Authenticatable implements JWTSubject
 
     protected $date = ['deleted_at'];
 
-    protected $fillable = ['email', 'password', 'tipo_usuario_id', 'funcionario_id', 'contato_id',
-    'cliente_visualizacao_patrimonio_id'];
+    protected $fillable = ['email', 'password', 'tipo_usuario_id', 'funcionario_id', 'contato_id'];
 
     protected $hidden = [
         'password',
@@ -53,11 +52,6 @@ class Usuario extends Authenticatable implements JWTSubject
     public function contato()
     {
         return $this->belongsTo(Contato::class, 'contato_id');
-    }
-
-    public function cliente_visualizacao_patrimonio()
-    {
-        return $this->belongsTo(ClienteVisualizacaoPatrimonio::class, 'cliente_visualizacao_patrimonio_id');
     }
 
     public function getJWTCustomClaims()

@@ -16,7 +16,8 @@ class CreateChamadosTable extends Migration
         Schema::create('chamados', function (Blueprint $table) {
             $table->id();
             $table->date('data_acao')->nullable();
-            $table->string('mensagem')->nullable();
+            $table->text('mensagem')->nullable();
+            $table->foreignId('cliente_id')->nullable()->constrained('clientes');
             $table->foreignId('status_chamado_id')->nullable();
             $table->foreignId('tipo_chamado_id')->nullable();
             $table->foreignId('usuario_id')->nullable();

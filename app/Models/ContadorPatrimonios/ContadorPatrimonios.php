@@ -13,7 +13,7 @@ class ContadorPatrimonios extends Model
     use HasFactory, SoftDeletes;
 
     protected $date = ['deleted_at'];
-    protected $fillable = ['contador_id', 'patrimonio_id', 'contador'];
+    protected $fillable = ['contador_id', 'patrimonio_id', 'valor'];
 
     public function contador()
     {

@@ -24,9 +24,9 @@ class EntregaObserver
      */
     public function created(Entrega $entrega)
     {
-        $expedicao = Expedicao::find($entrega->expedicao_id);
-        $expedicao->expedicao_estado_id = 2;
-        $expedicao->save();
+        // $expedicao = Expedicao::find($entrega->expedicao_id);
+        // $expedicao->expedicao_estado_id = 2;
+        // $expedicao->save();
     }
 
     /**

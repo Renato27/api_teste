@@ -18,25 +18,25 @@ class PedidoObserver
      */
     public function created(Pedido $pedido)
     {
-        $expedicaoRepository = app(ExpedicaoRepository::class);
+        // $expedicaoRepository = app(ExpedicaoRepository::class);
 
-        $token = JWTAuth::getToken();
+        // $token = JWTAuth::getToken();
 
-        if(!$token = JWTAuth::parseToken()){
-            $usuario = JWTAuth::toUser($token);
-        }else{
-            $usuario = JWTAuth::toUser($token);
-        }
+        // if(!$token = JWTAuth::parseToken()){
+        //     $usuario = JWTAuth::toUser($token);
+        // }else{
+        //     $usuario = JWTAuth::toUser($token);
+        // }
 
-        $detalhesExpedicao = [
-            'pedido_id' => $pedido->id,
-            'expedicao_estado_id' => ExpedicaoEstado::AGUARDANDO_SELECAO,
-            'expedicao_tipo_id' => ExpedicaoTipo::ENTREGA,
-            'usuario_id' => $usuario->id,
-            'chamado_id' => null,
-        ];
+        // $detalhesExpedicao = [
+        //     'pedido_id' => $pedido->id,
+        //     'expedicao_estado_id' => ExpedicaoEstado::AGUARDANDO_SELECAO,
+        //     'expedicao_tipo_id' => ExpedicaoTipo::ENTREGA,
+        //     'usuario_id' => $usuario->id,
+        //     'chamado_id' => null,
+        // ];
 
-        $expedicaoRepository->createExpedicao($detalhesExpedicao);
+        // $expedicaoRepository->createExpedicao($detalhesExpedicao);
     }
 
     /**

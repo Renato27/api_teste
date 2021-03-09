@@ -17,7 +17,7 @@ class CreateContadorPatrimoniosTable extends Migration
             $table->id();
             $table->foreignId('contador_id')->nullable()->constrained('contadors');
             $table->foreignId('patrimonio_id')->nullable()->constrained('patrimonios');
-            $table->bigInteger('contador')->nullable();
+            $table->bigInteger('valor')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
