@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Fabricante\Fabricante;
 use App\Models\Modelo\Modelo;
 use App\Models\Patrimonio\Patrimonio;
+use App\Models\PatrimonioAlugado\PatrimonioAlugado;
 use App\Models\TipoPatrimonio\TipoPatrimonio;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

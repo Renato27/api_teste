@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             PedidoSeeder::class,
             // CompraSeeder::class,
             ChamadoSeeder::class,
+            PatrimonioAlugadoSeeder::class,
         ]);
     }
 }
