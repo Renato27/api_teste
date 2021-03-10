@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Usuario\Usuario;
 use App\Repositories\Contracts\UsuarioRepository;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -43,14 +44,9 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
      */
     public function createUsuario(array $detalhes): ?Model
     {
-        return $this->create([
-            'email'                                 => $detalhes['email'],
-            'password'                                 => Hash::make($detalhes['password']),
-            'tipo_usuario_id'                       => $detalhes['tipo_usuario_id'],
-            'funcionario_id'                        => $detalhes['funcionario_id'],
-            'contato_id'                            => $detalhes['contato_id'],
-            'cliente_visualizacao_patrimonio_id'    => $detalhes['cliente_visualizacao_patrimonio_id']
-        ]);
+        // dd($detalhes);
+        return Usuario::create($detalhes);
+
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Events\NotaEspelhoPatrimonioEvent;
 use App\Models\Chamado\Chamado;
 use App\Models\Entrega\Entrega;
 use App\Models\ExpedicaoEstado\ExpedicaoEstado;
@@ -60,7 +61,6 @@ class ChamadoObserver
         //             break;
         //     }
         // }
-
     }
 
     /**

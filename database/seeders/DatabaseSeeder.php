@@ -33,8 +33,10 @@ class DatabaseSeeder extends Seeder
             EnderecoSeeder::class,
             //TipoPatrimonioSeeder::class,
             PatrimonioSeeder::class,
+            ContratoSeeder::class,
+            PedidoSeeder::class,
+            // CompraSeeder::class,
             ChamadoSeeder::class,
-
         ]);
     }
 }

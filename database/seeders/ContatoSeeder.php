@@ -46,7 +46,5 @@ class ContatoSeeder extends Seeder
                 'contato_id'   => $clienteContato->contato_id
             ]);
         }
-
-
     }
 }

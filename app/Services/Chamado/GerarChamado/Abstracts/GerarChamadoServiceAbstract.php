@@ -15,6 +15,9 @@ use App\Models\Suprimento\Suprimento;
 use App\Models\TipoChamado\TipoChamado;
 use App\Models\Troca\Troca;
 use App\Services\Chamado\GerarChamado\Base\GerarChamadoServiceBase;
+use Illuminate\Support\Facades\Mail;
+
+
 
 
 abstract class GerarChamadoServiceAbstract extends GerarChamadoServiceBase

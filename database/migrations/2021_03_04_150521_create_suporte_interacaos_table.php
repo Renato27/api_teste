@@ -20,7 +20,6 @@ class CreateSuporteInteracaosTable extends Migration
             $table->text('detalhes')->nullable();
             $table->foreignId('suporte_id')->nullable()->constrained('suportes');
             $table->foreignId('usuario_id')->nullable()->constrained('usuarios');
-
             $table->timestamps();
             $table->softDeletes();
         });

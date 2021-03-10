@@ -73,4 +73,27 @@ class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
 
         return true;
     }
+
+    /**
+     * Verifica se o email cadastrado para o usuário pertence à algum contrato, caso não pertença a um contato, faz a criação.
+     *
+     * @param int $id
+     * @param array $detalhes
+     * @return Model|null
+     */
+    public function usuarioTemEmailContato(int $contatoId, string $usuarioEmail): bool
+    {
+        $contatoEmails = $this->getContatoEmails($contatoId);
+        foreach ($contatoEmails as $email) {
+            if($email == $usuarioEmail) return false;
+        }
+
+        $this->createContatoEmail([
+            'email'             => $usuarioEmail,
+            'principal'         => 0,
+            'contato_id'        => $contatoId
+        ]);
+
+        return true;
+    }
 }

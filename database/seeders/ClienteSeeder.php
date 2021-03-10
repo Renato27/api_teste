@@ -25,7 +25,9 @@ class ClienteSeeder extends Seeder
                 'nome_fantasia' => $cliente->nomeFantasia,
                 'cpf_cnpj'      => $cliente->cpfCnpj,
                 'inscricao_estadual'    => $cliente->inscricaoEstadual,
-                'inscricao_municipal'  => $cliente->inscricaoMunicipal
+                'inscricao_municipal'  => $cliente->inscricaoMunicipal,
+                'created_at' => $cliente->created,
+                'updated_at' => $cliente->updated
             ]);
         }
     }

@@ -23,13 +23,13 @@ interface ContatoEmailRepository
      * @return Model|null
      */
     public function getContatoEmails(int $contato): ?Collection;
-    
+
     /**
      * Cria um novo ContatoEmail
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createContatoEmail(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface ContatoEmailRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateContatoEmail(int $contato, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,16 @@ interface ContatoEmailRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteContatoEmail(int $id): bool;
+
+
+    /**
+     * Verifica se o email cadastrado para o usuário pertence à algum contrato, caso não pertença a um contato, faz a criação.
+     *
+     * @param int $id
+     * @param array $detalhes
+     * @return Model|null
+     */
+    public function usuarioTemEmailContato(int $contatoId, string $usuarioEmail): bool;
 }

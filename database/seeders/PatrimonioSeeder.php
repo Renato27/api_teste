@@ -18,7 +18,6 @@ class PatrimonioSeeder extends Seeder
      */
     public function run()
     {
-
         $fabricantes = DB::connection('mysql2')->table('fabricantes')->get();
 
         foreach ($fabricantes as $fabricante) {
@@ -49,23 +48,28 @@ class PatrimonioSeeder extends Seeder
             ]);
         }
 
-
-        $patrimonios = DB::connection('mysql2')->table('patrimonios') ->join('modelos', 'modelos.idmodelos', '=', 'patrimonios.modelos_idmodelos')
-        ->join('tipos', 'tipos.idtipos', '=', 'modelos.tipos_idtipos')->get();
+        $patrimonios = DB::connection('mysql2')->table('patrimonios')->get();
 
         foreach($patrimonios as $patrimonio){
+            $patrimonio1 = Patrimonio::create([
 
-            Patrimonio::create([
                 'id'                => $patrimonio->idpatrimonios,
                 'numero_patrimonio' => $patrimonio->numeroPatrimonio,
                 'numero_serie'      => $patrimonio->numeroSerie,
                 'modelo_id'         => $patrimonio->modelos_idmodelos,
-                'tipo_patrimonio_id' => $patrimonio->tipos_idtipos,
+                'tipo_patrimonio_id' => null,
                 'compra_id'     => null,
                 'fabricante_id' => $patrimonio->fabricantes_idfabricantes,
                 'fornecedor_id' => $patrimonio->fornecedores_idfornecedores,
-                'estado_patrimonio_id' => $patrimonio->situacao_idsituacao
-            ]);
+                'estado_patrimonio_id' => $patrimonio->situacao_idsituacao,
+                'created_at'    => $patrimonio->created,
+                'updated_at'    => $patrimonio->updated
+                ]);
+
+                $modelo = Modelo::find($patrimonio1->modelo_id);
+
+                $patrimonio1->tipo_patrimonio_id = $modelo->tipo_patrimonio_id;
+                $patrimonio1->save();
         }
     }
 }

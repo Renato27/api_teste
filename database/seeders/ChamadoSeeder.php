@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Auditoria\Auditoria;
 use App\Models\AuditoriaPatrimonio\AuditoriaPatrimonio;
 use App\Models\Chamado\Chamado;
+use App\Models\ChamadoArquivo\ChamadoArquivo;
 use App\Models\Contador\Contador;
 use App\Models\ContadorPatrimonios\ContadorPatrimonios;
 use App\Models\Corretiva\Corretiva;
@@ -48,12 +49,29 @@ class ChamadoSeeder extends Seeder
                 'status_chamado_id' => $chamado->statuschamado_idstatuschamado,
                 'tipo_chamado_id'   => $chamado->tipochamado_idtipochamado,
                 'usuario_id'        => $chamado->usuarios_idusuarios,
-                'pedido_id'         => null,
+                'pedido_id'         => $chamado->vendas_idvendas,
                 'contato_id'        => $chamado->contatos_idcontatos,
                 'endereco_id'       => $chamado->enderecos_idenderecos,
                 'created_at'        => $chamado->created
 
             ]);
+
+            if(!is_null($chamado->arquivo)){
+                ChamadoArquivo::create([
+                    'arquivo'   => $chamado->arquivo,
+                    'chamado_id'    => $chamado->idchamados,
+                    'usuario_id'    => $chamado->usuarios_idusuarios
+                ]);
+            }
+
+
+            if(!is_null($chamado->arquivo_cliente)){
+                ChamadoArquivo::create([
+                    'arquivo'   => $chamado->arquivo_cliente,
+                    'chamado_id'    => $chamado->idchamados,
+                    'usuario_id'    => $chamado->usuarios_idusuarios
+                ]);
+            }
 
             if($chamado->statuschamado_idstatuschamado == 6){
 

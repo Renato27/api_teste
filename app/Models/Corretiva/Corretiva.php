@@ -14,6 +14,7 @@ class Corretiva extends Model
     use HasFactory, SoftDeletes;
 
     protected $date = ['deleted_at'];
+
     protected $fillable = ['chamado_id', 'login_team_viewer', 'senha_team_viewer'];
 
     public function chamado()

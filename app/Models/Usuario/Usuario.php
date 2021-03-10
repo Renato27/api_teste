@@ -9,9 +9,7 @@ use App\Models\Funcionario\Funcionario;
 use App\Models\TipoUsuario\TipoUsuario;
 use App\Models\UsuarioCliente\UsuarioCliente;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use IlluminateNotificationsNotifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -77,8 +75,5 @@ class Usuario extends Authenticatable implements JWTSubject
                 'email'             => $this->email
             ];
         }
-
-
-
     }
 }

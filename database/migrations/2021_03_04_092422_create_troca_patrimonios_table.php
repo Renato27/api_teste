@@ -19,7 +19,6 @@ class CreateTrocaPatrimoniosTable extends Migration
             $table->foreignId('patrimonio_id')->nullable()->constrained('patrimonios');
             $table->foreignId('item_pedido_id')->nullable()->constrained('item_pedidos');
             $table->boolean('checked')->default(0);
-
             $table->timestamps();
             $table->softDeletes();
         });

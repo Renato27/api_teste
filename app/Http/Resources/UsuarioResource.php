@@ -19,7 +19,7 @@ class UsuarioResource extends JsonResource
             'email'                                 => $this->email,
             'tipo_usuario_id'                       => new TipoUsuarioResource($this->tipo_usuario),
             'funcionario_id'                        => new FuncionarioResource($this->funcionario),
-            'contato_id'                            => new ContatoResource($this->contato_id),
+            'contato_id'                            => new ContatoResource($this->contato),
             'cliente_visualizacao_patrimonio_id'    => $this->cliente_visualizacao_patrimonio_id
         ];
     }

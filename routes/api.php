@@ -38,7 +38,9 @@ Route::group(['middleware' => ['api']], function () {
 
     Route::post('login', [AuthController::class, 'login']);
     Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::post('register', [UsuarioController::class, 'register']);
+    Route::resource('usuarios', UsuarioController::class);
+
+
 
     Route::group(['middleware' => ['jwt.verify']], function () {
         Route::apiResources([
@@ -56,7 +58,6 @@ Route::group(['middleware' => ['api']], function () {
             'dashboard_gestao'      => DashboardController::class,
             'chamados'              => ChamadoController::class,
             'licencas'              => LicencaController::class,
-
         ]);
         Route::post('logout', [AuthController::class, 'logout']);
     });

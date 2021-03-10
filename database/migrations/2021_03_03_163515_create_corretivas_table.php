@@ -18,7 +18,6 @@ class CreateCorretivasTable extends Migration
             $table->foreignId('chamado_id')->nullable()->constrained('chamados');
             $table->string('login_team_viewer')->nullable();
             $table->string('senha_team_viewer')->nullable();
-
             $table->timestamps();
             $table->softDeletes();
         });

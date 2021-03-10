@@ -47,16 +47,16 @@ class PedidoObserver
      */
     public function updated(Pedido $pedido)
     {
-        if($pedido->status_pedido_id == 4){
+        // if($pedido->status_pedido_id == 4){
 
-            $expedicaoRepository = app(ExpedicaoRepository::class);
+        //     $expedicaoRepository = app(ExpedicaoRepository::class);
 
-            $expedicao = $expedicaoRepository->getExpedicaoByPedido($pedido->id);
+        //     $expedicao = $expedicaoRepository->getExpedicaoByPedido($pedido->id);
 
-            if(!$expedicao) return false;
+        //     if(!$expedicao) return false;
 
-            $expedicaoRepository->updateExpedicao($expedicao->id, ['expedicao_estado_id' => 4]);
-        }
+        //     $expedicaoRepository->updateExpedicao($expedicao->id, ['expedicao_estado_id' => 4]);
+        // }
     }
 
     /**
