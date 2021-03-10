@@ -112,7 +112,7 @@ trait BaseEloquentRepository
      * @param array $data
      * @return Model
      */
-    public function update (int $id, array $data) 
+    public function update (int $id, array $data)
     {
         if($this->id == $id){
             $this->entity->fill($data);
@@ -148,7 +148,7 @@ trait BaseEloquentRepository
      * Inclui um array para compor o where na model.
      *
      * @param array $data
-     * @return void
+     * @return Collection|void
      */
     public function where( array $data)
     {
@@ -160,7 +160,7 @@ trait BaseEloquentRepository
      *
      * @param string $column
      * @param array $data
-     * @return void
+     * @return Collection|void
      */
     public function whereIn(string $column, array $data)
     {

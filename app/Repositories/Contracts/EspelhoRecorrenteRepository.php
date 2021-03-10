@@ -23,13 +23,13 @@ interface EspelhoRecorrenteRepository
      * @return Model|null
      */
     public function getEspelhoRecorrentes(int $id, int $associacao): ?Collection;
-    
+
     /**
      * Cria um novo EspelhoRecorrente
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createEspelhoRecorrente(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface EspelhoRecorrenteRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateEspelhoRecorrente(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,13 @@ interface EspelhoRecorrenteRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteEspelhoRecorrente(int $id): bool;
+
+    /**
+     * Retorna os espelhos recorrentes do dia.
+     *
+     * @return Collection
+     */
+    public function getEspelhoRecorrenteDia() : Collection;
 }

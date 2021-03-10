@@ -23,13 +23,13 @@ interface EspelhoRecorrentePatrimonioRepository
      * @return Model|null
      */
     public function getEspelhoRecorrentePatrimonios(int $id, int $associacao): ?Collection;
-    
+
     /**
      * Cria um novo EspelhoRecorrentePatrimonio
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createEspelhoRecorrentePatrimonio(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface EspelhoRecorrentePatrimonioRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateEspelhoRecorrentePatrimonio(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,14 @@ interface EspelhoRecorrentePatrimonioRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteEspelhoRecorrentePatrimonio(int $id): bool;
+
+    /**
+     * Retorna os patrimônios de um espelho recorrente.
+     *
+     * @param integer $espelho_recorrente_id
+     * @return Collection|null
+     */
+    public function getPatrimoniosByEspelhoRecorrente(int $espelho_recorrente_id): ?Collection;
 }

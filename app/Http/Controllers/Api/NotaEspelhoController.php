@@ -17,7 +17,7 @@ class NotaEspelhoController extends Controller
      */
     public function index()
     {
-        $espelhos = NotaEspelho::where(['nota_espelho_estado_id' => NotaEspelhoEstado::PENDENTE, 'nota_espelho_estado_id' => NotaEspelhoEstado::AGUARDANDO_CHAMADO])->paginate(10);
+        $espelhos = NotaEspelho::where(['nota_espelho_estado_id' => NotaEspelhoEstado::PENDENTE, 'nota_espelho_estado_id' => NotaEspelhoEstado::AGUARDANDO_CHAMADO])->get();
 
         return NotaEspelhoResource::collection($espelhos);
     }

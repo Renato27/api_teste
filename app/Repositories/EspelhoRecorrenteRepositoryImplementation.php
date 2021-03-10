@@ -2,12 +2,16 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Contracts\EspelhoRecorrenteRepository;
-use Illuminate\Database\Eloquent\Model;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\EspelhoRecorrenteRepository;
 
 class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna EspelhoRecorrente baseado no ID.
      *
@@ -16,7 +20,7 @@ class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepo
      */
     public function getEspelhoRecorrente(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -28,7 +32,7 @@ class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepo
      */
     public function getEspelhoRecorrentes(int $id, int $associacao): ?Collection
     {
-
+        return collect();
     }
 
     /**
@@ -36,10 +40,10 @@ class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepo
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createEspelhoRecorrente(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +52,10 @@ class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepo
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateEspelhoRecorrente(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +64,76 @@ class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepo
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteEspelhoRecorrente(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
+    }
+
+    /**
+     * Retorna os espelhos recorrentes do dia.
+     *
+     * @return Collection
+     */
+    public function getEspelhoRecorrenteDia(?CarbonImmutable $dia = null, ?int $contrato = null) : Collection
+    {
+        if(!is_null($dia) && !is_null($contrato)){
+
+            return $this->where(['dia_emissao' => $dia->format('d'), 'contrato_id' => $contrato, 'cancelado' => 0])->get();
+
+        }else if(!is_null($dia)){
+
+            return $this->getEspelhosFinalMes($dia);
+        }else{
+
+            $hoje = CarbonImmutable::today();
+
+            return $this->getEspelhosFinalMes($hoje);
+        }
+
+        return collect();
+    }
+
+    /**
+     * Retorna os espelhos de acordo com o último dia do mês.
+     *
+     * @param integer|null $dia
+     * @return Collection
+     */
+    private function getEspelhosFinalMes(?CarbonImmutable $dia): Collection
+    {
+        $dia = CarbonImmutable::parse($dia);
+
+        if($dia->addDay()->format('d') == 1){
+
+            switch ($dia->format('d')) {
+                case 31:
+
+                    return $this->where(['dia_emissao' => 31])->get();
+
+                break;
+                case 30:
+
+                    return $this->whereIn('dia_emissao', [30, 31])->get();
+
+                break;
+                case 29:
+
+                    return $this->whereIn('dia_emissao', [29, 30, 31])->get();
+
+                break;
+                case 28:
+
+                    return $this->whereIn('dia_emissao', [28, 29, 30, 31])->get();
+
+                break;
+            }
+        }
+
+        return $this->where(['dia_emissao' => $dia->format('d')])->get();
     }
 }

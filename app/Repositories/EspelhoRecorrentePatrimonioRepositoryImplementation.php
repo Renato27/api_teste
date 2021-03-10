@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class EspelhoRecorrentePatrimonioRepositoryImplementation implements EspelhoRecorrentePatrimonioRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna EspelhoRecorrentePatrimonio baseado no ID.
      *
@@ -16,7 +19,7 @@ class EspelhoRecorrentePatrimonioRepositoryImplementation implements EspelhoReco
      */
     public function getEspelhoRecorrentePatrimonio(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -28,7 +31,7 @@ class EspelhoRecorrentePatrimonioRepositoryImplementation implements EspelhoReco
      */
     public function getEspelhoRecorrentePatrimonios(int $id, int $associacao): ?Collection
     {
-
+        return collect();
     }
 
     /**
@@ -36,10 +39,10 @@ class EspelhoRecorrentePatrimonioRepositoryImplementation implements EspelhoReco
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createEspelhoRecorrentePatrimonio(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +51,10 @@ class EspelhoRecorrentePatrimonioRepositoryImplementation implements EspelhoReco
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateEspelhoRecorrentePatrimonio(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +63,24 @@ class EspelhoRecorrentePatrimonioRepositoryImplementation implements EspelhoReco
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteEspelhoRecorrentePatrimonio(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
+    }
+
+    /**
+     * Retorna os patrimônios de um espelho recorrente.
+     *
+     * @param integer $espelho_recorrente_id
+     * @return Collection|null
+     */
+    public function getPatrimoniosByEspelhoRecorrente(int $espelho_recorrente_id): ?Collection
+    {
+        return $this->where(['espelho_recorrente_id' => $espelho_recorrente_id])->get();
     }
 }

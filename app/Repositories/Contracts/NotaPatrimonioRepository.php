@@ -22,14 +22,14 @@ interface NotaPatrimonioRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getNotaPatrimonios(int $id, int $associacao): ?Collection;
-    
+    public function getNotaPatrimonios(int $nota): ?Collection;
+
     /**
      * Cria um novo NotaPatrimonio
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createNotaPatrimonio(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface NotaPatrimonioRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateNotaPatrimonio(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,14 @@ interface NotaPatrimonioRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteNotaPatrimonio(int $id): bool;
+
+    /**
+     * Retorna o último faturamento válido de um patrimonio.
+     *
+     * @param integer $patrimonio
+     * @return Model|null
+     */
+    public function getUltimoFaturamentoValido(int $patrimonio, ?int $cliente = null): ?Model;
 }

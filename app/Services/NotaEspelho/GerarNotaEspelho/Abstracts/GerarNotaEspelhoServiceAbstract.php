@@ -18,10 +18,7 @@ abstract class GerarNotaEspelhoServiceAbstract extends GerarNotaEspelhoServiceBa
     protected function GerarNotaEspelho() : bool
     {
 
-        $espelho = $this->NotaEspelhoRepository->createNotaEspelho($this->getDados());
-
-        if(!$espelho)
-            throw new HttpException(400, 'Erro ao gerar o espelho. Verifique os dados fornecidos.');
+        $this->NotaEspelhoRepository->createNotaEspelho($this->getDados());
 
         return true;
 
