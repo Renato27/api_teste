@@ -10,6 +10,7 @@ use App\Models\UsuarioCliente\UsuarioCliente;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioSeeder extends Seeder
 {
@@ -49,7 +50,7 @@ class UsuarioSeeder extends Seeder
                     'cep'   => $funcionario->cep,
                     'deleted_at'    => Carbon::now()
                 ]);
-    
+
             }else{
 
                 $funcionario = Funcionario::create([
@@ -63,7 +64,7 @@ class UsuarioSeeder extends Seeder
                     'secao_titulo_eleitor'  => $funcionario->secaoTituloEleitor,
                     'ctps'  => $funcionario->ctps,
                     'email' => $funcionario->emailPessoal,
-                  
+
                 ]);
 
                 $enderecoFuncionario = EnderecoFuncionario::create([
@@ -73,16 +74,16 @@ class UsuarioSeeder extends Seeder
                     'complemento'   => null,
                     'cidade'    => null,
                     'cep'   => $funcionario->cep,
-                   
+
                 ]);
 
                 FuncionarioEndereco::create([
                     'funcionario_id' => $funcionario->id,
                     'endereco_funcionario_id' => $enderecoFuncionario->id,
                 ]);
-            }          
+            }
         }
-       
+
 
         foreach($usuarios as $usuario){
 
@@ -92,7 +93,7 @@ class UsuarioSeeder extends Seeder
                     Usuario::create([
                         'id'            => $usuario->idusuarios,
                         'email'         => $usuario->email,
-                        'password'      => $usuario->senha,
+                        'password'      => Hash::make(123456),
                         'tipo_usuario_id'   => $usuario->tipousuario_idtipousuario,
                         'funcionario_id'    => $usuario->funcionarios_idfuncionarios,
                         'contato_id'        => $usuario->contatos_idcontatos,
@@ -102,7 +103,7 @@ class UsuarioSeeder extends Seeder
                     Usuario::create([
                         'id'            => $usuario->idusuarios,
                         'email'         => $usuario->email,
-                        'password'      => $usuario->senha,
+                        'password'      => Hash::make(123456),
                         'tipo_usuario_id'   => $usuario->tipousuario_idtipousuario,
                         'funcionario_id'    => $usuario->funcionarios_idfuncionarios,
                         'contato_id'        => $usuario->contatos_idcontatos
@@ -112,7 +113,7 @@ class UsuarioSeeder extends Seeder
                 $usuario1 = Usuario::create([
                     'id'            => $usuario->idusuarios,
                     'email'         => $usuario->email,
-                    'password'      => $usuario->senha,
+                    'password'      => Hash::make(123456),
                     'tipo_usuario_id'   => $usuario->tipousuario_idtipousuario,
                     'funcionario_id'    => $usuario->funcionarios_idfuncionarios,
                     'contato_id'        => $usuario->contatos_idcontatos
@@ -120,7 +121,7 @@ class UsuarioSeeder extends Seeder
 
                 if(!is_null($usuario->clientes_idclientes)){
                     UsuarioCliente::create([
-                        'cliente_id' => $usuario->clientes_idclientes, 
+                        'cliente_id' => $usuario->clientes_idclientes,
                         'usuario_id' => $usuario1->id
                     ]);
                 }
