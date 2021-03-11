@@ -69,6 +69,7 @@ abstract class GerarPatrimonioAlugadoServiceBase implements GerarPatrimonioAluga
     public function setPatrimonioRetirada(?TrocaPatrimonioRetirada $trocaPatrimonioRetirada = null): GerarPatrimonioAlugadoService
     {
         $this->trocaPatrimonioRetirada = $trocaPatrimonioRetirada;
+
         return $this;
     }
 

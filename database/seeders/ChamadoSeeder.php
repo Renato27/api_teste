@@ -89,7 +89,7 @@ class ChamadoSeeder extends Seeder
                             EntregaPatrimonio::create([
                                 'entrega_id'  => $entrega1->id,
                                 'patrimonio_id' => $entrega->patrimonios_idpatrimonios,
-                                'item_pedido_id' => $entrega->pedido_definido_id,
+                                'item_pedido_id' => null,
                                 'checked' => 1,
                                 'deleted_at' => Carbon::now(),
                             ]);

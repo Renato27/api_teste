@@ -20,7 +20,7 @@ class CreateNotasTable extends Migration
             $table->date('data_pagamento')->nullable();
             $table->date('periodo_inicio')->nullable();
             $table->date('periodo_fim')->nullable();
-            $table->string('descricao');
+            $table->text('descricao')->nullable();
             $table->decimal('valor', 10, 2);
             $table->boolean('antecipacao')->default(0);
             $table->boolean('tem_boleto')->default(0);
@@ -28,8 +28,8 @@ class CreateNotasTable extends Migration
             $table->foreignId('cliente_id')->nullable()->constrained('clientes');
             $table->foreignId('contrato_id')->nullable()->constrained('contratos');
 
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

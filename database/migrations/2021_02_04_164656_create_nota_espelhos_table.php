@@ -26,8 +26,8 @@ class CreateNotaEspelhosTable extends Migration
             $table->foreignId('pedido_id')->nullable()->constrained('pedidos');
             $table->foreignId('espelho_recorrente_id')->nullable()->constrained('espelho_recorrentes');
 
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

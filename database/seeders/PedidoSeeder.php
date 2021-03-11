@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\ClienteContrato\ClienteContrato;
 use App\Models\ContratoItemDefinido\ContratoItemDefinido;
 use App\Models\ContratoPedido\ContratoPedido;
+use App\Models\Contratos\Contrato;
 use App\Models\ItemDefinido\ItemDefinido;
 use App\Models\ItemPedido\ItemPedido;
 use App\Models\Pedido\Pedido;
@@ -58,11 +59,15 @@ class PedidoSeeder extends Seeder
                 'tipo_patrimonio_id' => $pedidoDefinido->tipo_id
             ]);
 
+            $contrato = Contrato::find($pedidoDefinido->contrato_id);
+
             if(!is_null($pedidoDefinido->contrato_id)){
-                ContratoItemDefinido::create([
-                    'contrato_id'       => $pedidoDefinido->contrato_id,
-                    'item_definido_id'  => $pedidoDefinido->id
-                ]);
+                if(isset($contrato->id)){
+                    ContratoItemDefinido::create([
+                        'contrato_id'       => $pedidoDefinido->contrato_id,
+                        'item_definido_id'  => $pedidoDefinido->id
+                    ]);
+                }
             }
         }
 

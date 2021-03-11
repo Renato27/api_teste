@@ -15,7 +15,7 @@ class CreateEspelhoRecorrentePatrimoniosTable extends Migration
     {
         Schema::create('espelho_recorrente_patrimonios', function (Blueprint $table) {
             $table->id();
-            $table->date('data_entrega');
+            $table->date('data_entrega')->nullable();
             $table->foreignId('patrimonio_id')->nullable()->constrained('patrimonios');
             $table->foreignId('espelho_recorrente_id')->nullable()->constrained('espelho_recorrentes');
             $table->foreignId('pedido_id')->nullable()->constrained('pedidos');

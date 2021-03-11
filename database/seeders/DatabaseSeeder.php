@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
+            // FornecedorSeeder::class,
             TipoChamadoSeeder::class,
             StatusChamadoSeeder::class,
             StatusPedidoSeeder::class,
@@ -25,7 +26,6 @@ class DatabaseSeeder extends Seeder
             TipoLicencaSeeder::class,
             EstadoPatrimonioSeeder::class,
             ExpedicaoEstadoSeeder::class,
-            ExpedicaoTipoSeeder::class,
             NotaEspelhoEstadoSeeder::class,
             ClienteSeeder::class,
             ContatoSeeder::class,
@@ -33,11 +33,17 @@ class DatabaseSeeder extends Seeder
             EnderecoSeeder::class,
             //TipoPatrimonioSeeder::class,
             PatrimonioSeeder::class,
+            LicencaSeeder::class,
             ContratoSeeder::class,
             PedidoSeeder::class,
             // CompraSeeder::class,
             ChamadoSeeder::class,
             PatrimonioAlugadoSeeder::class,
+            NotaSeeder::class,
+            NotaEspelhoSeeder::class,
+            FichaSeeder::class,
+            ExpedicaoTipoSeeder::class,
+
         ]);
     }
 }

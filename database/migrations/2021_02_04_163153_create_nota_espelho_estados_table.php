@@ -17,8 +17,8 @@ class CreateNotaEspelhoEstadosTable extends Migration
             $table->id();
             $table->string('nome');
 
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -14,6 +14,10 @@ class TipoLicenca extends Model
     protected $date = ['deleted_at'];
     protected $fillable = ['nome'];
 
+    const LOGICA = 1;
+
+    const CLIENTE = 2;
+
     public function licencas()
     {
         return $this->hasMany(Licenca::class, 'tipo_licenca_id', 'id');

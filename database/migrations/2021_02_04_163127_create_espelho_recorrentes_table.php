@@ -15,11 +15,11 @@ class CreateEspelhoRecorrentesTable extends Migration
     {
         Schema::create('espelho_recorrentes', function (Blueprint $table) {
             $table->id();
-            $table->date('dia_emissao');
-            $table->date('dia_vencimento');
+            $table->integer('dia_emissao');
+            $table->integer('dia_vencimento');
             $table->foreignId('contrato_id')->nullable()->constrained('contratos');
             $table->foreignId('nota_id')->nullable()->constrained('notas');
-            $table->foreignId('anterior_nota_id');
+            $table->foreignId('anterior_nota_id')->nullable();
 
             $table->foreign('anterior_nota_id')->references('id')->on('notas');
             $table->softDeletes();

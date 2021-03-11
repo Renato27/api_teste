@@ -14,6 +14,7 @@ class Fornecedor extends Model
     use HasFactory, SoftDeletes;
 
     protected $date = ['deleted_at'];
+    protected $table = 'fornecedores';
     protected $fillable = ['razao_social', 'nome_fantasia', 'cpf_cnpj', 'observacao'];
 
     public function patrimonios()

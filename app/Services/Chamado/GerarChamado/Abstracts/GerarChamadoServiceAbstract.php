@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Mail;
 
 
 
-
 abstract class GerarChamadoServiceAbstract extends GerarChamadoServiceBase
 {
     /**

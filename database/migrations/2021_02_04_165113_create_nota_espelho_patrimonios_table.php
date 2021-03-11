@@ -23,8 +23,8 @@ class CreateNotaEspelhoPatrimoniosTable extends Migration
             $table->foreignId('contrato_id')->nullable()->constrained('contratos');
             $table->foreignId('chamado_id')->nullable()->constrained('chamados');
 
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

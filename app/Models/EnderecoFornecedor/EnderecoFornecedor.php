@@ -13,6 +13,7 @@ class EnderecoFornecedor extends Model
     use HasFactory, SoftDeletes;
 
     protected $date = ['deleted_at'];
+    protected $table = 'endereco_fornecedores';
     protected $fillable = ['rua', 'numero', 'bairro', 'complemento', 'cidade', 'estado', 'cep'];
 
     public function fornecedor()
