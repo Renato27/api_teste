@@ -24,6 +24,7 @@ class PatrimonioAlugadoSeeder extends Seeder
             PatrimonioAlugado::create([
                 'data_entrega'  => $aluguel->data_entrega,
                 'valor' => $aluguel->preco,
+                'cobrado' => $aluguel->ja_foi_cobrado,
                 'patrimonio_id' => $aluguel->patrimonio_id,
                 'pedido_id'     => $aluguel->venda_id,
                 'cliente_id'    => $aluguel->cliente_id,
@@ -31,7 +32,8 @@ class PatrimonioAlugadoSeeder extends Seeder
                 'item_pedido_id'    => $aluguel->pedido_id,
                 'item_definido_id'  => $aluguel->pedido_item_id,
                 'chamado_id'    => $aluguel->chamado_id,
-                'endereco_id'   => $aluguel->endereco_id
+                'endereco_id'   => $aluguel->endereco_id,
+                'created_at'    => $aluguel->created_at
             ]);
         }
     }

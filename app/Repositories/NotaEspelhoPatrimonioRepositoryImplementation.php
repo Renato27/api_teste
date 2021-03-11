@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class NotaEspelhoPatrimonioRepositoryImplementation implements NotaEspelhoPatrimonioRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna NotaEspelhoPatrimonio baseado no ID.
      *
@@ -16,7 +19,7 @@ class NotaEspelhoPatrimonioRepositoryImplementation implements NotaEspelhoPatrim
      */
     public function getNotaEspelhoPatrimonio(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -26,9 +29,9 @@ class NotaEspelhoPatrimonioRepositoryImplementation implements NotaEspelhoPatrim
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getNotaEspelhoPatrimonios(int $id, int $associacao): ?Collection
+    public function getNotaEspelhoPatrimoniosByNotaEspelho(int $nota_espelho): ?Collection
     {
-
+        return $this->where(['nota_espelho_id' => $nota_espelho])->get();
     }
 
     /**
@@ -36,10 +39,10 @@ class NotaEspelhoPatrimonioRepositoryImplementation implements NotaEspelhoPatrim
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createNotaEspelhoPatrimonio(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +51,10 @@ class NotaEspelhoPatrimonioRepositoryImplementation implements NotaEspelhoPatrim
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateNotaEspelhoPatrimonio(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +63,13 @@ class NotaEspelhoPatrimonioRepositoryImplementation implements NotaEspelhoPatrim
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteNotaEspelhoPatrimonio(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if(!$retorno) return false;
+
+        return true;
     }
 }

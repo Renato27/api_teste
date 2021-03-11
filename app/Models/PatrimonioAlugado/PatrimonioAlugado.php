@@ -20,7 +20,7 @@ class PatrimonioAlugado extends Model
 
     protected $date = ['deleted_at'];
 
-    protected $fillable = ['data_entrega', 'valor', 'patrimonio_id', 'pedido_id', 'cliente_id', 'contrato_id', 'item_pedido_id',
+    protected $fillable = ['data_entrega', 'valor', 'cobrado', 'patrimonio_id', 'pedido_id', 'cliente_id', 'contrato_id', 'item_pedido_id',
      'item_definido_id', 'chamado_id', 'endereco_id'];
 
     public function patrimonio()

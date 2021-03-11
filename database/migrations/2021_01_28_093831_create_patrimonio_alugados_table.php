@@ -17,6 +17,7 @@ class CreatePatrimonioAlugadosTable extends Migration
             $table->id();
             $table->date('data_entrega')->nullable();
             $table->decimal('valor', 10, 2)->nullable();
+            $table->boolean('cobrado')->default(0);
             $table->foreignId('patrimonio_id')->nullable()->constrained('patrimonios');
             $table->foreignId('pedido_id')->nullable()->constrained('pedidos');
             $table->foreignId('cliente_id')->nullable()->constrained('clientes');

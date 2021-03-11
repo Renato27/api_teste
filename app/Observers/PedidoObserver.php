@@ -55,7 +55,7 @@ class PedidoObserver
 
         //     if(!$expedicao) return false;
 
-        //     $expedicaoRepository->updateExpedicao($expedicao->id, ['expedicao_estado_id' => 4]);
+        //     $expedicaoRepository->updateExpedicao($expedicao->id, ['expedicao_estado_id' => 7]);
         // }
     }
 

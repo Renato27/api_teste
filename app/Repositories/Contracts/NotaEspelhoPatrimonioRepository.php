@@ -22,14 +22,14 @@ interface NotaEspelhoPatrimonioRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getNotaEspelhoPatrimonios(int $id, int $associacao): ?Collection;
-    
+    public function getNotaEspelhoPatrimoniosByNotaEspelho(int $nota_espelho): ?Collection;
+
     /**
      * Cria um novo NotaEspelhoPatrimonio
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createNotaEspelhoPatrimonio(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface NotaEspelhoPatrimonioRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateNotaEspelhoPatrimonio(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,6 @@ interface NotaEspelhoPatrimonioRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteNotaEspelhoPatrimonio(int $id): bool;
 }

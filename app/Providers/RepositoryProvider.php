@@ -133,5 +133,17 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\PatrimonioRepository::class, function ($app) {
             return new \App\Repositories\PatrimonioRepositoryImplementation(new \App\Models\Patrimonio\Patrimonio());
         });
+        $this->app->bind(\App\Repositories\Contracts\EspelhoRecorrenteRepository::class, function ($app) {
+            return new \App\Repositories\EspelhoRecorrenteRepositoryImplementation(new \App\Models\EspelhoRecorrente\EspelhoRecorrente());
+        });
+        $this->app->bind(\App\Repositories\Contracts\EspelhoRecorrentePatrimonioRepository::class, function ($app) {
+            return new \App\Repositories\EspelhoRecorrentePatrimonioRepositoryImplementation(new \App\Models\EspelhoRecorrentePatrimonio\EspelhoRecorrentePatrimonio());
+        });
+        $this->app->bind(\App\Repositories\Contracts\NotaPatrimonioRepository::class, function ($app) {
+            return new \App\Repositories\NotaPatrimonioRepositoryImplementation(new \App\Models\NotaPatrimonio\NotaPatrimonio());
+        });
+        $this->app->bind(\App\Repositories\Contracts\NotaEspelhoPatrimonioRepository::class, function ($app) {
+            return new \App\Repositories\NotaEspelhoPatrimonioRepositoryImplementation(new \App\Models\NotaEspelhoPatrimonio\NotaEspelhoPatrimonio());
+        });
     }
 }

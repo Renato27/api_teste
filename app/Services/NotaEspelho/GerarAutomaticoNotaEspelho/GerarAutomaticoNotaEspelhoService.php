@@ -3,6 +3,7 @@
 namespace App\Services\NotaEspelho\GerarAutomaticoNotaEspelho;
 
 use App\Services\NotaEspelho\GerarAutomaticoNotaEspelho\Abstracts\GerarAutomaticoNotaEspelhoServiceAbstract;
+use Illuminate\Support\Facades\DB;
 
 class GerarAutomaticoNotaEspelhoService extends GerarAutomaticoNotaEspelhoServiceAbstract
 {
@@ -13,6 +14,10 @@ class GerarAutomaticoNotaEspelhoService extends GerarAutomaticoNotaEspelhoServic
      */
     public function handle(): bool
     {
+        DB::transaction(function () {
+            $this->GerarAutomaticoNotaEspelho();
+        });
+
         return true;
     }
 }
