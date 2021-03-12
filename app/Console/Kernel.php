@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\Automatizacoes\MakeRepositoryCommand::class,
         Commands\Automatizacoes\MakeServiceCommand::class,
+        Commands\Automatizacoes\GerarEspelhosSemMedicao::class,
+        Commands\Automatizacoes\GerarEspelhosComMedicao::class,
     ];
 
     /**

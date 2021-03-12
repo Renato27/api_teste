@@ -2,8 +2,9 @@
 
 namespace App\Repositories\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface ContratosRepository
 {
@@ -23,13 +24,13 @@ interface ContratosRepository
      * @return Model|null
      */
     public function getContratos(): ?Collection;
-    
+
     /**
      * Cria um novo Contratos
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createContrato(array $detalhes): ?Model;
 
     /**
@@ -38,7 +39,7 @@ interface ContratosRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateContrato(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +48,14 @@ interface ContratosRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteContrato(int $id): bool;
+
+     /**
+     * Retorna os contrato de medição do dia.
+     *
+     * @return Collection
+     */
+    public function getContratosDoDia(?CarbonImmutable $dia = null, ?int $contrato = null) : Collection;
 }
+

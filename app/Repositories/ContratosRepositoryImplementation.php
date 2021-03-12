@@ -2,9 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ContratosRepository;
-use Illuminate\Database\Eloquent\Model;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ContratosRepository;
 
 class ContratosRepositoryImplementation implements ContratosRepository
 {
@@ -71,5 +72,68 @@ class ContratosRepositoryImplementation implements ContratosRepository
         if(!$retorno) return false;
 
         return true;
+    }
+
+     /**
+     * Retorna os contrato de medição do dia.
+     *
+     * @return Collection
+     */
+    public function getContratosDoDia(?CarbonImmutable $dia = null, ?int $contrato = null) : Collection
+    {
+        if(!is_null($dia) && !is_null($contrato)){
+
+            return $this->where(['dia_emissao_nota' => $dia->format('d'), 'contrato_id' => $contrato])->get();
+
+        }else if(!is_null($dia)){
+
+            return $this->getEspelhosFinalMes($dia);
+        }else{
+
+            $hoje = CarbonImmutable::today();
+
+            return $this->getEspelhosFinalMes($hoje);
+        }
+
+        return collect();
+    }
+
+    /**
+     * Retorna os espelhos de acordo com o último dia do mês.
+     *
+     * @param integer|null $dia
+     * @return Collection
+     */
+    private function getEspelhosFinalMes(?CarbonImmutable $dia): Collection
+    {
+        $dia = CarbonImmutable::parse($dia);
+
+        if($dia->addDay()->format('d') == 1){
+
+            switch ($dia->format('d')) {
+                case 31:
+
+                    return $this->where(['dia_emissao_nota' => 31])->whereIn('medicao_tipo_id', [2,3])->get();
+
+                break;
+                case 30:
+
+                    return $this->whereIn('dia_emissao_nota', [30, 31])->whereIn('medicao_tipo_id', [2,3])->get();
+
+                break;
+                case 29:
+
+                    return $this->whereIn('dia_emissao_nota', [29, 30, 31])->whereIn('medicao_tipo_id', [2,3])->get();
+
+                break;
+                case 28:
+
+                    return $this->whereIn('dia_emissao_nota', [28, 29, 30, 31])->whereIn('medicao_tipo_id', [2,3])->get();
+
+                break;
+            }
+        }
+
+        return $this->where(['dia_emissao_nota' => $dia->format('d')])->whereIn('medicao_tipo_id', [2,3])->get();
     }
 }

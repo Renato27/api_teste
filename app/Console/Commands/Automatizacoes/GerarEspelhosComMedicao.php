@@ -2,17 +2,17 @@
 
 namespace App\Console\Commands\Automatizacoes;
 
-use App\Services\NotaEspelho\GerarAutomaticoNotaEspelho\Contracts\GerarAutomaticoNotaEspelhoService;
+use App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\Contracts\GerarAutomaticoMedicaoNotaEspelhoService;
 use Illuminate\Console\Command;
 
-class GerarEspelhosSemMedicao extends Command
+class GerarEspelhosComMedicao extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'sgl:gerar_espelho_sem_medicao';
+    protected $signature = 'sgl:gerar_espelho_com_medicao';
 
     /**
      * The console command description.
@@ -24,9 +24,9 @@ class GerarEspelhosSemMedicao extends Command
     /**
      * Undocumented variable
      *
-     * @var GerarAutomaticoNotaEspelhoService
+     * @var GerarAutomaticoMedicaoNotaEspelhoService
      */
-    protected GerarAutomaticoNotaEspelhoService $gerarEspelhoSemMedicao;
+    protected GerarAutomaticoMedicaoNotaEspelhoService $gerarEspelhoComMedicao;
 
     /**
      * Create a new command instance.
@@ -36,7 +36,7 @@ class GerarEspelhosSemMedicao extends Command
     public function __construct()
     {
 
-        $this->gerarEspelhoSemMedicao = app(GerarAutomaticoNotaEspelhoService::class);
+        $this->gerarEspelhoComMedicao = app(GerarAutomaticoMedicaoNotaEspelhoService::class);
 
         parent::__construct();
     }
@@ -48,7 +48,7 @@ class GerarEspelhosSemMedicao extends Command
      */
     public function handle()
     {
-        $this->gerarEspelhoSemMedicao->handle();
+        $this->gerarEspelhoComMedicao->handle();
 
         return 0;
     }

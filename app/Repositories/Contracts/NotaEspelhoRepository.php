@@ -23,13 +23,13 @@ interface NotaEspelhoRepository
      * @return Model|null
      */
     public function getNotaEspelhos(int $id, int $associacao): ?Collection;
-    
+
     /**
      * Cria um novo NotaEspelho
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createNotaEspelho(array $detalhes): ?Model;
 
     /**
@@ -38,7 +38,7 @@ interface NotaEspelhoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateNotaEspelho(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +47,15 @@ interface NotaEspelhoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteNotaEspelho(int $id): bool;
+
+     /**
+     * Verifica se uma nota espelho está disponivel para ser reemitida.
+     *
+     * @param integer $valorDeBusca
+     * @param boolean $medicao
+     * @return boolean
+     */
+    public function ultimoEspelhoTemMaisDe30Dias(int $valorDeBusca, ?bool $medicao = false, ?bool $recorrencia = false, ?bool $provisionamento = false): bool;
 }

@@ -211,6 +211,7 @@ return [
         App\Providers\Services\PatrimonioAlugado\GerarPatrimonioAlugadoServiceProvider::class,
         App\Providers\Services\Patrimonio\CadastrarPatrimonioServiceProvider::class,
         App\Providers\Services\NotaEspelho\GerarAutomaticoNotaEspelhoServiceProvider::class,
+        App\Providers\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelhoServiceProvider::class,
     ],
 
     /*

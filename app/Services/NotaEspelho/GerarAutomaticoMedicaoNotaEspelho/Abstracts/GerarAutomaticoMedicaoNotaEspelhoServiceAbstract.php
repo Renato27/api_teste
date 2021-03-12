@@ -1,39 +1,38 @@
 <?php
 
-namespace App\Services\NotaEspelho\GerarAutomaticoNotaEspelho\Abstracts;
+namespace App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\Abstracts;
 
 use Carbon\CarbonImmutable;
+use App\Models\Contratos\Contrato;
+use App\Models\MedicaoTipo\MedicaoTipo;
+use Illuminate\Support\Collection;
 use App\Models\NotaEspelho\NotaEspelho;
-use App\Models\EspelhoRecorrente\EspelhoRecorrente;
 use App\Models\NotaEspelhoEstado\NotaEspelhoEstado;
 use App\Models\PatrimonioAlugado\PatrimonioAlugado;
-use App\Services\Automatizacoes\Calculadora\Calculadora;
-use App\Services\NotaEspelho\GerarAutomaticoNotaEspelho\Base\GerarAutomaticoNotaEspelhoServiceBase;
-use Carbon\Carbon;
-use Illuminate\Support\Collection;
+use App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\Base\GerarAutomaticoMedicaoNotaEspelhoServiceBase;
 
-abstract class GerarAutomaticoNotaEspelhoServiceAbstract extends GerarAutomaticoNotaEspelhoServiceBase
+abstract class GerarAutomaticoMedicaoNotaEspelhoServiceAbstract extends GerarAutomaticoMedicaoNotaEspelhoServiceBase
 {
     /**
      * Implementação do código.
      *
      * @return boolean
      */
-    protected function GerarAutomaticoNotaEspelho() : bool
+    protected function GerarAutomaticoMedicaoNotaEspelho() : bool
     {
         $this->createEspelho();
 
         return true;
     }
 
-    /**
+     /**
      * Retorna os espelhos para serem gerados no dia atual.
      *
      * @return Collection|null
      */
-    private function getEspelhos() : ?Collection
+    private function getContratos() : ?Collection
     {
-        return $this->espelho_recorrente_repository->getEspelhoRecorrenteDia();
+        return $this->contrato_repository->getContratosDoDia();
     }
 
     /**
@@ -43,17 +42,17 @@ abstract class GerarAutomaticoNotaEspelhoServiceAbstract extends GerarAutomatico
      */
     private function createEspelho()
     {
-        if(is_null($this->getEspelhos())) return null;
+        if(is_null($this->getContratos())) return null;
 
-        foreach($this->getEspelhos() as $espelho_do_dia){
+        foreach($this->getContratos() as $contrato_do_dia){
 
-            $espelho_dentro_periodo = $this->NotaEspelhoRepository->ultimoEspelhoTemMaisDe30Dias($espelho_do_dia->id, false, true);
+            $espelho_dentro_periodo = $this->NotaEspelhoRepository->ultimoEspelhoTemMaisDe30Dias($contrato_do_dia->id, false, true);
 
             if(!$espelho_dentro_periodo) continue;
 
-            $dados = $this->getDadosEspelho($espelho_do_dia);
+            $dados = $this->getDadosEspelho($contrato_do_dia);
             $espelho = $this->NotaEspelhoRepository->createNotaEspelho($dados);
-            $this->associarPatrimonioEspelho($espelho_do_dia, $espelho);
+            $this->associarPatrimonioEspelho($contrato_do_dia, $espelho);
         }
     }
 
@@ -64,14 +63,13 @@ abstract class GerarAutomaticoNotaEspelhoServiceAbstract extends GerarAutomatico
      * @param NotaEspelho $nota_espelho
      * @return void
      */
-    private function associarPatrimonioEspelho(EspelhoRecorrente $espelho_recorrente, NotaEspelho $nota_espelho)
+    private function associarPatrimonioEspelho(Contrato $contrato, NotaEspelho $nota_espelho)
     {
-        $patrimonios_recorrentes = $this->espelho_recorrente_patrimonio_repository->getPatrimoniosByEspelhoRecorrente($espelho_recorrente->id);
+        $patrimonios_contrato = $this->patrimonio_alugado_repository->getPatrimonioAlugadosByContrato($contrato->id);
 
-        foreach($patrimonios_recorrentes as $patrimonio_recorrente){
-           $aluguel = $this->patrimonio_alugado_repository->getPatrimonioAlugadoByPatrimonio($patrimonio_recorrente->patrimonio_id);
+        foreach($patrimonios_contrato as $patrimonio_contrato){
 
-            $patrimonio_espelho = $this->nota_espelho_patrimonio_repository->createNotaEspelhoPatrimonio($this->getDadosPatrimonioEspelho($aluguel, $nota_espelho));
+            $patrimonio_espelho = $this->nota_espelho_patrimonio_repository->createNotaEspelhoPatrimonio($this->getDadosPatrimonioEspelho($patrimonio_contrato, $nota_espelho));
 
             $nota_espelho->valor += $patrimonio_espelho->valor;
             $nota_espelho->save();
@@ -85,11 +83,11 @@ abstract class GerarAutomaticoNotaEspelhoServiceAbstract extends GerarAutomatico
      * @param EspelhoRecorrente $espelho_recorrente
      * @return array
      */
-    private function getDadosEspelho(EspelhoRecorrente $espelho_recorrente) : array
+    private function getDadosEspelho(Contrato $contrato) : array
     {
 
-        $emissao = CarbonImmutable::parse(CarbonImmutable::today()->format('Y-m-'). $espelho_recorrente->dia_emissao);
-        $vencimento = CarbonImmutable::parse(CarbonImmutable::today()->format('Y-m-'). $espelho_recorrente->dia_vencimento);
+        $emissao = CarbonImmutable::parse(CarbonImmutable::today()->format('Y-m-'). $contrato->dia_emissao_nota);
+        $vencimento = CarbonImmutable::parse(CarbonImmutable::today()->format('Y-m-'). $contrato->dia_vencimento_nota);
         $periodo_fim = $this->getUltimoDiaMes($emissao->format('Y-m-d'));
 
         return [
@@ -99,10 +97,10 @@ abstract class GerarAutomaticoNotaEspelhoServiceAbstract extends GerarAutomatico
             'periodo_fim'               => $periodo_fim,
             'valor'                     => 0,
             'nota_espelho_estado_id'    => NotaEspelhoEstado::PENDENTE,
-            'cliente_id'                => $espelho_recorrente->contrato->cliente->id,
-            'contrato_id'               => $espelho_recorrente->contrato_id,
+            'cliente_id'                => $contrato->cliente->id,
+            'contrato_id'               => $contrato->id,
             'pedido_id'                 => null,
-            'espelho_recorrente_id'     => $espelho_recorrente->id
+            'espelho_recorrente_id'     => null
         ];
     }
 
@@ -152,5 +150,15 @@ abstract class GerarAutomaticoNotaEspelhoServiceAbstract extends GerarAutomatico
 
         }
         return $inicio->addMonth()->subDay()->format('Y-m-d');
+    }
+
+    private function verificaPeriodoPorContrato(Contrato $contrato)
+    {
+        if($contrato->medicao_tipo_id == MedicaoTipo::A_VENCER){
+
+
+        }else{
+
+        }
     }
 }
