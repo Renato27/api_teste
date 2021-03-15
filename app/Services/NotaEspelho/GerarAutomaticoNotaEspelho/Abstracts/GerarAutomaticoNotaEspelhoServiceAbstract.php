@@ -47,6 +47,8 @@ abstract class GerarAutomaticoNotaEspelhoServiceAbstract extends GerarAutomatico
 
         foreach($this->getEspelhos() as $espelho_do_dia){
 
+            if($espelho_do_dia->contrato->medicao_tipo_id >= 2) continue;
+
             $espelho_dentro_periodo = $this->NotaEspelhoRepository->ultimoEspelhoTemMaisDe30Dias($espelho_do_dia->id, false, true);
 
             if(!$espelho_dentro_periodo) continue;

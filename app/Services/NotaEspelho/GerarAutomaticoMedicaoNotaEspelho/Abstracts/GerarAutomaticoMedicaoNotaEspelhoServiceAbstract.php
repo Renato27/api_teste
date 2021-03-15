@@ -46,7 +46,11 @@ abstract class GerarAutomaticoMedicaoNotaEspelhoServiceAbstract extends GerarAut
 
         foreach($this->getContratos() as $contrato_do_dia){
 
-            $espelho_dentro_periodo = $this->NotaEspelhoRepository->ultimoEspelhoTemMaisDe30Dias($contrato_do_dia->id, false, true);
+            $patrimonios = $this->patrimonio_alugado_repository->getPatrimonioAlugadosByContrato($contrato_do_dia->id);
+
+            if(count($patrimonios) < 1) continue;
+
+            $espelho_dentro_periodo = $this->NotaEspelhoRepository->ultimoEspelhoTemMaisDe30Dias($contrato_do_dia->id, true);
 
             if(!$espelho_dentro_periodo) continue;
 
@@ -85,15 +89,14 @@ abstract class GerarAutomaticoMedicaoNotaEspelhoServiceAbstract extends GerarAut
      */
     private function getDadosEspelho(Contrato $contrato) : array
     {
-
-        $emissao = CarbonImmutable::parse(CarbonImmutable::today()->format('Y-m-'). $contrato->dia_emissao_nota);
-        $vencimento = CarbonImmutable::parse(CarbonImmutable::today()->format('Y-m-'). $contrato->dia_vencimento_nota);
-        $periodo_fim = $this->getUltimoDiaMes($emissao->format('Y-m-d'));
+        $periodo = verificaPeriodoPorContrato($contrato);
+        $vencimento = getVencimento($contrato, $periodo['periodoInicio']);
+        $periodo_fim = $this->getUltimoDiaMes($periodo['periodoInicio']);
 
         return [
-            'data_emissao'              => $emissao->format('Y-m-d'),
-            'data_vencimento'           => $vencimento->greaterThanOrEqualTo($emissao) ? $vencimento->addMonthNoOverflow()->format('Y-m-d') : $vencimento->format('Y-m-d'),
-            'periodo_inicio'            => $emissao->format('Y-m-d'),
+            'data_emissao'              => CarbonImmutable::today()->format('Y-m-d'),
+            'data_vencimento'           => $vencimento,
+            'periodo_inicio'            => $periodo['periodoInicio'],
             'periodo_fim'               => $periodo_fim,
             'valor'                     => 0,
             'nota_espelho_estado_id'    => NotaEspelhoEstado::PENDENTE,
@@ -150,15 +153,5 @@ abstract class GerarAutomaticoMedicaoNotaEspelhoServiceAbstract extends GerarAut
 
         }
         return $inicio->addMonth()->subDay()->format('Y-m-d');
-    }
-
-    private function verificaPeriodoPorContrato(Contrato $contrato)
-    {
-        if($contrato->medicao_tipo_id == MedicaoTipo::A_VENCER){
-
-
-        }else{
-
-        }
     }
 }

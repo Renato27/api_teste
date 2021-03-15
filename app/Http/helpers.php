@@ -30,6 +30,8 @@ function periodo_inicio_patrimonio(string $inicio,
             return $dataUltimaFatura->addDay()->format('Y-m-d');
         }
     }
+
+    return $dataMedicao;
 }
 
 function calculadora_de_periodo(NotaEspelho $notaEspelho, string $inicioPatrimonio, float $valor) : float
@@ -48,50 +50,112 @@ function calculadora_de_periodo(NotaEspelho $notaEspelho, string $inicioPatrimon
  * @param integer $contrato
  * @return string
  */
-function verificaPeriodoInicioPorContrato(Contrato $contrato, string $emissao = null) : string
+function verificaPeriodoPorContrato(Contrato $contrato, string $emissao = null) : array
 {
-
-    //Verificar se a data emissao é menor que a data inicio, se for adicionar um mês.
     if($contrato->medicao_tipo_id == MedicaoTipo::VENCIDA){
-        if(!is_null($contrato->dia_periodo_inicio_nota)){
-            return CarbonImmutable::parse(CarbonImmutable::parse($emissao)->format('Y-m-'). $contrato->dia_periodo_inicio_nota)->subMonthNoOverflow()->format('Y-m-d');
-        }
-
-        return CarbonImmutable::parse($emissao)->subMonthNoOverflow()->format('Y-m-d');
+       return contratoVencida($contrato);
     }
 
-    if($contrato->medicao_tipo_id == MedicaoTipo::VENCIDA){
-        if(!is_null($contrato->dia_periodo_inicio_nota)){
-            return CarbonImmutable::parse(CarbonImmutable::parse($emissao)->format('Y-m-'). $contrato->dia_periodo_inicio_nota)->format('Y-m-d');
-        }
+    if($contrato->medicao_tipo_id == MedicaoTipo::A_VENCER){
 
-        return CarbonImmutable::parse($emissao)->format('Y-m-d');
+        return ContratoAVencer($contrato);
     }
 }
 
 /**
- * Undocumented function
+ * Verifica qual periodo início será utilizado na nota
  *
  * @param integer $contrato
  * @return string
  */
-function verificaPeriodoFimPorContrato(Contrato $contrato, string $fim = null) : string
+function ContratoAVencer(Contrato $contrato) : array
 {
+    if(!is_null($contrato->dia_periodo_inicio_nota) && !is_null($contrato->dia_periodo_fim_nota)){
 
-    if($contrato->medicao_tipo_id == MedicaoTipo::VENCIDA){
-        if(!is_null($contrato->dia_periodo_fim_nota)){
-            return CarbonImmutable::parse(CarbonImmutable::parse($fim)->format('Y-m-'). $contrato->dia_periodo_fim_nota)->subMonthNoOverflow()->format('Y-m-d');
+        $periodoFim = Carbon::parse(Carbon::today()->format('Y-m-') . $contrato->dia_periodo_fim_nota);
+
+        $periodoInicio = Carbon::parse(Carbon::today()->format('Y-m-') . $contrato->dia_periodo_inicio_nota);
+
+        $diferença = $periodoInicio->diffInDays($periodoFim->addDay());
+
+        if($diferença < 30){
+            return [
+                'periodoInicio' => Carbon::parse(Carbon::today()->format('Y-m-') . $contrato->dia_periodo_inicio_nota)->format('Y-m-d'),
+                'periodoFim'    => Carbon::parse(Carbon::today()->addMonthNoOverflow()->format('Y-m-') . $contrato->dia_periodo_fim_nota)->format('Y-m-d')
+            ];
         }
 
-        return CarbonImmutable::parse($fim)->subMonthNoOverflow()->format('Y-m-d');
+        return [
+            'periodoInicio' => Carbon::parse(Carbon::today()->format('Y-m-') . $contrato->dia_periodo_inicio_nota)->format('Y-m-d'),
+            'periodoFim'    => Carbon::parse(Carbon::today()->format('Y-m-') . $contrato->dia_periodo_fim_nota)->format('Y-m-d')
+        ];
+
     }
 
-    if($contrato->medicao_tipo_id == MedicaoTipo::VENCIDA){
-        if(!is_null($contrato->dia_periodo_fim_nota)){
-            return CarbonImmutable::parse(CarbonImmutable::parse($fim)->format('Y-m-'). $contrato->dia_periodo_fim_nota)->format('Y-m-d');
+    return [
+        'periodoInicio' =>  Carbon::today()->format('Y-m-d'),
+        'periodoFim'    => Carbon::today()->addMonthNoOverflow()->subDay()->format('Y-m-d')
+    ];
+}
+
+function contratoVencida(Contrato $contrato) : array
+{
+    if(!is_null($contrato->dia_periodo_inicio_nota) && !is_null($contrato->dia_periodo_fim_nota)){
+        $periodoFim = Carbon::parse(Carbon::today()->format('Y-m-') . $contrato->dia_periodo_fim_nota);
+
+        $periodoInicio = Carbon::parse(Carbon::today()->format('Y-m-') . $contrato->dia_periodo_inicio_nota);
+
+        $diferença = $periodoInicio->diffInDays($periodoFim->addDay());
+
+        if($diferença < 30){
+            return [
+                'periodoInicio' => Carbon::parse(Carbon::today()->subMonthNoOverflow()->format('Y-m-') . $contrato->dia_periodo_inicio_nota)->format('Y-m-d'),
+                'periodoFim'    => Carbon::parse(Carbon::today()->format('Y-m-') . $contrato->dia_periodo_fim_nota)->format('Y-m-d')
+            ];
         }
 
-        return CarbonImmutable::parse($fim)->format('Y-m-d');
+        return [
+            'periodoInicio' => Carbon::parse(Carbon::today()->subMonthNoOverflow()->format('Y-m-') . $contrato->dia_periodo_inicio_nota)->format('Y-m-d'),
+            'periodoFim'    => Carbon::parse(Carbon::today()->subMonthNoOverflow()->format('Y-m-') . $contrato->dia_periodo_fim_nota)->format('Y-m-d')
+        ];
+
     }
 
+    return [
+        'periodoInicio' =>  Carbon::today()->subMonthNoOverflow()->format('Y-m-d'),
+        'periodoFim'    => Carbon::today()->subDay()->format('Y-m-d')
+    ];
+}
+
+function getVencimento(Contrato $contrato, ?string $inicio = null) : string
+{
+    if(!is_null($contrato->dia_vencimento_nota)){
+
+        $emissao = Carbon::parse(Carbon::today()->format('Y-m-') . $contrato->dia_emissao_nota);
+
+        $vencimento = Carbon::parse(Carbon::today()->format('Y-m-') . $contrato->dia_vencimento_nota);
+
+        $diferenca = $emissao->diffInDays($vencimento->addDay());
+
+        if($diferenca < 30){
+
+            if($contrato->medicao_tipo_id == 3){
+
+                if($contrato->dia_periodo_inicio_nota == 1 && $contrato->dia_periodo_fim_nota == 30 && $contrato->dia_vencimento_nota == 30){
+
+                    return Carbon::parse(Carbon::today()->format('Y-m-') . $contrato->dia_vencimento_nota)->format('Y-m-d');
+                }
+
+                return Carbon::parse(Carbon::today()->addMonthNoOverflow()->format('Y-m-') . $contrato->dia_vencimento_nota)->format('Y-m-d');
+            }
+
+            return Carbon::parse(Carbon::today()->format('Y-m-') . $contrato->dia_vencimento_nota)->format('Y-m-d');
+        }
+
+        return Carbon::parse(Carbon::today()->format('Y-m-') . $contrato->dia_vencimento_nota)->format('Y-m-d');
+    }
+
+    $vencimentoPeriodo = Carbon::parse($inicio)->addMonthNoOverflow()->subDay()->format('Y-m-d');
+
+    return $vencimentoPeriodo;
 }
