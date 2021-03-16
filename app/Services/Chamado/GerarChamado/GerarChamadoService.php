@@ -1,15 +1,20 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Chamado\GerarChamado;
 
 use App\Models\Chamado\Chamado;
-use App\Services\Chamado\GerarChamado\Abstracts\GerarChamadoServiceAbstract;
 use Illuminate\Support\Facades\DB;
+use App\Services\Chamado\GerarChamado\Abstracts\GerarChamadoServiceAbstract;
 
 class GerarChamadoService extends GerarChamadoServiceAbstract
 {
     /**
-     * Processa os dados
+     * Processa os dados.
      *
      * @return Chamado|null
      */
@@ -17,9 +22,8 @@ class GerarChamadoService extends GerarChamadoServiceAbstract
     {
         $chamado = null;
 
-        DB::transaction(function () use(&$chamado){
-
-            $chamado =  $this->GerarChamado();
+        DB::transaction(function () use (&$chamado) {
+            $chamado = $this->GerarChamado();
         });
 
         return $chamado;

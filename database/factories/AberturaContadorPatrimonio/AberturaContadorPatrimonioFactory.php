@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\AberturaContadorPatrimonio;
 
-use App\Models\AberturaContadorPatrimonio\AberturaContadorPatrimonio;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\AberturaContadorPatrimonio\AberturaContadorPatrimonio;
 
 class AberturaContadorPatrimonioFactory extends Factory
 {

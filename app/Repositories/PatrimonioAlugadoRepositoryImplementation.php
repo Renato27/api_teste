@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\PatrimonioAlugadoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\PatrimonioAlugadoRepository;
 
 class PatrimonioAlugadoRepositoryImplementation implements PatrimonioAlugadoRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna PatrimonioAlugado baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getPatrimonioAlugado(int $id): ?Model
@@ -25,8 +29,8 @@ class PatrimonioAlugadoRepositoryImplementation implements PatrimonioAlugadoRepo
     /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadosByContrato(int $contrato): ?Collection
@@ -37,8 +41,8 @@ class PatrimonioAlugadoRepositoryImplementation implements PatrimonioAlugadoRepo
     /**
      * Retorna uma model de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadoByPatrimonio(int $patrimonio): ?Model
@@ -46,11 +50,11 @@ class PatrimonioAlugadoRepositoryImplementation implements PatrimonioAlugadoRepo
         return $this->where(['patrimonio_id' => $patrimonio])->first();
     }
 
-      /**
+    /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadosByPedido(int $pedido): ?Collection
@@ -61,8 +65,8 @@ class PatrimonioAlugadoRepositoryImplementation implements PatrimonioAlugadoRepo
     /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadosByCliente(int $cliente): ?Collection
@@ -73,8 +77,8 @@ class PatrimonioAlugadoRepositoryImplementation implements PatrimonioAlugadoRepo
     /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadosByItemPedido(int $item_pedido): ?Collection
@@ -85,8 +89,8 @@ class PatrimonioAlugadoRepositoryImplementation implements PatrimonioAlugadoRepo
     /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadosByItemDefinido(int $item_definido): ?Collection
@@ -97,8 +101,8 @@ class PatrimonioAlugadoRepositoryImplementation implements PatrimonioAlugadoRepo
     /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadosByChamado(int $chamado): ?Collection
@@ -109,8 +113,8 @@ class PatrimonioAlugadoRepositoryImplementation implements PatrimonioAlugadoRepo
     /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadosByEndereco(int $endereco): ?Collection
@@ -119,7 +123,7 @@ class PatrimonioAlugadoRepositoryImplementation implements PatrimonioAlugadoRepo
     }
 
     /**
-     * Cria um novo PatrimonioAlugado
+     * Cria um novo PatrimonioAlugado.
      *
      * @param array $detalhes
      * @return Model|null
@@ -130,7 +134,7 @@ class PatrimonioAlugadoRepositoryImplementation implements PatrimonioAlugadoRepo
     }
 
     /**
-     * Atualiza um PatrimonioAlugado
+     * Atualiza um PatrimonioAlugado.
      *
      * @param int $id
      * @param array $detalhes
@@ -142,7 +146,7 @@ class PatrimonioAlugadoRepositoryImplementation implements PatrimonioAlugadoRepo
     }
 
     /**
-     * Deleta um PatrimonioAlugado
+     * Deleta um PatrimonioAlugado.
      *
      * @param int $id
      * @param array $detalhes
@@ -152,7 +156,9 @@ class PatrimonioAlugadoRepositoryImplementation implements PatrimonioAlugadoRepo
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

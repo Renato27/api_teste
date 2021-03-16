@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\RetiradaPatrimonioRepository;
 
@@ -28,46 +31,36 @@ class RetiradaPatrimonioRepositoryTest extends TestCase
 
     /**
      * Retorna RetiradaPatrimonio baseado no ID.
-     *
      */
     public function testGetRetiradaPatrimonio()
     {
-
     }
 
     /**
      * Retorna uma coleção de RetiradaPatrimonio baseado em uma associação.
-     *
      */
     public function testGetRetiradaPatrimonios()
     {
-
     }
 
     /**
-     * Cria um novo RetiradaPatrimonio
-     *
-     */    
+     * Cria um novo RetiradaPatrimonio.
+     */
     public function testCreateRetiradaPatrimonio()
     {
-
     }
 
     /**
-     * Atualiza um RetiradaPatrimonio
-     *
-     */ 
+     * Atualiza um RetiradaPatrimonio.
+     */
     public function testUpdateRetiradaPatrimonio()
     {
-
     }
 
     /**
-     * Deleta um RetiradaPatrimonio
-     *
-     */ 
+     * Deleta um RetiradaPatrimonio.
+     */
     public function testDeleteRetiradaPatrimonio()
     {
-
     }
 }

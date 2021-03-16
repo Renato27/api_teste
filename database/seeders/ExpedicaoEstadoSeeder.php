@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Seeders;
 
-use App\Models\ExpedicaoEstado\ExpedicaoEstado;
 use Illuminate\Database\Seeder;
+use App\Models\ExpedicaoEstado\ExpedicaoEstado;
 
 class ExpedicaoEstadoSeeder extends Seeder
 {
@@ -15,25 +20,25 @@ class ExpedicaoEstadoSeeder extends Seeder
     public function run()
     {
         ExpedicaoEstado::create([
-            'nome' => 'Aguardando Seleção'
+            'nome' => 'Aguardando Seleção',
         ]);
         ExpedicaoEstado::create([
-            'nome' => 'Aguardando Separação'
+            'nome' => 'Aguardando Separação',
         ]);
         ExpedicaoEstado::create([
-            'nome' => 'Aguardando Preparação'
+            'nome' => 'Aguardando Preparação',
         ]);
         ExpedicaoEstado::create([
-            'nome' => 'Liberado'
+            'nome' => 'Liberado',
         ]);
         ExpedicaoEstado::create([
-            'nome' => 'Aguardando Reversa'
+            'nome' => 'Aguardando Reversa',
         ]);
         ExpedicaoEstado::create([
-            'nome' => 'Reversa Concluída'
+            'nome' => 'Reversa Concluída',
         ]);
         ExpedicaoEstado::create([
-            'nome' => 'Cancelada'
+            'nome' => 'Cancelada',
         ]);
     }
 }

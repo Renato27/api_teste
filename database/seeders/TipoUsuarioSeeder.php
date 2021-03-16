@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Seeders;
 
-use App\Models\TipoUsuario\TipoUsuario;
 use Illuminate\Database\Seeder;
+use App\Models\TipoUsuario\TipoUsuario;
 
 class TipoUsuarioSeeder extends Seeder
 {
@@ -15,25 +20,25 @@ class TipoUsuarioSeeder extends Seeder
     public function run()
     {
         TipoUsuario::create([
-            'nome' => 'Suporte'
+            'nome' => 'Suporte',
         ]);
         TipoUsuario::create([
-            'nome' => 'Suporte Nível 2'
+            'nome' => 'Suporte Nível 2',
         ]);
         TipoUsuario::create([
-            'nome' => 'Estoquista'
+            'nome' => 'Estoquista',
         ]);
         TipoUsuario::create([
-            'nome' => 'Assistente'
+            'nome' => 'Assistente',
         ]);
         TipoUsuario::create([
-            'nome' => 'Gestão'
+            'nome' => 'Gestão',
         ]);
         TipoUsuario::create([
-            'nome' => 'Cliente'
+            'nome' => 'Cliente',
         ]);
         TipoUsuario::create([
-            'nome' => 'Financeiro'
+            'nome' => 'Financeiro',
         ]);
     }
 }

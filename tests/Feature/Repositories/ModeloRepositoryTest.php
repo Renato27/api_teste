@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\ModeloRepository;
 
@@ -28,46 +31,36 @@ class ModeloRepositoryTest extends TestCase
 
     /**
      * Retorna Modelo baseado no ID.
-     *
      */
     public function testGetModelo()
     {
-
     }
 
     /**
      * Retorna uma coleção de Modelo baseado em uma associação.
-     *
      */
     public function testGetModelos()
     {
-
     }
 
     /**
-     * Cria um novo Modelo
-     *
-     */    
+     * Cria um novo Modelo.
+     */
     public function testCreateModelo()
     {
-
     }
 
     /**
-     * Atualiza um Modelo
-     *
-     */ 
+     * Atualiza um Modelo.
+     */
     public function testUpdateModelo()
     {
-
     }
 
     /**
-     * Deleta um Modelo
-     *
-     */ 
+     * Deleta um Modelo.
+     */
     public function testDeleteModelo()
     {
-
     }
 }

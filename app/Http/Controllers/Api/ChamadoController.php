@@ -1,13 +1,18 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
+use App\Models\Chamado\Chamado;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ChamadoResource;
-use App\Models\Chamado\Chamado;
-use App\Services\Chamado\AtualizarChamado\Contracts\AtualizarChamadoService;
 use App\Services\Chamado\GerarChamado\Contracts\GerarChamadoService;
-use Illuminate\Http\Request;
+use App\Services\Chamado\AtualizarChamado\Contracts\AtualizarChamadoService;
 
 class ChamadoController extends Controller
 {
@@ -33,7 +38,6 @@ class ChamadoController extends Controller
     public function store(Request $request, GerarChamadoService $gerarChamadoService)
     {
         try {
-
             $gerarChamadoService->setDados($request->all());
             $gerarChamadoService->setPatrimoniosTrocar($request->patrimonios_trocar);
             $chamado = $gerarChamadoService->setPatrimonios($request->patrimonios)->handle();
@@ -42,7 +46,6 @@ class ChamadoController extends Controller
         } catch (\Throwable $th) {
             dd($th->getMessage());
         }
-
     }
 
     /**

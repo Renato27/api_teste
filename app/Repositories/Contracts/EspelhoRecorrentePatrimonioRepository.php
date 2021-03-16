@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface EspelhoRecorrentePatrimonioRepository
 {
     /**
      * Retorna EspelhoRecorrentePatrimonio baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getEspelhoRecorrentePatrimonio(int $id): ?Model;
@@ -18,14 +23,14 @@ interface EspelhoRecorrentePatrimonioRepository
     /**
      * Retorna uma coleção de EspelhoRecorrentePatrimonio baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getEspelhoRecorrentePatrimonios(int $id, int $associacao): ?Collection;
 
     /**
-     * Cria um novo EspelhoRecorrentePatrimonio
+     * Cria um novo EspelhoRecorrentePatrimonio.
      *
      * @param array $detalhes
      * @return Model|null
@@ -33,7 +38,7 @@ interface EspelhoRecorrentePatrimonioRepository
     public function createEspelhoRecorrentePatrimonio(array $detalhes): ?Model;
 
     /**
-     * Atualiza um EspelhoRecorrentePatrimonio
+     * Atualiza um EspelhoRecorrentePatrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -42,7 +47,7 @@ interface EspelhoRecorrentePatrimonioRepository
     public function updateEspelhoRecorrentePatrimonio(int $id, array $detalhes): ?Model;
 
     /**
-     * Deleta um EspelhoRecorrentePatrimonio
+     * Deleta um EspelhoRecorrentePatrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -53,7 +58,7 @@ interface EspelhoRecorrentePatrimonioRepository
     /**
      * Retorna os patrimônios de um espelho recorrente.
      *
-     * @param integer $espelho_recorrente_id
+     * @param int $espelho_recorrente_id
      * @return Collection|null
      */
     public function getPatrimoniosByEspelhoRecorrente(int $espelho_recorrente_id): ?Collection;

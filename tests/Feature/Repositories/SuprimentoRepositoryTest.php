@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\SuprimentoRepository;
 
@@ -28,46 +31,36 @@ class SuprimentoRepositoryTest extends TestCase
 
     /**
      * Retorna Suprimento baseado no ID.
-     *
      */
     public function testGetSuprimento()
     {
-
     }
 
     /**
      * Retorna uma coleção de Suprimento baseado em uma associação.
-     *
      */
     public function testGetSuprimentos()
     {
-
     }
 
     /**
-     * Cria um novo Suprimento
-     *
-     */    
+     * Cria um novo Suprimento.
+     */
     public function testCreateSuprimento()
     {
-
     }
 
     /**
-     * Atualiza um Suprimento
-     *
-     */ 
+     * Atualiza um Suprimento.
+     */
     public function testUpdateSuprimento()
     {
-
     }
 
     /**
-     * Deleta um Suprimento
-     *
-     */ 
+     * Deleta um Suprimento.
+     */
     public function testDeleteSuprimento()
     {
-
     }
 }

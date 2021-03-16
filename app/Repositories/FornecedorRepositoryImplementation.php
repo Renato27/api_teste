@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\FornecedorRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\FornecedorRepository;
 
 class FornecedorRepositoryImplementation implements FornecedorRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna Fornecedor baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getFornecedor(int $id): ?Model
@@ -25,8 +29,8 @@ class FornecedorRepositoryImplementation implements FornecedorRepository
     /**
      * Retorna uma coleção de Fornecedor baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getFornecedores(int $id, int $associacao): ?Collection
@@ -35,7 +39,7 @@ class FornecedorRepositoryImplementation implements FornecedorRepository
     }
 
     /**
-     * Cria um novo Fornecedor
+     * Cria um novo Fornecedor.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +50,7 @@ class FornecedorRepositoryImplementation implements FornecedorRepository
     }
 
     /**
-     * Atualiza um Fornecedor
+     * Atualiza um Fornecedor.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +62,7 @@ class FornecedorRepositoryImplementation implements FornecedorRepository
     }
 
     /**
-     * Deleta um Fornecedor
+     * Deleta um Fornecedor.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +72,9 @@ class FornecedorRepositoryImplementation implements FornecedorRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

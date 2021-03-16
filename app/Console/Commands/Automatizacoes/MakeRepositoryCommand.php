@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Console\Commands\Automatizacoes;
 
-use App\Services\Automatizacoes\Repositorios\CriarRepositorioService;
 use Illuminate\Console\Command;
+use App\Services\Automatizacoes\Repositorios\CriarRepositorioService;
 
 class MakeRepositoryCommand extends Command
 {
@@ -22,7 +27,6 @@ class MakeRepositoryCommand extends Command
     protected $description = 'Cria um repositório baseado no Eloquent;
                               Criar repositório = (Referência) ex.: Cliente';
 
-
     /**
      * Create a new command instance.
      *
@@ -40,9 +44,9 @@ class MakeRepositoryCommand extends Command
      */
     public function handle()
     {
-        $model              = $this->argument('model');
-        $recurso            = $model;
-        $repositoryName     = $model . "Repository";
+        $model = $this->argument('model');
+        $recurso = $model;
+        $repositoryName = $model.'Repository';
 
         $repositoryCommand = new CriarRepositorioService();
         $repositoryCommand->handle($repositoryName, $recurso, $model);

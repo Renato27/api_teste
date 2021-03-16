@@ -1,13 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\Clientes\Cliente;
-use App\Repositories\ClienteRepositoryImplementation;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Clientes\Cliente;
 use App\Repositories\Contracts\ClienteRepository;
+use App\Repositories\ClienteRepositoryImplementation;
 
 class ClienteRepositoryTest extends TestCase
 {
@@ -36,7 +39,6 @@ class ClienteRepositoryTest extends TestCase
 
     /**
      * Retorna cliente baseado no ID.
-     *
      */
     public function testGetcliente()
     {
@@ -49,25 +51,24 @@ class ClienteRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de cliente baseado em uma associação.
-     *  (Não necessita de teste no momento.)
+     *  (Não necessita de teste no momento.).
      */
     // public function testGetclientes()
     // {
     // }
 
     /**
-     * Cria um novo cliente
-     *
+     * Cria um novo cliente.
      */
     public function testCreatecliente()
     {
         $cliente = \App\Models\Clientes\Cliente::factory()->make();
         $detalhes = [
-            'razao_social'          => $cliente->razao_social,
-            'nome_fantasia'         => $cliente->nome_fantasia,
-            'cpf_cnpj'              => $cliente->cpf_cnpj,
-            'inscricao_estadual'    => $cliente->inscricao_estadual,
-            'inscricao_municipal'   => $cliente->inscricao_municipal
+            'razao_social' => $cliente->razao_social,
+            'nome_fantasia' => $cliente->nome_fantasia,
+            'cpf_cnpj' => $cliente->cpf_cnpj,
+            'inscricao_estadual' => $cliente->inscricao_estadual,
+            'inscricao_municipal' => $cliente->inscricao_municipal,
         ];
 
         $retorno = $this->implementacao->createcliente($detalhes);
@@ -76,18 +77,17 @@ class ClienteRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um cliente
-     *
+     * Atualiza um cliente.
      */
     public function testUpdatecliente()
     {
         $cliente = \App\Models\Clientes\Cliente::factory()->make();
         $detalhes = [
-            'razao_social'          => $cliente->razao_social,
-            'nome_fantasia'         => $cliente->nome_fantasia,
-            'cpf_cnpj'              => $cliente->cpf_cnpj,
-            'inscricao_estadual'    => $cliente->inscricao_estadual,
-            'inscricao_municipal'   => $cliente->inscricao_municipal
+            'razao_social' => $cliente->razao_social,
+            'nome_fantasia' => $cliente->nome_fantasia,
+            'cpf_cnpj' => $cliente->cpf_cnpj,
+            'inscricao_estadual' => $cliente->inscricao_estadual,
+            'inscricao_municipal' => $cliente->inscricao_municipal,
         ];
 
         $retorno = $this->implementacao->createcliente($detalhes);
@@ -98,8 +98,7 @@ class ClienteRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um cliente
-     *
+     * Deleta um cliente.
      */
     public function testDeletecliente()
     {

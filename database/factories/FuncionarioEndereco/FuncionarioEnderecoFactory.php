@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\FuncionarioEndereco;
 
-use App\Models\EnderecoFuncionario\EnderecoFuncionario;
 use App\Models\Funcionario\Funcionario;
-use App\Models\FuncionarioEndereco\FuncionarioEndereco;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\EnderecoFuncionario\EnderecoFuncionario;
+use App\Models\FuncionarioEndereco\FuncionarioEndereco;
 
 class FuncionarioEnderecoFactory extends Factory
 {
@@ -24,8 +29,8 @@ class FuncionarioEnderecoFactory extends Factory
     public function definition()
     {
         return [
-            'funcionario_id'            => Funcionario::factory()->create(),
-            'endereco_funcionario_id'   => EnderecoFuncionario::factory()->create()
+            'funcionario_id' => Funcionario::factory()->create(),
+            'endereco_funcionario_id' => EnderecoFuncionario::factory()->create(),
         ];
     }
 }

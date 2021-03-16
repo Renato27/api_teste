@@ -1,7 +1,11 @@
 <?php
 
-return [
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
 
+return [
     /*
     |--------------------------------------------------------------------------
     | Default Mailer
@@ -106,5 +110,4 @@ return [
             resource_path('views/vendor/mail'),
         ],
     ],
-
 ];

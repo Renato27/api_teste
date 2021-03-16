@@ -1,18 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\Funcionario;
 
-use App\Models\EnderecoFuncionario\EnderecoFuncionario;
-use App\Models\FuncionarioDado\FuncionarioDado;
-use App\Models\FuncionarioEndereco\FuncionarioEndereco;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\EnderecoFuncionario\EnderecoFuncionario;
+use App\Models\FuncionarioEndereco\FuncionarioEndereco;
 
 class Funcionario extends Model
 {
     use HasFactory;
-
     use SoftDeletes;
 
     protected $date = ['deleted_at'];
@@ -23,5 +26,4 @@ class Funcionario extends Model
     {
         return $this->hasOneThrough(EnderecoFuncionario::class, FuncionarioEndereco::class, 'funcionario_id', 'id');
     }
-
 }

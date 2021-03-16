@@ -1,22 +1,28 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\NotaEspelhoPatrimonio;
 
 use App\Models\Chamado\Chamado;
 use App\Models\Contratos\Contrato;
-use App\Models\NotaEspelho\NotaEspelho;
 use App\Models\Patrimonio\Patrimonio;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\NotaEspelho\NotaEspelho;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class NotaEspelhoPatrimonio extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $date = ['deleted_at'];
+
     protected $fillable = ['periodo_inicio', 'periodo_fim', 'valor', 'patrimonio_id',
-    'nota_espelho_id', 'contrato_id', 'chamado_id'];
+        'nota_espelho_id', 'contrato_id', 'chamado_id', ];
 
     public function patrimonio()
     {

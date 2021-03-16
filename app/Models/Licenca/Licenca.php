@@ -1,19 +1,25 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\Licenca;
 
-use App\Models\LicencaPatrimonio\LicencaPatrimonio;
 use App\Models\Patrimonio\Patrimonio;
 use App\Models\TipoLicenca\TipoLicenca;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\LicencaPatrimonio\LicencaPatrimonio;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Licenca extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $date = ['deleted_at'];
+
     protected $fillable = ['email', 'quantidade', 'tipo_licenca_id'];
 
     public function tipo_licenca()

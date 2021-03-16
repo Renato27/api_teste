@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
 use Carbon\CarbonImmutable;
@@ -9,13 +14,12 @@ use App\Repositories\Contracts\EspelhoRecorrenteRepository;
 
 class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna EspelhoRecorrente baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getEspelhoRecorrente(int $id): ?Model
@@ -26,8 +30,8 @@ class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepo
     /**
      * Retorna uma coleção de EspelhoRecorrente baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getEspelhoRecorrentes(int $id, int $associacao): ?Collection
@@ -36,7 +40,7 @@ class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepo
     }
 
     /**
-     * Cria um novo EspelhoRecorrente
+     * Cria um novo EspelhoRecorrente.
      *
      * @param array $detalhes
      * @return Model|null
@@ -47,7 +51,7 @@ class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepo
     }
 
     /**
-     * Atualiza um EspelhoRecorrente
+     * Atualiza um EspelhoRecorrente.
      *
      * @param int $id
      * @param array $detalhes
@@ -59,7 +63,7 @@ class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepo
     }
 
     /**
-     * Deleta um EspelhoRecorrente
+     * Deleta um EspelhoRecorrente.
      *
      * @param int $id
      * @param array $detalhes
@@ -69,7 +73,9 @@ class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepo
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }
@@ -81,15 +87,11 @@ class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepo
      */
     public function getEspelhoRecorrenteDia(?CarbonImmutable $dia = null, ?int $contrato = null) : Collection
     {
-        if(!is_null($dia) && !is_null($contrato)){
-
+        if (! is_null($dia) && ! is_null($contrato)) {
             return $this->where(['dia_emissao' => $dia->format('d'), 'contrato_id' => $contrato, 'cancelado' => 0])->get();
-
-        }else if(!is_null($dia)){
-
+        } elseif (! is_null($dia)) {
             return $this->getEspelhosFinalMes($dia);
-        }else{
-
+        } else {
             $hoje = CarbonImmutable::today();
 
             return $this->getEspelhosFinalMes($hoje);
@@ -101,15 +103,14 @@ class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepo
     /**
      * Retorna os espelhos de acordo com o último dia do mês.
      *
-     * @param integer|null $dia
+     * @param int|null $dia
      * @return Collection
      */
     private function getEspelhosFinalMes(?CarbonImmutable $dia): Collection
     {
         $dia = CarbonImmutable::parse($dia);
 
-        if($dia->addDay()->format('d') == 1){
-
+        if ($dia->addDay()->format('d') == 1) {
             switch ($dia->format('d')) {
                 case 31:
 

@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\ItemDefinidoRepository;
 
@@ -28,46 +31,36 @@ class ItemDefinidoRepositoryTest extends TestCase
 
     /**
      * Retorna ItemDefinido baseado no ID.
-     *
      */
     public function testGetItemDefinido()
     {
-
     }
 
     /**
      * Retorna uma coleção de ItemDefinido baseado em uma associação.
-     *
      */
     public function testGetItemDefinidos()
     {
-
     }
 
     /**
-     * Cria um novo ItemDefinido
-     *
-     */    
+     * Cria um novo ItemDefinido.
+     */
     public function testCreateItemDefinido()
     {
-
     }
 
     /**
-     * Atualiza um ItemDefinido
-     *
-     */ 
+     * Atualiza um ItemDefinido.
+     */
     public function testUpdateItemDefinido()
     {
-
     }
 
     /**
-     * Deleta um ItemDefinido
-     *
-     */ 
+     * Deleta um ItemDefinido.
+     */
     public function testDeleteItemDefinido()
     {
-
     }
 }

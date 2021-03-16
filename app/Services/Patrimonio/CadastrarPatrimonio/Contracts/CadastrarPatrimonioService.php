@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Patrimonio\CadastrarPatrimonio\Contracts;
 
 use App\Models\Patrimonio\Patrimonio;
@@ -13,7 +18,7 @@ interface CadastrarPatrimonioService
      * @param Patrimonio
      * @return CadastrarPatrimonioService
      */
-    public function setPatrimonio(Patrimonio $Patrimonio): CadastrarPatrimonioService;
+    public function setPatrimonio(Patrimonio $Patrimonio): self;
 
     /**
      * Seta os dados para Patrimonio.
@@ -21,7 +26,7 @@ interface CadastrarPatrimonioService
      * @param array $dados
      * @return CadastrarPatrimonioService;
      */
-    public function setDados(array $dados): CadastrarPatrimonioService;
+    public function setDados(array $dados): self;
 
     /**
      * Seta o repositório de PatrimonioRepository.
@@ -29,10 +34,10 @@ interface CadastrarPatrimonioService
      * @param PatrimonioRepository $PatrimonioRepository
      * @return CadastrarPatrimonioService
      */
-    public function setPatrimonioRepository(PatrimonioRepository $PatrimonioRepository): CadastrarPatrimonioService;
+    public function setPatrimonioRepository(PatrimonioRepository $PatrimonioRepository): self;
 
     /**
-     * Processa os dados
+     * Processa os dados.
      *
      * @return Patrimonio|null
      */

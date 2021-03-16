@@ -1,17 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\ClienteContato;
 
-use App\Models\clientes\Cliente;
 use App\Models\Contato\Contato;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\clientes\Cliente;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ClienteContato extends Model
 {
     use HasFactory;
-
     use SoftDeletes;
 
     protected $date = ['deleted_at'];

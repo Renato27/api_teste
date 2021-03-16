@@ -1,23 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
-use App\Events\UsuarioClienteEvent;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Events\UsuarioClienteEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UsuarioRequest;
 use App\Http\Resources\UsuarioResource;
-use App\Models\Usuario\Usuario;
-use App\Models\UsuarioCliente\UsuarioCliente;
 use App\Repositories\Contracts\UsuarioRepository;
-use App\Services\Usuario\CadastrarUsuario\Contracts\CadastrarUsuarioService;
-use Exception;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Tymon\JWTAuth\Exceptions\JWTException;
-
-use function PHPUnit\Framework\throwException;
+use App\Services\Usuario\CadastrarUsuario\Contracts\CadastrarUsuarioService;
 
 class UsuarioController extends Controller
 {
@@ -41,7 +39,7 @@ class UsuarioController extends Controller
     {
         try {
             $usuario = $service->setDados($request->all())->handle();
-            foreach($request->clientesIds as $clienteId){
+            foreach ($request->clientesIds as $clienteId) {
                 event(new UsuarioClienteEvent($usuario, $clienteId));
             }
 

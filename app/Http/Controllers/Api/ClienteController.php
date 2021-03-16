@@ -1,19 +1,22 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
 use App\Events\ClienteEvent;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ClienteRequest;
-use App\Http\Resources\ClienteContatoEnderecoResource;
-use App\Http\Resources\ClienteResource;
+use Illuminate\Http\Request;
 use App\Models\Clientes\Cliente;
-use App\Repositories\Contracts\ClienteRepository;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ClienteResource;
+use App\Http\Resources\ClienteContatoEnderecoResource;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Services\Clientes\ExcluirCliente\Contracts\ExcluirClienteService;
 use App\Services\Clientes\AtualizarCliente\Contracts\AtualizarClienteService;
 use App\Services\Clientes\CadastrarCliente\Contracts\CadastrarClienteService;
-use App\Services\Clientes\ExcluirCliente\Contracts\ExcluirClienteService;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ClienteController extends Controller
 {
@@ -37,9 +40,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request, CadastrarClienteService $serviceCliente)
     {
-
         try {
-
             $cliente = $serviceCliente->setDados($request->cliente)->handle();
 
             event(new ClienteEvent($cliente, $request->endereco, $request->contato));
@@ -68,7 +69,7 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Cliente $cliente, Request $request,  AtualizarClienteService $serviceCliente)
+    public function update(Cliente $cliente, Request $request, AtualizarClienteService $serviceCliente)
     {
         try {
             $serviceCliente->setCliente($cliente->id);

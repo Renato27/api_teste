@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Seeders;
 
-use App\Models\NotaEspelhoEstado\NotaEspelhoEstado;
 use Illuminate\Database\Seeder;
+use App\Models\NotaEspelhoEstado\NotaEspelhoEstado;
 
 class NotaEspelhoEstadoSeeder extends Seeder
 {
@@ -15,16 +20,16 @@ class NotaEspelhoEstadoSeeder extends Seeder
     public function run()
     {
         NotaEspelhoEstado::create([
-            'nome' => 'Pendente'
+            'nome' => 'Pendente',
         ]);
         NotaEspelhoEstado::create([
-            'nome' => 'Processado'
+            'nome' => 'Processado',
         ]);
         NotaEspelhoEstado::create([
-            'nome' => 'Cancelado'
+            'nome' => 'Cancelado',
         ]);
         NotaEspelhoEstado::create([
-            'nome' => 'Aguardando Chamado'
+            'nome' => 'Aguardando Chamado',
         ]);
     }
 }

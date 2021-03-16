@@ -1,18 +1,23 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\PatrimonioAlugado;
 
+use App\Models\Pedido\Pedido;
 use App\Models\Chamado\Chamado;
 use App\Models\Clientes\Cliente;
-use App\Models\Contratos\Contrato;
 use App\Models\Endereco\Endereco;
-use App\Models\ItemDefinido\ItemDefinido;
+use App\Models\Contratos\Contrato;
 use App\Models\ItemPedido\ItemPedido;
 use App\Models\Patrimonio\Patrimonio;
-use App\Models\Pedido\Pedido;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ItemDefinido\ItemDefinido;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PatrimonioAlugado extends Model
 {
@@ -21,7 +26,7 @@ class PatrimonioAlugado extends Model
     protected $date = ['deleted_at'];
 
     protected $fillable = ['data_entrega', 'valor', 'cobrado', 'patrimonio_id', 'pedido_id', 'cliente_id', 'contrato_id', 'item_pedido_id',
-     'item_definido_id', 'chamado_id', 'endereco_id'];
+        'item_definido_id', 'chamado_id', 'endereco_id', ];
 
     public function patrimonio()
     {

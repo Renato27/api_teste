@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Middleware;
 
 use Closure;
@@ -19,45 +24,34 @@ class JwtMiddleware extends BaseMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
         try {
-
             $usuario = JWTAuth::parseToken()->authenticate();
 
-            if(!$usuario)
+            if (! $usuario) {
                 throw new Exception('Usuário não encontrado!');
-
+            }
         } catch (\Throwable $th) {
-            if($th instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
-
+            if ($th instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
                 return response()->json([
                     'message' => 'Token Inválido',
                 ]);
-
-            }else if($th instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
-
+            } elseif ($th instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
                 return response()->json([
-
-                    'message'   => 'Token Expirado!',
+                    'message' => 'Token Expirado!',
                 ]);
-
-            }else{
-
-                if($th->getMessage() === 'Usuário não encontrado!'){
-
+            } else {
+                if ($th->getMessage() === 'Usuário não encontrado!') {
                     return response()->json([
-
-                        'message'   => 'Usuário não encontrado!',
-
+                        'message' => 'Usuário não encontrado!',
                     ]);
                 }
             }
 
             return response()->json([
-
-                    'message'   => 'Token de autorização não encontrado!',
+                'message' => 'Token de autorização não encontrado!',
             ]);
         }
+
         return $next($request);
     }
 }

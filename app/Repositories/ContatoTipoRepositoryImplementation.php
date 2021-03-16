@@ -1,18 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ContatoTipoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ContatoTipoRepository;
 
 class ContatoTipoRepositoryImplementation implements ContatoTipoRepository
 {
     use BaseEloquentRepository;
+
     /**
      * Retorna ContatoTipo baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getContatoTipo(int $contato): ?Model
@@ -23,8 +29,8 @@ class ContatoTipoRepositoryImplementation implements ContatoTipoRepository
     /**
      * Retorna uma coleção de ContatoTipo baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getTipoContatos(int $tipo): ?Collection
@@ -33,41 +39,43 @@ class ContatoTipoRepositoryImplementation implements ContatoTipoRepository
     }
 
     /**
-     * Cria um novo ContatoTipo
+     * Cria um novo ContatoTipo.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createContatoTipo(array $detalhes): ?Model
     {
         return $this->create($detalhes);
     }
 
     /**
-     * Atualiza um ContatoTipo
+     * Atualiza um ContatoTipo.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateContatoTipo(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
     }
 
     /**
-     * Deleta um ContatoTipo
+     * Deleta um ContatoTipo.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteContatoTipo(int $id): bool
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
-        
+        if (! $retorno) {
+            return false;
+        }
+
         return true;
     }
 }

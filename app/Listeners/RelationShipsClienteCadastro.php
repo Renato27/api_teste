@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Listeners;
 
 use App\Events\ClienteEvent;
@@ -7,21 +12,18 @@ use App\Models\ClienteContato\ClienteContato;
 use App\Models\ClienteEndereco\ClienteEndereco;
 use App\Repositories\Contracts\ContatoRepository;
 use App\Repositories\Contracts\EnderecoRepository;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class RelationShipsClienteCadastro
 {
-
     /**
-     * Undocumented variable
+     * Undocumented variable.
      *
      * @var EnderecoRepository
      */
     protected EnderecoRepository $enderecoRepository;
 
     /**
-     * Undocumented variable
+     * Undocumented variable.
      *
      * @var ContatoRepository
      */

@@ -1,7 +1,11 @@
 <?php
 
-return [
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
 
+return [
     /*
     |--------------------------------------------------------------------------
     | Pagination Language Lines
@@ -15,5 +19,4 @@ return [
 
     'previous' => '&laquo; Previous',
     'next' => 'Next &raquo;',
-
 ];

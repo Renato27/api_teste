@@ -1,13 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\ClienteContrato\ClienteContrato;
-use App\Repositories\ClienteContratoRepositoryImplementation;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\ClienteContrato\ClienteContrato;
 use App\Repositories\Contracts\ClienteContratoRepository;
+use App\Repositories\ClienteContratoRepositoryImplementation;
 
 class ClienteContratoRepositoryTest extends TestCase
 {
@@ -36,7 +39,6 @@ class ClienteContratoRepositoryTest extends TestCase
 
     /**
      * Retorna ClienteContrato baseado no ID.
-     *
      */
     public function testGetClienteByContrato()
     {
@@ -55,7 +57,6 @@ class ClienteContratoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de ClienteContrato baseado em uma associação.
-     *
      */
     public function testGetContratosByCliente()
     {
@@ -79,8 +80,7 @@ class ClienteContratoRepositoryTest extends TestCase
     }
 
     /**
-     * Cria um novo ClienteContrato
-     *
+     * Cria um novo ClienteContrato.
      */
     public function testCreateClienteContrato()
     {
@@ -88,18 +88,17 @@ class ClienteContratoRepositoryTest extends TestCase
         $contrato = \App\Models\Contratos\Contrato::factory()->create();
         $cliente = \App\Models\Clientes\Cliente::factory()->create();
         $detalhes = [
-            'cliente_id'                => $cliente->id,
-            'contrato_id'               => $contrato->id
+            'cliente_id' => $cliente->id,
+            'contrato_id' => $contrato->id,
         ];
 
         $retorno = $this->implementacao->createClienteContrato($detalhes);
 
-        $this->assertEquals($associacao->id+1, $retorno->id);
+        $this->assertEquals($associacao->id + 1, $retorno->id);
     }
 
     /**
-     * Atualiza um ClienteContrato
-     *
+     * Atualiza um ClienteContrato.
      */
     public function testUpdateClienteContrato()
     {
@@ -107,8 +106,8 @@ class ClienteContratoRepositoryTest extends TestCase
         $contrato = \App\Models\Contratos\Contrato::factory()->create();
         $cliente = \App\Models\Clientes\Cliente::factory()->create();
         $detalhes = [
-            'cliente_id'                => $cliente->id,
-            'contrato_id'               => $contrato->id
+            'cliente_id' => $cliente->id,
+            'contrato_id' => $contrato->id,
         ];
 
         $retorno = $this->implementacao->updateClienteContrato($associacao->id, $detalhes);
@@ -117,8 +116,7 @@ class ClienteContratoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um ClienteContrato
-     *
+     * Deleta um ClienteContrato.
      */
     public function testDeleteClienteContrato()
     {

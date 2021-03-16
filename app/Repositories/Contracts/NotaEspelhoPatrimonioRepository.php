@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface NotaEspelhoPatrimonioRepository
 {
     /**
      * Retorna NotaEspelhoPatrimonio baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getNotaEspelhoPatrimonio(int $id): ?Model;
@@ -18,14 +23,14 @@ interface NotaEspelhoPatrimonioRepository
     /**
      * Retorna uma coleção de NotaEspelhoPatrimonio baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getNotaEspelhoPatrimoniosByNotaEspelho(int $nota_espelho): ?Collection;
 
     /**
-     * Cria um novo NotaEspelhoPatrimonio
+     * Cria um novo NotaEspelhoPatrimonio.
      *
      * @param array $detalhes
      * @return Model|null
@@ -33,7 +38,7 @@ interface NotaEspelhoPatrimonioRepository
     public function createNotaEspelhoPatrimonio(array $detalhes): ?Model;
 
     /**
-     * Atualiza um NotaEspelhoPatrimonio
+     * Atualiza um NotaEspelhoPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -42,7 +47,7 @@ interface NotaEspelhoPatrimonioRepository
     public function updateNotaEspelhoPatrimonio(int $id, array $detalhes): ?Model;
 
     /**
-     * Deleta um NotaEspelhoPatrimonio
+     * Deleta um NotaEspelhoPatrimonio.
      *
      * @param int $id
      * @param array $detalhes

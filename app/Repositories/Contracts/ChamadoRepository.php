@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface ChamadoRepository
 {
     /**
      * Retorna Chamado baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getChamado(int $id): ?Model;
@@ -18,8 +23,8 @@ interface ChamadoRepository
     /**
      * Retorna uma coleção de Chamado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getChamadosByUsuario(int $usuario): ?Collection;
@@ -27,8 +32,8 @@ interface ChamadoRepository
     /**
      * Retorna uma coleção de Chamado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getChamadosByTipo(int $tipo): ?Collection;
@@ -36,8 +41,8 @@ interface ChamadoRepository
     /**
      * Retorna uma coleção de Chamado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getChamadosByContato(int $contato): ?Collection;
@@ -45,8 +50,8 @@ interface ChamadoRepository
     /**
      * Retorna uma coleção de Chamado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getChamadosByEndereco(int $endereco): ?Collection;
@@ -54,14 +59,14 @@ interface ChamadoRepository
     /**
      * Retorna uma coleção de Chamado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getChamadosByPedido(int $pedido): ?Collection;
 
     /**
-     * Cria um novo Chamado
+     * Cria um novo Chamado.
      *
      * @param array $detalhes
      * @return Model|null
@@ -69,7 +74,7 @@ interface ChamadoRepository
     public function createChamado(array $detalhes): ?Model;
 
     /**
-     * Atualiza um Chamado
+     * Atualiza um Chamado.
      *
      * @param int $id
      * @param array $detalhes
@@ -78,7 +83,7 @@ interface ChamadoRepository
     public function updateChamado(int $id, array $detalhes): ?Model;
 
     /**
-     * Deleta um Chamado
+     * Deleta um Chamado.
      *
      * @param int $id
      * @param array $detalhes

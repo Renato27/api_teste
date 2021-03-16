@@ -1,14 +1,18 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Enderecos\ExcluirEndereco\Abstracts;
 
+use Exception;
 use App\Repositories\Contracts\EnderecoRepository;
 use App\Services\Enderecos\ExcluirEndereco\Contracts\ExcluirEnderecoService;
-use Exception;
 
 abstract class ExcluirEnderecoServiceAbstract implements ExcluirEnderecoService
-{ 
-
+{
     /**
      * Repositório de endereço.
      *
@@ -19,14 +23,14 @@ abstract class ExcluirEnderecoServiceAbstract implements ExcluirEnderecoService
     /**
      * ID do endereço.
      *
-     * @var integer
+     * @var int
      */
     protected int $endereco;
 
     /**
      * Seta um endereço.
      *
-     * @param integer $endereco
+     * @param int $endereco
      * @return ExcluirEnderecoService
      */
     public function setEndereco(int $endereco) : ExcluirEnderecoService
@@ -52,20 +56,22 @@ abstract class ExcluirEnderecoServiceAbstract implements ExcluirEnderecoService
     /**
      * Processa a exclusão de um endereço.
      *
-     * @return boolean
+     * @return bool
      */
     protected function excluirEndereco() : bool
     {
         $endereco = $this->enderecoRepository->getEndereco($this->endereco);
 
-        if(!isset($endereco->id))
-            throw new Exception("O endereço a ser excluído não existe.");
+        if (! isset($endereco->id)) {
+            throw new Exception('O endereço a ser excluído não existe.');
+        }
 
         $enderecoExcluido = $this->enderecoRepository->deleteEndereco($endereco->id);
-        
-        if(!$enderecoExcluido)
-            throw new Exception("Não foi possível excluir o endereço solicitado");
 
-        return $enderecoExcluido;    
+        if (! $enderecoExcluido) {
+            throw new Exception('Não foi possível excluir o endereço solicitado');
+        }
+
+        return $enderecoExcluido;
     }
 }

@@ -1,68 +1,68 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\TipoLicencaRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\TipoLicencaRepository;
 
 class TipoLicencaRepositoryImplementation implements TipoLicencaRepository
 {
     /**
      * Retorna TipoLicenca baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getTipoLicenca(int $id): ?Model
     {
-
     }
 
     /**
      * Retorna uma coleção de TipoLicenca baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getTipoLicencas(int $id, int $associacao): ?Collection
     {
-
     }
 
     /**
-     * Cria um novo TipoLicenca
+     * Cria um novo TipoLicenca.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createTipoLicenca(array $detalhes): ?Model
     {
-
     }
 
     /**
-     * Atualiza um TipoLicenca
+     * Atualiza um TipoLicenca.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateTipoLicenca(int $id, array $detalhes): ?Model
     {
-
     }
 
     /**
-     * Deleta um TipoLicenca
+     * Deleta um TipoLicenca.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteTipoLicenca(int $id): bool
     {
-
     }
 }

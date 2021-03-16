@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Usuario\CadastrarUsuario\Base;
 
-use App\Services\Usuario\CadastrarUsuario\Contracts\CadastrarUsuarioService;
 use App\Models\Usuario\Usuario;
-use App\Repositories\Contracts\UsuarioRepository;
 use Illuminate\Support\Facades\Hash;
+use App\Repositories\Contracts\UsuarioRepository;
+use App\Services\Usuario\CadastrarUsuario\Contracts\CadastrarUsuarioService;
 
 abstract class CadastrarUsuarioServiceBase implements CadastrarUsuarioService
 {
@@ -30,7 +35,7 @@ abstract class CadastrarUsuarioServiceBase implements CadastrarUsuarioService
      */
     protected UsuarioRepository $UsuarioRepository;
 
-   /**
+    /**
      * Seta a model de Usuario.
      *
      * @param Usuario
@@ -39,6 +44,7 @@ abstract class CadastrarUsuarioServiceBase implements CadastrarUsuarioService
     public function setUsuario(Usuario $Usuario): CadastrarUsuarioService
     {
         $this->Usuario = $Usuario;
+
         return $this;
     }
 
@@ -51,14 +57,15 @@ abstract class CadastrarUsuarioServiceBase implements CadastrarUsuarioService
     public function setDados(array $dados): CadastrarUsuarioService
     {
         $dadosUsuario = [
-            'email'                                 => $dados['email'],
-            'password'                              => Hash::make($dados['password']),
-            'tipo_usuario_id'                       => $dados['tipo_usuario_id'],
-            'funcionario_id'                        => $dados['funcionario_id'],
-            'contato_id'                            => $dados['contato_id'],
-            'cliente_visualizacao_patrimonio_id'    => $dados['cliente_visualizacao_patrimonio_id']
+            'email' => $dados['email'],
+            'password' => Hash::make($dados['password']),
+            'tipo_usuario_id' => $dados['tipo_usuario_id'],
+            'funcionario_id' => $dados['funcionario_id'],
+            'contato_id' => $dados['contato_id'],
+            'cliente_visualizacao_patrimonio_id' => $dados['cliente_visualizacao_patrimonio_id'],
         ];
         $this->dados = $dadosUsuario;
+
         return $this;
     }
 
@@ -71,6 +78,7 @@ abstract class CadastrarUsuarioServiceBase implements CadastrarUsuarioService
     public function setUsuarioRepository(UsuarioRepository $UsuarioRepository): CadastrarUsuarioService
     {
         $this->UsuarioRepository = $UsuarioRepository;
+
         return $this;
     }
 }

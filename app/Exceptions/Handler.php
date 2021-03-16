@@ -1,15 +1,20 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Exceptions;
 
 use Throwable;
 use Illuminate\Http\Response;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
-use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
-use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -44,64 +49,55 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e) : JsonResponse
     {
-        if($e instanceof UnauthorizedHttpException){
-
+        if ($e instanceof UnauthorizedHttpException) {
             $preException = $e->getPrevious();
 
-            if($preException instanceof TokenExpiredException){
-
+            if ($preException instanceof TokenExpiredException) {
                 return response()->json([
-                    'data'      => null,
-                    'status'    => false,
-                    'err_'      => [
-                        'message'   => 'Token Expirado',
-                        'code'      => 1
-                    ]
+                    'data' => null,
+                    'status' => false,
+                    'err_' => [
+                        'message' => 'Token Expirado',
+                        'code' => 1,
+                    ],
                 ]);
-
-            }else if($preException instanceof TokenInvalidException){
-
+            } elseif ($preException instanceof TokenInvalidException) {
                 return response()->json([
-                    'data'      => null,
-                    'status'    => false,
-                    'err_'      => [
-                        'message'   => 'Token Inválido',
-                        'code'      => 1
-                    ]
+                    'data' => null,
+                    'status' => false,
+                    'err_' => [
+                        'message' => 'Token Inválido',
+                        'code' => 1,
+                    ],
                 ]);
-
-            }else if($preException instanceof TokenBlacklistedException){
-
+            } elseif ($preException instanceof TokenBlacklistedException) {
                 return response()->json([
-                    'data'      => null,
-                    'status'    => false,
-                    'err_'      => [
-                        'message'   => 'Token Blacklisted',
-                        'code'      => 1
-                    ]
+                    'data' => null,
+                    'status' => false,
+                    'err_' => [
+                        'message' => 'Token Blacklisted',
+                        'code' => 1,
+                    ],
                 ]);
             }
 
-            if($e->getMessage() === 'Token not provided'){
-
+            if ($e->getMessage() === 'Token not provided') {
                 return response()->json([
-                    'data'      => null,
-                    'status'    => false,
-                    'err_'      => [
-                        'message'   => 'Token not provided',
-                        'code'      => 1
-                    ]
+                    'data' => null,
+                    'status' => false,
+                    'err_' => [
+                        'message' => 'Token not provided',
+                        'code' => 1,
+                    ],
                 ]);
-
-            }else if($e->getMessage() === 'Usuário não encontrado!'){
-
+            } elseif ($e->getMessage() === 'Usuário não encontrado!') {
                 return response()->json([
-                    'data'      => null,
-                    'status'    => false,
-                    'err_'      => [
-                        'message'   => 'Usuário não encontrado!',
-                        'code'      => 1
-                    ]
+                    'data' => null,
+                    'status' => false,
+                    'err_' => [
+                        'message' => 'Usuário não encontrado!',
+                        'code' => 1,
+                    ],
                 ]);
             }
         }

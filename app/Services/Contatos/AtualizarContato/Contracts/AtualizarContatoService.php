@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Contatos\AtualizarContato\Contracts;
 
 use App\Models\Contato\Contato;
@@ -10,10 +15,10 @@ interface AtualizarContatoService
     /**
      * Seta um contato a ser atualizado.
      *
-     * @param integer $contato
+     * @param int $contato
      * @return AtualizarContatoService
      */
-    public function setContato(int $contato) : AtualizarContatoService;
+    public function setContato(int $contato) : self;
 
     /**
      * Seta os dados a serem atualizados.
@@ -21,7 +26,7 @@ interface AtualizarContatoService
      * @param array $dados
      * @return AtualizarContatoService
      */
-    public function setDados(array $dados) : AtualizarContatoService;
+    public function setDados(array $dados) : self;
 
     /**
      * Seta o repositório de contato.
@@ -29,7 +34,7 @@ interface AtualizarContatoService
      * @param ContatoRepository $contatoRepository
      * @return AtualizarContatoService
      */
-    public function setContatoRepository(ContatoRepository $contatoRepository) : AtualizarContatoService;
+    public function setContatoRepository(ContatoRepository $contatoRepository) : self;
 
     /**
      * Processa a atualização do contato.

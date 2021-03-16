@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Console\Commands\Automatizacoes;
 
-use App\Services\Automatizacoes\Servicos\CriarServicoService;
 use Illuminate\Console\Command;
+use App\Services\Automatizacoes\Servicos\CriarServicoService;
 
 class MakeServiceCommand extends Command
 {
@@ -22,7 +27,6 @@ class MakeServiceCommand extends Command
     protected $description = 'Cria um serviço para regra de negócios;
                               Primeiro parametro = (Referência) ex.: Clientes;
                               Segundo parametro = (Ação) ex.: Cadastrar';
-
 
     protected $acao;
 
@@ -51,23 +55,20 @@ class MakeServiceCommand extends Command
 
         $ultimaLetra = substr($referencia, -1);
 
-        if($ultimaLetra == "s"){
-
+        if ($ultimaLetra == 's') {
             $referenciaService = substr($referencia, 0, -1);
 
-            $acao       = $this->argument('acao_service') . $referenciaService;
-            $service    = $acao . "Service";
-            $model      = $referenciaService;
+            $acao = $this->argument('acao_service').$referenciaService;
+            $service = $acao.'Service';
+            $model = $referenciaService;
 
             $this->acao = $acao;
             $this->service = $service;
             $this->model = $model;
-
-        }else{
-
-            $acao       = $this->argument('acao_service') . $referencia;
-            $service    = $acao . "Service";
-            $model      = $referencia;
+        } else {
+            $acao = $this->argument('acao_service').$referencia;
+            $service = $acao.'Service';
+            $model = $referencia;
 
             $this->acao = $acao;
             $this->service = $service;
@@ -76,7 +77,5 @@ class MakeServiceCommand extends Command
 
         $serviceCommand = new CriarServicoService();
         $serviceCommand->handle($referencia, $this->acao, $this->service, $this->model);
-
-
     }
 }

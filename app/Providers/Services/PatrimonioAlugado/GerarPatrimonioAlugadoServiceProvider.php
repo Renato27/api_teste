@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers\Services\PatrimonioAlugado;
 
-use App\Repositories\Contracts\PatrimonioAlugadoRepository;
-use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Contracts\GerarPatrimonioAlugadoService as ContractsGerarPatrimonioAlugadoService;
-use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\GerarPatrimonioAlugadoService;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Contracts\PatrimonioAlugadoRepository;
+use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\GerarPatrimonioAlugadoService;
+use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Contracts\GerarPatrimonioAlugadoService as ContractsGerarPatrimonioAlugadoService;
 
 class GerarPatrimonioAlugadoServiceProvider extends ServiceProvider
 {
@@ -30,7 +35,7 @@ class GerarPatrimonioAlugadoServiceProvider extends ServiceProvider
 
         $service->setPatrimonioAlugadoRepository(app(PatrimonioAlugadoRepository::class));
 
-        $this->app->bind(ContractsGerarPatrimonioAlugadoService::class, function($app) use($service){
+        $this->app->bind(ContractsGerarPatrimonioAlugadoService::class, function ($app) use ($service) {
             return $service;
         });
     }

@@ -1,33 +1,38 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers;
 
-use App\Events\ClienteEvent;
-use App\Events\Entrega as EventsEntrega;
-use App\Events\EntregaPatrimonio;
-use App\Events\GenericChamadoEvent;
-use App\Events\NotaEspelhoPatrimonioEvent;
 use App\Events\PedidoItem;
 use App\Events\TrocaEvent;
-use App\Listeners\CreateNotaEspelhoPatrimonio;
-use App\Listeners\GenericChamadoEventRelationShips;
-use App\Listeners\RelationShipsClienteCadastro;
-use App\Listeners\RelationShipsEntrega;
-use App\Listeners\RelationShipsPedidoItem;
-use App\Listeners\RelationShipsTroca;
-use App\Listeners\UpdateEntregaPatrimonio;
+use App\Models\Troca\Troca;
+use App\Events\ClienteEvent;
+use App\Models\Pedido\Pedido;
 use App\Models\Chamado\Chamado;
 use App\Models\Entrega\Entrega;
-use App\Models\Pedido\Pedido;
-use App\Models\Troca\Troca;
+use App\Observers\TrocaObserver;
+use App\Events\EntregaPatrimonio;
+use App\Observers\PedidoObserver;
 use App\Observers\ChamadoObserver;
 use App\Observers\EntregaObserver;
-use App\Observers\PedidoObserver;
-use App\Observers\TrocaObserver;
+use App\Events\GenericChamadoEvent;
+use App\Listeners\RelationShipsTroca;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
+use App\Listeners\RelationShipsEntrega;
+use App\Events\Entrega as EventsEntrega;
+use App\Events\NotaEspelhoPatrimonioEvent;
+use App\Listeners\RelationShipsPedidoItem;
+use App\Listeners\UpdateEntregaPatrimonio;
+use App\Listeners\CreateNotaEspelhoPatrimonio;
+use App\Listeners\RelationShipsClienteCadastro;
+use App\Listeners\GenericChamadoEventRelationShips;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -45,7 +50,6 @@ class EventServiceProvider extends ServiceProvider
         ],
         EventsEntrega::class => [
             RelationShipsEntrega::class,
-
         ],
         EntregaPatrimonio::class => [
             UpdateEntregaPatrimonio::class,

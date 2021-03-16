@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers\Services\Entrega;
 
+use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\EntregaRepository;
 use App\Services\Entrega\CadastrarEntrega\CadastrarEntregaService;
 use App\Services\Entrega\CadastrarEntrega\Contracts\CadastrarEntregaService as ContractsCadastrarEntregaService;
-use Illuminate\Support\ServiceProvider;
 
 class CadastrarEntregaServiceProvider extends ServiceProvider
 {
@@ -30,7 +35,7 @@ class CadastrarEntregaServiceProvider extends ServiceProvider
 
         $service->setEntregaRepository(app(EntregaRepository::class));
 
-        $this->app->bind(ContractsCadastrarEntregaService::class, function($app) use($service){
+        $this->app->bind(ContractsCadastrarEntregaService::class, function ($app) use ($service) {
             return $service;
         });
     }

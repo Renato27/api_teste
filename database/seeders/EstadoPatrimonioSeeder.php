@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Seeders;
 
-use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use Illuminate\Database\Seeder;
+use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 
 class EstadoPatrimonioSeeder extends Seeder
 {
@@ -15,34 +20,34 @@ class EstadoPatrimonioSeeder extends Seeder
     public function run()
     {
         EstadoPatrimonio::create([
-            'nome' => 'Disponível'
+            'nome' => 'Disponível',
         ]);
         EstadoPatrimonio::create([
-            'nome' => 'Alugado'
+            'nome' => 'Alugado',
         ]);
         EstadoPatrimonio::create([
-            'nome' => 'Vendido'
+            'nome' => 'Vendido',
         ]);
         EstadoPatrimonio::create([
-            'nome' => 'Furtado'
+            'nome' => 'Furtado',
         ]);
         EstadoPatrimonio::create([
-            'nome' => 'Reparo'
+            'nome' => 'Reparo',
         ]);
         EstadoPatrimonio::create([
-            'nome' => 'Protesto'
+            'nome' => 'Protesto',
         ]);
         EstadoPatrimonio::create([
-            'nome' => 'Uso Interno'
+            'nome' => 'Uso Interno',
         ]);
         EstadoPatrimonio::create([
-            'nome' => 'Doado'
+            'nome' => 'Doado',
         ]);
         EstadoPatrimonio::create([
-            'nome' => 'Marcado para Retirada'
+            'nome' => 'Marcado para Retirada',
         ]);
         EstadoPatrimonio::create([
-            'nome' => 'Marcado para Entrega'
+            'nome' => 'Marcado para Entrega',
         ]);
     }
 }

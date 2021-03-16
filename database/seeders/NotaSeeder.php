@@ -1,13 +1,18 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Seeders;
 
-use App\Models\Nota\Nota;
-use App\Models\NotaEstado\NotaEstado;
-use App\Models\NotaPatrimonio\NotaPatrimonio;
 use Carbon\Carbon;
+use App\Models\Nota\Nota;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\NotaEstado\NotaEstado;
+use App\Models\NotaPatrimonio\NotaPatrimonio;
 
 class NotaSeeder extends Seeder
 {
@@ -20,18 +25,18 @@ class NotaSeeder extends Seeder
     {
         $notaEstados = DB::connection('mysql2')->table('nota_estados')->get();
 
-        foreach($notaEstados as $notaEstado){
+        foreach ($notaEstados as $notaEstado) {
             NotaEstado::create([
                 'id' => $notaEstado->id,
-                'nome'  => $notaEstado->nome
+                'nome' => $notaEstado->nome,
             ]);
         }
 
         $notas = DB::connection('mysql2')->table('notas')->get();
 
-        foreach($notas as $nota) {
+        foreach ($notas as $nota) {
             Nota::create([
-                'id'    => $nota->id,
+                'id' => $nota->id,
                 'data_emissao' => $nota->data_emissao,
                 'data_vencimento' => $nota->data_vencimento,
                 'data_pagamento' => $nota->data_pagamento,
@@ -44,13 +49,13 @@ class NotaSeeder extends Seeder
                 'nota_estado_id' => $nota->nota_estado_id,
                 'cliente_id' => $nota->cliente_id,
                 'contrato_id' => $nota->contrato_id,
-                'created_at'    => $nota->created_at
+                'created_at' => $nota->created_at,
             ]);
         }
 
         $notaPatrimonios = DB::connection('mysql2')->table('nota_patrimonios')->get();
 
-        foreach($notaPatrimonios as $notaPatrimonio){
+        foreach ($notaPatrimonios as $notaPatrimonio) {
             NotaPatrimonio::create([
                 'id' => $notaPatrimonio->id,
                 'periodo_inicio' => $notaPatrimonio->periodo_inicio,
@@ -58,10 +63,10 @@ class NotaSeeder extends Seeder
                 'valor' => $notaPatrimonio->valor,
                 'patrimonio_id' => $notaPatrimonio->patrimonio_id,
                 'nota_id' => $notaPatrimonio->nota_id,
-                'contrato_id' =>$notaPatrimonio->contrato_id,
-                'chamado_id'    => $notaPatrimonio->chamado_id,
-                'created_at'    => $notaPatrimonio->created_at,
-                'deleted_at'    => $notaPatrimonio->devolvido == 1 ? Carbon::now() : null
+                'contrato_id' => $notaPatrimonio->contrato_id,
+                'chamado_id' => $notaPatrimonio->chamado_id,
+                'created_at' => $notaPatrimonio->created_at,
+                'deleted_at' => $notaPatrimonio->devolvido == 1 ? Carbon::now() : null,
             ]);
         }
     }

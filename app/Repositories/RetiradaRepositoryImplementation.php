@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\RetiradaRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\RetiradaRepository;
 
 class RetiradaRepositoryImplementation implements RetiradaRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna Retirada baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getRetirada(int $id): ?Model
@@ -25,8 +29,8 @@ class RetiradaRepositoryImplementation implements RetiradaRepository
     /**
      * Retorna uma coleção de Retirada baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getRetiradas(int $id, int $associacao): ?Collection
@@ -35,7 +39,7 @@ class RetiradaRepositoryImplementation implements RetiradaRepository
     }
 
     /**
-     * Cria um novo Retirada
+     * Cria um novo Retirada.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +50,7 @@ class RetiradaRepositoryImplementation implements RetiradaRepository
     }
 
     /**
-     * Atualiza um Retirada
+     * Atualiza um Retirada.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +62,7 @@ class RetiradaRepositoryImplementation implements RetiradaRepository
     }
 
     /**
-     * Deleta um Retirada
+     * Deleta um Retirada.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +72,9 @@ class RetiradaRepositoryImplementation implements RetiradaRepository
     {
         $retorno = $this->delete($id);
 
-        if($retorno) return false;
+        if ($retorno) {
+            return false;
+        }
 
         return true;
     }

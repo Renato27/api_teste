@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\TransportadoraCompraRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\TransportadoraCompraRepository;
 
 class TransportadoraCompraRepositoryImplementation implements TransportadoraCompraRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna TransportadoraCompra baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getTransportadoraCompra(int $id): ?Model
@@ -25,17 +29,16 @@ class TransportadoraCompraRepositoryImplementation implements TransportadoraComp
     /**
      * Retorna uma coleção de TransportadoraCompra baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getTransportadoraCompras(int $id, int $associacao): ?Collection
     {
-
     }
 
     /**
-     * Cria um novo TransportadoraCompra
+     * Cria um novo TransportadoraCompra.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +49,7 @@ class TransportadoraCompraRepositoryImplementation implements TransportadoraComp
     }
 
     /**
-     * Atualiza um TransportadoraCompra
+     * Atualiza um TransportadoraCompra.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +61,7 @@ class TransportadoraCompraRepositoryImplementation implements TransportadoraComp
     }
 
     /**
-     * Deleta um TransportadoraCompra
+     * Deleta um TransportadoraCompra.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +71,9 @@ class TransportadoraCompraRepositoryImplementation implements TransportadoraComp
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

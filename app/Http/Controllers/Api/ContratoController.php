@@ -1,17 +1,20 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
+use App\Models\Clientes\Cliente;
+use App\Models\Contratos\Contrato;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContratoRequest;
 use App\Http\Resources\ContratoResource;
-use App\Models\Clientes\Cliente;
-use App\Models\Contratos\Contrato;
-use App\Repositories\Contracts\ContratosRepository;
+use App\Services\Contratos\ExcluirContrato\Contracts\ExcluirContratoService;
 use App\Services\Contratos\AtualizarContrato\Contracts\AtualizarContratoService;
 use App\Services\Contratos\CadastrarContrato\Contracts\CadastrarContratoService;
-use App\Services\Contratos\ExcluirContrato\Contracts\ExcluirContratoService;
-use Illuminate\Http\Request;
 
 class ContratoController extends Controller
 {
@@ -35,8 +38,6 @@ class ContratoController extends Controller
      */
     public function store(ContratoRequest $request, Cliente $cliente, CadastrarContratoService $service)
     {
-
-
         try {
             $contrato = $service->setDados($request->all())->handle();
             $cliente->contratos()->attach($contrato->id);
@@ -84,8 +85,7 @@ class ContratoController extends Controller
      */
     public function destroy(Cliente $cliente, Contrato $contrato, ExcluirContratoService $service)
     {
-        try{
-
+        try {
             $cliente->contratos()->detach($contrato->id);
             $service->setContrato($contrato->id);
             $service->handle();

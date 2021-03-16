@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\EntregaPatrimonioRepository;
 
@@ -28,46 +31,36 @@ class EntregaPatrimonioRepositoryTest extends TestCase
 
     /**
      * Retorna EntregaPatrimonio baseado no ID.
-     *
      */
     public function testGetEntregaPatrimonio()
     {
-
     }
 
     /**
      * Retorna uma coleção de EntregaPatrimonio baseado em uma associação.
-     *
      */
     public function testGetEntregaPatrimonios()
     {
-
     }
 
     /**
-     * Cria um novo EntregaPatrimonio
-     *
-     */    
+     * Cria um novo EntregaPatrimonio.
+     */
     public function testCreateEntregaPatrimonio()
     {
-
     }
 
     /**
-     * Atualiza um EntregaPatrimonio
-     *
-     */ 
+     * Atualiza um EntregaPatrimonio.
+     */
     public function testUpdateEntregaPatrimonio()
     {
-
     }
 
     /**
-     * Deleta um EntregaPatrimonio
-     *
-     */ 
+     * Deleta um EntregaPatrimonio.
+     */
     public function testDeleteEntregaPatrimonio()
     {
-
     }
 }

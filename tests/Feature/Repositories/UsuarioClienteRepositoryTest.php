@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\UsuarioClienteRepository;
 
@@ -28,46 +31,36 @@ class UsuarioClienteRepositoryTest extends TestCase
 
     /**
      * Retorna UsuarioCliente baseado no ID.
-     *
      */
     public function testGetUsuarioCliente()
     {
-
     }
 
     /**
      * Retorna uma coleção de UsuarioCliente baseado em uma associação.
-     *
      */
     public function testGetUsuarioClientes()
     {
-
     }
 
     /**
-     * Cria um novo UsuarioCliente
-     *
-     */    
+     * Cria um novo UsuarioCliente.
+     */
     public function testCreateUsuarioCliente()
     {
-
     }
 
     /**
-     * Atualiza um UsuarioCliente
-     *
-     */ 
+     * Atualiza um UsuarioCliente.
+     */
     public function testUpdateUsuarioCliente()
     {
-
     }
 
     /**
-     * Deleta um UsuarioCliente
-     *
-     */ 
+     * Deleta um UsuarioCliente.
+     */
     public function testDeleteUsuarioCliente()
     {
-
     }
 }

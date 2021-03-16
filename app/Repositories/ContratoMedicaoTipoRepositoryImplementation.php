@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ContratoMedicaoTipoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ContratoMedicaoTipoRepository;
 
 class ContratoMedicaoTipoRepositoryImplementation implements ContratoMedicaoTipoRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna ContratoMedicaoTipo baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getContratoMedicaoTipo(int $contrato): ?Model
@@ -25,8 +29,8 @@ class ContratoMedicaoTipoRepositoryImplementation implements ContratoMedicaoTipo
     /**
      * Retorna uma coleção de ContratoMedicaoTipo baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getMedicaoTipoContratos(int $medicao): ?Collection
@@ -35,7 +39,7 @@ class ContratoMedicaoTipoRepositoryImplementation implements ContratoMedicaoTipo
     }
 
     /**
-     * Cria um novo ContratoMedicaoTipo
+     * Cria um novo ContratoMedicaoTipo.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +50,7 @@ class ContratoMedicaoTipoRepositoryImplementation implements ContratoMedicaoTipo
     }
 
     /**
-     * Atualiza um ContratoMedicaoTipo
+     * Atualiza um ContratoMedicaoTipo.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +62,7 @@ class ContratoMedicaoTipoRepositoryImplementation implements ContratoMedicaoTipo
     }
 
     /**
-     * Deleta um ContratoMedicaoTipo
+     * Deleta um ContratoMedicaoTipo.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +72,9 @@ class ContratoMedicaoTipoRepositoryImplementation implements ContratoMedicaoTipo
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

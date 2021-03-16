@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\ChamadoArquivoRepository;
 
@@ -28,46 +31,36 @@ class ChamadoArquivoRepositoryTest extends TestCase
 
     /**
      * Retorna ChamadoArquivo baseado no ID.
-     *
      */
     public function testGetChamadoArquivo()
     {
-
     }
 
     /**
      * Retorna uma coleção de ChamadoArquivo baseado em uma associação.
-     *
      */
     public function testGetChamadoArquivos()
     {
-
     }
 
     /**
-     * Cria um novo ChamadoArquivo
-     *
-     */    
+     * Cria um novo ChamadoArquivo.
+     */
     public function testCreateChamadoArquivo()
     {
-
     }
 
     /**
-     * Atualiza um ChamadoArquivo
-     *
-     */ 
+     * Atualiza um ChamadoArquivo.
+     */
     public function testUpdateChamadoArquivo()
     {
-
     }
 
     /**
-     * Deleta um ChamadoArquivo
-     *
-     */ 
+     * Deleta um ChamadoArquivo.
+     */
     public function testDeleteChamadoArquivo()
     {
-
     }
 }

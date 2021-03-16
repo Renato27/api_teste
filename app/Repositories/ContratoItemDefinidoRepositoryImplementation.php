@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ContratoItemDefinidoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ContratoItemDefinidoRepository;
 
 class ContratoItemDefinidoRepositoryImplementation implements ContratoItemDefinidoRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna ContratoItemDefinido baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getContratoItemDefinido(int $id): ?Model
@@ -25,17 +29,16 @@ class ContratoItemDefinidoRepositoryImplementation implements ContratoItemDefini
     /**
      * Retorna uma coleção de ContratoItemDefinido baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getContratoItemDefinidos(int $id, int $associacao): ?Collection
     {
-
     }
 
     /**
-     * Cria um novo ContratoItemDefinido
+     * Cria um novo ContratoItemDefinido.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +49,7 @@ class ContratoItemDefinidoRepositoryImplementation implements ContratoItemDefini
     }
 
     /**
-     * Atualiza um ContratoItemDefinido
+     * Atualiza um ContratoItemDefinido.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +61,7 @@ class ContratoItemDefinidoRepositoryImplementation implements ContratoItemDefini
     }
 
     /**
-     * Deleta um ContratoItemDefinido
+     * Deleta um ContratoItemDefinido.
      *
      * @param int $id
      * @param array $detalhes
@@ -66,9 +69,11 @@ class ContratoItemDefinidoRepositoryImplementation implements ContratoItemDefini
      */
     public function deleteContratoItemDefinido(int $id): bool
     {
-        $retorno =  $this->delete($id);
+        $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

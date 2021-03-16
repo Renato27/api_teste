@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Listeners;
 
 use App\Events\UsuarioClienteEvent;
 use App\Models\UsuarioCliente\UsuarioCliente;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class RelationShipsUsuarioCliente
 {
@@ -28,8 +31,8 @@ class RelationShipsUsuarioCliente
     public function handle(UsuarioClienteEvent $event)
     {
         UsuarioCliente::create([
-            'usuario_id'    => $event->getUsuario()->id,
-            'cliente_id'    => $event->getClienteId()
+            'usuario_id' => $event->getUsuario()->id,
+            'cliente_id' => $event->getClienteId(),
         ]);
     }
 }

@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\TransportadoraCompra;
 
-use App\Models\TransportadoraCompra\TransportadoraCompra;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\TransportadoraCompra\TransportadoraCompra;
 
 class TransportadoraCompraFactory extends Factory
 {

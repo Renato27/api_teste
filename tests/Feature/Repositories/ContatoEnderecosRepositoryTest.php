@@ -1,13 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\ContatoEnderecos\ContatoEnderecos;
-use App\Repositories\ContatoEnderecosRepositoryImplementation;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\ContatoEnderecos\ContatoEnderecos;
 use App\Repositories\Contracts\ContatoEnderecosRepository;
+use App\Repositories\ContatoEnderecosRepositoryImplementation;
 
 class ContatoEnderecosRepositoryTest extends TestCase
 {
@@ -36,7 +39,6 @@ class ContatoEnderecosRepositoryTest extends TestCase
 
     /**
      * Retorna ContatoEnderecos baseado no ID.
-     *
      */
     public function testGetContatoEndereco()
     {
@@ -55,7 +57,6 @@ class ContatoEnderecosRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de ContatoEnderecos baseado em uma associação.
-     *
      */
     public function testGetContatosEnderecos()
     {
@@ -76,12 +77,10 @@ class ContatoEnderecosRepositoryTest extends TestCase
         $retorno = $this->implementacao->getContatosEnderecos($contato->id);
 
         $this->assertCount(2, $retorno);
-
     }
 
     /**
-     * Cria um novo ContatoEnderecos
-     *
+     * Cria um novo ContatoEnderecos.
      */
     public function testCreateContatoEnderecos()
     {
@@ -89,8 +88,8 @@ class ContatoEnderecosRepositoryTest extends TestCase
         $contato = \App\Models\Contato\Contato::factory()->create();
         $endereco = \App\Models\Endereco\Endereco::factory()->create();
         $detalhes = [
-            'contato_id'        => $contato->id,
-            'endereco_id'       => $endereco->id
+            'contato_id' => $contato->id,
+            'endereco_id' => $endereco->id,
         ];
 
         $retorno = $this->implementacao->createContatoEnderecos($detalhes);
@@ -99,8 +98,7 @@ class ContatoEnderecosRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um ContatoEnderecos
-     *
+     * Atualiza um ContatoEnderecos.
      */
     public function testUpdateContatoEnderecos()
     {
@@ -108,20 +106,19 @@ class ContatoEnderecosRepositoryTest extends TestCase
         $contato = \App\Models\Contato\Contato::factory()->create();
         $endereco = \App\Models\Endereco\Endereco::factory()->create();
         $detalhes = [
-            'contato_id'        => $contato->id,
-            'endereco_id'       => $endereco->id
+            'contato_id' => $contato->id,
+            'endereco_id' => $endereco->id,
         ];
 
         $retorno = $this->implementacao->createContatoEnderecos($detalhes);
 
         $associacao = \App\Models\ContatoEnderecos\ContatoEnderecos::factory()->create();
 
-        $this->assertEquals($associacao->id-1, $retorno->id);
+        $this->assertEquals($associacao->id - 1, $retorno->id);
     }
 
     /**
-     * Deleta um ContatoEnderecos
-     *
+     * Deleta um ContatoEnderecos.
      */
     public function testDeleteContatoEnderecos()
     {

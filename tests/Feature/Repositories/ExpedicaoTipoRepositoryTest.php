@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\ExpedicaoTipoRepository;
 
@@ -28,46 +31,36 @@ class ExpedicaoTipoRepositoryTest extends TestCase
 
     /**
      * Retorna ExpedicaoTipo baseado no ID.
-     *
      */
     public function testGetExpedicaoTipo()
     {
-
     }
 
     /**
      * Retorna uma coleção de ExpedicaoTipo baseado em uma associação.
-     *
      */
     public function testGetExpedicaoTipos()
     {
-
     }
 
     /**
-     * Cria um novo ExpedicaoTipo
-     *
-     */    
+     * Cria um novo ExpedicaoTipo.
+     */
     public function testCreateExpedicaoTipo()
     {
-
     }
 
     /**
-     * Atualiza um ExpedicaoTipo
-     *
-     */ 
+     * Atualiza um ExpedicaoTipo.
+     */
     public function testUpdateExpedicaoTipo()
     {
-
     }
 
     /**
-     * Deleta um ExpedicaoTipo
-     *
-     */ 
+     * Deleta um ExpedicaoTipo.
+     */
     public function testDeleteExpedicaoTipo()
     {
-
     }
 }

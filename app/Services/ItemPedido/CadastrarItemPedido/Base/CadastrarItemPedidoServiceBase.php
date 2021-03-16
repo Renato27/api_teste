@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\ItemPedido\CadastrarItemPedido\Base;
 
-use App\Services\ItemPedido\CadastrarItemPedido\Contracts\CadastrarItemPedidoService;
 use App\Models\ItemPedido\ItemPedido;
 use App\Repositories\Contracts\ItemPedidoRepository;
+use App\Services\ItemPedido\CadastrarItemPedido\Contracts\CadastrarItemPedidoService;
 
 abstract class CadastrarItemPedidoServiceBase implements CadastrarItemPedidoService
 {
@@ -16,7 +21,7 @@ abstract class CadastrarItemPedidoServiceBase implements CadastrarItemPedidoServ
     protected ?ItemPedido $ItemPedido;
 
     /**
-     * Undocumented variable
+     * Undocumented variable.
      *
      * @var array
      */
@@ -29,7 +34,7 @@ abstract class CadastrarItemPedidoServiceBase implements CadastrarItemPedidoServ
      */
     protected ItemPedidoRepository $ItemPedidoRepository;
 
-   /**
+    /**
      * Seta a model de ItemPedido.
      *
      * @param ItemPedido
@@ -38,6 +43,7 @@ abstract class CadastrarItemPedidoServiceBase implements CadastrarItemPedidoServ
     public function setItemPedido(?ItemPedido $ItemPedido): CadastrarItemPedidoService
     {
         $this->ItemPedido = $ItemPedido;
+
         return $this;
     }
 
@@ -50,6 +56,7 @@ abstract class CadastrarItemPedidoServiceBase implements CadastrarItemPedidoServ
     public function setItemPedidoRepository(ItemPedidoRepository $ItemPedidoRepository): CadastrarItemPedidoService
     {
         $this->ItemPedidoRepository = $ItemPedidoRepository;
+
         return $this;
     }
 

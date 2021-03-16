@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface ChamadoArquivoRepository
 {
     /**
      * Retorna ChamadoArquivo baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getArquivosByChamado(int $chamado): ?Collection;
@@ -18,13 +23,13 @@ interface ChamadoArquivoRepository
     /**
      * Retorna ChamadoArquivo baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getArquivosByUsuario(int $usuario): ?Collection;
 
     /**
-     * Cria um novo ChamadoArquivo
+     * Cria um novo ChamadoArquivo.
      *
      * @param array $detalhes
      * @return Model|null
@@ -32,7 +37,7 @@ interface ChamadoArquivoRepository
     public function createChamadoArquivo(array $detalhes): ?Model;
 
     /**
-     * Atualiza um ChamadoArquivo
+     * Atualiza um ChamadoArquivo.
      *
      * @param int $id
      * @param array $detalhes
@@ -41,7 +46,7 @@ interface ChamadoArquivoRepository
     public function updateChamadoArquivo(int $id, array $detalhes): ?Model;
 
     /**
-     * Deleta um ChamadoArquivo
+     * Deleta um ChamadoArquivo.
      *
      * @param int $id
      * @param array $detalhes

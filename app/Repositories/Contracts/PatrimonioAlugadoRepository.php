@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface PatrimonioAlugadoRepository
 {
     /**
      * Retorna PatrimonioAlugado baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getPatrimonioAlugado(int $id): ?Model;
@@ -18,8 +23,8 @@ interface PatrimonioAlugadoRepository
     /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadosByContrato(int $contrato): ?Collection;
@@ -27,8 +32,8 @@ interface PatrimonioAlugadoRepository
     /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadosByPedido(int $pedido): ?Collection;
@@ -36,8 +41,8 @@ interface PatrimonioAlugadoRepository
     /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadosByCliente(int $cliente): ?Collection;
@@ -45,8 +50,8 @@ interface PatrimonioAlugadoRepository
     /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadosByItemPedido(int $item_pedido): ?Collection;
@@ -54,8 +59,8 @@ interface PatrimonioAlugadoRepository
     /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadosByItemDefinido(int $item_definido): ?Collection;
@@ -63,8 +68,8 @@ interface PatrimonioAlugadoRepository
     /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadosByChamado(int $chamado): ?Collection;
@@ -72,8 +77,8 @@ interface PatrimonioAlugadoRepository
     /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadosByEndereco(int $endereco): ?Collection;
@@ -81,14 +86,14 @@ interface PatrimonioAlugadoRepository
     /**
      * Retorna uma model de PatrimonioAlugado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonioAlugadoByPatrimonio(int $patrimonio): ?Model;
 
     /**
-     * Cria um novo PatrimonioAlugado
+     * Cria um novo PatrimonioAlugado.
      *
      * @param array $detalhes
      * @return Model|null
@@ -96,7 +101,7 @@ interface PatrimonioAlugadoRepository
     public function createPatrimonioAlugado(array $detalhes): ?Model;
 
     /**
-     * Atualiza um PatrimonioAlugado
+     * Atualiza um PatrimonioAlugado.
      *
      * @param int $id
      * @param array $detalhes
@@ -105,7 +110,7 @@ interface PatrimonioAlugadoRepository
     public function updatePatrimonioAlugado(int $id, array $detalhes): ?Model;
 
     /**
-     * Deleta um PatrimonioAlugado
+     * Deleta um PatrimonioAlugado.
      *
      * @param int $id
      * @param array $detalhes

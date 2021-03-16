@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Chamado\GerarChamado\Base;
 
-use App\Services\Chamado\GerarChamado\Contracts\GerarChamadoService;
 use App\Models\Chamado\Chamado;
 use App\Models\StatusChamado\StatusChamado;
 use App\Repositories\Contracts\ChamadoRepository;
+use App\Services\Chamado\GerarChamado\Contracts\GerarChamadoService;
 
 abstract class GerarChamadoServiceBase implements GerarChamadoService
 {
@@ -44,7 +49,7 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
      */
     protected ChamadoRepository $ChamadoRepository;
 
-   /**
+    /**
      * Seta a model de Chamado.
      *
      * @param Chamado|null
@@ -53,10 +58,11 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
     public function setChamado(?Chamado $Chamado): GerarChamadoService
     {
         $this->Chamado = $Chamado;
+
         return $this;
     }
 
-     /**
+    /**
      * Seta os patrimônios para gerar o chamado.
      *
      * @param array|null $patrimonios
@@ -65,6 +71,7 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
     public function setPatrimonios(?array $patrimonios) : GerarChamadoService
     {
         $this->patrimonios = $patrimonios;
+
         return $this;
     }
 
@@ -77,6 +84,7 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
     public function setPatrimoniosTrocar(?array $patrimoniosTrocar) : GerarChamadoService
     {
         $this->patrimoniosTrocar = $patrimoniosTrocar;
+
         return $this;
     }
 
@@ -89,20 +97,20 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
     public function setDados(array $dados): GerarChamadoService
     {
         $dadosChamado = [
-
-            'data_acao'             => isset($dados['data_acao']) ? $dados['data_acao'] : $dados['data_entrega'],
-            'mensagem'              => isset($dados['mensagem']) ? $dados['mensagem'] : null,
-            'status_chamado_id'     => StatusChamado::ABERTO,
-            'tipo_chamado_id'       => $dados['tipo_chamado_id'],
-            'usuario_id'            => isset($dados['usuario_id']) ? $dados['usuario_id'] : null,
-            'pedido_id'             => isset($dados['pedido_id']) ? $dados['pedido_id'] : null,
-            'contato_id'            => $dados['contato_id'],
-            'endereco_id'           => $dados['endereco_id'],
-            'login_team_viewer'     => isset($dados['login_team_viewer']) ? $dados['login_team_viewer'] : null,
-            'senha_team_viewer'     => isset($dados['senha_team_viewer']) ? $dados['senha_team_viewer'] : null
+            'data_acao' => isset($dados['data_acao']) ? $dados['data_acao'] : $dados['data_entrega'],
+            'mensagem' => isset($dados['mensagem']) ? $dados['mensagem'] : null,
+            'status_chamado_id' => StatusChamado::ABERTO,
+            'tipo_chamado_id' => $dados['tipo_chamado_id'],
+            'usuario_id' => isset($dados['usuario_id']) ? $dados['usuario_id'] : null,
+            'pedido_id' => isset($dados['pedido_id']) ? $dados['pedido_id'] : null,
+            'contato_id' => $dados['contato_id'],
+            'endereco_id' => $dados['endereco_id'],
+            'login_team_viewer' => isset($dados['login_team_viewer']) ? $dados['login_team_viewer'] : null,
+            'senha_team_viewer' => isset($dados['senha_team_viewer']) ? $dados['senha_team_viewer'] : null,
         ];
 
         $this->dados = $dadosChamado;
+
         return $this;
     }
 
@@ -115,6 +123,7 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
     public function setChamadoRepository(ChamadoRepository $ChamadoRepository): GerarChamadoService
     {
         $this->ChamadoRepository = $ChamadoRepository;
+
         return $this;
     }
 }

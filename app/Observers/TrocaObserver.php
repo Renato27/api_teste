@@ -1,12 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Observers;
 
-use App\Models\Entrega\Entrega;
-use App\Models\PatrimonioAlugado\PatrimonioAlugado;
-use App\Models\Retirada\Retirada;
-use App\Models\StatusChamado\StatusChamado;
 use App\Models\Troca\Troca;
+use App\Models\StatusChamado\StatusChamado;
+use App\Models\PatrimonioAlugado\PatrimonioAlugado;
 use App\Repositories\Contracts\PatrimonioRepository;
 use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Contracts\GerarPatrimonioAlugadoService;
 
@@ -49,9 +52,7 @@ class TrocaObserver
             case StatusChamado::ENCERRADO:
 
                 foreach ($troca->hasPatrimoniosEntrega as $entregaPatrimonio) {
-
                     foreach ($troca->hasPatrimoniosRetirada as $retiradaPatrimonio) {
-
                         $alugarPatrimonioService->setChamado($troca->chamado);
                         $alugarPatrimonioService->setEntregaPatrimonio($entregaPatrimonio);
                         $alugarPatrimonioService->setPatrimonioRetirada($retiradaPatrimonio)->handle();
@@ -62,7 +63,6 @@ class TrocaObserver
                         $patrimonioRepository->setDisponivel($retiradaPatrimonio->patrimonio);
                         $patrimonioRepository->setAlugado($entregaPatrimonio->patrimonio);
                     }
-
                 }
 
                 break;
@@ -70,13 +70,11 @@ class TrocaObserver
             case StatusChamado::CANCELADO:
 
                 foreach ($troca->hasPatrimoniosEntrega as $entregaPatrimonio) {
-
                     $patrimonioRepository->setDisponivel($entregaPatrimonio->patrimonio);
                     $entregaPatrimonio->delete();
                 }
 
-                foreach($troca->hasPatrimoniosRetirada as $retiradaPatrimonio){
-
+                foreach ($troca->hasPatrimoniosRetirada as $retiradaPatrimonio) {
                     $patrimonioRepository->setAlugado($retiradaPatrimonio->patrimonio);
                     $retiradaPatrimonio->delete();
                 }

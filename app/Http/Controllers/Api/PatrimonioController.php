@@ -1,17 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\ListaPatrimoniosResource;
-use App\Http\Resources\PatrimonioCollection;
-use App\Http\Resources\PatrimonioResource;
-use App\Models\EstadoPatrimonio\EstadoPatrimonio;
-use App\Models\Patrimonio\Patrimonio;
-use App\Models\PatrimonioAlugado\PatrimonioAlugado;
-use App\Services\Patrimonio\CadastrarPatrimonio\Contracts\CadastrarPatrimonioService;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Patrimonio\Patrimonio;
+use App\Http\Resources\PatrimonioResource;
+use App\Http\Resources\ListaPatrimoniosResource;
+use App\Models\EstadoPatrimonio\EstadoPatrimonio;
+use App\Models\PatrimonioAlugado\PatrimonioAlugado;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Services\Patrimonio\CadastrarPatrimonio\Contracts\CadastrarPatrimonioService;
 
 class PatrimonioController extends Controller
 {
@@ -67,16 +71,14 @@ class PatrimonioController extends Controller
     public function update(Request $request, Patrimonio $patrimonio)
     {
         try {
-
-            if($patrimonio->estado_patrimonio_id == EstadoPatrimonio::Alugado){
+            if ($patrimonio->estado_patrimonio_id == EstadoPatrimonio::Alugado) {
                 $aluguel = PatrimonioAlugado::where('patrimonio_id', $patrimonio->id)->first();
                 $aluguel->fill($request->all());
                 $aluguel->save();
 
                 $patrimonio->fill($request->all());
                 $patrimonio->save();
-
-            }else{
+            } else {
                 $patrimonio->fill($request->all());
                 $patrimonio->save();
             }

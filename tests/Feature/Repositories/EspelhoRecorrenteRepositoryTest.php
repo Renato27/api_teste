@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\EspelhoRecorrenteRepository;
 
@@ -28,46 +31,36 @@ class EspelhoRecorrenteRepositoryTest extends TestCase
 
     /**
      * Retorna EspelhoRecorrente baseado no ID.
-     *
      */
     public function testGetEspelhoRecorrente()
     {
-
     }
 
     /**
      * Retorna uma coleção de EspelhoRecorrente baseado em uma associação.
-     *
      */
     public function testGetEspelhoRecorrentes()
     {
-
     }
 
     /**
-     * Cria um novo EspelhoRecorrente
-     *
-     */    
+     * Cria um novo EspelhoRecorrente.
+     */
     public function testCreateEspelhoRecorrente()
     {
-
     }
 
     /**
-     * Atualiza um EspelhoRecorrente
-     *
-     */ 
+     * Atualiza um EspelhoRecorrente.
+     */
     public function testUpdateEspelhoRecorrente()
     {
-
     }
 
     /**
-     * Deleta um EspelhoRecorrente
-     *
-     */ 
+     * Deleta um EspelhoRecorrente.
+     */
     public function testDeleteEspelhoRecorrente()
     {
-
     }
 }

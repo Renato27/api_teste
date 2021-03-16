@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\TipoPatrimonioResource;
-use App\Models\TipoPatrimonio\TipoPatrimonio;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\TipoPatrimonio\TipoPatrimonio;
+use App\Http\Resources\TipoPatrimonioResource;
 
 class TipoPatrimonioController extends Controller
 {
@@ -17,6 +22,7 @@ class TipoPatrimonioController extends Controller
     public function index()
     {
         $tipo_patrimonios = TipoPatrimonio::get();
+
         return TipoPatrimonioResource::collection($tipo_patrimonios);
     }
 

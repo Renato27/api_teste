@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\NotaEspelhoRepository;
 
@@ -28,46 +31,36 @@ class NotaEspelhoRepositoryTest extends TestCase
 
     /**
      * Retorna NotaEspelho baseado no ID.
-     *
      */
     public function testGetNotaEspelho()
     {
-
     }
 
     /**
      * Retorna uma coleção de NotaEspelho baseado em uma associação.
-     *
      */
     public function testGetNotaEspelhos()
     {
-
     }
 
     /**
-     * Cria um novo NotaEspelho
-     *
-     */    
+     * Cria um novo NotaEspelho.
+     */
     public function testCreateNotaEspelho()
     {
-
     }
 
     /**
-     * Atualiza um NotaEspelho
-     *
-     */ 
+     * Atualiza um NotaEspelho.
+     */
     public function testUpdateNotaEspelho()
     {
-
     }
 
     /**
-     * Deleta um NotaEspelho
-     *
-     */ 
+     * Deleta um NotaEspelho.
+     */
     public function testDeleteNotaEspelho()
     {
-
     }
 }

@@ -1,21 +1,25 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\NotaEspelho\GerarNotaEspelho;
 
-use App\Services\NotaEspelho\GerarNotaEspelho\Abstracts\GerarNotaEspelhoServiceAbstract;
 use Illuminate\Support\Facades\DB;
+use App\Services\NotaEspelho\GerarNotaEspelho\Abstracts\GerarNotaEspelhoServiceAbstract;
 
 class GerarNotaEspelhoService extends GerarNotaEspelhoServiceAbstract
 {
     /**
-     * Processa os dados
+     * Processa os dados.
      *
-     * @return boolean
+     * @return bool
      */
     public function handle(): bool
     {
         DB::transaction(function () {
-
             $this->GerarNotaEspelho();
         });
 

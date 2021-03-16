@@ -1,22 +1,25 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
 use App\Models\Usuario\Usuario;
-use App\Repositories\Contracts\UsuarioRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\UsuarioRepository;
 
 class UsuarioRepositoryImplementation implements UsuarioRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna Usuario baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getUsuario(int $id): ?Model
@@ -27,8 +30,8 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
     /**
      * Retorna uma coleção de Usuario baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getUsuarios(): ?Collection
@@ -37,7 +40,7 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
     }
 
     /**
-     * Cria um novo Usuario
+     * Cria um novo Usuario.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,11 +49,10 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
     {
         // dd($detalhes);
         return Usuario::create($detalhes);
-
     }
 
     /**
-     * Atualiza um Usuario
+     * Atualiza um Usuario.
      *
      * @param int $id
      * @param array $detalhes
@@ -62,7 +64,7 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
     }
 
     /**
-     * Deleta um Usuario
+     * Deleta um Usuario.
      *
      * @param int $id
      * @param array $detalhes
@@ -72,7 +74,9 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }
@@ -82,11 +86,13 @@ class UsuarioRepositoryImplementation implements UsuarioRepository
         //$usuario = $this->where(['email'.'@logicatecnologia.com.br' => $email])->first();
         $usuario = $this->where(['email' => $email])->first();
 
-        if(!$usuario)
+        if (! $usuario) {
             return null;
+        }
 
-        if(md5(sha1($password)) != $usuario->password)
+        if (md5(sha1($password)) != $usuario->password) {
             return null;
+        }
 
         return $usuario;
     }

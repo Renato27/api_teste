@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\EspelhoRecorrentePatrimonio;
 
-use App\Models\EspelhoRecorrentePatrimonio\EspelhoRecorrentePatrimonio;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\EspelhoRecorrentePatrimonio\EspelhoRecorrentePatrimonio;
 
 class EspelhoRecorrentePatrimonioFactory extends Factory
 {

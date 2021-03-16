@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\SuporteRepository;
 
@@ -28,46 +31,36 @@ class SuporteRepositoryTest extends TestCase
 
     /**
      * Retorna Suporte baseado no ID.
-     *
      */
     public function testGetSuporte()
     {
-
     }
 
     /**
      * Retorna uma coleção de Suporte baseado em uma associação.
-     *
      */
     public function testGetSuportes()
     {
-
     }
 
     /**
-     * Cria um novo Suporte
-     *
-     */    
+     * Cria um novo Suporte.
+     */
     public function testCreateSuporte()
     {
-
     }
 
     /**
-     * Atualiza um Suporte
-     *
-     */ 
+     * Atualiza um Suporte.
+     */
     public function testUpdateSuporte()
     {
-
     }
 
     /**
-     * Deleta um Suporte
-     *
-     */ 
+     * Deleta um Suporte.
+     */
     public function testDeleteSuporte()
     {
-
     }
 }

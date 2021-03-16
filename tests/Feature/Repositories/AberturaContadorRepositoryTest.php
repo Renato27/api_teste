@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\AberturaContadorRepository;
 
@@ -28,46 +31,36 @@ class AberturaContadorRepositoryTest extends TestCase
 
     /**
      * Retorna AberturaContador baseado no ID.
-     *
      */
     public function testGetAberturaContador()
     {
-
     }
 
     /**
      * Retorna uma coleção de AberturaContador baseado em uma associação.
-     *
      */
     public function testGetAberturaContadors()
     {
-
     }
 
     /**
-     * Cria um novo AberturaContador
-     *
-     */    
+     * Cria um novo AberturaContador.
+     */
     public function testCreateAberturaContador()
     {
-
     }
 
     /**
-     * Atualiza um AberturaContador
-     *
-     */ 
+     * Atualiza um AberturaContador.
+     */
     public function testUpdateAberturaContador()
     {
-
     }
 
     /**
-     * Deleta um AberturaContador
-     *
-     */ 
+     * Deleta um AberturaContador.
+     */
     public function testDeleteAberturaContador()
     {
-
     }
 }

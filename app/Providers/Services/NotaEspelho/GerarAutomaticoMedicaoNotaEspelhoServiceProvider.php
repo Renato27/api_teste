@@ -1,15 +1,20 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers\Services\NotaEspelho;
 
+use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\ContratosRepository;
-use App\Repositories\Contracts\NotaEspelhoPatrimonioRepository;
 use App\Repositories\Contracts\NotaEspelhoRepository;
 use App\Repositories\Contracts\NotaPatrimonioRepository;
 use App\Repositories\Contracts\PatrimonioAlugadoRepository;
-use App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\Contracts\GerarAutomaticoMedicaoNotaEspelhoService as ContractsGerarAutomaticoMedicaoNotaEspelhoService;
+use App\Repositories\Contracts\NotaEspelhoPatrimonioRepository;
 use App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\GerarAutomaticoMedicaoNotaEspelhoService;
-use Illuminate\Support\ServiceProvider;
+use App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\Contracts\GerarAutomaticoMedicaoNotaEspelhoService as ContractsGerarAutomaticoMedicaoNotaEspelhoService;
 
 class GerarAutomaticoMedicaoNotaEspelhoServiceProvider extends ServiceProvider
 {
@@ -38,7 +43,7 @@ class GerarAutomaticoMedicaoNotaEspelhoServiceProvider extends ServiceProvider
         ->setNotaPatrimonioRepository(app(NotaPatrimonioRepository::class))
         ->setContratoRepository(app(ContratosRepository::class));
 
-        $this->app->bind(ContractsGerarAutomaticoMedicaoNotaEspelhoService::class, function($app) use($service){
+        $this->app->bind(ContractsGerarAutomaticoMedicaoNotaEspelhoService::class, function ($app) use ($service) {
             return $service;
         });
     }

@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ItemPedidoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ItemPedidoRepository;
 
 class ItemPedidoRepositoryImplementation implements ItemPedidoRepository
 {
@@ -13,7 +18,7 @@ class ItemPedidoRepositoryImplementation implements ItemPedidoRepository
     /**
      * Retorna ItemPedido baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getItemPedido(int $id): ?Model
@@ -24,8 +29,8 @@ class ItemPedidoRepositoryImplementation implements ItemPedidoRepository
     /**
      * Retorna uma coleção de ItemPedido baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getItemPedidos(int $id, int $associacao): ?Collection
@@ -34,7 +39,7 @@ class ItemPedidoRepositoryImplementation implements ItemPedidoRepository
     }
 
     /**
-     * Cria um novo ItemPedido
+     * Cria um novo ItemPedido.
      *
      * @param array $detalhes
      * @return Model|null
@@ -45,7 +50,7 @@ class ItemPedidoRepositoryImplementation implements ItemPedidoRepository
     }
 
     /**
-     * Atualiza um ItemPedido
+     * Atualiza um ItemPedido.
      *
      * @param int $id
      * @param array $detalhes
@@ -57,7 +62,7 @@ class ItemPedidoRepositoryImplementation implements ItemPedidoRepository
     }
 
     /**
-     * Deleta um ItemPedido
+     * Deleta um ItemPedido.
      *
      * @param int $id
      * @param array $detalhes
@@ -67,7 +72,9 @@ class ItemPedidoRepositoryImplementation implements ItemPedidoRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

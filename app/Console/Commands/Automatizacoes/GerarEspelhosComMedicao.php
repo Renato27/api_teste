@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Console\Commands\Automatizacoes;
 
-use App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\Contracts\GerarAutomaticoMedicaoNotaEspelhoService;
 use Illuminate\Console\Command;
+use App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\Contracts\GerarAutomaticoMedicaoNotaEspelhoService;
 
 class GerarEspelhosComMedicao extends Command
 {
@@ -22,7 +27,7 @@ class GerarEspelhosComMedicao extends Command
     protected $description = 'Command description';
 
     /**
-     * Undocumented variable
+     * Undocumented variable.
      *
      * @var GerarAutomaticoMedicaoNotaEspelhoService
      */
@@ -35,7 +40,6 @@ class GerarEspelhosComMedicao extends Command
      */
     public function __construct()
     {
-
         $this->gerarEspelhoComMedicao = app(GerarAutomaticoMedicaoNotaEspelhoService::class);
 
         parent::__construct();

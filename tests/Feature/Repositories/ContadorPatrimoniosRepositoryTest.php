@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\ContadorPatrimoniosRepository;
 
@@ -28,46 +31,36 @@ class ContadorPatrimoniosRepositoryTest extends TestCase
 
     /**
      * Retorna ContadorPatrimonios baseado no ID.
-     *
      */
     public function testGetContadorPatrimonios()
     {
-
     }
 
     /**
      * Retorna uma coleção de ContadorPatrimonios baseado em uma associação.
-     *
      */
     public function testGetContadorPatrimonioss()
     {
-
     }
 
     /**
-     * Cria um novo ContadorPatrimonios
-     *
-     */    
+     * Cria um novo ContadorPatrimonios.
+     */
     public function testCreateContadorPatrimonios()
     {
-
     }
 
     /**
-     * Atualiza um ContadorPatrimonios
-     *
-     */ 
+     * Atualiza um ContadorPatrimonios.
+     */
     public function testUpdateContadorPatrimonios()
     {
-
     }
 
     /**
-     * Deleta um ContadorPatrimonios
-     *
-     */ 
+     * Deleta um ContadorPatrimonios.
+     */
     public function testDeleteContadorPatrimonios()
     {
-
     }
 }

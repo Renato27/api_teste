@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\Contracts;
 
 use App\Models\NotaEspelho\NotaEspelho;
@@ -17,7 +22,7 @@ interface GerarAutomaticoMedicaoNotaEspelhoService
      * @param NotaEspelho
      * @return GerarAutomaticoMedicaoNotaEspelhoService
      */
-    public function setNotaEspelho(NotaEspelho $NotaEspelho): GerarAutomaticoMedicaoNotaEspelhoService;
+    public function setNotaEspelho(NotaEspelho $NotaEspelho): self;
 
     /**
      * Seta os dados para NotaEspelho.
@@ -25,7 +30,7 @@ interface GerarAutomaticoMedicaoNotaEspelhoService
      * @param array $dados
      * @return GerarAutomaticoMedicaoNotaEspelhoService;
      */
-    public function setDados(array $dados): GerarAutomaticoMedicaoNotaEspelhoService;
+    public function setDados(array $dados): self;
 
     /**
      * Seta o repositório de NotaEspelhoRepository.
@@ -33,7 +38,7 @@ interface GerarAutomaticoMedicaoNotaEspelhoService
      * @param NotaEspelhoRepository $NotaEspelhoRepository
      * @return GerarAutomaticoMedicaoNotaEspelhoService
      */
-    public function setNotaEspelhoRepository(NotaEspelhoRepository $NotaEspelhoRepository): GerarAutomaticoMedicaoNotaEspelhoService;
+    public function setNotaEspelhoRepository(NotaEspelhoRepository $NotaEspelhoRepository): self;
 
     /**
      * Seta o repositório de notaPatrimonio.
@@ -41,7 +46,7 @@ interface GerarAutomaticoMedicaoNotaEspelhoService
      * @param NotaPatrimonioRepository $notaPatrimonioRepository
      * @return GerarAutomaticoMedicaoNotaEspelhoService
      */
-    public function setNotaPatrimonioRepository(NotaPatrimonioRepository $notaPatrimonioRepository) : GerarAutomaticoMedicaoNotaEspelhoService;
+    public function setNotaPatrimonioRepository(NotaPatrimonioRepository $notaPatrimonioRepository) : self;
 
     /**
      * Seta o repositório de notaEspelhoPatrimônio.
@@ -49,7 +54,7 @@ interface GerarAutomaticoMedicaoNotaEspelhoService
      * @param NotaEspelhoPatrimonioRepository $notaEspelhoPatrimonioRepository
      * @return GerarAutomaticoMedicaoNotaEspelhoService
      */
-    public function setNotaEspelhoPatrimonioRepository(NotaEspelhoPatrimonioRepository $notaEspelhoPatrimonioRepository) : GerarAutomaticoMedicaoNotaEspelhoService;
+    public function setNotaEspelhoPatrimonioRepository(NotaEspelhoPatrimonioRepository $notaEspelhoPatrimonioRepository) : self;
 
     /**
      * Seta o repositório de patrimonioalugado.
@@ -57,7 +62,7 @@ interface GerarAutomaticoMedicaoNotaEspelhoService
      * @param PatrimonioAlugadoRepository $patrimonioAlugadoRepository
      * @return GerarAutomaticoMedicaoNotaEspelhoService
      */
-    public function setPatrimonioAlugadoRepository(PatrimonioAlugadoRepository $patrimonioAlugadoRepository) : GerarAutomaticoMedicaoNotaEspelhoService;
+    public function setPatrimonioAlugadoRepository(PatrimonioAlugadoRepository $patrimonioAlugadoRepository) : self;
 
     /**
      * Seta o repositório de contrato.
@@ -65,12 +70,12 @@ interface GerarAutomaticoMedicaoNotaEspelhoService
      * @param ContratosRepository $contratosRepository
      * @return GerarAutomaticoMedicaoNotaEspelhoService
      */
-    public function setContratoRepository(ContratosRepository $contratosRepository) : GerarAutomaticoMedicaoNotaEspelhoService;
+    public function setContratoRepository(ContratosRepository $contratosRepository) : self;
 
     /**
-     * Processa os dados
+     * Processa os dados.
      *
-     * @return boolean
+     * @return bool
      */
     public function handle(): bool;
 }

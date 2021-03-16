@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\NotaEspelho\GerarNotaEspelho\Base;
 
-use App\Models\ContratoPedido\ContratoPedido;
-use App\Services\NotaEspelho\GerarNotaEspelho\Contracts\GerarNotaEspelhoService;
 use App\Models\NotaEspelho\NotaEspelho;
+use App\Models\ContratoPedido\ContratoPedido;
 use App\Repositories\Contracts\NotaEspelhoRepository;
+use App\Services\NotaEspelho\GerarNotaEspelho\Contracts\GerarNotaEspelhoService;
 
 abstract class GerarNotaEspelhoServiceBase implements GerarNotaEspelhoService
 {
@@ -37,7 +42,7 @@ abstract class GerarNotaEspelhoServiceBase implements GerarNotaEspelhoService
      */
     protected NotaEspelhoRepository $NotaEspelhoRepository;
 
-   /**
+    /**
      * Seta a model de NotaEspelho.
      *
      * @param NotaEspelho|null
@@ -46,6 +51,7 @@ abstract class GerarNotaEspelhoServiceBase implements GerarNotaEspelhoService
     public function setNotaEspelho(?NotaEspelho $NotaEspelho = null): GerarNotaEspelhoService
     {
         $this->NotaEspelho = $NotaEspelho;
+
         return $this;
     }
 
@@ -58,6 +64,7 @@ abstract class GerarNotaEspelhoServiceBase implements GerarNotaEspelhoService
     public function setContratoPedido(ContratoPedido $contratoPedido) : GerarNotaEspelhoService
     {
         $this->contratoPedido = $contratoPedido;
+
         return $this;
     }
 
@@ -70,6 +77,7 @@ abstract class GerarNotaEspelhoServiceBase implements GerarNotaEspelhoService
     public function setDados(?array $dados = null): GerarNotaEspelhoService
     {
         $this->dados = $dados;
+
         return $this;
     }
 
@@ -82,6 +90,7 @@ abstract class GerarNotaEspelhoServiceBase implements GerarNotaEspelhoService
     public function setNotaEspelhoRepository(NotaEspelhoRepository $NotaEspelhoRepository): GerarNotaEspelhoService
     {
         $this->NotaEspelhoRepository = $NotaEspelhoRepository;
+
         return $this;
     }
 }

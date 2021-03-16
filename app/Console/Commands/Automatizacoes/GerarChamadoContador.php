@@ -1,14 +1,19 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Console\Commands\Automatizacoes;
 
-use App\Models\StatusChamado\StatusChamado;
-use App\Models\TipoChamado\TipoChamado;
-use App\Repositories\Contracts\AberturaContadorPatrimonioRepository;
-use App\Repositories\Contracts\AberturaContadorRepository;
-use App\Services\Chamado\GerarChamado\Contracts\GerarChamadoService;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
+use App\Models\TipoChamado\TipoChamado;
+use App\Models\StatusChamado\StatusChamado;
+use App\Repositories\Contracts\AberturaContadorRepository;
+use App\Repositories\Contracts\AberturaContadorPatrimonioRepository;
+use App\Services\Chamado\GerarChamado\Contracts\GerarChamadoService;
 
 class GerarChamadoContador extends Command
 {
@@ -39,7 +44,6 @@ class GerarChamadoContador extends Command
      */
     public function __construct()
     {
-
         $this->abertura_contador_repository = app(AberturaContadorRepository::class);
         $this->abertura_contador_patrimonio_repository = app(AberturaContadorPatrimonioRepository::class);
         $this->gerarChamadoService = app(GerarChamadoService::class);
@@ -56,16 +60,15 @@ class GerarChamadoContador extends Command
     {
         $aberturas_do_dia = $this->abertura_contador_repository->getAberturasContadorDoDia();
 
-        foreach($aberturas_do_dia as $abertura){
-
+        foreach ($aberturas_do_dia as $abertura) {
             $patrimonios_abertura_do_dia = $this->abertura_contador_patrimonio_repository->getAberturaContadorPatrimonios($abertura->id);
 
             $dados = [
                 'data_acao' => Carbon::today()->format('Y-m-d'),
                 'status_chamado_id' => StatusChamado::ABERTO,
-                'tipo_chamado_id'   => TipoChamado::CONTADOR,
-                'contato_id'        => $abertura->contato_id,
-                'endereco_id'       => $abertura->endereco_id
+                'tipo_chamado_id' => TipoChamado::CONTADOR,
+                'contato_id' => $abertura->contato_id,
+                'endereco_id' => $abertura->endereco_id,
             ];
 
             $this->gerarChamadoService->setDados($dados);

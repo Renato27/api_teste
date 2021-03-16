@@ -1,12 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\AberturaContadorRepository;
-use Carbon\Carbon;
 use Carbon\CarbonImmutable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\AberturaContadorRepository;
 
 class AberturaContadorRepositoryImplementation implements AberturaContadorRepository
 {
@@ -15,7 +19,7 @@ class AberturaContadorRepositoryImplementation implements AberturaContadorReposi
     /**
      * Retorna AberturaContador baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getAberturaContador(int $id): ?Model
@@ -26,8 +30,8 @@ class AberturaContadorRepositoryImplementation implements AberturaContadorReposi
     /**
      * Retorna uma coleção de AberturaContador baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getAberturaContadors(int $id, int $associacao): ?Collection
@@ -36,7 +40,7 @@ class AberturaContadorRepositoryImplementation implements AberturaContadorReposi
     }
 
     /**
-     * Cria um novo AberturaContador
+     * Cria um novo AberturaContador.
      *
      * @param array $detalhes
      * @return Model|null
@@ -47,7 +51,7 @@ class AberturaContadorRepositoryImplementation implements AberturaContadorReposi
     }
 
     /**
-     * Atualiza um AberturaContador
+     * Atualiza um AberturaContador.
      *
      * @param int $id
      * @param array $detalhes
@@ -59,7 +63,7 @@ class AberturaContadorRepositoryImplementation implements AberturaContadorReposi
     }
 
     /**
-     * Deleta um AberturaContador
+     * Deleta um AberturaContador.
      *
      * @param int $id
      * @param array $detalhes
@@ -69,12 +73,14 @@ class AberturaContadorRepositoryImplementation implements AberturaContadorReposi
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }
 
-     /**
+    /**
      * Retorna os chamados de contador que devem ser abertos hoje.
      *
      * @return array

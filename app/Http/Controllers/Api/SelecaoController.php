@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
@@ -31,9 +36,7 @@ class SelecaoController extends Controller
      */
     public function store(Request $request, Expedicao $expedicao, CadastrarEntregaService $service)
     {
-
         try {
-
             $expedicao = Expedicao::find($request->expedicao);
 
             $service->setExpedicao($expedicao);
@@ -55,6 +58,7 @@ class SelecaoController extends Controller
     public function show($id)
     {
         $selecao = Expedicao::find($id);
+
         return new SelecaoResource($selecao);
     }
 

@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\NotaEspelho\GerarAutomaticoNotaEspelho;
 
-use App\Services\NotaEspelho\GerarAutomaticoNotaEspelho\Abstracts\GerarAutomaticoNotaEspelhoServiceAbstract;
 use Illuminate\Support\Facades\DB;
+use App\Services\NotaEspelho\GerarAutomaticoNotaEspelho\Abstracts\GerarAutomaticoNotaEspelhoServiceAbstract;
 
 class GerarAutomaticoNotaEspelhoService extends GerarAutomaticoNotaEspelhoServiceAbstract
 {
     /**
-     * Processa os dados
+     * Processa os dados.
      *
-     * @return boolean
+     * @return bool
      */
     public function handle(): bool
     {

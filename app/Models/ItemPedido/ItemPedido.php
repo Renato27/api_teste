@@ -1,19 +1,23 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\ItemPedido;
 
-use App\Models\ItemDefinido\ItemDefinido;
 use App\Models\Modelo\Modelo;
 use App\Models\Pedido\Pedido;
 use App\Models\PedidoItem\PedidoItem;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ItemDefinido\ItemDefinido;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ItemPedido extends Model
 {
     use HasFactory;
-
     use SoftDeletes;
 
     protected $date = ['deleted_at'];

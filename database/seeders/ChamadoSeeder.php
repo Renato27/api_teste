@@ -1,31 +1,36 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Seeders;
 
-use App\Models\Auditoria\Auditoria;
-use App\Models\AuditoriaPatrimonio\AuditoriaPatrimonio;
-use App\Models\Chamado\Chamado;
-use App\Models\ChamadoArquivo\ChamadoArquivo;
-use App\Models\Contador\Contador;
-use App\Models\ContadorPatrimonios\ContadorPatrimonios;
-use App\Models\Corretiva\Corretiva;
-use App\Models\CorretivaPatrimonio\CorretivaPatrimonio;
-use App\Models\Entrega\Entrega;
-use App\Models\EntregaPatrimonio\EntregaPatrimonio;
-use App\Models\Preventiva\Preventiva;
-use App\Models\PreventivaPatrimonio\PreventivaPatrimonio;
-use App\Models\Retirada\Retirada;
-use App\Models\RetiradaPatrimonio\RetiradaPatrimonio;
-use App\Models\Suporte\Suporte;
-use App\Models\SuporteInteracao\SuporteInteracao;
-use App\Models\Suprimento\Suprimento;
-use App\Models\SuprimentoPatrimonio\SuprimentoPatrimonio;
-use App\Models\Troca\Troca;
-use App\Models\TrocaPatrimonio\TrocaPatrimonio;
-use App\Models\TrocaPatrimonioRetirada\TrocaPatrimonioRetirada;
 use Carbon\Carbon;
+use App\Models\Troca\Troca;
+use App\Models\Chamado\Chamado;
+use App\Models\Entrega\Entrega;
+use App\Models\Suporte\Suporte;
 use Illuminate\Database\Seeder;
+use App\Models\Contador\Contador;
+use App\Models\Retirada\Retirada;
 use Illuminate\Support\Facades\DB;
+use App\Models\Auditoria\Auditoria;
+use App\Models\Corretiva\Corretiva;
+use App\Models\Preventiva\Preventiva;
+use App\Models\Suprimento\Suprimento;
+use App\Models\ChamadoArquivo\ChamadoArquivo;
+use App\Models\TrocaPatrimonio\TrocaPatrimonio;
+use App\Models\SuporteInteracao\SuporteInteracao;
+use App\Models\EntregaPatrimonio\EntregaPatrimonio;
+use App\Models\RetiradaPatrimonio\RetiradaPatrimonio;
+use App\Models\AuditoriaPatrimonio\AuditoriaPatrimonio;
+use App\Models\ContadorPatrimonios\ContadorPatrimonios;
+use App\Models\CorretivaPatrimonio\CorretivaPatrimonio;
+use App\Models\PreventivaPatrimonio\PreventivaPatrimonio;
+use App\Models\SuprimentoPatrimonio\SuprimentoPatrimonio;
+use App\Models\TrocaPatrimonioRetirada\TrocaPatrimonioRetirada;
 
 class ChamadoSeeder extends Seeder
 {
@@ -39,68 +44,65 @@ class ChamadoSeeder extends Seeder
         $chamados = DB::connection('mysql2')->table('chamados')
         ->get();
 
-        foreach($chamados as $chamado){
-
+        foreach ($chamados as $chamado) {
             Chamado::create([
-                'id'            => $chamado->idchamados,
-                'data_acao'     => $chamado->dataAcao,
-                'mensagem'      => $chamado->mensagem,
-                'cliente_id'    => $chamado->clientes_idclientes,
+                'id' => $chamado->idchamados,
+                'data_acao' => $chamado->dataAcao,
+                'mensagem' => $chamado->mensagem,
+                'cliente_id' => $chamado->clientes_idclientes,
                 'status_chamado_id' => $chamado->statuschamado_idstatuschamado,
-                'tipo_chamado_id'   => $chamado->tipochamado_idtipochamado,
-                'usuario_id'        => $chamado->usuarios_idusuarios,
-                'pedido_id'         => $chamado->vendas_idvendas,
-                'contato_id'        => $chamado->contatos_idcontatos,
-                'endereco_id'       => $chamado->enderecos_idenderecos,
-                'created_at'        => $chamado->created
-
+                'tipo_chamado_id' => $chamado->tipochamado_idtipochamado,
+                'usuario_id' => $chamado->usuarios_idusuarios,
+                'pedido_id' => $chamado->vendas_idvendas,
+                'contato_id' => $chamado->contatos_idcontatos,
+                'endereco_id' => $chamado->enderecos_idenderecos,
+                'created_at' => $chamado->created,
             ]);
 
-            if(!is_null($chamado->arquivo)){
+            if (! is_null($chamado->arquivo)) {
                 ChamadoArquivo::create([
-                    'arquivo'   => $chamado->arquivo,
-                    'chamado_id'    => $chamado->idchamados,
-                    'usuario_id'    => $chamado->usuarios_idusuarios
+                    'arquivo' => $chamado->arquivo,
+                    'chamado_id' => $chamado->idchamados,
+                    'usuario_id' => $chamado->usuarios_idusuarios,
                 ]);
             }
 
-
-            if(!is_null($chamado->arquivo_cliente)){
+            if (! is_null($chamado->arquivo_cliente)) {
                 ChamadoArquivo::create([
-                    'arquivo'   => $chamado->arquivo_cliente,
-                    'chamado_id'    => $chamado->idchamados,
-                    'usuario_id'    => $chamado->usuarios_idusuarios
+                    'arquivo' => $chamado->arquivo_cliente,
+                    'chamado_id' => $chamado->idchamados,
+                    'usuario_id' => $chamado->usuarios_idusuarios,
                 ]);
             }
 
-            if($chamado->statuschamado_idstatuschamado == 6){
-
+            if ($chamado->statuschamado_idstatuschamado == 6) {
                 switch ($chamado->tipochamado_idtipochamado) {
                     case 1:
                         $entregas = DB::connection('mysql2')
-                        ->select("select * from entregas left join pedidos as p on p.idpedidos = entregas.pedido_id  where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from entregas left join pedidos as p on p.idpedidos = entregas.pedido_id  where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $entrega1 = Entrega::create([
-                            'chamado_id'    => $chamado->idchamados,
-                            'expedicao_id'  => null,
+                            'chamado_id' => $chamado->idchamados,
+                            'expedicao_id' => null,
                             'deleted_at' => Carbon::now(),
                         ]);
                         foreach ($entregas as $entrega) {
                             EntregaPatrimonio::create([
-                                'entrega_id'  => $entrega1->id,
+                                'entrega_id' => $entrega1->id,
                                 'patrimonio_id' => $entrega->patrimonios_idpatrimonios,
                                 'item_pedido_id' => null,
                                 'checked' => 1,
                                 'deleted_at' => Carbon::now(),
                             ]);
                         }
+
                         break;
                     case 2:
                         $retiradas = DB::connection('mysql2')
-                        ->select("select * from retiradas where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from retiradas where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $retirada1 = Retirada::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                             'deleted_at' => Carbon::now(),
                         ]);
                         foreach ($retiradas as $retirada) {
@@ -115,14 +117,13 @@ class ChamadoSeeder extends Seeder
                         break;
                     case 3:
                         $preventivas = DB::connection('mysql2')
-                        ->select("select * from preventivas where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from preventivas where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $preventiva1 = Preventiva::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                             'deleted_at' => Carbon::now(),
                         ]);
-                        foreach($preventivas as $preventiva){
-
+                        foreach ($preventivas as $preventiva) {
                             PreventivaPatrimonio::create([
                                 'preventiva_id' => $preventiva1->id,
                                 'patrimonio_id' => $preventiva->patrimonios_idpatrimonios,
@@ -134,15 +135,14 @@ class ChamadoSeeder extends Seeder
                     case 4:
 
                         $contadores = DB::connection('mysql2')
-                        ->select("select * from verificacao_contador where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from verificacao_contador where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $contador1 = Contador::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                             'deleted_at' => Carbon::now(),
                         ]);
 
-                            foreach($contadores as $contador){
-
+                            foreach ($contadores as $contador) {
                                 ContadorPatrimonios::create([
                                     'contador_id' => $contador1->id,
                                     'patrimonio_id' => $contador->patrimonios_idpatrimonios,
@@ -155,14 +155,14 @@ class ChamadoSeeder extends Seeder
                     case 5:
 
                         $corretivas = DB::connection('mysql2')
-                        ->select("select * from patrimonios_suporte where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from patrimonios_suporte where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $corretiva1 = Corretiva::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                             'deleted_at' => Carbon::now(),
                         ]);
 
-                        foreach($corretivas as $corretiva){
+                        foreach ($corretivas as $corretiva) {
                             CorretivaPatrimonio::create([
                                 'corretiva_id' => $corretiva1->id,
                                 'patrimonio_id' => $corretiva->patrimonios_idpatrimonios,
@@ -176,18 +176,19 @@ class ChamadoSeeder extends Seeder
                             //     $corretiva2->save();
                             // }
                         }
+
                         break;
                     case 6:
 
                         $suprimentos = DB::connection('mysql2')
-                        ->select("select * from patrimonios_suporte where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from patrimonios_suporte where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $suprimento1 = Suprimento::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                             'deleted_at' => Carbon::now(),
                         ]);
 
-                        foreach($suprimentos as $suprimento){
+                        foreach ($suprimentos as $suprimento) {
                             SuprimentoPatrimonio::create([
                                 'suprimento_id' => $suprimento1->id,
                                 'patrimonio_id' => $suprimento->patrimonios_idpatrimonios,
@@ -199,22 +200,21 @@ class ChamadoSeeder extends Seeder
                     case 7:
 
                         $tarefas = DB::connection('mysql2')
-                        ->select("select * from tarefas inner join interacoes as i on i.tarefas_idtarefas = tarefas.idtarefas where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from tarefas inner join interacoes as i on i.tarefas_idtarefas = tarefas.idtarefas where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $suporte = Suporte::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                             'deleted_at' => Carbon::now(),
                         ]);
 
                         foreach ($tarefas as $tarefa) {
                             SuporteInteracao::create([
                                 'inicio' => $tarefa->inicio,
-                                'fim'   => $tarefa->fim,
-                                'detalhes'  => $tarefa->detalhes,
+                                'fim' => $tarefa->fim,
+                                'detalhes' => $tarefa->detalhes,
                                 'suporte_id' => $suporte->id,
-                                'usuario_id'    => $tarefa->usuarios_idusuarios,
+                                'usuario_id' => $tarefa->usuarios_idusuarios,
                                 'deleted_at' => Carbon::now(),
-
                             ]);
 
                             // if(!is_null($suporte->id_team_viewer) && !is_null($suporte->senha_team_viewer)){
@@ -224,23 +224,24 @@ class ChamadoSeeder extends Seeder
                             //     $suporte2->save();
                             // }
                         }
+
                         break;
                     case 8:
 
                         $entregas = DB::connection('mysql2')
-                        ->select("select * from entregas left join pedidos as p on p.idpedidos = entregas.pedido_id  where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from entregas left join pedidos as p on p.idpedidos = entregas.pedido_id  where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $retiradas = DB::connection('mysql2')
-                        ->select("select * from retiradas where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from retiradas where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $troca = Troca::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                             'deleted_at' => Carbon::now(),
                         ]);
 
-                        foreach($entregas as $entrega){
+                        foreach ($entregas as $entrega) {
                             TrocaPatrimonio::create([
-                                'troca_id'      => $troca->id,
+                                'troca_id' => $troca->id,
                                 'patrimonio_id' => $entrega->patrimonios_idpatrimonios,
                                 'item_pedido_id' => $entrega->pedido_definido_id,
                                 'checked' => 1,
@@ -248,9 +249,9 @@ class ChamadoSeeder extends Seeder
                             ]);
                         }
 
-                        foreach($retiradas as $retirada){
+                        foreach ($retiradas as $retirada) {
                             TrocaPatrimonioRetirada::create([
-                                'troca_id'  => $troca->id,
+                                'troca_id' => $troca->id,
                                 'patrimonio_id' => $retirada->patrimonios_idpatrimonios,
                                 'item_pedido_id' => null,
                                 'checked' => 1,
@@ -262,14 +263,14 @@ class ChamadoSeeder extends Seeder
                     case 9:
 
                         $auditorias = DB::connection('mysql2')
-                        ->select("select * from patrimonio_auditorias where chamado_id = ?", [$chamado->idchamados]);
+                        ->select('select * from patrimonio_auditorias where chamado_id = ?', [$chamado->idchamados]);
 
                         $auditoria1 = Auditoria::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                             'deleted_at' => Carbon::now(),
                         ]);
 
-                        foreach($auditorias as $auditoria){
+                        foreach ($auditorias as $auditoria) {
                             AuditoriaPatrimonio::create([
                                 'auditoria_id' => $auditoria1->id,
                                 'patrimonio_id' => $auditoria->patrimonio_id,
@@ -278,33 +279,33 @@ class ChamadoSeeder extends Seeder
                         }
 
                         break;
-
-            };
-        }else{
+            }
+            } else {
                 switch ($chamado->tipochamado_idtipochamado) {
                     case 1:
                         $entregas = DB::connection('mysql2')
-                        ->select("select * from entregas left join pedidos as p on p.idpedidos = entregas.pedido_id  where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from entregas left join pedidos as p on p.idpedidos = entregas.pedido_id  where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $entrega1 = Entrega::create([
-                            'chamado_id'    => $chamado->idchamados,
-                            'expedicao_id'  => null,
+                            'chamado_id' => $chamado->idchamados,
+                            'expedicao_id' => null,
                         ]);
                         foreach ($entregas as $entrega) {
                             EntregaPatrimonio::create([
-                                'entrega_id'  => $entrega1->id,
+                                'entrega_id' => $entrega1->id,
                                 'patrimonio_id' => $entrega->patrimonios_idpatrimonios,
                                 'item_pedido_id' => $entrega->pedido_definido_id,
                                 'checked' => 1,
                             ]);
                         }
+
                         break;
                     case 2:
                         $retiradas = DB::connection('mysql2')
-                        ->select("select * from retiradas where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from retiradas where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $retirada1 = Retirada::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                         ]);
                         foreach ($retiradas as $retirada) {
                             RetiradaPatrimonio::create([
@@ -317,16 +318,15 @@ class ChamadoSeeder extends Seeder
                         break;
                     case 3:
                         $preventivas = DB::connection('mysql2')
-                        ->select("select * from preventivas where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from preventivas where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $preventiva1 = Preventiva::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                         ]);
-                        foreach($preventivas as $preventiva){
-
+                        foreach ($preventivas as $preventiva) {
                             PreventivaPatrimonio::create([
                                 'preventiva_id' => $preventiva1->id,
-                                'patrimonio_id' => $preventiva->patrimonios_idpatrimonios
+                                'patrimonio_id' => $preventiva->patrimonios_idpatrimonios,
                             ]);
                         }
 
@@ -334,18 +334,17 @@ class ChamadoSeeder extends Seeder
                     case 4:
 
                         $contadores = DB::connection('mysql2')
-                        ->select("select * from verificacao_contador where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from verificacao_contador where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $contador1 = Contador::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                         ]);
 
-                            foreach($contadores as $contador){
-
+                            foreach ($contadores as $contador) {
                                 ContadorPatrimonios::create([
                                     'contador_id' => $contador1->id,
                                     'patrimonio_id' => $contador->patrimonios_idpatrimonios,
-                                    'valor' => $contador->contador
+                                    'valor' => $contador->contador,
                                 ]);
                             }
 
@@ -353,39 +352,40 @@ class ChamadoSeeder extends Seeder
                     case 5:
 
                         $corretivas = DB::connection('mysql2')
-                        ->select("select * from patrimonios_suporte where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from patrimonios_suporte where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $corretiva1 = Corretiva::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                         ]);
 
-                        foreach($corretivas as $corretiva){
+                        foreach ($corretivas as $corretiva) {
                             CorretivaPatrimonio::create([
                                 'corretiva_id' => $corretiva1->id,
-                                'patrimonio_id' => $corretiva->patrimonios_idpatrimonios
+                                'patrimonio_id' => $corretiva->patrimonios_idpatrimonios,
                             ]);
 
-                            if(!is_null($corretiva->id_team_viewer) && !is_null($corretiva->senha_team_viewer)){
+                            if (! is_null($corretiva->id_team_viewer) && ! is_null($corretiva->senha_team_viewer)) {
                                 $corretiva2 = Corretiva::where('chamado_id', $chamado->idchamados)->first();
                                 $corretiva2->login_team_viewer = $corretiva->id_team_viewer;
                                 $corretiva2->senha_team_viewer = $corretiva->senha_team_viewer;
                                 $corretiva2->save();
                             }
                         }
+
                         break;
                     case 6:
 
                         $suprimentos = DB::connection('mysql2')
-                        ->select("select * from patrimonios_suporte where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from patrimonios_suporte where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $suprimento1 = Suprimento::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                         ]);
 
-                        foreach($suprimentos as $suprimento){
+                        foreach ($suprimentos as $suprimento) {
                             SuprimentoPatrimonio::create([
                                 'suprimento_id' => $suprimento1->id,
-                                'patrimonio_id' => $suprimento->patrimonios_idpatrimonios
+                                'patrimonio_id' => $suprimento->patrimonios_idpatrimonios,
                             ]);
                         }
 
@@ -393,56 +393,57 @@ class ChamadoSeeder extends Seeder
                     case 7:
 
                         $tarefas = DB::connection('mysql2')
-                        ->select("select * from tarefas inner join interacoes as i on i.tarefas_idtarefas = tarefas.idtarefas where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from tarefas inner join interacoes as i on i.tarefas_idtarefas = tarefas.idtarefas where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $suporte = Suporte::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                         ]);
 
                         foreach ($tarefas as $tarefa) {
                             SuporteInteracao::create([
                                 'inicio' => $tarefa->inicio,
-                                'fim'   => $tarefa->fim,
-                                'detalhes'  => $tarefa->detalhes,
+                                'fim' => $tarefa->fim,
+                                'detalhes' => $tarefa->detalhes,
                                 'suporte_id' => $suporte->id,
-                                'usuario_id'    => $tarefa->usuarios_idusuarios
+                                'usuario_id' => $tarefa->usuarios_idusuarios,
                             ]);
 
-                            if(!is_null($suporte->id_team_viewer) && !is_null($suporte->senha_team_viewer)){
+                            if (! is_null($suporte->id_team_viewer) && ! is_null($suporte->senha_team_viewer)) {
                                 $suporte2 = Suporte::where('chamado_id', $chamado->idchamados)->first();
                                 $suporte2->login_team_viewer = $suporte->id_team_viewer;
                                 $suporte2->senha_team_viewer = $suporte->senha_team_viewer;
                                 $suporte2->save();
                             }
                         }
+
                         break;
                     case 8:
 
                         $entregas = DB::connection('mysql2')
-                        ->select("select * from entregas left join pedidos as p on p.idpedidos = entregas.pedido_id  where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from entregas left join pedidos as p on p.idpedidos = entregas.pedido_id  where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $retiradas = DB::connection('mysql2')
-                        ->select("select * from retiradas where chamados_idchamados = ?", [$chamado->idchamados]);
+                        ->select('select * from retiradas where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $troca = Troca::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                         ]);
 
-                        foreach($entregas as $entrega){
+                        foreach ($entregas as $entrega) {
                             TrocaPatrimonio::create([
-                                'troca_id'      => $troca->id,
+                                'troca_id' => $troca->id,
                                 'patrimonio_id' => $entrega->patrimonios_idpatrimonios,
                                 'item_pedido_id' => $entrega->pedido_definido_id,
-                                'checked' => 1
+                                'checked' => 1,
                             ]);
                         }
 
-                        foreach($retiradas as $retirada){
+                        foreach ($retiradas as $retirada) {
                             TrocaPatrimonioRetirada::create([
-                                'troca_id'  => $troca->id,
+                                'troca_id' => $troca->id,
                                 'patrimonio_id' => $retirada->patrimonios_idpatrimonios,
                                 'item_pedido_id' => null,
-                                'checked' => 1
+                                'checked' => 1,
                             ]);
                         }
 
@@ -450,22 +451,21 @@ class ChamadoSeeder extends Seeder
                     case 9:
 
                         $auditorias = DB::connection('mysql2')
-                        ->select("select * from patrimonio_auditorias where chamado_id = ?", [$chamado->idchamados]);
+                        ->select('select * from patrimonio_auditorias where chamado_id = ?', [$chamado->idchamados]);
 
                         $auditoria1 = Auditoria::create([
-                            'chamado_id'    => $chamado->idchamados,
+                            'chamado_id' => $chamado->idchamados,
                         ]);
 
-                        foreach($auditorias as $auditoria){
+                        foreach ($auditorias as $auditoria) {
                             AuditoriaPatrimonio::create([
                                 'auditoria_id' => $auditoria1->id,
-                                'patrimonio_id' => $auditoria->patrimonio_id
+                                'patrimonio_id' => $auditoria->patrimonio_id,
                             ]);
                         }
 
                         break;
             }
-
             }
         }
     }

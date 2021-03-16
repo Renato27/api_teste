@@ -1,12 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Listeners;
 
 use App\Events\TrocaEvent;
 use App\Models\TrocaPatrimonio\TrocaPatrimonio;
 use App\Models\TrocaPatrimonioRetirada\TrocaPatrimonioRetirada;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class RelationShipsTroca
 {
@@ -28,17 +31,17 @@ class RelationShipsTroca
      */
     public function handle(TrocaEvent $event)
     {
-        if(!is_null($event->getPatrimonioEntregaId())){
+        if (! is_null($event->getPatrimonioEntregaId())) {
             TrocaPatrimonio::create([
-                'troca_id'  => $event->getTroca()->id,
-                'patrimonio_id' => $event->getPatrimonioEntregaId()
+                'troca_id' => $event->getTroca()->id,
+                'patrimonio_id' => $event->getPatrimonioEntregaId(),
             ]);
         }
 
-        if(!is_null($event->getPatrimonioRetiradaId())){
+        if (! is_null($event->getPatrimonioRetiradaId())) {
             TrocaPatrimonioRetirada::create([
-                'troca_id'      => $event->getTroca()->id,
-                'patrimonio_id' => $event->getPatrimonioRetiradaId()
+                'troca_id' => $event->getTroca()->id,
+                'patrimonio_id' => $event->getPatrimonioRetiradaId(),
             ]);
         }
     }

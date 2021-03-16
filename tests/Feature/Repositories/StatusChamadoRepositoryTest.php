@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\StatusChamadoRepository;
 
@@ -28,46 +31,36 @@ class StatusChamadoRepositoryTest extends TestCase
 
     /**
      * Retorna StatusChamado baseado no ID.
-     *
      */
     public function testGetStatusChamado()
     {
-
     }
 
     /**
      * Retorna uma coleção de StatusChamado baseado em uma associação.
-     *
      */
     public function testGetStatusChamados()
     {
-
     }
 
     /**
-     * Cria um novo StatusChamado
-     *
-     */    
+     * Cria um novo StatusChamado.
+     */
     public function testCreateStatusChamado()
     {
-
     }
 
     /**
-     * Atualiza um StatusChamado
-     *
-     */ 
+     * Atualiza um StatusChamado.
+     */
     public function testUpdateStatusChamado()
     {
-
     }
 
     /**
-     * Deleta um StatusChamado
-     *
-     */ 
+     * Deleta um StatusChamado.
+     */
     public function testDeleteStatusChamado()
     {
-
     }
 }

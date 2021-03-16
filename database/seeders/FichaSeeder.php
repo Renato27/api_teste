@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Seeders;
 
 use App\Models\Ficha\Ficha;
@@ -17,12 +22,12 @@ class FichaSeeder extends Seeder
     {
         $fichas = DB::connection('mysql2')->table('fichas')->get();
 
-        foreach($fichas as $ficha){
+        foreach ($fichas as $ficha) {
             Ficha::create([
                 'detalhes' => $ficha->nota,
-                'funcionario_id'  => $ficha->funcionarios_idfuncionarios,
+                'funcionario_id' => $ficha->funcionarios_idfuncionarios,
                 'patrimonio_id' => $ficha->patrimonios_idpatrimonios,
-                'chamado_id' => $ficha->chamado_id
+                'chamado_id' => $ficha->chamado_id,
             ]);
         }
     }

@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\ClienteVisualizacaoPatrimonioRepository;
 
@@ -28,46 +31,36 @@ class ClienteVisualizacaoPatrimonioRepositoryTest extends TestCase
 
     /**
      * Retorna ClienteVisualizacaoPatrimonio baseado no ID.
-     *
      */
     public function testGetClienteVisualizacaoPatrimonio()
     {
-
     }
 
     /**
      * Retorna uma coleção de ClienteVisualizacaoPatrimonio baseado em uma associação.
-     *
      */
     public function testGetClienteVisualizacaoPatrimonios()
     {
-
     }
 
     /**
-     * Cria um novo ClienteVisualizacaoPatrimonio
-     *
-     */    
+     * Cria um novo ClienteVisualizacaoPatrimonio.
+     */
     public function testCreateClienteVisualizacaoPatrimonio()
     {
-
     }
 
     /**
-     * Atualiza um ClienteVisualizacaoPatrimonio
-     *
-     */ 
+     * Atualiza um ClienteVisualizacaoPatrimonio.
+     */
     public function testUpdateClienteVisualizacaoPatrimonio()
     {
-
     }
 
     /**
-     * Deleta um ClienteVisualizacaoPatrimonio
-     *
-     */ 
+     * Deleta um ClienteVisualizacaoPatrimonio.
+     */
     public function testDeleteClienteVisualizacaoPatrimonio()
     {
-
     }
 }

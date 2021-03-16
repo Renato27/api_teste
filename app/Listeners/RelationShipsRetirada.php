@@ -1,14 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Listeners;
 
 use App\Events\RetiradaEvent;
-use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Models\Patrimonio\Patrimonio;
-use App\Models\Retirada\Retirada;
+use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Models\RetiradaPatrimonio\RetiradaPatrimonio;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 
 class RelationShipsRetirada
 {
@@ -30,10 +32,9 @@ class RelationShipsRetirada
      */
     public function handle(RetiradaEvent $event)
     {
-
         RetiradaPatrimonio::create([
-            "retirada_id" => $event->getRetirada()->id,
-            "patrimonio_id" => $event->getPatrimonioId()
+            'retirada_id' => $event->getRetirada()->id,
+            'patrimonio_id' => $event->getPatrimonioId(),
         ]);
 
         $patrimonio = Patrimonio::find($event->getPatrimonioId());

@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers\Services\NotaEspelho;
 
-use App\Repositories\Contracts\NotaEspelhoRepository;
-use App\Services\NotaEspelho\GerarNotaEspelho\Contracts\GerarNotaEspelhoService as ContractsGerarNotaEspelhoService;
-use App\Services\NotaEspelho\GerarNotaEspelho\GerarNotaEspelhoService;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Contracts\NotaEspelhoRepository;
+use App\Services\NotaEspelho\GerarNotaEspelho\GerarNotaEspelhoService;
+use App\Services\NotaEspelho\GerarNotaEspelho\Contracts\GerarNotaEspelhoService as ContractsGerarNotaEspelhoService;
 
 class GerarNotaEspelhoServiceProvider extends ServiceProvider
 {
@@ -30,7 +35,7 @@ class GerarNotaEspelhoServiceProvider extends ServiceProvider
 
         $service->setNotaEspelhoRepository(app(NotaEspelhoRepository::class));
 
-        $this->app->bind(ContractsGerarNotaEspelhoService::class, function($app) use($service){
+        $this->app->bind(ContractsGerarNotaEspelhoService::class, function ($app) use ($service) {
             return $service;
         });
     }

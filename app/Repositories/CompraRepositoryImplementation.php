@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\CompraRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\CompraRepository;
 
 class CompraRepositoryImplementation implements CompraRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna Compra baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getCompra(int $id): ?Model
@@ -25,17 +29,16 @@ class CompraRepositoryImplementation implements CompraRepository
     /**
      * Retorna uma coleção de Compra baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getCompras(int $id, int $associacao): ?Collection
     {
-
     }
 
     /**
-     * Cria um novo Compra
+     * Cria um novo Compra.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +49,7 @@ class CompraRepositoryImplementation implements CompraRepository
     }
 
     /**
-     * Atualiza um Compra
+     * Atualiza um Compra.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +61,7 @@ class CompraRepositoryImplementation implements CompraRepository
     }
 
     /**
-     * Deleta um Compra
+     * Deleta um Compra.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +71,9 @@ class CompraRepositoryImplementation implements CompraRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -43,7 +48,6 @@ class DatabaseSeeder extends Seeder
             NotaEspelhoSeeder::class,
             FichaSeeder::class,
             ExpedicaoTipoSeeder::class,
-
         ]);
     }
 }

@@ -1,12 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
+use Tests\TestCase;
 use App\Models\ContratoMedicaoTipo\ContratoMedicaoTipo;
 use App\Repositories\Contracts\ContratoMedicaoTipoRepository;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\Repositories\ContratoMedicaoTipoRepositoryImplementation;
 
 class ContratoMedicaoTipoRepositoryTest extends TestCase
@@ -36,7 +39,6 @@ class ContratoMedicaoTipoRepositoryTest extends TestCase
 
     /**
      * Retorna ContratoMedicaoTipo baseado no ID.
-     *
      */
     public function testGetContratoMedicaoTipo()
     {
@@ -55,7 +57,6 @@ class ContratoMedicaoTipoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de ContratoMedicaoTipo baseado em uma associação.
-     *
      */
     public function testGetMedicaoTipoContratos()
     {
@@ -76,12 +77,10 @@ class ContratoMedicaoTipoRepositoryTest extends TestCase
         $retorno = $this->implementacao->getMedicaoTipoContratos($medicaoTipo->id);
 
         $this->assertCount(2, $retorno);
-
     }
 
     /**
-     * Cria um novo ContratoMedicaoTipo
-     *
+     * Cria um novo ContratoMedicaoTipo.
      */
     public function testCreateContratoMedicaoTipo()
     {
@@ -89,8 +88,8 @@ class ContratoMedicaoTipoRepositoryTest extends TestCase
         $contrato = \App\Models\Contratos\Contrato::factory()->create();
         $medicaoTipo = \App\Models\MedicaoTipo\MedicaoTipo::factory()->create();
         $detalhes = [
-            'contrato_id'           => $contrato->id,
-            'medicao_tipo_id'       => $medicaoTipo->id
+            'contrato_id' => $contrato->id,
+            'medicao_tipo_id' => $medicaoTipo->id,
         ];
 
         $retorno = $this->implementacao->createContratoMedicaoTipo($detalhes);
@@ -99,8 +98,7 @@ class ContratoMedicaoTipoRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um ContratoMedicaoTipo
-     *
+     * Atualiza um ContratoMedicaoTipo.
      */
     public function testUpdateContratoMedicaoTipo()
     {
@@ -108,8 +106,8 @@ class ContratoMedicaoTipoRepositoryTest extends TestCase
         $contrato = \App\Models\Contratos\Contrato::factory()->create();
         $medicaoTipo = \App\Models\MedicaoTipo\MedicaoTipo::factory()->create();
         $detalhes = [
-            'contrato_id'           => $contrato->id,
-            'medicao_tipo_id'       => $medicaoTipo->id
+            'contrato_id' => $contrato->id,
+            'medicao_tipo_id' => $medicaoTipo->id,
         ];
 
         $retorno = $this->implementacao->updateContratoMedicaoTipo($associacao->id, $detalhes);
@@ -122,8 +120,7 @@ class ContratoMedicaoTipoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um ContratoMedicaoTipo
-     *
+     * Deleta um ContratoMedicaoTipo.
      */
     public function testDeleteContratoMedicaoTipo()
     {

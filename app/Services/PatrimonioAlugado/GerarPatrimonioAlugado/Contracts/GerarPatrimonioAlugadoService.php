@@ -1,13 +1,17 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Contracts;
 
 use App\Models\Chamado\Chamado;
-use App\Models\EntregaPatrimonio\EntregaPatrimonio;
-use App\Models\PatrimonioAlugado\PatrimonioAlugado;
-use App\Models\TrocaPatrimonioRetirada\TrocaPatrimonioRetirada;
-use App\Repositories\Contracts\PatrimonioAlugadoRepository;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\PatrimonioAlugado\PatrimonioAlugado;
+use App\Repositories\Contracts\PatrimonioAlugadoRepository;
+use App\Models\TrocaPatrimonioRetirada\TrocaPatrimonioRetirada;
 
 interface GerarPatrimonioAlugadoService
 {
@@ -17,7 +21,7 @@ interface GerarPatrimonioAlugadoService
      * @param Model|null
      * @return GerarPatrimonioAlugadoService
      */
-    public function setEntregaPatrimonio(?Model $model = null): GerarPatrimonioAlugadoService;
+    public function setEntregaPatrimonio(?Model $model = null): self;
 
     /**
      * Seta os dados para PatrimonioAlugado.
@@ -25,7 +29,7 @@ interface GerarPatrimonioAlugadoService
      * @param array|null $dados
      * @return GerarPatrimonioAlugadoService;
      */
-    public function setDados(?array $dados = null): GerarPatrimonioAlugadoService;
+    public function setDados(?array $dados = null): self;
 
     /**
      * Seta uma model.
@@ -33,7 +37,7 @@ interface GerarPatrimonioAlugadoService
      * @param TrocaPatrimonioRetirada|null $model
      * @return GerarPatrimonioAlugadoService
      */
-    public function setPatrimonioRetirada(?TrocaPatrimonioRetirada $trocaPatrimonioRetirada = null): GerarPatrimonioAlugadoService;
+    public function setPatrimonioRetirada(?TrocaPatrimonioRetirada $trocaPatrimonioRetirada = null): self;
 
     /**
      * Seta a model de chamado.
@@ -41,7 +45,7 @@ interface GerarPatrimonioAlugadoService
      * @param Chamado|null $chamado
      * @return GerarPatrimonioAlugadoService
      */
-    public function setChamado(?Chamado $chamado = null): GerarPatrimonioAlugadoService;
+    public function setChamado(?Chamado $chamado = null): self;
 
     /**
      * Seta o repositório de PatrimonioAlugadoRepository.
@@ -49,12 +53,12 @@ interface GerarPatrimonioAlugadoService
      * @param PatrimonioAlugadoRepository $PatrimonioAlugadoRepository
      * @return GerarPatrimonioAlugadoService
      */
-    public function setPatrimonioAlugadoRepository(PatrimonioAlugadoRepository $PatrimonioAlugadoRepository): GerarPatrimonioAlugadoService;
+    public function setPatrimonioAlugadoRepository(PatrimonioAlugadoRepository $PatrimonioAlugadoRepository): self;
 
     /**
-     * Processa os dados
+     * Processa os dados.
      *
-     * @return boolean
+     * @return bool
      */
     public function handle(): bool;
 }

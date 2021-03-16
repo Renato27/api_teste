@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\PedidoStatusPedidoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\PedidoStatusPedidoRepository;
 
 class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRepository
 {
@@ -13,7 +18,7 @@ class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRe
     /**
      * Retorna PedidoStatusPedido baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getPedidoStatusPedido(int $pedido): ?Model
@@ -24,8 +29,8 @@ class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRe
     /**
      * Retorna uma coleção de PedidoStatusPedido baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPedidoStatusPedidos(int $status): ?Collection
@@ -34,7 +39,7 @@ class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRe
     }
 
     /**
-     * Cria um novo PedidoStatusPedido
+     * Cria um novo PedidoStatusPedido.
      *
      * @param array $detalhes
      * @return Model|null
@@ -45,7 +50,7 @@ class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRe
     }
 
     /**
-     * Atualiza um PedidoStatusPedido
+     * Atualiza um PedidoStatusPedido.
      *
      * @param int $id
      * @param array $detalhes
@@ -57,7 +62,7 @@ class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRe
     }
 
     /**
-     * Deleta um PedidoStatusPedido
+     * Deleta um PedidoStatusPedido.
      *
      * @param int $id
      * @param array $detalhes
@@ -67,7 +72,9 @@ class PedidoStatusPedidoRepositoryImplementation implements PedidoStatusPedidoRe
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

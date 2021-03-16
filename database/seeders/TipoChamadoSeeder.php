@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Seeders;
 
-use App\Models\TipoChamado\TipoChamado;
 use Illuminate\Database\Seeder;
+use App\Models\TipoChamado\TipoChamado;
 
 class TipoChamadoSeeder extends Seeder
 {
@@ -15,31 +20,31 @@ class TipoChamadoSeeder extends Seeder
     public function run()
     {
         TipoChamado::create([
-            'nome' => 'Entrega'
+            'nome' => 'Entrega',
         ]);
         TipoChamado::create([
-            'nome' => 'Retirada'
+            'nome' => 'Retirada',
         ]);
         TipoChamado::create([
-            'nome' => 'Preventiva'
+            'nome' => 'Preventiva',
         ]);
         TipoChamado::create([
-            'nome' => 'Contador'
+            'nome' => 'Contador',
         ]);
         TipoChamado::create([
-            'nome' => 'Corretiva'
+            'nome' => 'Corretiva',
         ]);
         TipoChamado::create([
-            'nome' => 'Suprimento'
+            'nome' => 'Suprimento',
         ]);
         TipoChamado::create([
-            'nome' => 'Suporte'
+            'nome' => 'Suporte',
         ]);
         TipoChamado::create([
-            'nome' => 'Troca'
+            'nome' => 'Troca',
         ]);
         TipoChamado::create([
-            'nome' => 'Auditoria'
+            'nome' => 'Auditoria',
         ]);
     }
 }

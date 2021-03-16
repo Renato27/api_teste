@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Entrega\CadastrarEntrega\Contracts;
 
 use App\Models\Entrega\Entrega;
@@ -14,7 +19,7 @@ interface CadastrarEntregaService
      * @param Entrega
      * @return CadastrarEntregaService
      */
-    public function setExpedicao(Expedicao $expedicao): CadastrarEntregaService;
+    public function setExpedicao(Expedicao $expedicao): self;
 
     /**
      * Seta os patrimõnios da entrega.
@@ -22,7 +27,7 @@ interface CadastrarEntregaService
      * @param array $patrimonios
      * @return CadastrarEntregaService
      */
-    public function setPatrimonios(array $patrimonios): CadastrarEntregaService;
+    public function setPatrimonios(array $patrimonios): self;
 
     /**
      * Seta o item de um pedido.
@@ -30,7 +35,7 @@ interface CadastrarEntregaService
      * @param array $item_pedido
      * @return CadastrarEntregaService
      */
-    public function setItemPedido(int $item_pedido) : CadastrarEntregaService;
+    public function setItemPedido(int $item_pedido) : self;
 
     /**
      * Seta o repositório de EntregaRepository.
@@ -38,12 +43,12 @@ interface CadastrarEntregaService
      * @param EntregaRepository $EntregaRepository
      * @return CadastrarEntregaService
      */
-    public function setEntregaRepository(EntregaRepository $EntregaRepository): CadastrarEntregaService;
+    public function setEntregaRepository(EntregaRepository $EntregaRepository): self;
 
     /**
-     * Processa os dados
+     * Processa os dados.
      *
-     * @return boolean
+     * @return bool
      */
     public function handle(): bool;
 }

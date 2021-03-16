@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Patrimonio\CadastrarPatrimonio\Base;
 
-use App\Services\Patrimonio\CadastrarPatrimonio\Contracts\CadastrarPatrimonioService;
 use App\Models\Patrimonio\Patrimonio;
 use App\Repositories\Contracts\PatrimonioRepository;
+use App\Services\Patrimonio\CadastrarPatrimonio\Contracts\CadastrarPatrimonioService;
 
 abstract class CadastrarPatrimonioServiceBase implements CadastrarPatrimonioService
 {
@@ -29,7 +34,7 @@ abstract class CadastrarPatrimonioServiceBase implements CadastrarPatrimonioServ
      */
     protected PatrimonioRepository $PatrimonioRepository;
 
-   /**
+    /**
      * Seta a model de Patrimonio.
      *
      * @param Patrimonio
@@ -38,6 +43,7 @@ abstract class CadastrarPatrimonioServiceBase implements CadastrarPatrimonioServ
     public function setPatrimonio(Patrimonio $Patrimonio): CadastrarPatrimonioService
     {
         $this->Patrimonio = $Patrimonio;
+
         return $this;
     }
 
@@ -50,6 +56,7 @@ abstract class CadastrarPatrimonioServiceBase implements CadastrarPatrimonioServ
     public function setDados(array $dados): CadastrarPatrimonioService
     {
         $this->dados = $dados;
+
         return $this;
     }
 
@@ -62,6 +69,7 @@ abstract class CadastrarPatrimonioServiceBase implements CadastrarPatrimonioServ
     public function setPatrimonioRepository(PatrimonioRepository $PatrimonioRepository): CadastrarPatrimonioService
     {
         $this->PatrimonioRepository = $PatrimonioRepository;
+
         return $this;
     }
 }

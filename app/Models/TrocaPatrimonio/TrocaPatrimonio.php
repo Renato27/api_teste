@@ -1,18 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\TrocaPatrimonio;
 
-use App\Models\Patrimonio\Patrimonio;
 use App\Models\Troca\Troca;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Patrimonio\Patrimonio;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TrocaPatrimonio extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $date = ['deleted_at'];
+
     protected $fillable = ['troca_id', 'patrimonio_id', 'item_pedido_id', 'checked'];
 
     public function troca()

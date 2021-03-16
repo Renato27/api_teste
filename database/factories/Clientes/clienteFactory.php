@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\Clientes;
 
 use App\Models\Clientes\Cliente;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ClienteFactory extends Factory
+class clienteFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
@@ -22,11 +27,11 @@ class ClienteFactory extends Factory
     public function definition()
     {
         return [
-            'razao_social'              => $this->faker->name(5),
-            'nome_fantasia'             => $this->faker->name(3),
-            'cpf_cnpj'                  => $this->faker->numberBetween(10000000000001, 99999999999999),
-            'inscricao_estadual'        => $this->faker->numberBetween(100000000, 999999999),
-            'inscricao_municipal'       => $this->faker->numberBetween(10000000000, 99999999999)
+            'razao_social' => $this->faker->name(5),
+            'nome_fantasia' => $this->faker->name(3),
+            'cpf_cnpj' => $this->faker->numberBetween(10000000000001, 99999999999999),
+            'inscricao_estadual' => $this->faker->numberBetween(100000000, 999999999),
+            'inscricao_municipal' => $this->faker->numberBetween(10000000000, 99999999999),
         ];
     }
 }

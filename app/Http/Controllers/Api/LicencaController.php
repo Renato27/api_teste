@@ -1,12 +1,17 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
+use App\Models\Licenca\Licenca;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\LicencaResource;
-use App\Models\Licenca\Licenca;
 use App\Models\LicencaPatrimonio\LicencaPatrimonio;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class LicencaController extends Controller
@@ -62,14 +67,13 @@ class LicencaController extends Controller
     {
         $licenca_patrimonio = LicencaPatrimonio::where(['patrimonio_id' => $request->patrimonio, 'licenca_id' => $licenca->id])->first();
 
-        if(isset($licenca_patrimonio->id)){
+        if (isset($licenca_patrimonio->id)) {
             $licenca_patrimonio->delete();
-        }else{
-
+        } else {
             LicencaPatrimonio::create([
-                'host_name'         => $request->host_name,
-                'licenca_id'        => $licenca->id,
-                'patrimonio_id'     => $request->patrimonio_id
+                'host_name' => $request->host_name,
+                'licenca_id' => $licenca->id,
+                'patrimonio_id' => $request->patrimonio_id,
             ]);
         }
     }

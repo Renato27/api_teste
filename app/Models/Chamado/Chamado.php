@@ -1,32 +1,38 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\Chamado;
 
-use App\Models\Auditoria\Auditoria;
+use App\Models\Pedido\Pedido;
+use App\Models\Contato\Contato;
+use App\Models\Entrega\Entrega;
+use App\Models\Suporte\Suporte;
+use App\Models\Usuario\Usuario;
 use App\Models\Clientes\Cliente;
 use App\Models\Contador\Contador;
-use App\Models\Contato\Contato;
-use App\Models\Corretiva\Corretiva;
 use App\Models\Endereco\Endereco;
-use App\Models\Entrega\Entrega;
-use App\Models\Pedido\Pedido;
-use App\Models\Preventiva\Preventiva;
 use App\Models\Retirada\Retirada;
-use App\Models\StatusChamado\StatusChamado;
-use App\Models\Suporte\Suporte;
+use App\Models\Auditoria\Auditoria;
+use App\Models\Corretiva\Corretiva;
+use App\Models\Preventiva\Preventiva;
 use App\Models\TipoChamado\TipoChamado;
-use App\Models\Usuario\Usuario;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\StatusChamado\StatusChamado;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Chamado extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $date = ['deleted_at'];
-    protected $fillable = ['data_acao', 'mensagem','cliente_id', 'status_chamado_id', 'tipo_chamado_id', 'usuario_id',
-    'pedido_id', 'contato_id', 'endereco_id'];
+
+    protected $fillable = ['data_acao', 'mensagem', 'cliente_id', 'status_chamado_id', 'tipo_chamado_id', 'usuario_id',
+        'pedido_id', 'contato_id', 'endereco_id', ];
 
     public function status_chamado()
     {

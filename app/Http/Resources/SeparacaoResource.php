@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Resources;
 
 use App\Models\Patrimonio\Patrimonio;
@@ -15,17 +20,16 @@ class SeparacaoResource extends JsonResource
      */
     public function toArray($request)
     {
-
         return [
-            'id'            => $this->id,
-            'pedido'        => new PedidoResource($this->pedido),
-            'estado'        => $this->expedicao_estado->nome,
-            'itens'         => ItensPedidoResource::collection($this->pedido->itens),
+            'id' => $this->id,
+            'pedido' => new PedidoResource($this->pedido),
+            'estado' => $this->expedicao_estado->nome,
+            'itens' => ItensPedidoResource::collection($this->pedido->itens),
             'entrega_patrimonios' => EntregaPatrimonioResource::collection($this->entrega->entrega_patrimonios),
-            'patrimonios'   => Patrimonio::where('estado_patrimonio_id', 1)->get(),
-            'created_at'    => $this->created_at,
-            'updated_at'    => $this->updated_at,
-            'deleted_at'    => $this->deleted_at
+            'patrimonios' => Patrimonio::where('estado_patrimonio_id', 1)->get(),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'deleted_at' => $this->deleted_at,
         ];
     }
 }

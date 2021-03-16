@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Observers;
 
 use Carbon\CarbonImmutable;
@@ -59,7 +64,6 @@ class EntregaObserver
                 $patrimoniosParaContador = collect();
 
                 foreach ($entrega->entrega_patrimonios as $entregaPatrimonio) {
-
                     $alugarPatrimonioService->setChamado($entrega->chamado);
                     $aluguel = $alugarPatrimonioService->setEntregaPatrimonio($entregaPatrimonio)->handle();
 
@@ -74,7 +78,6 @@ class EntregaObserver
                 $entrega->chamado->pedido->nota_espelho->save();
 
                 if (count($patrimoniosParaContador) > 0) {
-
                     $contador = AberturaContador::create([
                         'dia_abertura' => CarbonImmutable::parse($entrega->chamado->pedido->data_entrega)->format('d'),
                         'contato_id' => $entrega->chamado->contato_id,
@@ -103,10 +106,9 @@ class EntregaObserver
                 break;
 
             default:
-                # code...
+                // code...
                 break;
         }
-
     }
 
     /**

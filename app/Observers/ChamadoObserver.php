@@ -1,15 +1,19 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Observers;
 
-use App\Events\NotaEspelhoPatrimonioEvent;
+use App\Models\Troca\Troca;
 use App\Models\Chamado\Chamado;
 use App\Models\Entrega\Entrega;
-use App\Models\ExpedicaoEstado\ExpedicaoEstado;
 use App\Models\Expedicao\Expedicao;
-use App\Models\StatusChamado\StatusChamado;
 use App\Models\TipoChamado\TipoChamado;
-use App\Models\Troca\Troca;
+use App\Models\StatusChamado\StatusChamado;
+use App\Models\ExpedicaoEstado\ExpedicaoEstado;
 
 class ChamadoObserver
 {

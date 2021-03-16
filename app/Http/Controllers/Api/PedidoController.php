@@ -1,17 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
 use App\Events\PedidoItem;
+use Illuminate\Http\Request;
+use App\Models\Pedido\Pedido;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PedidoResource;
-use App\Models\Pedido\Pedido;
-use App\Repositories\Contracts\PedidoRepository;
-use App\Services\ItemPedido\CadastrarItemPedido\Contracts\CadastrarItemPedidoService;
+use App\Services\Pedidos\ExcluirPedido\Contracts\ExcluirPedidoService;
 use App\Services\Pedidos\AtualizarPedido\Contracts\AtualizarPedidoService;
 use App\Services\Pedidos\CadastrarPedido\Contracts\CadastrarPedidoService;
-use App\Services\Pedidos\ExcluirPedido\Contracts\ExcluirPedidoService;
-use Illuminate\Http\Request;
+use App\Services\ItemPedido\CadastrarItemPedido\Contracts\CadastrarItemPedidoService;
 
 class PedidoController extends Controller
 {
@@ -39,7 +43,7 @@ class PedidoController extends Controller
             $pedido = $service->setDados($request->all())->handle();
             event(new PedidoItem($pedido, null, $request->contrato_id));
 
-            foreach($request->itens as $item){
+            foreach ($request->itens as $item) {
                 $item = $serviceItem->setDados($item)->handle();
 
                 event(new PedidoItem($pedido, $item, null));

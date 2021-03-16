@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Automatizacoes\Calculadora;
 
 use Carbon\Carbon;
@@ -12,23 +17,17 @@ class Calculadora
     {
         $this->preco = $preco;
 
-        if($periodoInicioPatrimonio->equalTo($inicio)){
-
+        if ($periodoInicioPatrimonio->equalTo($inicio)) {
             $diferenca = $periodoInicioPatrimonio->diffInDays($fim) + 1;
 
-            if($diferenca < 28){
-
+            if ($diferenca < 28) {
                 $diasCalculo = $this->getProRata($fim, $periodoInicioPatrimonio);
 
                 return $this->getPeriodoCalculado($diasCalculo);
-
-            }else{
-
+            } else {
                 return $this->getPeriodoCheio($inicio, $fim);
             }
-
-        }else {
-
+        } else {
             $diasCalculo = $this->getProRata($fim, $periodoInicioPatrimonio);
 
             return $this->getPeriodoCalculado($diasCalculo);
@@ -40,57 +39,49 @@ class Calculadora
     /**
      * Retorna a quantidade de dias para calcular o pró-rata.
      *
-     * @return integer
+     * @return int
      */
     protected function getProRata(Carbon $fim, Carbon $periodoInicioPatrimonio) : int
     {
-
         $quantidadeDias = 0;
-        $fimMes = clone($fim);
+        $fimMes = clone $fim;
 
-        for($i = $fim; $i->greaterThanOrEqualTo($periodoInicioPatrimonio); $i->subDay()){
+        for ($i = $fim; $i->greaterThanOrEqualTo($periodoInicioPatrimonio); $i->subDay()) {
+            $dia31 = clone $i;
+            $dia29 = clone $i;
+            $dia28 = clone $i;
 
-            $dia31 = clone($i);
-            $dia29 = clone($i);
-            $dia28 = clone($i);
-
-            if($dia31->format('d') == 1 && $dia31->subDay()->format('d') == 31){
-
+            if ($dia31->format('d') == 1 && $dia31->subDay()->format('d') == 31) {
                 $quantidadeDias -= 1;
-
-            }else if($dia29->format('d') == 1 && $dia29->subDay()->format('d') == 29){
-
+            } elseif ($dia29->format('d') == 1 && $dia29->subDay()->format('d') == 29) {
                 $quantidadeDias += 1;
-
-            }else if($dia28->format('d') == 1 && $dia28->subDay()->format('d') == 28){
-
+            } elseif ($dia28->format('d') == 1 && $dia28->subDay()->format('d') == 28) {
                 $quantidadeDias += 2;
             }
 
-            $quantidadeDias ++;
-
+            $quantidadeDias++;
         }
 
         $diasAmaisPorMes = $this->getPeriodoFim28ou29ou31($fimMes, $periodoInicioPatrimonio);
 
-       return $quantidadeDias + $diasAmaisPorMes;
+        return $quantidadeDias + $diasAmaisPorMes;
     }
 
     /**
-     * Retorna o período cheio de 30 dias calculados;
+     * Retorna o período cheio de 30 dias calculados;.
      *
      * @param Carbon $inicio
      * @return float
      */
     protected function getPeriodoCheio(Carbon $inicio, Carbon $fim) : float
     {
-        $valor =  $this->arrendondar30dias($inicio, $fim) * ($this->preco / 30);
+        $valor = $this->arrendondar30dias($inicio, $fim) * ($this->preco / 30);
 
         return $valor;
     }
 
     /**
-     * Retorna o período que passa por fevereiro e retorna o valor com 30 dias calculados
+     * Retorna o período que passa por fevereiro e retorna o valor com 30 dias calculados.
      *
      * @param Carbon $mesInicio
      * @param Carbon $fim
@@ -98,26 +89,17 @@ class Calculadora
      */
     protected function getPeriodoFim28ou29ou31(Carbon $fim, Carbon $inicio) : int
     {
-
-        if($fim->format('d') == 31 && $fim->endOfMonth()->format('d') == 31){
-
+        if ($fim->format('d') == 31 && $fim->endOfMonth()->format('d') == 31) {
             return -1;
-
-        }else if($fim->format('d') == 29 && $fim->endOfMonth()->format('d') == 29){
-
+        } elseif ($fim->format('d') == 29 && $fim->endOfMonth()->format('d') == 29) {
             return 1;
-
-        }else if($fim->format('d') == 28 && $fim->endOfMonth()->format('d') == 28){
-
+        } elseif ($fim->format('d') == 28 && $fim->endOfMonth()->format('d') == 28) {
             return 2;
-
-        }else if($inicio->format('d') == 31){
-
+        } elseif ($inicio->format('d') == 31) {
             return 1;
         }
 
         return 0;
-
     }
 
     /**
@@ -148,28 +130,26 @@ class Calculadora
      *
      * @param Carbon $inicio
      * @param Carbon|null $fim
-     * @return integer|null
+     * @return int|null
      */
     protected function arrendondar30dias(Carbon $inicio, ?Carbon $fim = null) : ?int
     {
+        $inicioMes = clone $inicio;
 
-        $inicioMes = clone($inicio);
-
-        $proximoMes = clone($inicio);
+        $proximoMes = clone $inicio;
 
         $proximoMes->settings([
-            'monthOverflow' => false
+            'monthOverflow' => false,
         ]);
 
         //Resultado da quantidade de dias para finalizar o mês
         $dias = $inicioMes->daysInMonth - $inicio->format('d'); // Quantidade de dias do mês da data início - menos os dias da data início. Resultando na quantidade de dias para finalizar o mês.
 
         //Quantidade de dias para o próximo mês chegar a 30
-        $diasRestantes =  30 - $dias; //Subtrai 30 do Resultando da quantidade de dias para finalizar o mês
+        $diasRestantes = 30 - $dias; //Subtrai 30 do Resultando da quantidade de dias para finalizar o mês
 
         //Quantidade de dias corridos para o próximo mês.
         $diasTotal = $proximoMes->addMonth()->startOfMonth()->format('d') + $diasRestantes - 1; //Pega o primeiro dia do próximo mês e adciona a quantidade de dias para o próximo mês chegar a 30 - 1
-
 
         return $diasTotal + $dias; //Quantidade de dias corridos para o próximo mês + Resultado da quantidade de dias para finalizar o mês.
     }

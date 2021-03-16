@@ -1,24 +1,27 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\Pedido;
 
 use App\Models\Contato\Contato;
-use App\Models\ContratoPedido\ContratoPedido;
-use App\Models\Contratos\Contrato;
 use App\Models\Endereco\Endereco;
+use App\Models\Contratos\Contrato;
 use App\Models\ItemPedido\ItemPedido;
-use App\Models\NotaEspelho\NotaEspelho;
 use App\Models\PedidoItem\PedidoItem;
-use App\Models\PedidoStatusPedido\PedidoStatusPedido;
-use App\Models\StatusPedido\StatusPedido;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\NotaEspelho\NotaEspelho;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\StatusPedido\StatusPedido;
+use App\Models\ContratoPedido\ContratoPedido;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pedido extends Model
 {
     use HasFactory;
-
     use SoftDeletes;
 
     protected $date = ['deleted_at'];
@@ -54,5 +57,4 @@ class Pedido extends Model
     {
         return $this->hasOne(NotaEspelho::class, 'pedido_id', 'id');
     }
-
 }

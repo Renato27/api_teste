@@ -1,24 +1,30 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\NotaEspelho;
 
+use App\Models\Pedido\Pedido;
 use App\Models\Clientes\Cliente;
 use App\Models\Contratos\Contrato;
-use App\Models\EspelhoRecorrente\EspelhoRecorrente;
-use App\Models\NotaEspelhoEstado\NotaEspelhoEstado;
-use App\Models\NotaEspelhoPatrimonio\NotaEspelhoPatrimonio;
-use App\Models\Pedido\Pedido;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\EspelhoRecorrente\EspelhoRecorrente;
+use App\Models\NotaEspelhoEstado\NotaEspelhoEstado;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\NotaEspelhoPatrimonio\NotaEspelhoPatrimonio;
 
 class NotaEspelho extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $date = ['deleted_at'];
+
     protected $fillable = ['data_emissao', 'data_vencimento', 'periodo_inicio', 'periodo_fim', 'valor',
-    'nota_espelho_estado_id', 'cliente_id', 'contrato_id', 'pedido_id', 'espelho_recorrente_id'];
+        'nota_espelho_estado_id', 'cliente_id', 'contrato_id', 'pedido_id', 'espelho_recorrente_id', ];
 
     public function nota_espelho_estado()
     {

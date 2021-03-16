@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\CorretivaPatrimonio;
 
-use App\Models\CorretivaPatrimonio\CorretivaPatrimonio;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\CorretivaPatrimonio\CorretivaPatrimonio;
 
 class CorretivaPatrimonioFactory extends Factory
 {

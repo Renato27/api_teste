@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\NotaPatrimonioRepository;
 
@@ -28,46 +31,36 @@ class NotaPatrimonioRepositoryTest extends TestCase
 
     /**
      * Retorna NotaPatrimonio baseado no ID.
-     *
      */
     public function testGetNotaPatrimonio()
     {
-
     }
 
     /**
      * Retorna uma coleção de NotaPatrimonio baseado em uma associação.
-     *
      */
     public function testGetNotaPatrimonios()
     {
-
     }
 
     /**
-     * Cria um novo NotaPatrimonio
-     *
-     */    
+     * Cria um novo NotaPatrimonio.
+     */
     public function testCreateNotaPatrimonio()
     {
-
     }
 
     /**
-     * Atualiza um NotaPatrimonio
-     *
-     */ 
+     * Atualiza um NotaPatrimonio.
+     */
     public function testUpdateNotaPatrimonio()
     {
-
     }
 
     /**
-     * Deleta um NotaPatrimonio
-     *
-     */ 
+     * Deleta um NotaPatrimonio.
+     */
     public function testDeleteNotaPatrimonio()
     {
-
     }
 }

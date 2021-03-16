@@ -1,30 +1,34 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\Contratos;
 
-use App\Models\ClienteContrato\ClienteContrato;
-use App\Models\Clientes\Cliente;
-use App\Models\Contato\Contato;
-use App\Models\ContatoContrato\ContatoContrato;
-use App\Models\ContratoItemDefinido\ContratoItemDefinido;
-use App\Models\ContratoPedido\ContratoPedido;
-use App\Models\ItemDefinido\ItemDefinido;
 use App\Models\Nota\Nota;
 use App\Models\Pedido\Pedido;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Contato\Contato;
+use App\Models\Clientes\Cliente;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ItemDefinido\ItemDefinido;
+use App\Models\ContratoPedido\ContratoPedido;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\ClienteContrato\ClienteContrato;
+use App\Models\ContatoContrato\ContatoContrato;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ContratoItemDefinido\ContratoItemDefinido;
 
 class Contrato extends Model
 {
     use HasFactory;
-
     use SoftDeletes;
 
     protected $date = ['deleted_at'];
 
     protected $fillable = ['nome', 'inicio', 'fim', 'medicao_tipo_id', 'pagamento_metodo_id', 'contrato_tipo_id', 'detalhes', 'detalhes_nota', 'dia_emissao_nota',
-    'dia_vencimento_nota', 'dia_periodo_inicio_nota', 'dia_periodo_fim_nota', 'responsavel'];
+        'dia_vencimento_nota', 'dia_periodo_inicio_nota', 'dia_periodo_fim_nota', 'responsavel', ];
 
     public function cliente()
     {

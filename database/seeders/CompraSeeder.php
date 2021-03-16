@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Seeders;
 
 use App\Models\Compra\Compra;
@@ -17,7 +22,7 @@ class CompraSeeder extends Seeder
     {
         $compras = DB::connection('mysql2')->table('compras')->get();
 
-        foreach($compras as $compra){
+        foreach ($compras as $compra) {
             Compra::create([
                 'numero_orcamento' => $compra->numeroOrcamento,
                 'produto' => $compra->tipos_idtipos,

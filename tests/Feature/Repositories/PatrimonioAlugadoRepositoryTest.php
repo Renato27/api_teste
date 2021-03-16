@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\PatrimonioAlugadoRepository;
 
@@ -28,46 +31,36 @@ class PatrimonioAlugadoRepositoryTest extends TestCase
 
     /**
      * Retorna PatrimonioAlugado baseado no ID.
-     *
      */
     public function testGetPatrimonioAlugado()
     {
-
     }
 
     /**
      * Retorna uma coleção de PatrimonioAlugado baseado em uma associação.
-     *
      */
     public function testGetPatrimonioAlugados()
     {
-
     }
 
     /**
-     * Cria um novo PatrimonioAlugado
-     *
-     */    
+     * Cria um novo PatrimonioAlugado.
+     */
     public function testCreatePatrimonioAlugado()
     {
-
     }
 
     /**
-     * Atualiza um PatrimonioAlugado
-     *
-     */ 
+     * Atualiza um PatrimonioAlugado.
+     */
     public function testUpdatePatrimonioAlugado()
     {
-
     }
 
     /**
-     * Deleta um PatrimonioAlugado
-     *
-     */ 
+     * Deleta um PatrimonioAlugado.
+     */
     public function testDeletePatrimonioAlugado()
     {
-
     }
 }

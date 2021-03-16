@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface AberturaContadorRepository
 {
     /**
      * Retorna AberturaContador baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getAberturaContador(int $id): ?Model;
@@ -18,14 +23,14 @@ interface AberturaContadorRepository
     /**
      * Retorna uma coleção de AberturaContador baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getAberturaContadors(int $id, int $associacao): ?Collection;
 
     /**
-     * Cria um novo AberturaContador
+     * Cria um novo AberturaContador.
      *
      * @param array $detalhes
      * @return Model|null
@@ -33,7 +38,7 @@ interface AberturaContadorRepository
     public function createAberturaContador(array $detalhes): ?Model;
 
     /**
-     * Atualiza um AberturaContador
+     * Atualiza um AberturaContador.
      *
      * @param int $id
      * @param array $detalhes
@@ -42,7 +47,7 @@ interface AberturaContadorRepository
     public function updateAberturaContador(int $id, array $detalhes): ?Model;
 
     /**
-     * Deleta um AberturaContador
+     * Deleta um AberturaContador.
      *
      * @param int $id
      * @param array $detalhes

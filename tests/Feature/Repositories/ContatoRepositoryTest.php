@@ -1,13 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\Contato\Contato;
-use App\Repositories\ContatoRepositoryImplementation;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Contato\Contato;
 use App\Repositories\Contracts\ContatoRepository;
+use App\Repositories\ContatoRepositoryImplementation;
 
 class ContatoRepositoryTest extends TestCase
 {
@@ -36,7 +39,6 @@ class ContatoRepositoryTest extends TestCase
 
     /**
      * Retorna Contato baseado no ID.
-     *
      */
     public function testGetContato()
     {
@@ -49,24 +51,23 @@ class ContatoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de Contato baseado em uma associação.
-     *  (Não necessário implementação de teste)
+     *  (Não necessário implementação de teste).
      */
     // public function testGetContatos()
     // {
     // }
 
     /**
-     * Cria um novo Contato
-     *
+     * Cria um novo Contato.
      */
     public function testCreateContato()
     {
         $contato = \App\Models\Contato\Contato::factory()->make();
         $detalhes = [
-            'nome'          =>$contato->nome,
-            'cargo'         =>$contato->cargo,
-            'telefone'      =>$contato->telefone,
-            'celular'       =>$contato->celular
+            'nome' => $contato->nome,
+            'cargo' => $contato->cargo,
+            'telefone' => $contato->telefone,
+            'celular' => $contato->celular,
         ];
 
         $retorno = $this->implementacao->createContato($detalhes);
@@ -75,17 +76,16 @@ class ContatoRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um Contato
-     *
+     * Atualiza um Contato.
      */
     public function testUpdateContato()
     {
         $contato = \App\Models\Contato\Contato::factory()->create();
         $detalhes = [
-            'nome'          =>$contato->nome,
-            'cargo'         =>$contato->cargo,
-            'telefone'      =>$contato->telefone,
-            'celular'       =>$contato->celular
+            'nome' => $contato->nome,
+            'cargo' => $contato->cargo,
+            'telefone' => $contato->telefone,
+            'celular' => $contato->celular,
         ];
 
         $retorno = $this->implementacao->updateContato($contato->id, $detalhes);
@@ -94,8 +94,7 @@ class ContatoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um Contato
-     *
+     * Deleta um Contato.
      */
     public function testDeleteContato()
     {

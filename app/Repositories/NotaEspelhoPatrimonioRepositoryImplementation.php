@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\NotaEspelhoPatrimonioRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\NotaEspelhoPatrimonioRepository;
 
 class NotaEspelhoPatrimonioRepositoryImplementation implements NotaEspelhoPatrimonioRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna NotaEspelhoPatrimonio baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getNotaEspelhoPatrimonio(int $id): ?Model
@@ -25,8 +29,8 @@ class NotaEspelhoPatrimonioRepositoryImplementation implements NotaEspelhoPatrim
     /**
      * Retorna uma coleção de NotaEspelhoPatrimonio baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getNotaEspelhoPatrimoniosByNotaEspelho(int $nota_espelho): ?Collection
@@ -35,7 +39,7 @@ class NotaEspelhoPatrimonioRepositoryImplementation implements NotaEspelhoPatrim
     }
 
     /**
-     * Cria um novo NotaEspelhoPatrimonio
+     * Cria um novo NotaEspelhoPatrimonio.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +50,7 @@ class NotaEspelhoPatrimonioRepositoryImplementation implements NotaEspelhoPatrim
     }
 
     /**
-     * Atualiza um NotaEspelhoPatrimonio
+     * Atualiza um NotaEspelhoPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +62,7 @@ class NotaEspelhoPatrimonioRepositoryImplementation implements NotaEspelhoPatrim
     }
 
     /**
-     * Deleta um NotaEspelhoPatrimonio
+     * Deleta um NotaEspelhoPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +72,9 @@ class NotaEspelhoPatrimonioRepositoryImplementation implements NotaEspelhoPatrim
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

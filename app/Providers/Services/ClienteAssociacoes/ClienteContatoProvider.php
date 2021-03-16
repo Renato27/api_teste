@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers\Services\ClienteAssociacoes;
 
+use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\ClienteContatoRepository;
 use App\Services\ClienteContatos\AssociarClienteContatoService;
 use App\Services\ClienteContatos\Contracts\AssociarClienteContatoService as ContractsAssociarClienteContatoService;
-use Illuminate\Support\ServiceProvider;
 
 class ClienteContatoProvider extends ServiceProvider
 {
@@ -29,7 +34,7 @@ class ClienteContatoProvider extends ServiceProvider
         $service = new AssociarClienteContatoService();
         $service->setClienteContatoRepository(app(ClienteContatoRepository::class));
 
-        $this->app->bind(ContractsAssociarClienteContatoService::class, function($app) use($service){
+        $this->app->bind(ContractsAssociarClienteContatoService::class, function ($app) use ($service) {
             return $service;
         });
     }

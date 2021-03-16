@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\EnderecoFornecedorRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\EnderecoFornecedorRepository;
 
 class EnderecoFornecedorRepositoryImplementation implements EnderecoFornecedorRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna EnderecoFornecedor baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getEnderecoFornecedor(int $id): ?Model
@@ -25,8 +29,8 @@ class EnderecoFornecedorRepositoryImplementation implements EnderecoFornecedorRe
     /**
      * Retorna uma coleção de EnderecoFornecedor baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getEnderecoFornecedors(int $id, int $associacao): ?Collection
@@ -35,7 +39,7 @@ class EnderecoFornecedorRepositoryImplementation implements EnderecoFornecedorRe
     }
 
     /**
-     * Cria um novo EnderecoFornecedor
+     * Cria um novo EnderecoFornecedor.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +50,7 @@ class EnderecoFornecedorRepositoryImplementation implements EnderecoFornecedorRe
     }
 
     /**
-     * Atualiza um EnderecoFornecedor
+     * Atualiza um EnderecoFornecedor.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +62,7 @@ class EnderecoFornecedorRepositoryImplementation implements EnderecoFornecedorRe
     }
 
     /**
-     * Deleta um EnderecoFornecedor
+     * Deleta um EnderecoFornecedor.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +72,9 @@ class EnderecoFornecedorRepositoryImplementation implements EnderecoFornecedorRe
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

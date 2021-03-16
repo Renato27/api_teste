@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
@@ -14,7 +19,7 @@ trait BaseEloquentRepository
     protected $id = null;
 
     /**
-     * Undocumented variable
+     * Undocumented variable.
      *
      * @var \App\Model
      */
@@ -54,16 +59,16 @@ trait BaseEloquentRepository
     /**
      * Faz uma busca por ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return void
      */
     public function find(int $id) : ?Model
     {
-        if(!is_null($this->id)){
+        if (! is_null($this->id)) {
             $this->id = $id;
         }
 
-        if($this->id != $id){
+        if ($this->id != $id) {
             $this->entity = $this->model->find($id);
         }
 
@@ -73,7 +78,7 @@ trait BaseEloquentRepository
     /**
      * Faz uma busca por id e se falar retorna uma exceção.
      *
-     * @param integer $id
+     * @param int $id
      * @return void
      */
     public function findOrFail(int $id)
@@ -90,6 +95,7 @@ trait BaseEloquentRepository
     public function create(array $data)
     {
         $this->entity = $this->model->create($data);
+
         return $this->entity;
     }
 
@@ -102,26 +108,29 @@ trait BaseEloquentRepository
     public function firstOrCreate(array $data)
     {
         $this->entity = $this->model->firstOrCreate($data);
+
         return $this->entity;
     }
 
     /**
      * Atualiza um item da model.
      *
-     * @param integer $id
+     * @param int $id
      * @param array $data
      * @return Model
      */
-    public function update (int $id, array $data)
+    public function update(int $id, array $data)
     {
-        if($this->id == $id){
+        if ($this->id == $id) {
             $this->entity->fill($data);
             $this->entity->save();
+
             return $this->entity;
-        }else{
+        } else {
             $this->entity = $this->find($id);
             $this->entity->fill($data);
             $this->entity->save();
+
             return $this->entity;
         }
 
@@ -131,16 +140,17 @@ trait BaseEloquentRepository
     /**
      * Deleta um item da model.
      *
-     * @param integer $id
+     * @param int $id
      * @return void
      */
     public function delete(int $id)
     {
-        if($this->id == $id AND !is_null($this->entity)){
+        if ($this->id == $id and ! is_null($this->entity)) {
             return $this->entity->delete($id);
         }
 
         $this->entity = $this->find($id);
+
         return  $this->entity->delete($id);
     }
 
@@ -150,13 +160,13 @@ trait BaseEloquentRepository
      * @param array $data
      * @return Collection|void
      */
-    public function where( array $data)
+    public function where(array $data)
     {
         return $this->model->where($data);
     }
 
     /**
-     * Verifica se a coluna está contida na matriz fornecida
+     * Verifica se a coluna está contida na matriz fornecida.
      *
      * @param string $column
      * @param array $data
@@ -179,5 +189,4 @@ trait BaseEloquentRepository
     {
         return $this->model->whereBetween($column, $data);
     }
-
 }

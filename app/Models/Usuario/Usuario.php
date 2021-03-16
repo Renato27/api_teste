@@ -1,18 +1,22 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\Usuario;
 
-use App\Models\Clientes\Cliente;
-use App\Models\ClienteVisualizacaoPatrimonio\ClienteVisualizacaoPatrimonio;
 use App\Models\Contato\Contato;
+use App\Models\Clientes\Cliente;
 use App\Models\Funcionario\Funcionario;
 use App\Models\TipoUsuario\TipoUsuario;
-use App\Models\UsuarioCliente\UsuarioCliente;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
+use App\Models\UsuarioCliente\UsuarioCliente;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Usuario extends Authenticatable implements JWTSubject
 {
@@ -57,22 +61,21 @@ class Usuario extends Authenticatable implements JWTSubject
         $contato = Contato::find($this->contato_id);
         $tipo_usuario = TipoUsuario::find($this->tipo_usuario_id);
 
-        if($this->tipo_usuario_id == 6){
+        if ($this->tipo_usuario_id == 6) {
             return [
-                'name'              => $contato->nome,
-                'tipo_usuario_id'   => $this->tipo_usuario_id,
-                'tipo_usuario'      => $tipo_usuario->nome,
-                'email'             => $this->email
+                'name' => $contato->nome,
+                'tipo_usuario_id' => $this->tipo_usuario_id,
+                'tipo_usuario' => $tipo_usuario->nome,
+                'email' => $this->email,
             ];
-
-        }else{
+        } else {
             $funcionario = Funcionario::find($this->funcionario_id);
 
             return [
-                'name'              => $funcionario->nome,
-                'tipo_usuario_id'   => $this->tipo_usuario_id,
-                'tipo_usuario'      => $tipo_usuario->nome,
-                'email'             => $this->email
+                'name' => $funcionario->nome,
+                'tipo_usuario_id' => $this->tipo_usuario_id,
+                'tipo_usuario' => $tipo_usuario->nome,
+                'email' => $this->email,
             ];
         }
     }

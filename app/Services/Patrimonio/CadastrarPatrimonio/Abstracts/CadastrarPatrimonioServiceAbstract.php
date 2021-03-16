@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Patrimonio\CadastrarPatrimonio\Abstracts;
 
 use App\Models\Patrimonio\Patrimonio;
@@ -14,9 +19,11 @@ abstract class CadastrarPatrimonioServiceAbstract extends CadastrarPatrimonioSer
      */
     protected function CadastrarPatrimonio() : ?Patrimonio
     {
-        $patrimonio  = $this->PatrimonioRepository->createPatrimonio($this->dados);
+        $patrimonio = $this->PatrimonioRepository->createPatrimonio($this->dados);
 
-        if(!$patrimonio) return null;
+        if (! $patrimonio) {
+            return null;
+        }
 
         return $patrimonio;
     }

@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\TrocaPatrimonioRetirada;
 
-use App\Models\TrocaPatrimonioRetirada\TrocaPatrimonioRetirada;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\TrocaPatrimonioRetirada\TrocaPatrimonioRetirada;
 
 class TrocaPatrimonioRetiradaFactory extends Factory
 {

@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ChamadoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ChamadoRepository;
 
 class ChamadoRepositoryImplementation implements ChamadoRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna Chamado baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getChamado(int $id): ?Model
@@ -22,11 +26,11 @@ class ChamadoRepositoryImplementation implements ChamadoRepository
         return $this->find($id);
     }
 
-     /**
+    /**
      * Retorna uma coleção de Chamado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getChamadosByUsuario(int $usuario): ?Collection
@@ -37,8 +41,8 @@ class ChamadoRepositoryImplementation implements ChamadoRepository
     /**
      * Retorna uma coleção de Chamado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getChamadosByTipo(int $tipo): ?Collection
@@ -49,8 +53,8 @@ class ChamadoRepositoryImplementation implements ChamadoRepository
     /**
      * Retorna uma coleção de Chamado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getChamadosByContato(int $contato): ?Collection
@@ -61,8 +65,8 @@ class ChamadoRepositoryImplementation implements ChamadoRepository
     /**
      * Retorna uma coleção de Chamado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getChamadosByEndereco(int $endereco): ?Collection
@@ -73,8 +77,8 @@ class ChamadoRepositoryImplementation implements ChamadoRepository
     /**
      * Retorna uma coleção de Chamado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getChamadosByPedido(int $pedido): ?Collection
@@ -83,7 +87,7 @@ class ChamadoRepositoryImplementation implements ChamadoRepository
     }
 
     /**
-     * Cria um novo Chamado
+     * Cria um novo Chamado.
      *
      * @param array $detalhes
      * @return Model|null
@@ -94,7 +98,7 @@ class ChamadoRepositoryImplementation implements ChamadoRepository
     }
 
     /**
-     * Atualiza um Chamado
+     * Atualiza um Chamado.
      *
      * @param int $id
      * @param array $detalhes
@@ -106,7 +110,7 @@ class ChamadoRepositoryImplementation implements ChamadoRepository
     }
 
     /**
-     * Deleta um Chamado
+     * Deleta um Chamado.
      *
      * @param int $id
      * @param array $detalhes
@@ -116,7 +120,9 @@ class ChamadoRepositoryImplementation implements ChamadoRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

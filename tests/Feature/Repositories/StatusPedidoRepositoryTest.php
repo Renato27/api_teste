@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\StatusPedido\StatusPedido;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\StatusPedido\StatusPedido;
 use App\Repositories\Contracts\StatusPedidoRepository;
 use App\Repositories\StatusPedidoRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class StatusPedidoRepositoryTest extends TestCase
 
     /**
      * Retorna StatusPedido baseado no ID.
-     *
      */
     public function testGetStatusPedido()
     {
@@ -49,22 +51,21 @@ class StatusPedidoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de StatusPedido baseado em uma associação.
-     * (Function inativa no momento, não necessário realizar teste)
+     * (Function inativa no momento, não necessário realizar teste).
      */
     // public function testGetStatusPedidos()
     // {
     // }
 
     /**
-     * Cria um novo StatusPedido
-     *
+     * Cria um novo StatusPedido.
      */
     public function testCreateStatusPedido()
     {
         $statusPedido = \App\Models\StatusPedido\StatusPedido::factory()->make();
 
         $detalhes = [
-            'nome'          =>$statusPedido->nome
+            'nome' => $statusPedido->nome,
         ];
 
         $retorno = $this->implementacao->createStatusPedido($detalhes);
@@ -73,15 +74,14 @@ class StatusPedidoRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um StatusPedido
-     *
+     * Atualiza um StatusPedido.
      */
     public function testUpdateStatusPedido()
     {
         $statusPedido = \App\Models\StatusPedido\StatusPedido::factory()->create();
 
         $detalhes = [
-            'nome'                 => $statusPedido->nome
+            'nome' => $statusPedido->nome,
         ];
 
         $retorno = $this->implementacao->updateStatusPedido($statusPedido->id, $detalhes);
@@ -90,8 +90,7 @@ class StatusPedidoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um StatusPedido
-     *
+     * Deleta um StatusPedido.
      */
     public function testDeleteStatusPedido()
     {

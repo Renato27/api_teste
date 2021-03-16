@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface AberturaContadorPatrimonioRepository
 {
     /**
      * Retorna AberturaContadorPatrimonio baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getAberturaContadorPatrimonio(int $id): ?Model;
@@ -18,14 +23,14 @@ interface AberturaContadorPatrimonioRepository
     /**
      * Retorna uma coleção de AberturaContadorPatrimonio baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getAberturaContadorPatrimonios(int $abertura_contador): ?Collection;
 
     /**
-     * Cria um novo AberturaContadorPatrimonio
+     * Cria um novo AberturaContadorPatrimonio.
      *
      * @param array $detalhes
      * @return Model|null
@@ -33,7 +38,7 @@ interface AberturaContadorPatrimonioRepository
     public function createAberturaContadorPatrimonio(array $detalhes): ?Model;
 
     /**
-     * Atualiza um AberturaContadorPatrimonio
+     * Atualiza um AberturaContadorPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -42,7 +47,7 @@ interface AberturaContadorPatrimonioRepository
     public function updateAberturaContadorPatrimonio(int $id, array $detalhes): ?Model;
 
     /**
-     * Deleta um AberturaContadorPatrimonio
+     * Deleta um AberturaContadorPatrimonio.
      *
      * @param int $id
      * @param array $detalhes

@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Seeders;
 
-use App\Models\ContratoTipo\ContratoTipo;
 use Illuminate\Database\Seeder;
+use App\Models\ContratoTipo\ContratoTipo;
 
 class ContratoTipoSeeder extends Seeder
 {
@@ -15,13 +20,13 @@ class ContratoTipoSeeder extends Seeder
     public function run()
     {
         ContratoTipo::create([
-            'nome' => 'Locação'
+            'nome' => 'Locação',
         ]);
         ContratoTipo::create([
-            'nome' => 'Suporte'
+            'nome' => 'Suporte',
         ]);
         ContratoTipo::create([
-            'nome' => 'Valor Fixo'
+            'nome' => 'Valor Fixo',
         ]);
     }
 }

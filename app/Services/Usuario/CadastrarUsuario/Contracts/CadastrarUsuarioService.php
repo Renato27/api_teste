@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Usuario\CadastrarUsuario\Contracts;
 
 use App\Models\Usuario\Usuario;
@@ -13,7 +18,7 @@ interface CadastrarUsuarioService
      * @param Usuario
      * @return CadastrarUsuarioService
      */
-    public function setUsuario(Usuario $Usuario): CadastrarUsuarioService;
+    public function setUsuario(Usuario $Usuario): self;
 
     /**
      * Seta os dados para Usuario.
@@ -21,7 +26,7 @@ interface CadastrarUsuarioService
      * @param array $dados
      * @return CadastrarUsuarioService;
      */
-    public function setDados(array $dados): CadastrarUsuarioService;
+    public function setDados(array $dados): self;
 
     /**
      * Seta o repositório de UsuarioRepository.
@@ -29,12 +34,12 @@ interface CadastrarUsuarioService
      * @param UsuarioRepository $UsuarioRepository
      * @return CadastrarUsuarioService
      */
-    public function setUsuarioRepository(UsuarioRepository $UsuarioRepository): CadastrarUsuarioService;
+    public function setUsuarioRepository(UsuarioRepository $UsuarioRepository): self;
 
     /**
-     * Processa os dados
+     * Processa os dados.
      *
-     * @return boolean
+     * @return bool
      */
     public function handle(): ?Usuario;
 }

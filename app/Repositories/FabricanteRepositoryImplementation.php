@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\FabricanteRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\FabricanteRepository;
 
 class FabricanteRepositoryImplementation implements FabricanteRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna Fabricante baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getFabricante(int $id): ?Model
@@ -25,8 +29,8 @@ class FabricanteRepositoryImplementation implements FabricanteRepository
     /**
      * Retorna uma coleção de Fabricante baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getFabricantes(int $id, int $associacao): ?Collection
@@ -35,7 +39,7 @@ class FabricanteRepositoryImplementation implements FabricanteRepository
     }
 
     /**
-     * Cria um novo Fabricante
+     * Cria um novo Fabricante.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +50,7 @@ class FabricanteRepositoryImplementation implements FabricanteRepository
     }
 
     /**
-     * Atualiza um Fabricante
+     * Atualiza um Fabricante.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +62,7 @@ class FabricanteRepositoryImplementation implements FabricanteRepository
     }
 
     /**
-     * Deleta um Fabricante
+     * Deleta um Fabricante.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +72,9 @@ class FabricanteRepositoryImplementation implements FabricanteRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

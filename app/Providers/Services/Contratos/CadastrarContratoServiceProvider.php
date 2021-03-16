@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers\Services\Contratos;
 
+use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\ContratosRepository;
 use App\Services\Contratos\CadastrarContrato\CadastrarContratoService;
 use App\Services\Contratos\CadastrarContrato\Contracts\CadastrarContratoService as ContractsCadastrarContratoService;
-use Illuminate\Support\ServiceProvider;
 
 class CadastrarContratoServiceProvider extends ServiceProvider
 {
@@ -29,7 +34,7 @@ class CadastrarContratoServiceProvider extends ServiceProvider
         $service = new CadastrarContratoService();
         $service->setContratoRepository(app(ContratosRepository::class));
 
-        $this->app->bind(ContractsCadastrarContratoService::class, function($app) use($service){
+        $this->app->bind(ContractsCadastrarContratoService::class, function ($app) use ($service) {
             return $service;
         });
     }

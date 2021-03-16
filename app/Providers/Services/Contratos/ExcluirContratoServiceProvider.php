@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers\Services\Contratos;
 
-use App\Repositories\Contracts\ContratosRepository;
-use App\Services\Contratos\ExcluirContrato\Contracts\ExcluirContratoService as ContractsExcluirContratoService;
-use App\Services\Contratos\ExcluirContrato\ExcluirContratoService;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Contracts\ContratosRepository;
+use App\Services\Contratos\ExcluirContrato\ExcluirContratoService;
+use App\Services\Contratos\ExcluirContrato\Contracts\ExcluirContratoService as ContractsExcluirContratoService;
 
 class ExcluirContratoServiceProvider extends ServiceProvider
 {
@@ -29,7 +34,7 @@ class ExcluirContratoServiceProvider extends ServiceProvider
         $service = new ExcluirContratoService();
         $service->setContratoRepository(app(ContratosRepository::class));
 
-        $this->app->bind(ContractsExcluirContratoService::class, function($app) use($service){
+        $this->app->bind(ContractsExcluirContratoService::class, function ($app) use ($service) {
             return $service;
         });
     }

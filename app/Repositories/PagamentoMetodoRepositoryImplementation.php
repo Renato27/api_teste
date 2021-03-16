@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\PagamentoMetodoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\PagamentoMetodoRepository;
 
 class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoRepository
 {
@@ -13,7 +18,7 @@ class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoReposito
     /**
      * Retorna PagamentoMetodo baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getPagamentoMetodo(int $id): ?Model
@@ -24,8 +29,8 @@ class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoReposito
     /**
      * Retorna uma coleção de PagamentoMetodo baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPagamentoMetodos(int $id, int $associacao): ?Collection
@@ -34,7 +39,7 @@ class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoReposito
     }
 
     /**
-     * Cria um novo PagamentoMetodo
+     * Cria um novo PagamentoMetodo.
      *
      * @param array $detalhes
      * @return Model|null
@@ -45,7 +50,7 @@ class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoReposito
     }
 
     /**
-     * Atualiza um PagamentoMetodo
+     * Atualiza um PagamentoMetodo.
      *
      * @param int $id
      * @param array $detalhes
@@ -57,7 +62,7 @@ class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoReposito
     }
 
     /**
-     * Deleta um PagamentoMetodo
+     * Deleta um PagamentoMetodo.
      *
      * @param int $id
      * @param array $detalhes
@@ -67,7 +72,9 @@ class PagamentoMetodoRepositoryImplementation implements PagamentoMetodoReposito
     {
         $retorno = $this->delete($id);
 
-        if($retorno) return false;
+        if ($retorno) {
+            return false;
+        }
 
         return true;
     }

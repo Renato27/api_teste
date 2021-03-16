@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -24,7 +29,7 @@ class UsuarioRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'     => 'required|unique:usuarios,email'
+            'email' => 'required|unique:usuarios,email',
         ];
     }
 }

@@ -1,14 +1,19 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\Entrega;
 
 use App\Models\Chamado\Chamado;
-use App\Models\EntregaPatrimonio\EntregaPatrimonio;
 use App\Models\Expedicao\Expedicao;
 use App\Models\Patrimonio\Patrimonio;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\EntregaPatrimonio\EntregaPatrimonio;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Entrega extends Model
 {

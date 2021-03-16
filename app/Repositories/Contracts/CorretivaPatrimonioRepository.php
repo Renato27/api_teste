@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface CorretivaPatrimonioRepository
 {
     /**
      * Retorna CorretivaPatrimonio baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getCorretivaPatrimonio(int $id): ?Model;
@@ -18,35 +23,35 @@ interface CorretivaPatrimonioRepository
     /**
      * Retorna uma coleção de CorretivaPatrimonio baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getCorretivaPatrimonios(int $id, int $associacao): ?Collection;
-    
+
     /**
-     * Cria um novo CorretivaPatrimonio
+     * Cria um novo CorretivaPatrimonio.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createCorretivaPatrimonio(array $detalhes): ?Model;
 
     /**
-     * Atualiza um CorretivaPatrimonio
+     * Atualiza um CorretivaPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateCorretivaPatrimonio(int $id, array $detalhes): ?Model;
 
     /**
-     * Deleta um CorretivaPatrimonio
+     * Deleta um CorretivaPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteCorretivaPatrimonio(int $id): bool;
 }

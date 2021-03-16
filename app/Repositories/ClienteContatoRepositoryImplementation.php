@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ClienteContatoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ClienteContatoRepository;
 
 class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
 {
@@ -13,7 +18,7 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
     /**
      * Retorna ClienteContato baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getAssociacaoByCliente(int $cliente): ?Model
@@ -24,8 +29,8 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
     /**
      * Retorna uma coleção de ClienteContato baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getContatosByCliente(int $cliente): ?Collection
@@ -34,7 +39,7 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
     }
 
     /**
-     * Cria um novo ClienteContato
+     * Cria um novo ClienteContato.
      *
      * @param array $detalhes
      * @return Model|null
@@ -45,7 +50,7 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
     }
 
     /**
-     * Atualiza um ClienteContato
+     * Atualiza um ClienteContato.
      *
      * @param int $id
      * @param array $detalhes
@@ -57,7 +62,7 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
     }
 
     /**
-     * Deleta um ClienteContato
+     * Deleta um ClienteContato.
      *
      * @param int $id
      * @param array $detalhes
@@ -67,7 +72,9 @@ class ClienteContatoRepositoryImplementation implements ClienteContatoRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

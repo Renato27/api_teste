@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\PagamentoMetodo\PagamentoMetodo;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\PagamentoMetodo\PagamentoMetodo;
 use App\Repositories\Contracts\PagamentoMetodoRepository;
 use App\Repositories\PagamentoMetodoRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class PagamentoMetodoRepositoryTest extends TestCase
 
     /**
      * Retorna PagamentoMetodo baseado no ID.
-     *
      */
     public function testGetPagamentoMetodo()
     {
@@ -49,7 +51,7 @@ class PagamentoMetodoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de PagamentoMetodo baseado em uma associação.
-     * (Inativo no momento, não necessário a implementação do teste)
+     * (Inativo no momento, não necessário a implementação do teste).
      */
     // public function testGetPagamentoMetodos()
     // {
@@ -57,15 +59,14 @@ class PagamentoMetodoRepositoryTest extends TestCase
     // }
 
     /**
-     * Cria um novo PagamentoMetodo
-     *
+     * Cria um novo PagamentoMetodo.
      */
     public function testCreatePagamentoMetodo()
     {
         $pagamentoMetodo = \App\Models\PagamentoMetodo\PagamentoMetodo::factory()->make();
         $detalhes = [
-            'nome'              => $pagamentoMetodo->nome,
-            'detalhes'          => $pagamentoMetodo->detalhes
+            'nome' => $pagamentoMetodo->nome,
+            'detalhes' => $pagamentoMetodo->detalhes,
         ];
 
         $retorno = $this->implementacao->createPagamentoMetodo($detalhes);
@@ -74,15 +75,14 @@ class PagamentoMetodoRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um PagamentoMetodo
-     *
+     * Atualiza um PagamentoMetodo.
      */
     public function testUpdatePagamentoMetodo()
     {
         $pagamentoMetodo = \App\Models\PagamentoMetodo\PagamentoMetodo::factory()->create();
         $detalhes = [
-            'nome'              => $pagamentoMetodo->nome,
-            'detalhes'          => $pagamentoMetodo->detalhes
+            'nome' => $pagamentoMetodo->nome,
+            'detalhes' => $pagamentoMetodo->detalhes,
         ];
 
         $retorno = $this->implementacao->updatePagamentoMetodo($pagamentoMetodo->id, $detalhes);
@@ -91,8 +91,7 @@ class PagamentoMetodoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um PagamentoMetodo
-     *
+     * Deleta um PagamentoMetodo.
      */
     public function testDeletePagamentoMetodo()
     {
@@ -101,6 +100,5 @@ class PagamentoMetodoRepositoryTest extends TestCase
         $retorno = $this->implementacao->deletePagamentoMetodo($pagamentoMetodo->id);
 
         $this->assertDeleted($pagamentoMetodo, [$retorno]);
-
     }
 }

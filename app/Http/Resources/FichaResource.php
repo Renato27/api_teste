@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -15,10 +20,10 @@ class FichaResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'            => $this->id,
-            'detalhes'      => $this->detalhes,
-            'funcionario'   => new FuncionarioResource($this->funcionario),
-            'chamado'       => $this->whenLoaded('chamado_id', $this->chamado_id)
+            'id' => $this->id,
+            'detalhes' => $this->detalhes,
+            'funcionario' => new FuncionarioResource($this->funcionario),
+            'chamado' => $this->whenLoaded('chamado_id', $this->chamado_id),
         ];
     }
 }

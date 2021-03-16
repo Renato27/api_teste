@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\AuditoriaPatrimonioRepository;
 
@@ -28,46 +31,36 @@ class AuditoriaPatrimonioRepositoryTest extends TestCase
 
     /**
      * Retorna AuditoriaPatrimonio baseado no ID.
-     *
      */
     public function testGetAuditoriaPatrimonio()
     {
-
     }
 
     /**
      * Retorna uma coleção de AuditoriaPatrimonio baseado em uma associação.
-     *
      */
     public function testGetAuditoriaPatrimonios()
     {
-
     }
 
     /**
-     * Cria um novo AuditoriaPatrimonio
-     *
-     */    
+     * Cria um novo AuditoriaPatrimonio.
+     */
     public function testCreateAuditoriaPatrimonio()
     {
-
     }
 
     /**
-     * Atualiza um AuditoriaPatrimonio
-     *
-     */ 
+     * Atualiza um AuditoriaPatrimonio.
+     */
     public function testUpdateAuditoriaPatrimonio()
     {
-
     }
 
     /**
-     * Deleta um AuditoriaPatrimonio
-     *
-     */ 
+     * Deleta um AuditoriaPatrimonio.
+     */
     public function testDeleteAuditoriaPatrimonio()
     {
-
     }
 }

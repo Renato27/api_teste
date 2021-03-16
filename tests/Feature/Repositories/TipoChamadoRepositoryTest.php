@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\TipoChamadoRepository;
 
@@ -28,46 +31,36 @@ class TipoChamadoRepositoryTest extends TestCase
 
     /**
      * Retorna TipoChamado baseado no ID.
-     *
      */
     public function testGetTipoChamado()
     {
-
     }
 
     /**
      * Retorna uma coleção de TipoChamado baseado em uma associação.
-     *
      */
     public function testGetTipoChamados()
     {
-
     }
 
     /**
-     * Cria um novo TipoChamado
-     *
-     */    
+     * Cria um novo TipoChamado.
+     */
     public function testCreateTipoChamado()
     {
-
     }
 
     /**
-     * Atualiza um TipoChamado
-     *
-     */ 
+     * Atualiza um TipoChamado.
+     */
     public function testUpdateTipoChamado()
     {
-
     }
 
     /**
-     * Deleta um TipoChamado
-     *
-     */ 
+     * Deleta um TipoChamado.
+     */
     public function testDeleteTipoChamado()
     {
-
     }
 }

@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Seeders;
 
-use App\Models\StatusPedido\StatusPedido;
 use Illuminate\Database\Seeder;
+use App\Models\StatusPedido\StatusPedido;
 
 class StatusPedidoSeeder extends Seeder
 {
@@ -15,16 +20,16 @@ class StatusPedidoSeeder extends Seeder
     public function run()
     {
         StatusPedido::create([
-            'nome' => 'Aguardando Expedição'
+            'nome' => 'Aguardando Expedição',
         ]);
         StatusPedido::create([
-            'nome' => 'Aguardando Entrega'
+            'nome' => 'Aguardando Entrega',
         ]);
         StatusPedido::create([
-            'nome' => 'Entregue'
+            'nome' => 'Entregue',
         ]);
         StatusPedido::create([
-            'nome' => 'Cancelado'
+            'nome' => 'Cancelado',
         ]);
     }
 }

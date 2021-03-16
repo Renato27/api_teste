@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\PagamentoMetodo;
 
 use App\Models\PagamentoMetodo\PagamentoMetodo;
@@ -22,8 +27,8 @@ class PagamentoMetodoFactory extends Factory
     public function definition()
     {
         return [
-            'nome'          => $this->faker->name(),
-            'detalhes'      => $this->faker->text()
+            'nome' => $this->faker->name(),
+            'detalhes' => $this->faker->text(),
         ];
     }
 }

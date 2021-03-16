@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers\Services\Usuario;
 
+use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\UsuarioRepository;
 use App\Services\Usuario\CadastrarUsuario\CadastrarUsuarioService;
 use App\Services\Usuario\CadastrarUsuario\Contracts\CadastrarUsuarioService as ContractsCadastrarUsuarioService;
-use Illuminate\Support\ServiceProvider;
 
 class CadastrarUsuarioServiceProvider extends ServiceProvider
 {
@@ -29,7 +34,7 @@ class CadastrarUsuarioServiceProvider extends ServiceProvider
         $service = new CadastrarUsuarioService();
         $service->setUsuarioRepository(app(UsuarioRepository::class));
 
-        $this->app->bind(ContractsCadastrarUsuarioService::class, function($app) use($service){
+        $this->app->bind(ContractsCadastrarUsuarioService::class, function ($app) use ($service) {
             return $service;
         });
     }

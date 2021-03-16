@@ -1,12 +1,17 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Observers;
 
-use App\Models\ExpedicaoEstado\ExpedicaoEstado;
-use App\Models\ExpedicaoTipo\ExpedicaoTipo;
 use App\Models\Pedido\Pedido;
-use App\Repositories\Contracts\ExpedicaoRepository;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Models\ExpedicaoTipo\ExpedicaoTipo;
+use App\Models\ExpedicaoEstado\ExpedicaoEstado;
+use App\Repositories\Contracts\ExpedicaoRepository;
 
 class PedidoObserver
 {

@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\LicencaPatrimonioRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\LicencaPatrimonioRepository;
 
 class LicencaPatrimonioRepositoryImplementation implements LicencaPatrimonioRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna LicencaPatrimonio baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getLicencaPatrimonio(int $id): ?Model
@@ -25,8 +29,8 @@ class LicencaPatrimonioRepositoryImplementation implements LicencaPatrimonioRepo
     /**
      * Retorna uma coleção de LicencaPatrimonio baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getLicencaPatrimonios(int $id, int $associacao): ?Collection
@@ -35,7 +39,7 @@ class LicencaPatrimonioRepositoryImplementation implements LicencaPatrimonioRepo
     }
 
     /**
-     * Cria um novo LicencaPatrimonio
+     * Cria um novo LicencaPatrimonio.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +50,7 @@ class LicencaPatrimonioRepositoryImplementation implements LicencaPatrimonioRepo
     }
 
     /**
-     * Atualiza um LicencaPatrimonio
+     * Atualiza um LicencaPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +62,7 @@ class LicencaPatrimonioRepositoryImplementation implements LicencaPatrimonioRepo
     }
 
     /**
-     * Deleta um LicencaPatrimonio
+     * Deleta um LicencaPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +72,9 @@ class LicencaPatrimonioRepositoryImplementation implements LicencaPatrimonioRepo
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

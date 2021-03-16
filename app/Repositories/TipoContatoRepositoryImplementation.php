@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\TipoContatoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\TipoContatoRepository;
 
 class TipoContatoRepositoryImplementation implements TipoContatoRepository
 {
@@ -13,7 +18,7 @@ class TipoContatoRepositoryImplementation implements TipoContatoRepository
     /**
      * Retorna TipoContato baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getTipoContato(int $id): ?Model
@@ -24,8 +29,8 @@ class TipoContatoRepositoryImplementation implements TipoContatoRepository
     /**
      * Retorna uma coleção de TipoContato baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getTipoContatos(int $id, int $associacao): ?Collection
@@ -34,40 +39,42 @@ class TipoContatoRepositoryImplementation implements TipoContatoRepository
     }
 
     /**
-     * Cria um novo TipoContato
+     * Cria um novo TipoContato.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createTipoContato(array $detalhes): ?Model
     {
         return $this->create($detalhes);
     }
 
     /**
-     * Atualiza um TipoContato
+     * Atualiza um TipoContato.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateTipoContato(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
     }
 
     /**
-     * Deleta um TipoContato
+     * Deleta um TipoContato.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteTipoContato(int $id): bool
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

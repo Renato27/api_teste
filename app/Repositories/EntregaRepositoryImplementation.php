@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\EntregaRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\EntregaRepository;
 
 class EntregaRepositoryImplementation implements EntregaRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna Entrega baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getEntrega(int $id): ?Model
@@ -25,8 +29,8 @@ class EntregaRepositoryImplementation implements EntregaRepository
     /**
      * Retorna uma coleção de Entrega baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getEntregas(int $id, int $associacao): ?Collection
@@ -35,7 +39,7 @@ class EntregaRepositoryImplementation implements EntregaRepository
     }
 
     /**
-     * Cria um novo Entrega
+     * Cria um novo Entrega.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +50,7 @@ class EntregaRepositoryImplementation implements EntregaRepository
     }
 
     /**
-     * Atualiza um Entrega
+     * Atualiza um Entrega.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +62,7 @@ class EntregaRepositoryImplementation implements EntregaRepository
     }
 
     /**
-     * Deleta um Entrega
+     * Deleta um Entrega.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +72,9 @@ class EntregaRepositoryImplementation implements EntregaRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

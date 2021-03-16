@@ -1,14 +1,19 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\NotaEspelho\GerarAutomaticoNotaEspelho\Base;
 
 use App\Models\NotaEspelho\NotaEspelho;
 use App\Repositories\Contracts\NotaEspelhoRepository;
 use App\Repositories\Contracts\NotaPatrimonioRepository;
 use App\Repositories\Contracts\EspelhoRecorrenteRepository;
+use App\Repositories\Contracts\PatrimonioAlugadoRepository;
 use App\Repositories\Contracts\NotaEspelhoPatrimonioRepository;
 use App\Repositories\Contracts\EspelhoRecorrentePatrimonioRepository;
-use App\Repositories\Contracts\PatrimonioAlugadoRepository;
 use App\Services\NotaEspelho\GerarAutomaticoNotaEspelho\Contracts\GerarAutomaticoNotaEspelhoService;
 
 abstract class GerarAutomaticoNotaEspelhoServiceBase implements GerarAutomaticoNotaEspelhoService
@@ -35,41 +40,41 @@ abstract class GerarAutomaticoNotaEspelhoServiceBase implements GerarAutomaticoN
     protected NotaEspelhoRepository $NotaEspelhoRepository;
 
     /**
-     * Repositório de espelhoRecorrente;
+     * Repositório de espelhoRecorrente;.
      *
      * @var EspelhoRecorrenteRepository
      */
     protected EspelhoRecorrenteRepository $espelho_recorrente_repository;
 
     /**
-     * Repositório de espelhoRecorrentePatrimonio;
+     * Repositório de espelhoRecorrentePatrimonio;.
      *
      * @var EspelhoRecorrentePatrimonioRepository
      */
     protected EspelhoRecorrentePatrimonioRepository $espelho_recorrente_patrimonio_repository;
 
     /**
-     * Repositório de notaPatrimonio;
+     * Repositório de notaPatrimonio;.
      *
      * @var NotaPatrimonioRepository
      */
     protected NotaPatrimonioRepository $nota_patrimonio_repository;
 
     /**
-     * Repositório de notaEspelhoPatrimonio;
+     * Repositório de notaEspelhoPatrimonio;.
      *
      * @var NotaEspelhoPatrimonioRepository
      */
     protected NotaEspelhoPatrimonioRepository $nota_espelho_patrimonio_repository;
 
     /**
-     * Repositório de patrimonioAlugado;
+     * Repositório de patrimonioAlugado;.
      *
      * @var PatrimonioAlugadoRepository
      */
     protected PatrimonioAlugadoRepository $patrimonio_alugado_repository;
 
-   /**
+    /**
      * Seta a model de NotaEspelho.
      *
      * @param NotaEspelho
@@ -78,6 +83,7 @@ abstract class GerarAutomaticoNotaEspelhoServiceBase implements GerarAutomaticoN
     public function setNotaEspelho(NotaEspelho $NotaEspelho): GerarAutomaticoNotaEspelhoService
     {
         $this->NotaEspelho = $NotaEspelho;
+
         return $this;
     }
 
@@ -90,6 +96,7 @@ abstract class GerarAutomaticoNotaEspelhoServiceBase implements GerarAutomaticoN
     public function setDados(array $dados): GerarAutomaticoNotaEspelhoService
     {
         $this->dados = $dados;
+
         return $this;
     }
 
@@ -102,10 +109,11 @@ abstract class GerarAutomaticoNotaEspelhoServiceBase implements GerarAutomaticoN
     public function setNotaEspelhoRepository(NotaEspelhoRepository $NotaEspelhoRepository): GerarAutomaticoNotaEspelhoService
     {
         $this->NotaEspelhoRepository = $NotaEspelhoRepository;
+
         return $this;
     }
 
-     /**
+    /**
      * Seta o repositório de EspelhoRecorrente.
      *
      * @param EspelhoRecorrenteRepository $espelhoRecorrenteRepository
@@ -114,11 +122,12 @@ abstract class GerarAutomaticoNotaEspelhoServiceBase implements GerarAutomaticoN
     public function setEspelhoRecorrenteRepository(EspelhoRecorrenteRepository $espelhoRecorrenteRepository) : GerarAutomaticoNotaEspelhoService
     {
         $this->espelho_recorrente_repository = $espelhoRecorrenteRepository;
+
         return $this;
     }
 
     /**
-     * Seta o repositório de espelhoRecorrentePatrimonio
+     * Seta o repositório de espelhoRecorrentePatrimonio.
      *
      * @param EspelhoRecorrentePatrimonioRepository $espelhoRecorrentePatrimonioRepository
      * @return GerarAutomaticoNotaEspelhoService
@@ -126,6 +135,7 @@ abstract class GerarAutomaticoNotaEspelhoServiceBase implements GerarAutomaticoN
     public function setEspelhoRecorrentePatrimonioRepository(EspelhoRecorrentePatrimonioRepository $espelhoRecorrentePatrimonioRepository) : GerarAutomaticoNotaEspelhoService
     {
         $this->espelho_recorrente_patrimonio_repository = $espelhoRecorrentePatrimonioRepository;
+
         return $this;
     }
 
@@ -138,6 +148,7 @@ abstract class GerarAutomaticoNotaEspelhoServiceBase implements GerarAutomaticoN
     public function setNotaPatrimonioRepository(NotaPatrimonioRepository $notaPatrimonioRepository) : GerarAutomaticoNotaEspelhoService
     {
         $this->nota_patrimonio_repository = $notaPatrimonioRepository;
+
         return $this;
     }
 
@@ -150,10 +161,11 @@ abstract class GerarAutomaticoNotaEspelhoServiceBase implements GerarAutomaticoN
     public function setNotaEspelhoPatrimonioRepository(NotaEspelhoPatrimonioRepository $notaEspelhoPatrimonioRepository) : GerarAutomaticoNotaEspelhoService
     {
         $this->nota_espelho_patrimonio_repository = $notaEspelhoPatrimonioRepository;
+
         return $this;
     }
 
-     /**
+    /**
      * Seta o repositório de patrimonioalugado.
      *
      * @param PatrimonioAlugadoRepository $patrimonioAlugadoRepository
@@ -162,6 +174,7 @@ abstract class GerarAutomaticoNotaEspelhoServiceBase implements GerarAutomaticoN
     public function setPatrimonioAlugadoRepository(PatrimonioAlugadoRepository $patrimonioAlugadoRepository) : GerarAutomaticoNotaEspelhoService
     {
         $this->patrimonio_alugado_repository = $patrimonioAlugadoRepository;
+
         return $this;
     }
 }

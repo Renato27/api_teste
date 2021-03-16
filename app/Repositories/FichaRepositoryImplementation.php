@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\FichaRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\FichaRepository;
 
 class FichaRepositoryImplementation implements FichaRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna Ficha baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getFicha(int $id): ?Model
@@ -25,8 +29,8 @@ class FichaRepositoryImplementation implements FichaRepository
     /**
      * Retorna uma coleção de Ficha baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getFichas(int $id, int $associacao): ?Collection
@@ -35,7 +39,7 @@ class FichaRepositoryImplementation implements FichaRepository
     }
 
     /**
-     * Cria um novo Ficha
+     * Cria um novo Ficha.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +50,7 @@ class FichaRepositoryImplementation implements FichaRepository
     }
 
     /**
-     * Atualiza um Ficha
+     * Atualiza um Ficha.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +62,7 @@ class FichaRepositoryImplementation implements FichaRepository
     }
 
     /**
-     * Deleta um Ficha
+     * Deleta um Ficha.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +72,9 @@ class FichaRepositoryImplementation implements FichaRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

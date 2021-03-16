@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\CompraRepository;
 
@@ -28,46 +31,36 @@ class CompraRepositoryTest extends TestCase
 
     /**
      * Retorna Compra baseado no ID.
-     *
      */
     public function testGetCompra()
     {
-
     }
 
     /**
      * Retorna uma coleção de Compra baseado em uma associação.
-     *
      */
     public function testGetCompras()
     {
-
     }
 
     /**
-     * Cria um novo Compra
-     *
-     */    
+     * Cria um novo Compra.
+     */
     public function testCreateCompra()
     {
-
     }
 
     /**
-     * Atualiza um Compra
-     *
-     */ 
+     * Atualiza um Compra.
+     */
     public function testUpdateCompra()
     {
-
     }
 
     /**
-     * Deleta um Compra
-     *
-     */ 
+     * Deleta um Compra.
+     */
     public function testDeleteCompra()
     {
-
     }
 }

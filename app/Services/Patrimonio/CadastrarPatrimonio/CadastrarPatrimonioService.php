@@ -1,15 +1,20 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Patrimonio\CadastrarPatrimonio;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Patrimonio\Patrimonio;
 use App\Services\Patrimonio\CadastrarPatrimonio\Abstracts\CadastrarPatrimonioServiceAbstract;
-use Illuminate\Support\Facades\DB;
 
 class CadastrarPatrimonioService extends CadastrarPatrimonioServiceAbstract
 {
     /**
-     * Processa os dados
+     * Processa os dados.
      *
      * @return Patrimonio|null
      */
@@ -17,8 +22,7 @@ class CadastrarPatrimonioService extends CadastrarPatrimonioServiceAbstract
     {
         $patrimonio = null;
 
-        DB::transaction(function () use(&$patrimonio){
-
+        DB::transaction(function () use (&$patrimonio) {
             $patrimonio = $this->CadastrarPatrimonio();
         });
 

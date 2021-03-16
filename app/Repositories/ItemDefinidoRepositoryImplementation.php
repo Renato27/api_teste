@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ItemDefinidoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ItemDefinidoRepository;
 
 class ItemDefinidoRepositoryImplementation implements ItemDefinidoRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna ItemDefinido baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getItemDefinido(int $id): ?Model
@@ -25,8 +29,8 @@ class ItemDefinidoRepositoryImplementation implements ItemDefinidoRepository
     /**
      * Retorna uma coleção de ItemDefinido baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getItemDefinidosByTipo(int $tipo): ?Collection
@@ -35,7 +39,7 @@ class ItemDefinidoRepositoryImplementation implements ItemDefinidoRepository
     }
 
     /**
-     * Cria um novo ItemDefinido
+     * Cria um novo ItemDefinido.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +50,7 @@ class ItemDefinidoRepositoryImplementation implements ItemDefinidoRepository
     }
 
     /**
-     * Atualiza um ItemDefinido
+     * Atualiza um ItemDefinido.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +62,7 @@ class ItemDefinidoRepositoryImplementation implements ItemDefinidoRepository
     }
 
     /**
-     * Deleta um ItemDefinido
+     * Deleta um ItemDefinido.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +72,9 @@ class ItemDefinidoRepositoryImplementation implements ItemDefinidoRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

@@ -1,15 +1,19 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Base;
 
 use App\Models\Chamado\Chamado;
-use App\Models\EntregaPatrimonio\EntregaPatrimonio;
-use App\Models\Patrimonio\Patrimonio;
-use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Contracts\GerarPatrimonioAlugadoService;
-use App\Models\PatrimonioAlugado\PatrimonioAlugado;
-use App\Models\TrocaPatrimonioRetirada\TrocaPatrimonioRetirada;
-use App\Repositories\Contracts\PatrimonioAlugadoRepository;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\EntregaPatrimonio\EntregaPatrimonio;
+use App\Models\PatrimonioAlugado\PatrimonioAlugado;
+use App\Repositories\Contracts\PatrimonioAlugadoRepository;
+use App\Models\TrocaPatrimonioRetirada\TrocaPatrimonioRetirada;
+use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Contracts\GerarPatrimonioAlugadoService;
 
 abstract class GerarPatrimonioAlugadoServiceBase implements GerarPatrimonioAlugadoService
 {
@@ -35,7 +39,7 @@ abstract class GerarPatrimonioAlugadoServiceBase implements GerarPatrimonioAluga
     protected ?array $dados;
 
     /**
-     * Chamado
+     * Chamado.
      *
      * @var Chamado|null
      */
@@ -48,7 +52,7 @@ abstract class GerarPatrimonioAlugadoServiceBase implements GerarPatrimonioAluga
      */
     protected PatrimonioAlugadoRepository $PatrimonioAlugadoRepository;
 
-   /**
+    /**
      * Seta a model de PatrimonioAlugado.
      *
      * @param Model|null
@@ -57,6 +61,7 @@ abstract class GerarPatrimonioAlugadoServiceBase implements GerarPatrimonioAluga
     public function setEntregaPatrimonio(?Model $model = null): GerarPatrimonioAlugadoService
     {
         $this->model = $model;
+
         return $this;
     }
 
@@ -82,6 +87,7 @@ abstract class GerarPatrimonioAlugadoServiceBase implements GerarPatrimonioAluga
     public function setDados(?array $dados = null): GerarPatrimonioAlugadoService
     {
         $this->dados = $dados;
+
         return $this;
     }
 
@@ -94,6 +100,7 @@ abstract class GerarPatrimonioAlugadoServiceBase implements GerarPatrimonioAluga
     public function setChamado(?Chamado $chamado = null): GerarPatrimonioAlugadoService
     {
         $this->chamado = $chamado;
+
         return $this;
     }
 
@@ -106,6 +113,7 @@ abstract class GerarPatrimonioAlugadoServiceBase implements GerarPatrimonioAluga
     public function setPatrimonioAlugadoRepository(PatrimonioAlugadoRepository $PatrimonioAlugadoRepository): GerarPatrimonioAlugadoService
     {
         $this->PatrimonioAlugadoRepository = $PatrimonioAlugadoRepository;
+
         return $this;
     }
 }

@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\NotaEspelho\GerarNotaEspelho\Contracts;
 
-use App\Models\ContratoPedido\ContratoPedido;
 use App\Models\NotaEspelho\NotaEspelho;
+use App\Models\ContratoPedido\ContratoPedido;
 use App\Repositories\Contracts\NotaEspelhoRepository;
 
 interface GerarNotaEspelhoService
@@ -14,7 +19,7 @@ interface GerarNotaEspelhoService
      * @param NotaEspelho|null
      * @return GerarNotaEspelhoService
      */
-    public function setNotaEspelho(?NotaEspelho $NotaEspelho = null): GerarNotaEspelhoService;
+    public function setNotaEspelho(?NotaEspelho $NotaEspelho = null): self;
 
     /**
      * Seta os dados para NotaEspelho.
@@ -22,7 +27,7 @@ interface GerarNotaEspelhoService
      * @param array|null $dados
      * @return GerarNotaEspelhoService;
      */
-    public function setDados(?array $dados = null): GerarNotaEspelhoService;
+    public function setDados(?array $dados = null): self;
 
     /**
      * Seta o contrato pedido.
@@ -30,7 +35,7 @@ interface GerarNotaEspelhoService
      * @param ContratoPedido $contratoPedido
      * @return GerarNotaEspelhoService
      */
-    public function setContratoPedido(ContratoPedido $contratoPedido) : GerarNotaEspelhoService;
+    public function setContratoPedido(ContratoPedido $contratoPedido) : self;
 
     /**
      * Seta o repositório de NotaEspelhoRepository.
@@ -38,12 +43,12 @@ interface GerarNotaEspelhoService
      * @param NotaEspelhoRepository $NotaEspelhoRepository
      * @return GerarNotaEspelhoService
      */
-    public function setNotaEspelhoRepository(NotaEspelhoRepository $NotaEspelhoRepository): GerarNotaEspelhoService;
+    public function setNotaEspelhoRepository(NotaEspelhoRepository $NotaEspelhoRepository): self;
 
     /**
-     * Processa os dados
+     * Processa os dados.
      *
-     * @return boolean
+     * @return bool
      */
     public function handle(): bool;
 }

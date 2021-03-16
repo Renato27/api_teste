@@ -1,21 +1,25 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Repositories\Contracts\PatrimonioRepository;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 
 class PatrimonioRepositoryImplementation implements PatrimonioRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna Patrimonio baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getPatrimonio(int $id): ?Model
@@ -26,8 +30,8 @@ class PatrimonioRepositoryImplementation implements PatrimonioRepository
     /**
      * Retorna uma coleção de Patrimonio baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPatrimonios(): ?Collection
@@ -36,7 +40,7 @@ class PatrimonioRepositoryImplementation implements PatrimonioRepository
     }
 
     /**
-     * Cria um novo Patrimonio
+     * Cria um novo Patrimonio.
      *
      * @param array $detalhes
      * @return Model|null
@@ -47,7 +51,7 @@ class PatrimonioRepositoryImplementation implements PatrimonioRepository
     }
 
     /**
-     * Atualiza um Patrimonio
+     * Atualiza um Patrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -59,7 +63,7 @@ class PatrimonioRepositoryImplementation implements PatrimonioRepository
     }
 
     /**
-     * Deleta um Patrimonio
+     * Deleta um Patrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -69,39 +73,45 @@ class PatrimonioRepositoryImplementation implements PatrimonioRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }
 
     /**
-     * Seta um patrimônio como disponível
+     * Seta um patrimônio como disponível.
      *
      * @param Model $model
-     * @return boolean
+     * @return bool
      */
     public function setDisponivel(Model $model): bool
     {
         $model->estado_patrimonio_id = EstadoPatrimonio::DISPONIVEL;
         $model->save();
 
-        if($model->estado_patrimonio_id != EstadoPatrimonio::DISPONIVEL) return false;
+        if ($model->estado_patrimonio_id != EstadoPatrimonio::DISPONIVEL) {
+            return false;
+        }
 
         return true;
     }
 
     /**
-     * Seta um patrimônio como disponível
+     * Seta um patrimônio como disponível.
      *
      * @param Model $model
-     * @return boolean
+     * @return bool
      */
     public function setAlugado(Model $model): bool
     {
         $model->estado_patrimonio_id = EstadoPatrimonio::Alugado;
         $model->save();
 
-        if($model->estado_patrimonio_id != EstadoPatrimonio::Alugado) return false;
+        if ($model->estado_patrimonio_id != EstadoPatrimonio::Alugado) {
+            return false;
+        }
 
         return true;
     }

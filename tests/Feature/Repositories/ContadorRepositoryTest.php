@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\ContadorRepository;
 
@@ -28,46 +31,36 @@ class ContadorRepositoryTest extends TestCase
 
     /**
      * Retorna Contador baseado no ID.
-     *
      */
     public function testGetContador()
     {
-
     }
 
     /**
      * Retorna uma coleção de Contador baseado em uma associação.
-     *
      */
     public function testGetContadors()
     {
-
     }
 
     /**
-     * Cria um novo Contador
-     *
-     */    
+     * Cria um novo Contador.
+     */
     public function testCreateContador()
     {
-
     }
 
     /**
-     * Atualiza um Contador
-     *
-     */ 
+     * Atualiza um Contador.
+     */
     public function testUpdateContador()
     {
-
     }
 
     /**
-     * Deleta um Contador
-     *
-     */ 
+     * Deleta um Contador.
+     */
     public function testDeleteContador()
     {
-
     }
 }

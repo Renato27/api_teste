@@ -1,13 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\ClienteContato\ClienteContato;
-use App\Repositories\ClienteContatoRepositoryImplementation;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\ClienteContato\ClienteContato;
 use App\Repositories\Contracts\ClienteContatoRepository;
+use App\Repositories\ClienteContatoRepositoryImplementation;
 
 class ClienteContatoRepositoryTest extends TestCase
 {
@@ -36,7 +39,6 @@ class ClienteContatoRepositoryTest extends TestCase
 
     /**
      * Retorna ClienteContato baseado no ID.
-     *
      */
     public function testGetAssociacaoByContato()
     {
@@ -55,7 +57,6 @@ class ClienteContatoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de ClienteContato baseado em uma associação.
-     *
      */
     public function testGetClientesByContato()
     {
@@ -79,8 +80,7 @@ class ClienteContatoRepositoryTest extends TestCase
     }
 
     /**
-     * Cria um novo ClienteContato
-     *
+     * Cria um novo ClienteContato.
      */
     public function testCreateClienteContato()
     {
@@ -88,8 +88,8 @@ class ClienteContatoRepositoryTest extends TestCase
         $cliente = \App\Models\Clientes\Cliente::factory()->create();
         $contato = \App\Models\Contato\Contato::factory()->create();
         $detalhes = [
-            'cliente_id'                => $cliente->id,
-            'contato_id'                => $contato->id
+            'cliente_id' => $cliente->id,
+            'contato_id' => $contato->id,
         ];
 
         $retorno = $this->implementacao->createClienteContato($detalhes);
@@ -98,8 +98,7 @@ class ClienteContatoRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um ClienteContato
-     *
+     * Atualiza um ClienteContato.
      */
     public function testUpdateClienteContato()
     {
@@ -107,8 +106,8 @@ class ClienteContatoRepositoryTest extends TestCase
         $cliente = \App\Models\Clientes\Cliente::factory()->create();
         $contato = \App\Models\Contato\Contato::factory()->create();
         $detalhes = [
-            'cliente_id'                => $cliente->id,
-            'contato_id'                => $contato->id
+            'cliente_id' => $cliente->id,
+            'contato_id' => $contato->id,
         ];
 
         $retorno = $this->implementacao->updateClienteContato($associacao->id, $detalhes);
@@ -117,8 +116,7 @@ class ClienteContatoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um ClienteContato
-     *
+     * Deleta um ClienteContato.
      */
     public function testDeleteClienteContato()
     {

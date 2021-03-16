@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers\Services\Contatos;
 
+use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\ContatoRepository;
 use App\Services\Contatos\AtualizarContato\AtualizarContatoService;
 use App\Services\Contatos\AtualizarContato\Contracts\AtualizarContatoService as ContractsAtualizarContatoService;
-use Illuminate\Support\ServiceProvider;
 
 class AtualizarContatoServiceProvider extends ServiceProvider
 {
@@ -29,7 +34,7 @@ class AtualizarContatoServiceProvider extends ServiceProvider
         $service = new AtualizarContatoService();
         $service->setContatoRepository(app(ContatoRepository::class));
 
-        $this->app->bind(ContractsAtualizarContatoService::class, function($app) use($service){
+        $this->app->bind(ContractsAtualizarContatoService::class, function ($app) use ($service) {
             return $service;
         });
     }

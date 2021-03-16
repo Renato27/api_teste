@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ModeloRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ModeloRepository;
 
 class ModeloRepositoryImplementation implements ModeloRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna Modelo baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getModelo(int $id): ?Model
@@ -25,8 +29,8 @@ class ModeloRepositoryImplementation implements ModeloRepository
     /**
      * Retorna uma coleção de Modelo baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getModelos(int $id, int $associacao): ?Collection
@@ -35,7 +39,7 @@ class ModeloRepositoryImplementation implements ModeloRepository
     }
 
     /**
-     * Cria um novo Modelo
+     * Cria um novo Modelo.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +50,7 @@ class ModeloRepositoryImplementation implements ModeloRepository
     }
 
     /**
-     * Atualiza um Modelo
+     * Atualiza um Modelo.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +62,7 @@ class ModeloRepositoryImplementation implements ModeloRepository
     }
 
     /**
-     * Deleta um Modelo
+     * Deleta um Modelo.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +72,9 @@ class ModeloRepositoryImplementation implements ModeloRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

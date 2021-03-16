@@ -1,21 +1,25 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Repositories\Contracts\RetiradaPatrimonioRepository;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 
 class RetiradaPatrimonioRepositoryImplementation implements RetiradaPatrimonioRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna RetiradaPatrimonio baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getRetiradaPatrimonio(int $retirada): ?Model
@@ -26,8 +30,8 @@ class RetiradaPatrimonioRepositoryImplementation implements RetiradaPatrimonioRe
     /**
      * Retorna uma coleção de RetiradaPatrimonio baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getRetiradaPatrimonios(int $patrimonio): ?Collection
@@ -36,7 +40,7 @@ class RetiradaPatrimonioRepositoryImplementation implements RetiradaPatrimonioRe
     }
 
     /**
-     * Cria um novo RetiradaPatrimonio
+     * Cria um novo RetiradaPatrimonio.
      *
      * @param array $detalhes
      * @return Model|null
@@ -47,7 +51,7 @@ class RetiradaPatrimonioRepositoryImplementation implements RetiradaPatrimonioRe
     }
 
     /**
-     * Atualiza um RetiradaPatrimonio
+     * Atualiza um RetiradaPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -59,7 +63,7 @@ class RetiradaPatrimonioRepositoryImplementation implements RetiradaPatrimonioRe
     }
 
     /**
-     * Deleta um RetiradaPatrimonio
+     * Deleta um RetiradaPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -69,7 +73,9 @@ class RetiradaPatrimonioRepositoryImplementation implements RetiradaPatrimonioRe
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }
@@ -77,14 +83,14 @@ class RetiradaPatrimonioRepositoryImplementation implements RetiradaPatrimonioRe
     /**
      * Seta os patrimônios da retirada como alugado e exclui da tabela.
      *
-     * @param integer $retirada
-     * @return boolean|null
+     * @param int $retirada
+     * @return bool|null
      */
     public function setPatrimonioRetiradaAlugado(int $retirada) : ?bool
     {
         $patrimoniosRetirada = $this->where('retirada_id', $retirada)->get();
 
-        foreach($patrimoniosRetirada as $patrimonioRetirada){
+        foreach ($patrimoniosRetirada as $patrimonioRetirada) {
             $patrimonioRetirada->patrimonio->estado_patrimonio_id = EstadoPatrimonio::Alugado;
             $patrimonioRetirada->patrimonio->save();
             $patrimonioRetirada->delete();
@@ -96,14 +102,14 @@ class RetiradaPatrimonioRepositoryImplementation implements RetiradaPatrimonioRe
     /**
      * Seta os patrimônios da retirada como disponível e exclui da tabela.
      *
-     * @param integer $entrega
-     * @return boolean|null
+     * @param int $entrega
+     * @return bool|null
      */
     public function setPatrimonioRetiradaDisponivel(int $retirada) : ?bool
     {
         $patrimoniosRetirada = $this->where('retirada_id', $retirada)->get();
 
-        foreach($patrimoniosRetirada as $patrimonioRetirada){
+        foreach ($patrimoniosRetirada as $patrimonioRetirada) {
             $patrimonioRetirada->patrimonio->estado_patrimonio_id = EstadoPatrimonio::DISPONIVEL;
             $patrimonioRetirada->patrimonio->save();
             $patrimonioRetirada->delete();

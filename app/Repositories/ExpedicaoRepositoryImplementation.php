@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ExpedicaoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ExpedicaoRepository;
 
 class ExpedicaoRepositoryImplementation implements ExpedicaoRepository
 {
@@ -13,7 +18,7 @@ class ExpedicaoRepositoryImplementation implements ExpedicaoRepository
     /**
      * Retorna Expedicao baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getExpedicao(int $id): ?Model
@@ -24,8 +29,8 @@ class ExpedicaoRepositoryImplementation implements ExpedicaoRepository
     /**
      * Retorna uma coleção de Expedicao baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getExpedicaos(): ?Collection
@@ -34,9 +39,9 @@ class ExpedicaoRepositoryImplementation implements ExpedicaoRepository
     }
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
-     * @param integer $pedido
+     * @param int $pedido
      * @return Model|null
      */
     public function getExpedicaoByPedido(int $pedido) : ?Model
@@ -45,7 +50,7 @@ class ExpedicaoRepositoryImplementation implements ExpedicaoRepository
     }
 
     /**
-     * Cria um novo Expedicao
+     * Cria um novo Expedicao.
      *
      * @param array $detalhes
      * @return Model|null
@@ -56,7 +61,7 @@ class ExpedicaoRepositoryImplementation implements ExpedicaoRepository
     }
 
     /**
-     * Atualiza um Expedicao
+     * Atualiza um Expedicao.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +73,7 @@ class ExpedicaoRepositoryImplementation implements ExpedicaoRepository
     }
 
     /**
-     * Deleta um Expedicao
+     * Deleta um Expedicao.
      *
      * @param int $id
      * @param array $detalhes
@@ -78,7 +83,9 @@ class ExpedicaoRepositoryImplementation implements ExpedicaoRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

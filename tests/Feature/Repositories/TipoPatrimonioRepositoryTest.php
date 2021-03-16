@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\TipoPatrimonioRepository;
 
@@ -28,46 +31,36 @@ class TipoPatrimonioRepositoryTest extends TestCase
 
     /**
      * Retorna TipoPatrimonio baseado no ID.
-     *
      */
     public function testGetTipoPatrimonio()
     {
-
     }
 
     /**
      * Retorna uma coleção de TipoPatrimonio baseado em uma associação.
-     *
      */
     public function testGetTipoPatrimonios()
     {
-
     }
 
     /**
-     * Cria um novo TipoPatrimonio
-     *
-     */    
+     * Cria um novo TipoPatrimonio.
+     */
     public function testCreateTipoPatrimonio()
     {
-
     }
 
     /**
-     * Atualiza um TipoPatrimonio
-     *
-     */ 
+     * Atualiza um TipoPatrimonio.
+     */
     public function testUpdateTipoPatrimonio()
     {
-
     }
 
     /**
-     * Deleta um TipoPatrimonio
-     *
-     */ 
+     * Deleta um TipoPatrimonio.
+     */
     public function testDeleteTipoPatrimonio()
     {
-
     }
 }

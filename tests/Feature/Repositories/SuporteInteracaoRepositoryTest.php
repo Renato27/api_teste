@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\SuporteInteracaoRepository;
 
@@ -28,46 +31,36 @@ class SuporteInteracaoRepositoryTest extends TestCase
 
     /**
      * Retorna SuporteInteracao baseado no ID.
-     *
      */
     public function testGetSuporteInteracao()
     {
-
     }
 
     /**
      * Retorna uma coleção de SuporteInteracao baseado em uma associação.
-     *
      */
     public function testGetSuporteInteracaos()
     {
-
     }
 
     /**
-     * Cria um novo SuporteInteracao
-     *
-     */    
+     * Cria um novo SuporteInteracao.
+     */
     public function testCreateSuporteInteracao()
     {
-
     }
 
     /**
-     * Atualiza um SuporteInteracao
-     *
-     */ 
+     * Atualiza um SuporteInteracao.
+     */
     public function testUpdateSuporteInteracao()
     {
-
     }
 
     /**
-     * Deleta um SuporteInteracao
-     *
-     */ 
+     * Deleta um SuporteInteracao.
+     */
     public function testDeleteSuporteInteracao()
     {
-
     }
 }

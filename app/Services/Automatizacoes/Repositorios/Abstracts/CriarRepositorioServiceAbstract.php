@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Automatizacoes\Repositorios\Abstracts;
 
 use App\Services\Automatizacoes\Repositorios\Contracts\CriarRepositorioService;
@@ -15,7 +20,7 @@ abstract class CriarRepositorioServiceAbstract implements CriarRepositorioServic
 
     protected string $recurso;
 
-    const CAMINHO_BASE = __DIR__ . "/../../../../../";
+    const CAMINHO_BASE = __DIR__.'/../../../../../';
 
     /**
      * Caminhos dos arquivos.
@@ -23,15 +28,15 @@ abstract class CriarRepositorioServiceAbstract implements CriarRepositorioServic
      * @var array
      */
     protected array $paths = [
-        'modelo_interface'       => SELF::CAMINHO_BASE . 'resources/files/repository/interface.txt',
-        'modelo_repository'      => SELF::CAMINHO_BASE . 'resources/files/repository/implementation.txt',
-        'modelo_test'            => SELF::CAMINHO_BASE . 'resources/files/repository/test.txt',
-        'modelo_provider'        => SELF::CAMINHO_BASE . 'resources/files/provider/implementation.txt',
+        'modelo_interface' => SELF::CAMINHO_BASE.'resources/files/repository/interface.txt',
+        'modelo_repository' => SELF::CAMINHO_BASE.'resources/files/repository/implementation.txt',
+        'modelo_test' => SELF::CAMINHO_BASE.'resources/files/repository/test.txt',
+        'modelo_provider' => SELF::CAMINHO_BASE.'resources/files/provider/implementation.txt',
 
-        'caminho_contrato'       => SELF::CAMINHO_BASE . 'app/Repositories/Contracts/',
-        'caminho_implementacao'  => SELF::CAMINHO_BASE . 'app/Repositories/',
-        'caminho_teste'          => SELF::CAMINHO_BASE . 'tests/Feature/Repositories/',
-        'caminho_provider'       => SELF::CAMINHO_BASE . 'app/Providers/Repositories/',
+        'caminho_contrato' => SELF::CAMINHO_BASE.'app/Repositories/Contracts/',
+        'caminho_implementacao' => SELF::CAMINHO_BASE.'app/Repositories/',
+        'caminho_teste' => SELF::CAMINHO_BASE.'tests/Feature/Repositories/',
+        'caminho_provider' => SELF::CAMINHO_BASE.'app/Providers/Repositories/',
     ];
 
     /**
@@ -43,22 +48,24 @@ abstract class CriarRepositorioServiceAbstract implements CriarRepositorioServic
     {
         $interface = $this->abrirOuCriarArquivo($this->paths['caminho_contrato'], $this->repository, '.php');
 
-        if(!$interface)
-            throw new \Exception("Houve um erro ao criar a interface.");
+        if (! $interface) {
+            throw new \Exception('Houve um erro ao criar a interface.');
+        }
 
         $conteudoInterface = $this->getConteudoArquivo($this->paths['modelo_interface']);
 
-        if(fwrite($interface, $conteudoInterface)){
-            print('A interface foi criada' . PHP_EOL);
+        if (fwrite($interface, $conteudoInterface)) {
+            echo 'A interface foi criada'.PHP_EOL;
             fclose($interface);
+
             return;
-        };
+        }
 
         fclose($interface);
 
         dd('teste');
 
-        throw new \Exception("Houve um erro ao associar a interface e o conteúdo.");
+        throw new \Exception('Houve um erro ao associar a interface e o conteúdo.');
     }
 
     /**
@@ -68,21 +75,23 @@ abstract class CriarRepositorioServiceAbstract implements CriarRepositorioServic
      */
     protected function criarImplementacao()
     {
-        $implementacao   = $this->abrirOuCriarArquivo($this->paths['caminho_implementacao'], $this->repository, 'Implementation.php');
+        $implementacao = $this->abrirOuCriarArquivo($this->paths['caminho_implementacao'], $this->repository, 'Implementation.php');
 
-        if(!$implementacao)
-            throw new \Exception("Houve ao criar a implementação.");
+        if (! $implementacao) {
+            throw new \Exception('Houve ao criar a implementação.');
+        }
 
         $conteudoImplementacao = $this->getConteudoArquivo($this->paths['modelo_repository']);
 
-        if(fwrite($implementacao, $conteudoImplementacao)){
-            print('A implementação foi criada' . PHP_EOL);
+        if (fwrite($implementacao, $conteudoImplementacao)) {
+            echo 'A implementação foi criada'.PHP_EOL;
+
             return;
-        };
+        }
 
         fclose($implementacao);
 
-        throw new \Exception("Houve um erro ao associar a implementação e o conteúdo.");
+        throw new \Exception('Houve um erro ao associar a implementação e o conteúdo.');
     }
 
     /**
@@ -92,21 +101,23 @@ abstract class CriarRepositorioServiceAbstract implements CriarRepositorioServic
      */
     protected function criarTeste()
     {
-        $implementacao   = $this->abrirOuCriarArquivo($this->paths['caminho_teste'], $this->repository . 'Test', '.php');
+        $implementacao = $this->abrirOuCriarArquivo($this->paths['caminho_teste'], $this->repository.'Test', '.php');
 
-        if(!$implementacao)
-            throw new \Exception("Houve erro ao criar o teste.");
+        if (! $implementacao) {
+            throw new \Exception('Houve erro ao criar o teste.');
+        }
 
         $conteudoImplementacao = $this->getConteudoArquivo($this->paths['modelo_test']);
 
-        if(fwrite($implementacao, $conteudoImplementacao)){
-            print('O teste foi criado.'  . PHP_EOL);
+        if (fwrite($implementacao, $conteudoImplementacao)) {
+            echo 'O teste foi criado.'.PHP_EOL;
+
             return;
-        };
+        }
 
         fclose($implementacao);
 
-        throw new \Exception("Houve um erro ao associar test e o conteúdo.");
+        throw new \Exception('Houve um erro ao associar test e o conteúdo.');
     }
 
     /**
@@ -119,8 +130,7 @@ abstract class CriarRepositorioServiceAbstract implements CriarRepositorioServic
      */
     private function abrirOuCriarArquivo(string $caminho, string $nome, string $extensao = '.php')
     {
-
-        return fopen($caminho . $nome . $extensao, 'x');
+        return fopen($caminho.$nome.$extensao, 'x');
     }
 
     /**
@@ -133,12 +143,12 @@ abstract class CriarRepositorioServiceAbstract implements CriarRepositorioServic
     {
         $conteudo = file_get_contents($caminho);
 
-        if(!$conteudo)
-            throw new \Exception("O conteúdo do arquivo " . $caminho . " não existe.");
+        if (! $conteudo) {
+            throw new \Exception('O conteúdo do arquivo '.$caminho.' não existe.');
+        }
 
         $string = str_replace('{repository_name}', $this->repository, $conteudo);
         $string = str_replace('{recurso}', $this->recurso, $string);
-
 
         return $string;
     }
@@ -151,10 +161,10 @@ abstract class CriarRepositorioServiceAbstract implements CriarRepositorioServic
      */
     public function verificarSeArquivoExiste(string $caminhoArquivo, ?string $extensao = '.php')
     {
+        $retorno = file_exists($caminhoArquivo.$extensao);
 
-        $retorno = file_exists($caminhoArquivo . $extensao);
-
-        if($retorno)
-            throw new \Exception("O arquivo já existe: " . $caminhoArquivo . $extensao);
+        if ($retorno) {
+            throw new \Exception('O arquivo já existe: '.$caminhoArquivo.$extensao);
+        }
     }
 }

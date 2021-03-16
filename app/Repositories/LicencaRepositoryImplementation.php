@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\LicencaRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\LicencaRepository;
 
 class LicencaRepositoryImplementation implements LicencaRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna Licenca baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getLicenca(int $id): ?Model
@@ -25,8 +29,8 @@ class LicencaRepositoryImplementation implements LicencaRepository
     /**
      * Retorna uma coleção de Licenca baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getLicencasByTipo(int $tipo): ?Collection
@@ -35,7 +39,7 @@ class LicencaRepositoryImplementation implements LicencaRepository
     }
 
     /**
-     * Cria um novo Licenca
+     * Cria um novo Licenca.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +50,7 @@ class LicencaRepositoryImplementation implements LicencaRepository
     }
 
     /**
-     * Atualiza um Licenca
+     * Atualiza um Licenca.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +62,7 @@ class LicencaRepositoryImplementation implements LicencaRepository
     }
 
     /**
-     * Deleta um Licenca
+     * Deleta um Licenca.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +72,9 @@ class LicencaRepositoryImplementation implements LicencaRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

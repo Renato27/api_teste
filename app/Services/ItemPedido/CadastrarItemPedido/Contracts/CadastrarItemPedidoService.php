@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\ItemPedido\CadastrarItemPedido\Contracts;
 
 use App\Models\ItemPedido\ItemPedido;
-use App\Repositories\Contracts\ItemPedidoRepository;
 use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ItemPedidoRepository;
 
 interface CadastrarItemPedidoService
 {
@@ -14,15 +19,15 @@ interface CadastrarItemPedidoService
      * @param ItemPedido
      * @return CadastrarItemPedidoService
      */
-    public function setItemPedido(?ItemPedido $ItemPedido): CadastrarItemPedidoService;
+    public function setItemPedido(?ItemPedido $ItemPedido): self;
 
     /**
-     * Undocumented function
+     * Undocumented function.
      *
      * @param array $dados
      * @return CadastrarItemPedidoService
      */
-    public function setDados(array $dados) : CadastrarItemPedidoService;
+    public function setDados(array $dados) : self;
 
     /**
      * Seta o repositório de ItemPedidoRepository.
@@ -30,12 +35,12 @@ interface CadastrarItemPedidoService
      * @param ItemPedidoRepository $ItemPedidoRepository
      * @return CadastrarItemPedidoService
      */
-    public function setItemPedidoRepository(ItemPedidoRepository $ItemPedidoRepository): CadastrarItemPedidoService;
+    public function setItemPedidoRepository(ItemPedidoRepository $ItemPedidoRepository): self;
 
     /**
-     * Processa os dados
+     * Processa os dados.
      *
-     * @return boolean
+     * @return bool
      */
     public function handle(): ?ItemPedido;
 }

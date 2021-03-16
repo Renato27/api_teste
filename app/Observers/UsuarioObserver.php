@@ -1,12 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Observers;
 
 use App\Mail\GenericEnvioEmail;
-use App\Models\ContatoEmail\ContatoEmail;
 use App\Models\Usuario\Usuario;
-use App\Repositories\Contracts\ContatoEmailRepository;
 use Illuminate\Support\Facades\Mail;
+use App\Repositories\Contracts\ContatoEmailRepository;
 
 class UsuarioObserver
 {
@@ -22,9 +26,8 @@ class UsuarioObserver
 
         $contatoEmailRepository->usuarioTemEmailContato($usuario->contato->id, $usuario->email);
 
-        Mail::to("wallacegcorrea@gmail.com")
+        Mail::to('wallacegcorrea@gmail.com')
         ->send(new GenericEnvioEmail($usuario));
-
     }
 
     /**

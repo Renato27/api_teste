@@ -1,21 +1,25 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\EstadoPatrimonio\EstadoPatrimonio;
 use App\Repositories\Contracts\EntregaPatrimonioRepository;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 
 class EntregaPatrimonioRepositoryImplementation implements EntregaPatrimonioRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna EntregaPatrimonio baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getEntregaPatrimonio(int $entrega, int $patrimonio): ?Model
@@ -26,8 +30,8 @@ class EntregaPatrimonioRepositoryImplementation implements EntregaPatrimonioRepo
     /**
      * Retorna uma coleção de EntregaPatrimonio baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getEntregaPatrimonios(int $entrega): ?Collection
@@ -38,8 +42,8 @@ class EntregaPatrimonioRepositoryImplementation implements EntregaPatrimonioRepo
     /**
      * Seta os patrimôniosda entrega como disponível e exclui da tabela.
      *
-     * @param integer $entrega
-     * @return boolean|null
+     * @param int $entrega
+     * @return bool|null
      */
     public function setPatrimonioEntregaDisponivel(int $entrega) : ?bool
     {
@@ -57,8 +61,8 @@ class EntregaPatrimonioRepositoryImplementation implements EntregaPatrimonioRepo
     /**
      * Seta os patrimôniosda entrega como alugado e exclui da tabela.
      *
-     * @param integer $entrega
-     * @return boolean|null
+     * @param int $entrega
+     * @return bool|null
      */
     public function setPatrimonioEntregaAlugado(int $entrega) : ?bool
     {
@@ -76,7 +80,7 @@ class EntregaPatrimonioRepositoryImplementation implements EntregaPatrimonioRepo
     /**
      * Retorna todos os patrimônios checados.
      *
-     * @param integer $entrega
+     * @param int $entrega
      * @return Collection|null
      */
     public function getPatrimoniosChecked(int $entrega) : ?Collection
@@ -87,21 +91,23 @@ class EntregaPatrimonioRepositoryImplementation implements EntregaPatrimonioRepo
     /**
      * Verifica se todos os patrimônios da entrega foram checados.
      *
-     * @param integer $entrega
-     * @return boolean
+     * @param int $entrega
+     * @return bool
      */
     public function verififyIfAllPatrimoniosChecked(int $entrega) : bool
     {
         $checkeds = $this->getPatrimoniosChecked($entrega);
         $patrimonios = $this->getEntregaPatrimonios($entrega);
 
-        if(count($checkeds) != count($patrimonios)) return false;
+        if (count($checkeds) != count($patrimonios)) {
+            return false;
+        }
 
         return true;
     }
 
     /**
-     * Cria um novo EntregaPatrimonio
+     * Cria um novo EntregaPatrimonio.
      *
      * @param array $detalhes
      * @return Model|null
@@ -112,7 +118,7 @@ class EntregaPatrimonioRepositoryImplementation implements EntregaPatrimonioRepo
     }
 
     /**
-     * Atualiza um EntregaPatrimonio
+     * Atualiza um EntregaPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -124,7 +130,7 @@ class EntregaPatrimonioRepositoryImplementation implements EntregaPatrimonioRepo
     }
 
     /**
-     * Deleta um EntregaPatrimonio
+     * Deleta um EntregaPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -134,7 +140,9 @@ class EntregaPatrimonioRepositoryImplementation implements EntregaPatrimonioRepo
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

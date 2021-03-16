@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\AberturaContadorPatrimonioRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\AberturaContadorPatrimonioRepository;
 
 class AberturaContadorPatrimonioRepositoryImplementation implements AberturaContadorPatrimonioRepository
 {
@@ -13,7 +18,7 @@ class AberturaContadorPatrimonioRepositoryImplementation implements AberturaCont
     /**
      * Retorna AberturaContadorPatrimonio baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getAberturaContadorPatrimonio(int $id): ?Model
@@ -24,8 +29,8 @@ class AberturaContadorPatrimonioRepositoryImplementation implements AberturaCont
     /**
      * Retorna uma coleção de AberturaContadorPatrimonio baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getAberturaContadorPatrimonios(int $abertura_contador): ?Collection
@@ -34,17 +39,19 @@ class AberturaContadorPatrimonioRepositoryImplementation implements AberturaCont
 
         $patrimonios = collect();
 
-        foreach($abertura_patrimonios as $abertura_patrimonio){
+        foreach ($abertura_patrimonios as $abertura_patrimonio) {
             $patrimonios->add($abertura_patrimonio->patrimonio_id);
         }
 
-        if(count($patrimonios) < 1) return null;
+        if (count($patrimonios) < 1) {
+            return null;
+        }
 
         return $patrimonios;
     }
 
     /**
-     * Cria um novo AberturaContadorPatrimonio
+     * Cria um novo AberturaContadorPatrimonio.
      *
      * @param array $detalhes
      * @return Model|null
@@ -55,7 +62,7 @@ class AberturaContadorPatrimonioRepositoryImplementation implements AberturaCont
     }
 
     /**
-     * Atualiza um AberturaContadorPatrimonio
+     * Atualiza um AberturaContadorPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -67,7 +74,7 @@ class AberturaContadorPatrimonioRepositoryImplementation implements AberturaCont
     }
 
     /**
-     * Deleta um AberturaContadorPatrimonio
+     * Deleta um AberturaContadorPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
@@ -77,7 +84,9 @@ class AberturaContadorPatrimonioRepositoryImplementation implements AberturaCont
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

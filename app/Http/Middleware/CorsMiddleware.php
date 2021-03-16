@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Middleware;
 
 use Closure;
@@ -16,7 +21,7 @@ class CorsMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->is('api/*')){
+        if ($request->is('api/*')) {
             header('Access-Control-Allow-Origin: http://localhost:4200');
             header('Access-Control-Allow-Headers: Origin, Content-type, Authorization, X-Requested-With, Accept');
             header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE');

@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ChamadoArquivoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ChamadoArquivoRepository;
 
 class ChamadoArquivoRepositoryImplementation implements ChamadoArquivoRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna ChamadoArquivo baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getArquivosByChamado(int $chamado): ?Collection
@@ -25,7 +29,7 @@ class ChamadoArquivoRepositoryImplementation implements ChamadoArquivoRepository
     /**
      * Retorna ChamadoArquivo baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getArquivosByUsuario(int $usuario): ?Collection
@@ -34,7 +38,7 @@ class ChamadoArquivoRepositoryImplementation implements ChamadoArquivoRepository
     }
 
     /**
-     * Cria um novo ChamadoArquivo
+     * Cria um novo ChamadoArquivo.
      *
      * @param array $detalhes
      * @return Model|null
@@ -45,7 +49,7 @@ class ChamadoArquivoRepositoryImplementation implements ChamadoArquivoRepository
     }
 
     /**
-     * Atualiza um ChamadoArquivo
+     * Atualiza um ChamadoArquivo.
      *
      * @param int $id
      * @param array $detalhes
@@ -57,7 +61,7 @@ class ChamadoArquivoRepositoryImplementation implements ChamadoArquivoRepository
     }
 
     /**
-     * Deleta um ChamadoArquivo
+     * Deleta um ChamadoArquivo.
      *
      * @param int $id
      * @param array $detalhes
@@ -67,7 +71,9 @@ class ChamadoArquivoRepositoryImplementation implements ChamadoArquivoRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ClienteEnderecoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ClienteEnderecoRepository;
 
 class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna ClienteEndereco baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getClienteEndereco(int $cliente): ?Model
@@ -25,21 +29,22 @@ class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoReposito
     /**
      * Retorna uma coleção de ClienteEndereco baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getClienteEnderecos(int $cliente): ?Collection
     {
         $associacoes = $this->where(['cliente_id' => $cliente])->get();
 
-        if(is_null($associacoes)) return null;
+        if (is_null($associacoes)) {
+            return null;
+        }
 
         $enderecos = collect();
 
-        foreach($associacoes as $associacao){
-
-            if(!is_null($associacao->endereco)){
+        foreach ($associacoes as $associacao) {
+            if (! is_null($associacao->endereco)) {
                 $enderecos->add($associacao->endereco);
             }
         }
@@ -48,7 +53,7 @@ class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoReposito
     }
 
     /**
-     * Cria um novo ClienteEndereco
+     * Cria um novo ClienteEndereco.
      *
      * @param array $detalhes
      * @return Model|null
@@ -59,7 +64,7 @@ class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoReposito
     }
 
     /**
-     * Atualiza um ClienteEndereco
+     * Atualiza um ClienteEndereco.
      *
      * @param int $id
      * @param array $detalhes
@@ -71,7 +76,7 @@ class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoReposito
     }
 
     /**
-     * Deleta um ClienteEndereco
+     * Deleta um ClienteEndereco.
      *
      * @param int $id
      * @param array $detalhes
@@ -79,9 +84,11 @@ class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoReposito
      */
     public function deleteClienteEndereco(int $id): bool
     {
-        $retorno =  $this->delete($id);
+        $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

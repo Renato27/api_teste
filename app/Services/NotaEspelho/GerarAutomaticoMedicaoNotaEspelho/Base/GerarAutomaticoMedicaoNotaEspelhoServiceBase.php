@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\Base;
 
 use App\Models\NotaEspelho\NotaEspelho;
@@ -12,7 +17,7 @@ use App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\Contracts\GerarAu
 
 abstract class GerarAutomaticoMedicaoNotaEspelhoServiceBase implements GerarAutomaticoMedicaoNotaEspelhoService
 {
-   /**
+    /**
      * Model de NotaEspelho.
      *
      * @var NotaEspelho
@@ -34,34 +39,34 @@ abstract class GerarAutomaticoMedicaoNotaEspelhoServiceBase implements GerarAuto
     protected NotaEspelhoRepository $NotaEspelhoRepository;
 
     /**
-     * Repositório de espelhoRecorrente;
+     * Repositório de espelhoRecorrente;.
      *
      * @var ContratosRepository
      */
     protected ContratosRepository $contrato_repository;
 
     /**
-     * Repositório de notaPatrimonio;
+     * Repositório de notaPatrimonio;.
      *
      * @var NotaPatrimonioRepository
      */
     protected NotaPatrimonioRepository $nota_patrimonio_repository;
 
     /**
-     * Repositório de notaEspelhoPatrimonio;
+     * Repositório de notaEspelhoPatrimonio;.
      *
      * @var NotaEspelhoPatrimonioRepository
      */
     protected NotaEspelhoPatrimonioRepository $nota_espelho_patrimonio_repository;
 
     /**
-     * Repositório de patrimonioAlugado;
+     * Repositório de patrimonioAlugado;.
      *
      * @var PatrimonioAlugadoRepository
      */
     protected PatrimonioAlugadoRepository $patrimonio_alugado_repository;
 
-   /**
+    /**
      * Seta a model de NotaEspelho.
      *
      * @param NotaEspelho
@@ -70,6 +75,7 @@ abstract class GerarAutomaticoMedicaoNotaEspelhoServiceBase implements GerarAuto
     public function setNotaEspelho(NotaEspelho $NotaEspelho): GerarAutomaticoMedicaoNotaEspelhoService
     {
         $this->NotaEspelho = $NotaEspelho;
+
         return $this;
     }
 
@@ -82,6 +88,7 @@ abstract class GerarAutomaticoMedicaoNotaEspelhoServiceBase implements GerarAuto
     public function setDados(array $dados): GerarAutomaticoMedicaoNotaEspelhoService
     {
         $this->dados = $dados;
+
         return $this;
     }
 
@@ -94,6 +101,7 @@ abstract class GerarAutomaticoMedicaoNotaEspelhoServiceBase implements GerarAuto
     public function setNotaEspelhoRepository(NotaEspelhoRepository $NotaEspelhoRepository): GerarAutomaticoMedicaoNotaEspelhoService
     {
         $this->NotaEspelhoRepository = $NotaEspelhoRepository;
+
         return $this;
     }
 
@@ -106,6 +114,7 @@ abstract class GerarAutomaticoMedicaoNotaEspelhoServiceBase implements GerarAuto
     public function setNotaPatrimonioRepository(NotaPatrimonioRepository $notaPatrimonioRepository) : GerarAutomaticoMedicaoNotaEspelhoService
     {
         $this->nota_patrimonio_repository = $notaPatrimonioRepository;
+
         return $this;
     }
 
@@ -118,10 +127,11 @@ abstract class GerarAutomaticoMedicaoNotaEspelhoServiceBase implements GerarAuto
     public function setNotaEspelhoPatrimonioRepository(NotaEspelhoPatrimonioRepository $notaEspelhoPatrimonioRepository) : GerarAutomaticoMedicaoNotaEspelhoService
     {
         $this->nota_espelho_patrimonio_repository = $notaEspelhoPatrimonioRepository;
+
         return $this;
     }
 
-     /**
+    /**
      * Seta o repositório de patrimonioalugado.
      *
      * @param PatrimonioAlugadoRepository $patrimonioAlugadoRepository
@@ -130,10 +140,11 @@ abstract class GerarAutomaticoMedicaoNotaEspelhoServiceBase implements GerarAuto
     public function setPatrimonioAlugadoRepository(PatrimonioAlugadoRepository $patrimonioAlugadoRepository) : GerarAutomaticoMedicaoNotaEspelhoService
     {
         $this->patrimonio_alugado_repository = $patrimonioAlugadoRepository;
+
         return $this;
     }
 
-     /**
+    /**
      * Seta o repositório de contrato.
      *
      * @param ContratosRepository $contratosRepository
@@ -142,6 +153,7 @@ abstract class GerarAutomaticoMedicaoNotaEspelhoServiceBase implements GerarAuto
     public function setContratoRepository(ContratosRepository $contratosRepository) : GerarAutomaticoMedicaoNotaEspelhoService
     {
         $this->contrato_repository = $contratosRepository;
+
         return $this;
     }
 }

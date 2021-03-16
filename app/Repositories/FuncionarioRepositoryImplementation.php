@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\FuncionarioRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\FuncionarioRepository;
 
 class FuncionarioRepositoryImplementation implements FuncionarioRepository
 {
@@ -13,7 +18,7 @@ class FuncionarioRepositoryImplementation implements FuncionarioRepository
     /**
      * Retorna Funcionario baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getFuncionario(int $id): ?Model
@@ -24,8 +29,8 @@ class FuncionarioRepositoryImplementation implements FuncionarioRepository
     /**
      * Retorna uma coleção de Funcionario baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getFuncionarios(): ?Collection
@@ -34,40 +39,42 @@ class FuncionarioRepositoryImplementation implements FuncionarioRepository
     }
 
     /**
-     * Cria um novo Funcionario
+     * Cria um novo Funcionario.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createFuncionario(array $detalhes): ?Model
     {
         return $this->create($detalhes);
     }
 
     /**
-     * Atualiza um Funcionario
+     * Atualiza um Funcionario.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateFuncionario(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
     }
 
     /**
-     * Deleta um Funcionario
+     * Deleta um Funcionario.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteFuncionario(int $id): bool
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }
