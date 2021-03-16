@@ -150,5 +150,8 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\NotaEspelhoPatrimonioRepository::class, function ($app) {
             return new \App\Repositories\NotaEspelhoPatrimonioRepositoryImplementation(new \App\Models\NotaEspelhoPatrimonio\NotaEspelhoPatrimonio());
         });
+        $this->app->bind(\App\Repositories\Contracts\LancamentoFuturoRepository::class, function ($app) {
+            return new \App\Repositories\LancamentoFuturoRepositoryImplementation(new \App\Models\LancamentoFuturo\LancamentoFuturo());
+        });
     }
 }

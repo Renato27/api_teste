@@ -14,6 +14,7 @@ use App\Repositories\Contracts\EspelhoRecorrenteRepository;
 use App\Repositories\Contracts\PatrimonioAlugadoRepository;
 use App\Repositories\Contracts\NotaEspelhoPatrimonioRepository;
 use App\Repositories\Contracts\EspelhoRecorrentePatrimonioRepository;
+use App\Repositories\Contracts\LancamentoFuturoRepository;
 use App\Services\NotaEspelho\GerarAutomaticoNotaEspelho\GerarAutomaticoNotaEspelhoService;
 use App\Services\NotaEspelho\GerarAutomaticoNotaEspelho\Contracts\GerarAutomaticoNotaEspelhoService as ContractsGerarAutomaticoNotaEspelhoService;
 
@@ -43,7 +44,8 @@ class GerarAutomaticoNotaEspelhoServiceProvider extends ServiceProvider
         ->setEspelhoRecorrenteRepository(app(EspelhoRecorrenteRepository::class))
         ->setNotaEspelhoPatrimonioRepository(app(NotaEspelhoPatrimonioRepository::class))
         ->setPatrimonioAlugadoRepository(app(PatrimonioAlugadoRepository::class))
-        ->setNotaPatrimonioRepository(app(NotaPatrimonioRepository::class));
+        ->setNotaPatrimonioRepository(app(NotaPatrimonioRepository::class))
+        ->setLancamentoFuturoRepository(app(LancamentoFuturoRepository::class));
 
         $this->app->bind(ContractsGerarAutomaticoNotaEspelhoService::class, function ($app) use ($service) {
             return $service;

@@ -22,14 +22,23 @@ interface LancamentoFuturoRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getLancamentoFuturos(int $id, int $associacao): ?Collection;
-    
+    public function getLancamentoFuturosByContrato(int $contrato): ?Collection;
+
+    /**
+     * Retorna uma coleção de LancamentoFuturo baseado em uma associação.
+     *
+     * @param integer $id
+     * @param integer $segundo_recurso
+     * @return Model|null
+     */
+    public function getLancamentoFuturosByContratoAndMonth(int $contrato, int $mes): ?Collection;
+
     /**
      * Cria um novo LancamentoFuturo
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createLancamentoFuturo(array $detalhes): ?Model;
 
     /**
@@ -38,7 +47,7 @@ interface LancamentoFuturoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateLancamentoFuturo(int $id, array $detalhes): ?Model;
 
     /**
@@ -47,6 +56,6 @@ interface LancamentoFuturoRepository
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteLancamentoFuturo(int $id): bool;
 }

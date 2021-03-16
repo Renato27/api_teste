@@ -19,6 +19,8 @@ use App\Models\ClienteContrato\ClienteContrato;
 use App\Models\ContatoContrato\ContatoContrato;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\ContratoItemDefinido\ContratoItemDefinido;
+use App\Models\LancamentoFuturo\LancamentoFuturo;
+use App\Models\PatrimonioAlugado\PatrimonioAlugado;
 
 class Contrato extends Model
 {
@@ -53,5 +55,15 @@ class Contrato extends Model
     public function notas()
     {
         return $this->hasMany(Nota::class, 'contrato_id', 'id');
+    }
+
+    public function lancamento_futuros()
+    {
+        return $this->hasMany(LancamentoFuturo::class, 'contrato_id', 'id');
+    }
+
+    public function patrimonios()
+    {
+        return $this->hasMany(PatrimonioAlugado::class, 'contrato_id', 'id');
     }
 }

@@ -14,6 +14,7 @@ use App\Repositories\Contracts\EspelhoRecorrenteRepository;
 use App\Repositories\Contracts\PatrimonioAlugadoRepository;
 use App\Repositories\Contracts\NotaEspelhoPatrimonioRepository;
 use App\Repositories\Contracts\EspelhoRecorrentePatrimonioRepository;
+use App\Repositories\Contracts\LancamentoFuturoRepository;
 
 interface GerarAutomaticoNotaEspelhoService
 {
@@ -80,6 +81,14 @@ interface GerarAutomaticoNotaEspelhoService
      * @return GerarAutomaticoNotaEspelhoService
      */
     public function setPatrimonioAlugadoRepository(PatrimonioAlugadoRepository $patrimonioAlugadoRepository) : self;
+
+    /**
+     * Seta o repositório de lançamento futuro.
+     *
+     * @param LancamentoFuturoRepository $lancamentoFuturoRepository
+     * @return GerarAutomaticoNotaEspelhoService
+     */
+    public function setLancamentoFuturoRepository(LancamentoFuturoRepository $lancamentoFuturoRepository) : self;
 
     /**
      * Processa os dados.

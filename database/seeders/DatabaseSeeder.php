@@ -48,6 +48,7 @@ class DatabaseSeeder extends Seeder
             NotaEspelhoSeeder::class,
             FichaSeeder::class,
             ExpedicaoTipoSeeder::class,
+            LancamentoFuturoSeeder::class,
         ]);
     }
 }

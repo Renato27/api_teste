@@ -68,6 +68,7 @@ abstract class GerarAutomaticoNotaEspelhoServiceAbstract extends GerarAutomatico
             $dados = $this->getDadosEspelho($espelho_do_dia);
             $espelho = $this->NotaEspelhoRepository->createNotaEspelho($dados);
             $this->associarPatrimonioEspelho($espelho_do_dia, $espelho);
+            $this->associarLancamentoFuturos($espelho);
         }
     }
 
@@ -142,6 +143,26 @@ abstract class GerarAutomaticoNotaEspelhoServiceAbstract extends GerarAutomatico
             'contrato_id' => $notaEspelho->contrato_id,
             'chamado_id' => $aluguel->chamado_id,
         ];
+    }
+
+    private function associarLancamentoFuturos(NotaEspelho $nota_espelho)
+    {
+        $mes_busca = CarbonImmutable::parse($nota_espelho->data_emissao)->format('m');
+
+        $lancamentos = $this->lancamentoFuturoRepository
+            ->getLancamentoFuturosByContratoAndMonth($nota_espelho->contrato_id, $mes_busca);
+
+        $valor_total = 0;
+
+        foreach($lancamentos as $lancamento){
+            dd($lancamento);
+            $valor_total += $lancamento->quantidade * $lancamento->valor_unitario;
+            $lancamento->nota_espelho_id = $nota_espelho->id;
+            $lancamento->save();
+        }
+
+        $nota_espelho->valor + ($valor_total);
+        $nota_espelho->save();
     }
 
     /**

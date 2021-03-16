@@ -14,6 +14,7 @@ use App\Repositories\Contracts\EspelhoRecorrenteRepository;
 use App\Repositories\Contracts\PatrimonioAlugadoRepository;
 use App\Repositories\Contracts\NotaEspelhoPatrimonioRepository;
 use App\Repositories\Contracts\EspelhoRecorrentePatrimonioRepository;
+use App\Repositories\Contracts\LancamentoFuturoRepository;
 use App\Services\NotaEspelho\GerarAutomaticoNotaEspelho\Contracts\GerarAutomaticoNotaEspelhoService;
 
 abstract class GerarAutomaticoNotaEspelhoServiceBase implements GerarAutomaticoNotaEspelhoService
@@ -73,6 +74,13 @@ abstract class GerarAutomaticoNotaEspelhoServiceBase implements GerarAutomaticoN
      * @var PatrimonioAlugadoRepository
      */
     protected PatrimonioAlugadoRepository $patrimonio_alugado_repository;
+
+    /**
+     * Repositório de lancamentoFuturo;.
+     *
+     * @var LancamentoFuturoRepository
+     */
+    protected LancamentoFuturoRepository $lancamentoFuturoRepository;
 
     /**
      * Seta a model de NotaEspelho.
@@ -175,6 +183,18 @@ abstract class GerarAutomaticoNotaEspelhoServiceBase implements GerarAutomaticoN
     {
         $this->patrimonio_alugado_repository = $patrimonioAlugadoRepository;
 
+        return $this;
+    }
+
+    /**
+     * Seta o repositório de lançamento futuro.
+     *
+     * @param LancamentoFuturoRepository $lancamentoFuturoRepository
+     * @return GerarAutomaticoNotaEspelhoService
+     */
+    public function setLancamentoFuturoRepository(LancamentoFuturoRepository $lancamentoFuturoRepository) : GerarAutomaticoNotaEspelhoService
+    {
+        $this->lancamentoFuturoRepository = $lancamentoFuturoRepository;
         return $this;
     }
 }

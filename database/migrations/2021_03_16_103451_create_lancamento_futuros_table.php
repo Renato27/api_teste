@@ -19,7 +19,7 @@ class CreateLancamentoFuturosTable extends Migration
             $table->text('descricao')->nullable();
             $table->integer('quantidade')->nullable();
             $table->decimal('valor_unitario', 10,2)->nullable();
-            $table->boolean('processado')->default(0);
+            $table->foreignId('nota_espelho_id')->nullable()->constrained('nota_espelhos');
             $table->foreignId('contrato_id')->nullable()->constrained('contratos');
             $table->foreignId('nota_id')->nullable()->constrained('notas');
 

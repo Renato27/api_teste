@@ -8,6 +8,9 @@ use Illuminate\Support\Collection;
 
 class LancamentoFuturoRepositoryImplementation implements LancamentoFuturoRepository
 {
+
+    use BaseEloquentRepository;
+
     /**
      * Retorna LancamentoFuturo baseado no ID.
      *
@@ -16,7 +19,7 @@ class LancamentoFuturoRepositoryImplementation implements LancamentoFuturoReposi
      */
     public function getLancamentoFuturo(int $id): ?Model
     {
-
+        return $this->find($id);
     }
 
     /**
@@ -26,9 +29,21 @@ class LancamentoFuturoRepositoryImplementation implements LancamentoFuturoReposi
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getLancamentoFuturos(int $id, int $associacao): ?Collection
+    public function getLancamentoFuturosByContrato(int $contrato): ?Collection
     {
+        return $this->where(['contrato_id' => $contrato])->get();
+    }
 
+    /**
+     * Retorna uma coleção de LancamentoFuturo baseado em uma associação.
+     *
+     * @param integer $id
+     * @param integer $segundo_recurso
+     * @return Model|null
+     */
+    public function getLancamentoFuturosByContratoAndMonth(int $contrato, int $mes): ?Collection
+    {
+        return $this->where(['contrato_id' => $contrato, 'mes_cobranca' => $mes])->whereNull(['nota_espelho_id', 'nota_id'])->get();
     }
 
     /**
@@ -36,10 +51,10 @@ class LancamentoFuturoRepositoryImplementation implements LancamentoFuturoReposi
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createLancamentoFuturo(array $detalhes): ?Model
     {
-
+        return $this->create($detalhes);
     }
 
     /**
@@ -48,10 +63,10 @@ class LancamentoFuturoRepositoryImplementation implements LancamentoFuturoReposi
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateLancamentoFuturo(int $id, array $detalhes): ?Model
     {
-
+        return $this->update($id, $detalhes);
     }
 
     /**
@@ -60,9 +75,15 @@ class LancamentoFuturoRepositoryImplementation implements LancamentoFuturoReposi
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteLancamentoFuturo(int $id): bool
     {
+        $retorno = $this->delete($id);
 
+        if (! $retorno) {
+            return false;
+        }
+
+        return true;
     }
 }
