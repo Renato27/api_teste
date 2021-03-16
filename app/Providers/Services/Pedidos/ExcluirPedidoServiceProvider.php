@@ -21,7 +21,6 @@ class ExcluirPedidoServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 
     /**

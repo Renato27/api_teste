@@ -87,11 +87,17 @@ class Calculadora
     {
         if ($fim->format('d') == 31 && $fim->endOfMonth()->format('d') == 31) {
             return -1;
-        } elseif ($fim->format('d') == 29 && $fim->endOfMonth()->format('d') == 29) {
+        }
+
+        if ($fim->format('d') == 29 && $fim->endOfMonth()->format('d') == 29) {
             return 1;
-        } elseif ($fim->format('d') == 28 && $fim->endOfMonth()->format('d') == 28) {
+        }
+
+        if ($fim->format('d') == 28 && $fim->endOfMonth()->format('d') == 28) {
             return 2;
-        } elseif ($inicio->format('d') == 31) {
+        }
+
+        if ($inicio->format('d') == 31) {
             return 1;
         }
 

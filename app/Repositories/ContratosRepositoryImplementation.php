@@ -7,8 +7,11 @@
 
 namespace App\Repositories;
 
+use Carbon\Carbon;
 use Carbon\CarbonImmutable;
+use App\Models\Contratos\Contrato;
 use Illuminate\Support\Collection;
+use App\Models\MedicaoTipo\MedicaoTipo;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Contracts\ContratosRepository;
 
@@ -36,7 +39,7 @@ class ContratosRepositoryImplementation implements ContratosRepository
      */
     public function getContratos(): ?Collection
     {
-        return $this->getAll();
+        return collect();
     }
 
     /**
@@ -89,7 +92,9 @@ class ContratosRepositoryImplementation implements ContratosRepository
     {
         if (! is_null($dia) && ! is_null($contrato)) {
             return $this->where(['dia_emissao_nota' => $dia->format('d'), 'contrato_id' => $contrato])->get();
-        } elseif (! is_null($dia)) {
+        }
+
+        if (! is_null($dia)) {
             return $this->getEspelhosFinalMes($dia);
         }
 
@@ -134,5 +139,90 @@ class ContratosRepositoryImplementation implements ContratosRepository
         }
 
         return $this->where(['dia_emissao_nota' => $dia->format('d')])->whereIn('medicao_tipo_id', [2, 3])->get();
+    }
+
+    /**
+     * Verifica qual periodo início será utilizado na nota.
+     *
+     * @param Contrato $contrato
+     * @return array
+     */
+    public function verificaPeriodoPorContrato(Contrato $contrato, string $emissao = null) : array
+    {
+        if ($contrato->medicao_tipo_id == MedicaoTipo::VENCIDA) {
+            return $this->contratoVencida($contrato);
+        }
+
+        if ($contrato->medicao_tipo_id == MedicaoTipo::A_VENCER) {
+            return $this->contratoAVencer($contrato);
+        }
+    }
+
+    /**
+     * Retorna os períodos dos contrato de medição a vencer.
+     *
+     * @param Contrato $contrato
+     * @return array
+     */
+    private function contratoAVencer(Contrato $contrato) : array
+    {
+        if (! is_null($contrato->dia_periodo_inicio_nota) && ! is_null($contrato->dia_periodo_fim_nota)) {
+            $periodoFim = Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_fim_nota);
+
+            $periodoInicio = Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_inicio_nota);
+
+            $diferença = $periodoInicio->diffInDays($periodoFim->addDay());
+
+            if ($diferença < 30) {
+                return [
+                'periodoInicio' => Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_inicio_nota)->format('Y-m-d'),
+                'periodoFim' => Carbon::parse(Carbon::today()->addMonthNoOverflow()->format('Y-m-').$contrato->dia_periodo_fim_nota)->format('Y-m-d'),
+            ];
+            }
+
+            return [
+            'periodoInicio' => Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_inicio_nota)->format('Y-m-d'),
+            'periodoFim' => Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_fim_nota)->format('Y-m-d'),
+        ];
+        }
+
+        return [
+        'periodoInicio' => Carbon::today()->format('Y-m-d'),
+        'periodoFim' => Carbon::today()->addMonthNoOverflow()->subDay()->format('Y-m-d'),
+    ];
+    }
+
+    /**
+     * Retorna os períodos dos contrato de medição vencida.
+     *
+     * @param Contrato $contrato
+     * @return array
+     */
+    private function contratoVencida(Contrato $contrato) : array
+    {
+        if (! is_null($contrato->dia_periodo_inicio_nota) && ! is_null($contrato->dia_periodo_fim_nota)) {
+            $periodoFim = Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_fim_nota);
+
+            $periodoInicio = Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_inicio_nota);
+
+            $diferença = $periodoInicio->diffInDays($periodoFim->addDay());
+
+            if ($diferença < 30) {
+                return [
+                'periodoInicio' => Carbon::parse(Carbon::today()->subMonthNoOverflow()->format('Y-m-').$contrato->dia_periodo_inicio_nota)->format('Y-m-d'),
+                'periodoFim' => Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_fim_nota)->format('Y-m-d'),
+            ];
+            }
+
+            return [
+            'periodoInicio' => Carbon::parse(Carbon::today()->subMonthNoOverflow()->format('Y-m-').$contrato->dia_periodo_inicio_nota)->format('Y-m-d'),
+            'periodoFim' => Carbon::parse(Carbon::today()->subMonthNoOverflow()->format('Y-m-').$contrato->dia_periodo_fim_nota)->format('Y-m-d'),
+        ];
+        }
+
+        return [
+        'periodoInicio' => Carbon::today()->subMonthNoOverflow()->format('Y-m-d'),
+        'periodoFim' => Carbon::today()->subDay()->format('Y-m-d'),
+    ];
     }
 }

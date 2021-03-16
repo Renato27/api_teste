@@ -8,7 +8,6 @@
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use App\Models\Contratos\Contrato;
-use App\Models\MedicaoTipo\MedicaoTipo;
 use App\Models\NotaEspelho\NotaEspelho;
 use App\Models\NotaPatrimonio\NotaPatrimonio;
 use App\Models\PatrimonioAlugado\PatrimonioAlugado;
@@ -33,9 +32,9 @@ function periodo_inicio_patrimonio(
 
         if ($dataUltimaFatura->addDay()->equalTo($periodoInicio)) {
             return $dataMedicao;
-        } else {
-            return $dataUltimaFatura->addDay()->format('Y-m-d');
         }
+
+        return $dataUltimaFatura->addDay()->format('Y-m-d');
     }
 
     return $dataMedicao;
@@ -50,85 +49,6 @@ function calculadora_de_periodo(NotaEspelho $notaEspelho, string $inicioPatrimon
     $calculado_de_periodo = new Calculadora();
 
     return $calculado_de_periodo->handle($periodo_inicio, $periodo_fim, $periodo_inicio_patrimonio, $valor);
-}
-
-/**
- * Verifica qual periodo início será utilizado na nota.
- *
- * @param int $contrato
- * @return string
- */
-function verificaPeriodoPorContrato(Contrato $contrato, string $emissao = null) : array
-{
-    if ($contrato->medicao_tipo_id == MedicaoTipo::VENCIDA) {
-        return contratoVencida($contrato);
-    }
-
-    if ($contrato->medicao_tipo_id == MedicaoTipo::A_VENCER) {
-        return ContratoAVencer($contrato);
-    }
-}
-
-/**
- * Verifica qual periodo início será utilizado na nota.
- *
- * @param int $contrato
- * @return string
- */
-function ContratoAVencer(Contrato $contrato) : array
-{
-    if (! is_null($contrato->dia_periodo_inicio_nota) && ! is_null($contrato->dia_periodo_fim_nota)) {
-        $periodoFim = Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_fim_nota);
-
-        $periodoInicio = Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_inicio_nota);
-
-        $diferença = $periodoInicio->diffInDays($periodoFim->addDay());
-
-        if ($diferença < 30) {
-            return [
-                'periodoInicio' => Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_inicio_nota)->format('Y-m-d'),
-                'periodoFim' => Carbon::parse(Carbon::today()->addMonthNoOverflow()->format('Y-m-').$contrato->dia_periodo_fim_nota)->format('Y-m-d'),
-            ];
-        }
-
-        return [
-            'periodoInicio' => Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_inicio_nota)->format('Y-m-d'),
-            'periodoFim' => Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_fim_nota)->format('Y-m-d'),
-        ];
-    }
-
-    return [
-        'periodoInicio' => Carbon::today()->format('Y-m-d'),
-        'periodoFim' => Carbon::today()->addMonthNoOverflow()->subDay()->format('Y-m-d'),
-    ];
-}
-
-function contratoVencida(Contrato $contrato) : array
-{
-    if (! is_null($contrato->dia_periodo_inicio_nota) && ! is_null($contrato->dia_periodo_fim_nota)) {
-        $periodoFim = Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_fim_nota);
-
-        $periodoInicio = Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_inicio_nota);
-
-        $diferença = $periodoInicio->diffInDays($periodoFim->addDay());
-
-        if ($diferença < 30) {
-            return [
-                'periodoInicio' => Carbon::parse(Carbon::today()->subMonthNoOverflow()->format('Y-m-').$contrato->dia_periodo_inicio_nota)->format('Y-m-d'),
-                'periodoFim' => Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_periodo_fim_nota)->format('Y-m-d'),
-            ];
-        }
-
-        return [
-            'periodoInicio' => Carbon::parse(Carbon::today()->subMonthNoOverflow()->format('Y-m-').$contrato->dia_periodo_inicio_nota)->format('Y-m-d'),
-            'periodoFim' => Carbon::parse(Carbon::today()->subMonthNoOverflow()->format('Y-m-').$contrato->dia_periodo_fim_nota)->format('Y-m-d'),
-        ];
-    }
-
-    return [
-        'periodoInicio' => Carbon::today()->subMonthNoOverflow()->format('Y-m-d'),
-        'periodoFim' => Carbon::today()->subDay()->format('Y-m-d'),
-    ];
 }
 
 function getVencimento(Contrato $contrato, ?string $inicio = null) : string

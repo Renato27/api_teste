@@ -89,7 +89,9 @@ class EspelhoRecorrenteRepositoryImplementation implements EspelhoRecorrenteRepo
     {
         if (! is_null($dia) && ! is_null($contrato)) {
             return $this->where(['dia_emissao' => $dia->format('d'), 'contrato_id' => $contrato, 'cancelado' => 0])->get();
-        } elseif (! is_null($dia)) {
+        }
+
+        if (! is_null($dia)) {
             return $this->getEspelhosFinalMes($dia);
         }
 

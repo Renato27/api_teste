@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Patrimonio\Patrimonio;
 use App\Services\Patrimonio\CadastrarPatrimonio\Abstracts\CadastrarPatrimonioServiceAbstract;
 
-class CadastrarPatrimonioService extends CadastrarPatrimonioServiceAbstract
+final class CadastrarPatrimonioService extends CadastrarPatrimonioServiceAbstract
 {
     /**
      * Processa os dados.

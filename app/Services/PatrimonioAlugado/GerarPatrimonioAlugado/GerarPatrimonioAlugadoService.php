@@ -10,7 +10,7 @@ namespace App\Services\PatrimonioAlugado\GerarPatrimonioAlugado;
 use Illuminate\Support\Facades\DB;
 use App\Services\PatrimonioAlugado\GerarPatrimonioAlugado\Abstracts\GerarPatrimonioAlugadoServiceAbstract;
 
-class GerarPatrimonioAlugadoService extends GerarPatrimonioAlugadoServiceAbstract
+final class GerarPatrimonioAlugadoService extends GerarPatrimonioAlugadoServiceAbstract
 {
     /**
      * Processa os dados.

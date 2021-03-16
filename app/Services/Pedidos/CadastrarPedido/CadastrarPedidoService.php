@@ -11,7 +11,7 @@ use App\Models\Pedido\Pedido;
 use Illuminate\Support\Facades\DB;
 use App\Services\Pedidos\CadastrarPedido\Abstracts\CadastrarPedidoServiceAbstract;
 
-class CadastrarPedidoService extends CadastrarPedidoServiceAbstract
+final class CadastrarPedidoService extends CadastrarPedidoServiceAbstract
 {
     /**
      * Processa os dados para cadastrar um pedido.

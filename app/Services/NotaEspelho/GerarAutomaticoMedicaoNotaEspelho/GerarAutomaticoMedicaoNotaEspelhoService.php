@@ -19,9 +19,11 @@ class GerarAutomaticoMedicaoNotaEspelhoService extends GerarAutomaticoMedicaoNot
      */
     public function handle(): bool
     {
-        DB::transaction(function () {
-            $this->GerarAutomaticoMedicaoNotaEspelho();
-        });
+        DB::transaction(
+            function () {
+                $this->GerarAutomaticoMedicaoNotaEspelho();
+            }
+        );
 
         return true;
     }

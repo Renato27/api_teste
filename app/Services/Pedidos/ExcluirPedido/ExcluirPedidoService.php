@@ -10,7 +10,7 @@ namespace App\Services\Pedidos\ExcluirPedido;
 use Illuminate\Support\Facades\DB;
 use App\Services\Pedidos\ExcluirPedido\Abstracts\ExcluirPedidoServiceAbstract;
 
-class ExcluirPedidoService extends ExcluirPedidoServiceAbstract
+final class ExcluirPedidoService extends ExcluirPedidoServiceAbstract
 {
     /**
      * Processa a exclusão do pedido.

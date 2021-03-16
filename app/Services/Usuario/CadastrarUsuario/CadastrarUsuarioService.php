@@ -11,7 +11,7 @@ use App\Models\Usuario\Usuario;
 use Illuminate\Support\Facades\DB;
 use App\Services\Usuario\CadastrarUsuario\Abstracts\CadastrarUsuarioServiceAbstract;
 
-class CadastrarUsuarioService extends CadastrarUsuarioServiceAbstract
+final class CadastrarUsuarioService extends CadastrarUsuarioServiceAbstract
 {
     /**
      * Processa os dados.

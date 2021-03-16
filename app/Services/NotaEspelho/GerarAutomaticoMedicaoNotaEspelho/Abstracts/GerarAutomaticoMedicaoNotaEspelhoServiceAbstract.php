@@ -96,7 +96,7 @@ abstract class GerarAutomaticoMedicaoNotaEspelhoServiceAbstract extends GerarAut
      */
     private function getDadosEspelho(Contrato $contrato): array
     {
-        $periodo = verificaPeriodoPorContrato($contrato);
+        $periodo = $this->contrato_repository->verificaPeriodoPorContrato($contrato);
         $vencimento = getVencimento($contrato, $periodo['periodoInicio']);
         $periodo_fim = $this->getUltimoDiaMes($periodo['periodoInicio']);
 

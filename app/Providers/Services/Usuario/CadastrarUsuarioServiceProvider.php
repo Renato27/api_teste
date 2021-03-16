@@ -21,7 +21,6 @@ class CadastrarUsuarioServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 
     /**

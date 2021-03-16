@@ -8,6 +8,7 @@
 namespace App\Repositories\Contracts;
 
 use Carbon\CarbonImmutable;
+use App\Models\Contratos\Contrato;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -62,4 +63,12 @@ interface ContratosRepository
      * @return Collection
      */
     public function getContratosDoDia(?CarbonImmutable $dia = null, ?int $contrato = null) : Collection;
+
+    /**
+     * Verifica qual periodo início será utilizado na nota.
+     *
+     * @param int $contrato
+     * @return array
+     */
+    public function verificaPeriodoPorContrato(Contrato $contrato, string $emissao = null) : array;
 }

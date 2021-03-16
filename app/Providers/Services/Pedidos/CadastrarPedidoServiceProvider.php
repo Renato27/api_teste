@@ -21,7 +21,6 @@ class CadastrarPedidoServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 
     /**

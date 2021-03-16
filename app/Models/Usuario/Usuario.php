@@ -68,15 +68,15 @@ class Usuario extends Authenticatable implements JWTSubject
                 'tipo_usuario' => $tipo_usuario->nome,
                 'email' => $this->email,
             ];
-        } else {
-            $funcionario = Funcionario::find($this->funcionario_id);
-
-            return [
-                'name' => $funcionario->nome,
-                'tipo_usuario_id' => $this->tipo_usuario_id,
-                'tipo_usuario' => $tipo_usuario->nome,
-                'email' => $this->email,
-            ];
         }
+
+        $funcionario = Funcionario::find($this->funcionario_id);
+
+        return [
+            'name' => $funcionario->nome,
+            'tipo_usuario_id' => $this->tipo_usuario_id,
+            'tipo_usuario' => $tipo_usuario->nome,
+            'email' => $this->email,
+        ];
     }
 }

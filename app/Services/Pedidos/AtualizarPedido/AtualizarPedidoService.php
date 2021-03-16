@@ -11,7 +11,7 @@ use App\Models\Pedido\Pedido;
 use Illuminate\Support\Facades\DB;
 use App\Services\Pedidos\AtualizarPedido\Abstracts\AtualizarPedidoServiceAbstract;
 
-class AtualizarPedidoService extends AtualizarPedidoServiceAbstract
+final class AtualizarPedidoService extends AtualizarPedidoServiceAbstract
 {
     /**
      * Processa a atualização do pedido.
