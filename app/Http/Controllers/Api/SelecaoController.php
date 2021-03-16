@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\Expedicao\Expedicao;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ListaExpedicaoSelecaoResource;
 use App\Http\Resources\SelecaoResource;
 use App\Http\Resources\SeparacaoResource;
 use App\Services\Entrega\CadastrarEntrega\Contracts\CadastrarEntregaService;
@@ -23,9 +24,9 @@ class SelecaoController extends Controller
      */
     public function index()
     {
-        $expedicoes = Expedicao::where('expedicao_estado_id', 1)->paginate(5);
+        $expedicoes = Expedicao::with(['pedido:id,data_entrega', 'pedido.contrato.cliente:cliente_id,nome_fantasia'])->where('expedicao_estado_id', 1)->get();
 
-        return SelecaoResource::collection($expedicoes);
+        return ListaExpedicaoSelecaoResource::collection($expedicoes);
     }
 
     /**

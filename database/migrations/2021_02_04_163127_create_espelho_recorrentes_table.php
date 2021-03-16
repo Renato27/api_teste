@@ -27,8 +27,8 @@ class CreateEspelhoRecorrentesTable extends Migration
             $table->foreignId('anterior_nota_id')->nullable();
 
             $table->foreign('anterior_nota_id')->references('id')->on('notas');
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

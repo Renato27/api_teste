@@ -61,6 +61,10 @@ abstract class GerarAutomaticoNotaEspelhoServiceAbstract extends GerarAutomatico
                 continue;
             }
 
+            $patrimonios_recorrentes = $this->espelho_recorrente_patrimonio_repository->getPatrimoniosByEspelhoRecorrente($espelho_do_dia->id);
+
+            if(count($patrimonios_recorrentes) < 1) continue;
+
             $dados = $this->getDadosEspelho($espelho_do_dia);
             $espelho = $this->NotaEspelhoRepository->createNotaEspelho($dados);
             $this->associarPatrimonioEspelho($espelho_do_dia, $espelho);

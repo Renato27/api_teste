@@ -26,7 +26,12 @@ class PatrimonioController extends Controller
      */
     public function index(Request $request)
     {
-        $patrimonios = Patrimonio::with(['fabricante:id,nome', 'aluguel.cliente:id,nome_fantasia', 'tipo_patrimonio:id,nome', 'estado_patrimonio:id,nome', 'modelo:id,nome'])->get();
+        // $patrimonios = Patrimonio::with(['fabricante:id,nome', 'aluguel.cliente:id,nome_fantasia', 'tipo_patrimonio:id,nome', 'estado_patrimonio:id,nome', 'modelo:id,nome'])->get();
+
+
+        $patrimonios = Patrimonio::select('id','numero_patrimonio', 'numero_serie', 'modelo_id', 'tipo_patrimonio_id', 'fabricante_id', 'estado_patrimonio_id')
+        ->with(['fabricante:id,nome', 'aluguel.cliente:id,nome_fantasia', 'tipo_patrimonio:id,nome', 'estado_patrimonio:id,nome', 'modelo:id,nome'])->get();
+
 
         // $patrimonios->load('fabricante', 'aluguel', 'tipo_patrimonio', 'estado_patrimonio', 'modelo');
 

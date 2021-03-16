@@ -27,8 +27,8 @@ class CreateEspelhoRecorrentePatrimoniosTable extends Migration
             $table->foreignId('item_pedido_id')->nullable()->constrained('item_pedidos');
             $table->foreignId('item_definido_id')->nullable()->constrained('item_definidos');
 
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
