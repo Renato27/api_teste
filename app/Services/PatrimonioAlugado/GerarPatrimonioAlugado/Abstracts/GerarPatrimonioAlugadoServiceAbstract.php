@@ -43,7 +43,9 @@ abstract class GerarPatrimonioAlugadoServiceAbstract extends GerarPatrimonioAlug
                 'chamado_id' => $this->chamado->id,
                 'endereco_id' => $this->chamado->endereco_id,
             ];
-        } elseif ($this->model instanceof TrocaPatrimonio) {
+        }
+
+        if ($this->model instanceof TrocaPatrimonio) {
             $aluguelRetirar = $this->PatrimonioAlugadoRepository->getPatrimonioAlugadoByPatrimonio($this->trocaPatrimonioRetirada->patrimonio_id);
 
             return [

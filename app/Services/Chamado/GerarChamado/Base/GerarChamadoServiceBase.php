@@ -97,16 +97,16 @@ abstract class GerarChamadoServiceBase implements GerarChamadoService
     public function setDados(array $dados): GerarChamadoService
     {
         $dadosChamado = [
-            'data_acao' => isset($dados['data_acao']) ? $dados['data_acao'] : $dados['data_entrega'],
-            'mensagem' => isset($dados['mensagem']) ? $dados['mensagem'] : null,
+            'data_acao' => isset($dados['data_acao']) ?? $dados['data_entrega'],
+            'mensagem' => isset($dados['mensagem']) ?? null,
             'status_chamado_id' => StatusChamado::ABERTO,
             'tipo_chamado_id' => $dados['tipo_chamado_id'],
-            'usuario_id' => isset($dados['usuario_id']) ? $dados['usuario_id'] : null,
-            'pedido_id' => isset($dados['pedido_id']) ? $dados['pedido_id'] : null,
+            'usuario_id' => isset($dados['usuario_id']) ?? null,
+            'pedido_id' => isset($dados['pedido_id']) ?? null,
             'contato_id' => $dados['contato_id'],
             'endereco_id' => $dados['endereco_id'],
-            'login_team_viewer' => isset($dados['login_team_viewer']) ? $dados['login_team_viewer'] : null,
-            'senha_team_viewer' => isset($dados['senha_team_viewer']) ? $dados['senha_team_viewer'] : null,
+            'login_team_viewer' => isset($dados['login_team_viewer']) ?? null,
+            'senha_team_viewer' => isset($dados['senha_team_viewer']) ?? null,
         ];
 
         $this->dados = $dadosChamado;

@@ -152,7 +152,9 @@ abstract class GerarAutomaticoNotaEspelhoServiceAbstract extends GerarAutomatico
 
         if ($inicio->format('d') == 1) {
             return $inicio->endOfMonth()->format('Y-m-d');
-        } elseif (($inicio->format('d') == 29 || $inicio->format('d') == 30 || $inicio->format('d') == 31) && $inicio->addMonthNoOverflow()->format('m') == 2) {
+        }
+
+        if (($inicio->format('d') == 29 || $inicio->format('d') == 30 || $inicio->format('d') == 31) && $inicio->addMonthNoOverflow()->format('m') == 2) {
             return $inicio->addMonthNoOverflow()->endOfMonth()->format('Y-m-d');
         }
 

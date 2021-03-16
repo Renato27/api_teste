@@ -91,13 +91,11 @@ class ContratosRepositoryImplementation implements ContratosRepository
             return $this->where(['dia_emissao_nota' => $dia->format('d'), 'contrato_id' => $contrato])->get();
         } elseif (! is_null($dia)) {
             return $this->getEspelhosFinalMes($dia);
-        } else {
-            $hoje = CarbonImmutable::today();
-
-            return $this->getEspelhosFinalMes($hoje);
         }
 
-        return collect();
+        $hoje = CarbonImmutable::today();
+
+        return $this->getEspelhosFinalMes($hoje);
     }
 
     /**

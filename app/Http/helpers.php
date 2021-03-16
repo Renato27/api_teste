@@ -155,7 +155,5 @@ function getVencimento(Contrato $contrato, ?string $inicio = null) : string
         return Carbon::parse(Carbon::today()->format('Y-m-').$contrato->dia_vencimento_nota)->format('Y-m-d');
     }
 
-    $vencimentoPeriodo = Carbon::parse($inicio)->addMonthNoOverflow()->subDay()->format('Y-m-d');
-
-    return $vencimentoPeriodo;
+    return Carbon::parse($inicio)->addMonthNoOverflow()->subDay()->format('Y-m-d');
 }

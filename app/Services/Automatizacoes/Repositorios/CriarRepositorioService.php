@@ -9,7 +9,7 @@ namespace App\Services\Automatizacoes\Repositorios;
 
 use App\Services\Automatizacoes\Repositorios\Abstracts\CriarRepositorioServiceAbstract;
 
-final class CriarRepositorioService extends CriarRepositorioServiceAbstract
+class CriarRepositorioService extends CriarRepositorioServiceAbstract
 {
     /**
      * Processa a criação de um repositório.

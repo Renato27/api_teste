@@ -247,9 +247,8 @@ abstract class CriarServicoServiceAbstract implements CriarServicoService
         $string = str_replace('{referencia_service}', $this->referencia_service, $conteudo);
         $string = str_replace('{acao_service}', $this->acao_service, $string);
         $string = str_replace('{service_name}', $this->service_name, $string);
-        $string = str_replace('{modelRepository}', $this->modelRepository, $string);
 
-        return $string;
+        return str_replace('{modelRepository}', $this->modelRepository, $string);
     }
 
     public function criarPasta(string $caminho, string $referencia_service, string $acao_service)

@@ -24,16 +24,14 @@ class Calculadora
                 $diasCalculo = $this->getProRata($fim, $periodoInicioPatrimonio);
 
                 return $this->getPeriodoCalculado($diasCalculo);
-            } else {
-                return $this->getPeriodoCheio($inicio, $fim);
             }
-        } else {
-            $diasCalculo = $this->getProRata($fim, $periodoInicioPatrimonio);
 
-            return $this->getPeriodoCalculado($diasCalculo);
+            return $this->getPeriodoCheio($inicio, $fim);
         }
 
-        return 0;
+        $diasCalculo = $this->getProRata($fim, $periodoInicioPatrimonio);
+
+        return $this->getPeriodoCalculado($diasCalculo);
     }
 
     /**
@@ -75,9 +73,7 @@ class Calculadora
      */
     protected function getPeriodoCheio(Carbon $inicio, Carbon $fim) : float
     {
-        $valor = $this->arrendondar30dias($inicio, $fim) * ($this->preco / 30);
-
-        return $valor;
+        return $this->arrendondar30dias($inicio, $fim) * ($this->preco / 30);
     }
 
     /**

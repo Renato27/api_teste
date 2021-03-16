@@ -84,12 +84,12 @@ abstract class AtualizarChamadoServiceBase implements AtualizarChamadoService
     public function setDados(array $dados): AtualizarChamadoService
     {
         $dadosChamado = [
-            'data_acao' => isset($dados['data_acao']) ? $dados['data_acao'] : $dados['data_entrega'],
-            'mensagem' => isset($dados['mensagem']) ? $dados['mensagem'] : null,
-            'status_chamado_id' => isset($dados['status_chamado_id']) ? $dados['status_chamado_id'] : null,
-            'usuario_id' => isset($dados['usuario_id']) ? $dados['usuario_id'] : null,
-            'contato_id' => isset($dados['contato_id']) ? $dados['contato_id'] : null,
-            'endereco_id' => isset($dados['endereco_id']) ? $dados['endereco_id'] : null,
+            'data_acao' => $dados['data_acao'] ?? $dados['data_entrega'],
+            'mensagem' => $dados['mensagem'] ?? null,
+            'status_chamado_id' => $dados['status_chamado_id'] ?? null,
+            'usuario_id' => $dados['usuario_id'] ?? null,
+            'contato_id' => $dados['contato_id'] ?? null,
+            'endereco_id' => $dados['endereco_id'] ?? null,
         ];
 
         $this->dados = $dadosChamado;

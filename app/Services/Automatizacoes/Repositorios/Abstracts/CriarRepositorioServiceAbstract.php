@@ -148,9 +148,8 @@ abstract class CriarRepositorioServiceAbstract implements CriarRepositorioServic
         }
 
         $string = str_replace('{repository_name}', $this->repository, $conteudo);
-        $string = str_replace('{recurso}', $this->recurso, $string);
 
-        return $string;
+        return str_replace('{recurso}', $this->recurso, $string);
     }
 
     /**
