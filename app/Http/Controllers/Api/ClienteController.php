@@ -9,9 +9,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Events\ClienteEvent;
 use Illuminate\Http\Request;
+use App\Events\UpdateDashboard;
+use App\Models\Chamado\Chamado;
 use App\Models\Clientes\Cliente;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ClienteResource;
+use App\Models\NotaEspelho\NotaEspelho;
 use App\Http\Resources\ClienteContatoEnderecoResource;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use App\Services\Clientes\ExcluirCliente\Contracts\ExcluirClienteService;
@@ -28,6 +31,8 @@ class ClienteController extends Controller
     public function index(Request $request)
     {
         $clientes = Cliente::get();
+
+        event(new UpdateDashboard());
 
         return ClienteResource::collection($clientes);
     }

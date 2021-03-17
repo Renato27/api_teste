@@ -21,11 +21,12 @@ class DashboardController extends Controller
         if ($usuario->tipo_usuario_id == 5) {
             $dados = [];
 
-            $dados['Chamados'][] = Chamado::whereHas('status_chamado', function ($query) {
+            $dados['Chamados'] = Chamado::whereHas('status_chamado', function ($query) {
                 return $query->where('id', '<>', 5)->where('id', '<>', 6);
-            })->get();
+            })->with(['cliente:id,nome_fantasia', 'tipo_chamado:id,nome'])
+            ->select('id', 'data_acao', 'mensagem', 'cliente_id', 'status_chamado_id', 'tipo_chamado_id')->get();
 
-            $dados['Espelhos'][] = NotaEspelho::whereHas('nota_espelho_estado', function ($query) {
+            $dados['Espelhos'] = NotaEspelho::whereHas('nota_espelho_estado', function ($query) {
                 return $query->where('id', 1);
             })->get();
 
