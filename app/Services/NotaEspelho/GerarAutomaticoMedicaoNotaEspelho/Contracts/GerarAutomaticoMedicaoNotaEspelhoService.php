@@ -9,6 +9,7 @@ namespace App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\Contracts;
 
 use App\Models\NotaEspelho\NotaEspelho;
 use App\Repositories\Contracts\ContratosRepository;
+use App\Repositories\Contracts\LancamentoFuturoRepository;
 use App\Repositories\Contracts\NotaEspelhoRepository;
 use App\Repositories\Contracts\NotaPatrimonioRepository;
 use App\Repositories\Contracts\PatrimonioAlugadoRepository;
@@ -71,6 +72,14 @@ interface GerarAutomaticoMedicaoNotaEspelhoService
      * @return GerarAutomaticoMedicaoNotaEspelhoService
      */
     public function setContratoRepository(ContratosRepository $contratosRepository) : self;
+
+    /**
+     * Seta o repositório de lançamento futuro.
+     *
+     * @param LancamentoFuturoRepository $lancamentoFuturoRepository
+     * @return GerarAutomaticoMedicaoNotaEspelhoService
+     */
+    public function setLancamentoFuturoRepository(LancamentoFuturoRepository $lancamentoFuturoRepository) : self;
 
     /**
      * Processa os dados.

@@ -9,6 +9,7 @@ namespace App\Providers\Services\NotaEspelho;
 
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\ContratosRepository;
+use App\Repositories\Contracts\LancamentoFuturoRepository;
 use App\Repositories\Contracts\NotaEspelhoRepository;
 use App\Repositories\Contracts\NotaPatrimonioRepository;
 use App\Repositories\Contracts\PatrimonioAlugadoRepository;
@@ -41,7 +42,8 @@ class GerarAutomaticoMedicaoNotaEspelhoServiceProvider extends ServiceProvider
         ->setNotaEspelhoPatrimonioRepository(app(NotaEspelhoPatrimonioRepository::class))
         ->setPatrimonioAlugadoRepository(app(PatrimonioAlugadoRepository::class))
         ->setNotaPatrimonioRepository(app(NotaPatrimonioRepository::class))
-        ->setContratoRepository(app(ContratosRepository::class));
+        ->setContratoRepository(app(ContratosRepository::class))
+        ->setLancamentoFuturoRepository(app(LancamentoFuturoRepository::class));
 
         $this->app->bind(ContractsGerarAutomaticoMedicaoNotaEspelhoService::class, function ($app) use ($service) {
             return $service;
