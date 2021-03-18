@@ -23,7 +23,7 @@ use App\Http\Controllers\Api\PatrimonioController;
 use App\Http\Controllers\Api\FuncionarioController;
 use App\Http\Controllers\Api\ItemDefinidoController;
 use App\Http\Controllers\Api\TipoPatrimonioController;
-use App\Http\Controllers\NotaController;
+use App\Http\Controllers\Api\NotaController;
 
 /*
 |--------------------------------------------------------------------------

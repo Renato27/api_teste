@@ -1,10 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\ListaNotasFatura;
 use App\Models\Nota\Nota;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\NotaResource;
+use App\Services\Nota\GerarNota\Contracts\GerarNotaService;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class NotaController extends Controller
 {
@@ -26,9 +30,15 @@ class NotaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, GerarNotaService $service)
     {
-        //
+        try {
+            $nota = $service->setDados($request->all())->handle();
+
+            return response()->json($nota->id);
+        } catch (\Throwable $th) {
+            throw new HttpException(400, $th->getMessage());
+        }
     }
 
     /**
@@ -37,9 +47,9 @@ class NotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Nota $nota)
     {
-        //
+        return new NotaResource($nota);
     }
 
     /**

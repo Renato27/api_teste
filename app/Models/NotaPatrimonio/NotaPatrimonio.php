@@ -22,7 +22,7 @@ class NotaPatrimonio extends Model
     protected $date = ['deleted_at'];
 
     protected $fillable = ['periodo_inicio', 'periodo_fim', 'valor',
-        'patrimonio_id', 'nota_id', 'contrato_id', 'chamado_id', ];
+        'patrimonio_id', 'nota_id', 'contrato_id', 'chamado_id'];
 
     public function patrimonio()
     {

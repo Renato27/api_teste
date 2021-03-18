@@ -7,6 +7,7 @@
 
 namespace App\Observers;
 
+use App\Events\UpdateDashboard;
 use App\Models\Troca\Troca;
 use App\Models\Chamado\Chamado;
 use App\Models\Entrega\Entrega;
@@ -25,6 +26,9 @@ class ChamadoObserver
      */
     public function created(Chamado $chamado)
     {
+
+        // event(new UpdateDashboard());
+
         // if (!is_null($chamado->pedido_id)) {
         //     $expedicao = Expedicao::where('pedido_id', $chamado->pedido_id)->first();
         //     $expedicao->chamado_id = $chamado->id;
@@ -45,6 +49,9 @@ class ChamadoObserver
      */
     public function updated(Chamado $chamado)
     {
+
+        // event(new UpdateDashboard());
+
         // if ($chamado->status_chamado_id == StatusChamado::CANCELADO || $chamado->status_chamado_id == StatusChamado::ENCERRADO) {
 
         //     switch ($chamado->tipo_chamado_id) {

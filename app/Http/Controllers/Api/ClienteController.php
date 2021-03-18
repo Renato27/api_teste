@@ -32,8 +32,6 @@ class ClienteController extends Controller
     {
         $clientes = Cliente::get();
 
-        event(new UpdateDashboard());
-
         return ClienteResource::collection($clientes);
     }
 

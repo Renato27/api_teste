@@ -24,7 +24,7 @@ class DashboardController extends Controller
             $dados['Chamados'] = Chamado::whereHas('status_chamado', function ($query) {
                 return $query->where('id', '<>', 5)->where('id', '<>', 6);
             })->with(['cliente:id,nome_fantasia', 'tipo_chamado:id,nome'])
-            ->select('id', 'data_acao', 'mensagem', 'cliente_id', 'status_chamado_id', 'tipo_chamado_id')->get();
+            ->select('id', 'data_acao', 'mensagem', 'cliente_id', 'status_chamado_id', 'tipo_chamado_id', 'created_at')->get();
 
             $dados['Espelhos'] = NotaEspelho::whereHas('nota_espelho_estado', function ($query) {
                 return $query->where('id', 1);

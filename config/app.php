@@ -205,6 +205,7 @@ return [
         App\Providers\Services\Patrimonio\CadastrarPatrimonioServiceProvider::class,
         App\Providers\Services\NotaEspelho\GerarAutomaticoNotaEspelhoServiceProvider::class,
         App\Providers\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelhoServiceProvider::class,
+        App\Providers\Services\Nota\GerarNotaServiceProvider::class,
     ],
 
     /*
