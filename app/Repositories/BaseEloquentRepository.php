@@ -39,7 +39,7 @@ trait BaseEloquentRepository
     /**
      * Retorna todos os dados da model.
      *
-     * @return void
+     * @return Collection|void
      */
     public function getAll()
     {

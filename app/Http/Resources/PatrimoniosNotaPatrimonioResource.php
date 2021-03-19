@@ -16,7 +16,6 @@ class PatrimoniosNotaPatrimonioResource extends JsonResource
     {
         return [
             'numero_patrimonio'     => $this->numero_patrimonio,
-            'fabricante'            => $this->fabricante->nome,
             'tipo_patrimonio'       => $this->tipo_patrimonio->nome,
             'modelo'                => $this->modelo->nome,
         ];

@@ -14,7 +14,6 @@ class ListaPedidosResource extends JsonResource
      */
     public function toArray($request)
     {
-
         return [
             'id'        => $this->id,
             'cliente'   => $this->endereco->cliente,
@@ -23,7 +22,7 @@ class ListaPedidosResource extends JsonResource
             'bairro'    => $this->endereco->bairro,
             'contato'   => $this->contato,
             'estado'    => $this->status->nome,
-            'itens'     => $this->itens->isEmpty() ? 0 : $this->itens
+            'valor'     => $this->itens->isEmpty() ? 0 : $this->itens[0]->valor
         ];
     }
 }

@@ -19,7 +19,9 @@ class NotaPatrimonioResource extends JsonResource
             'periodo_inicio'    => $this->periodo_inicio,
             'periodo_fim'       => $this->periodo_fim,
             'valor'             => $this->valor,
-            'patrimonio'        => new PatrimoniosNotaPatrimonioResource($this->patrimonio),
+            'numero_patrimonio' => $this->patrimonio->numero_patrimonio,
+            'tipo_patrimonio'   => $this->patrimonio->tipo_patrimonio->nome,
+            'modelo'            => $this->patrimonio->modelo->nome,
             'nota'              => $this->nota_id,
             'chamado'           => $this->chamado_id
         ];

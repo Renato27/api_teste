@@ -153,5 +153,8 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\LancamentoFuturoRepository::class, function ($app) {
             return new \App\Repositories\LancamentoFuturoRepositoryImplementation(new \App\Models\LancamentoFuturo\LancamentoFuturo());
         });
+        $this->app->bind(\App\Repositories\Contracts\NotaRepository::class, function ($app) {
+            return new \App\Repositories\NotaRepositoryImplementation(new \App\Models\Nota\Nota());
+        });
     }
 }

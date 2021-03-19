@@ -30,6 +30,6 @@ class Endereco extends Model
 
     public function cliente()
     {
-        return $this->hasOneThrough(Cliente::class, ClienteEndereco::class, 'endereco_id', 'id');
+        return $this->hasOneThrough(Cliente::class, ClienteEndereco::class, 'endereco_id', 'id', 'id', 'cliente_id');
     }
 }

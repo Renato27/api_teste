@@ -22,7 +22,7 @@ class Nota extends Model
     protected $date = ['deleted_at'];
 
     protected $fillable = ['data_emissao', 'data_vencimento', 'data_pagamento', 'periodo_inicio', 'periodo_fim', 'descricao', 'valor',
-        'antecipacao', 'tem_boleto', 'nota_estado_id', 'cliente_id', 'contrato_id', ];
+        'antecipacao', 'tem_boleto', 'nota_estado_id', 'cliente_id', 'contrato_id' ];
 
     public function nota_estado()
     {
