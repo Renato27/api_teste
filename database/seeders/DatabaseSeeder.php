@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
             FichaSeeder::class,
             ExpedicaoTipoSeeder::class,
             LancamentoFuturoSeeder::class,
+            CobrancaSeeder::class,
         ]);
     }
 }
