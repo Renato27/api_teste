@@ -90,4 +90,11 @@ interface ChamadoRepository
      * @return Model|null
      */
     public function deleteChamado(int $id): bool;
+
+    /**
+     * Retorna uma coleção de chamados para a dashboard.
+     *
+     * @return Collection|null
+     */
+    public function getChamadosDashboard() : ?Collection;
 }

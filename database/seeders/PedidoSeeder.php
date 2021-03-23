@@ -29,7 +29,6 @@ class PedidoSeeder extends Seeder
         $vendas = DB::connection('mysql2')->table('vendas')->get();
 
         foreach ($vendas as $venda) {
-
             $chamado = DB::connection('mysql2')->table('chamados')->where('vendas_idvendas', $venda->idvendas)->first();
 
             $pedido = Pedido::create([
@@ -48,11 +47,10 @@ class PedidoSeeder extends Seeder
                 $pedido->save();
             }
 
-            if(!is_null($chamado) && $chamado->statuschamado_idstatuschamado == 5){
+            if (! is_null($chamado) && $chamado->statuschamado_idstatuschamado == 5) {
                 $pedido->status_pedido_id = 3;
                 $pedido->save();
             }
-
 
             if (! is_null($venda->contrato_id)) {
                 ContratoPedido::create([

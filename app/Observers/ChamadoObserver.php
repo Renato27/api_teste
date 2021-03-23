@@ -7,8 +7,8 @@
 
 namespace App\Observers;
 
-use App\Events\UpdateDashboard;
 use App\Models\Troca\Troca;
+use App\Events\UpdateDashboard;
 use App\Models\Chamado\Chamado;
 use App\Models\Entrega\Entrega;
 use App\Models\Expedicao\Expedicao;

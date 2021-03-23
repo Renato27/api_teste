@@ -1,8 +1,13 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateLancamentoFuturosTable extends Migration
 {
@@ -18,7 +23,7 @@ class CreateLancamentoFuturosTable extends Migration
             $table->integer('mes_cobranca')->nullable();
             $table->text('descricao')->nullable();
             $table->integer('quantidade')->nullable();
-            $table->decimal('valor_unitario', 10,2)->nullable();
+            $table->decimal('valor_unitario', 10, 2)->nullable();
             $table->foreignId('nota_espelho_id')->nullable()->constrained('nota_espelhos');
             $table->foreignId('contrato_id')->nullable()->constrained('contratos');
             $table->foreignId('nota_id')->nullable()->constrained('notas');

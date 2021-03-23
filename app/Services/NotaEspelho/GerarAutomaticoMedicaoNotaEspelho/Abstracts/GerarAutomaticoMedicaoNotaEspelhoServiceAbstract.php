@@ -150,8 +150,7 @@ abstract class GerarAutomaticoMedicaoNotaEspelhoServiceAbstract extends GerarAut
 
         $valor_total = 0;
 
-        foreach($lancamentos as $lancamento){
-
+        foreach ($lancamentos as $lancamento) {
             $valor_total += $lancamento->quantidade * $lancamento->valor_unitario;
             $lancamento->nota_espelho_id = $nota_espelho->id;
             $lancamento->save();

@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -15,17 +20,17 @@ class NotaResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'                => $this->id,
-            'data_emissao'      => $this->data_emissao,
-            'data_vencimento'   => $this->data_vencimento,
-            'periodo_inicio'    => $this->periodo_inicio,
-            'periodo_fim'       => $this->periodo_fim,
-            'descricao'         => $this->descricao,
-            'valor'             => $this->valor,
-            'nota_estado'       => $this->nota_estado->nome,
-            'cliente'           => new ClienteResource($this->cliente),
-            'contrato'          => $this->contrato->nome,
-            'patrimonios'       => NotaPatrimonioResource::collection($this->patrimonios)
+            'id' => $this->id,
+            'data_emissao' => $this->data_emissao,
+            'data_vencimento' => $this->data_vencimento,
+            'periodo_inicio' => $this->periodo_inicio,
+            'periodo_fim' => $this->periodo_fim,
+            'descricao' => $this->descricao,
+            'valor' => $this->valor,
+            'nota_estado' => $this->nota_estado->nome,
+            'cliente' => new ClienteResource($this->cliente),
+            'contrato' => $this->contrato->nome,
+            'patrimonios' => NotaPatrimonioResource::collection($this->patrimonios),
         ];
     }
 }

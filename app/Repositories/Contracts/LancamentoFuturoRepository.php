@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface LancamentoFuturoRepository
 {
     /**
      * Retorna LancamentoFuturo baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getLancamentoFuturo(int $id): ?Model;
@@ -18,8 +23,8 @@ interface LancamentoFuturoRepository
     /**
      * Retorna uma coleção de LancamentoFuturo baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getLancamentoFuturosByContrato(int $contrato): ?Collection;
@@ -27,14 +32,14 @@ interface LancamentoFuturoRepository
     /**
      * Retorna uma coleção de LancamentoFuturo baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getLancamentoFuturosByContratoAndMonth(int $contrato, int $mes): ?Collection;
 
     /**
-     * Cria um novo LancamentoFuturo
+     * Cria um novo LancamentoFuturo.
      *
      * @param array $detalhes
      * @return Model|null
@@ -42,7 +47,7 @@ interface LancamentoFuturoRepository
     public function createLancamentoFuturo(array $detalhes): ?Model;
 
     /**
-     * Atualiza um LancamentoFuturo
+     * Atualiza um LancamentoFuturo.
      *
      * @param int $id
      * @param array $detalhes
@@ -51,7 +56,7 @@ interface LancamentoFuturoRepository
     public function updateLancamentoFuturo(int $id, array $detalhes): ?Model;
 
     /**
-     * Deleta um LancamentoFuturo
+     * Deleta um LancamentoFuturo.
      *
      * @param int $id
      * @param array $detalhes

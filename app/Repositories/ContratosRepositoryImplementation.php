@@ -226,29 +226,29 @@ class ContratosRepositoryImplementation implements ContratosRepository
     ];
     }
 
-     /**
+    /**
      * Retorna todos os contratos á vencer.
      *
      * @return Collection|null
      */
     public function getContratosAVencer(): ?Collection
     {
-        $contratos = Contrato::whereHas('patrimonios', function($query){
+        $contratos = Contrato::whereHas('patrimonios', function ($query) {
             return $query->select('patrimonio_id');
         })->with(['cliente:nome_fantasia'])->select('id', 'fim')->get();
 
         $contratosAVencer = collect();
 
-        foreach($contratos as $contrato){
-
+        foreach ($contratos as $contrato) {
             $data = CarbonImmutable::parse($contrato->fim);
             $hoje = CarbonImmutable::today();
             $hoje4dias = CarbonImmutable::today()->addDays(4);
 
-            if($data->greaterThanOrEqualTo($hoje) && $data->lessThanOrEqualTo($hoje4dias)){
+            if ($data->greaterThanOrEqualTo($hoje) && $data->lessThanOrEqualTo($hoje4dias)) {
                 $contratosAVencer->add($contrato);
             }
         }
-        return $contratosAVencer ;
+
+        return $contratosAVencer;
     }
 }

@@ -10,9 +10,9 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\Expedicao\Expedicao;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ListaExpedicaoSelecaoResource;
 use App\Http\Resources\SelecaoResource;
 use App\Http\Resources\SeparacaoResource;
+use App\Http\Resources\ListaExpedicaoSelecaoResource;
 use App\Services\Entrega\CadastrarEntrega\Contracts\CadastrarEntregaService;
 
 class SelecaoController extends Controller

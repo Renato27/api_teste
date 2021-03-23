@@ -7,6 +7,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Chamado\Chamado;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Contracts\ChamadoRepository;
@@ -125,5 +126,18 @@ class ChamadoRepositoryImplementation implements ChamadoRepository
         }
 
         return true;
+    }
+
+    /**
+     * Retorna uma coleção de chamados para a dashboard.
+     *
+     * @return Collection|null
+     */
+    public function getChamadosDashboard() : ?Collection
+    {
+        return Chamado::whereHas('status_chamado', function ($query) {
+            return $query->where('id', '<>', 5)->where('id', '<>', 6);
+        })->with(['cliente:id,nome_fantasia', 'tipo_chamado:id,nome'])
+        ->select('id', 'data_acao', 'mensagem', 'cliente_id', 'status_chamado_id', 'tipo_chamado_id', 'created_at')->get();
     }
 }

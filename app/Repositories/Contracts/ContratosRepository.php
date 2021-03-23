@@ -72,7 +72,7 @@ interface ContratosRepository
      */
     public function verificaPeriodoPorContrato(Contrato $contrato, string $emissao = null) : array;
 
-     /**
+    /**
      * Retorna todos os contratos á vencer.
      *
      * @return Collection|null

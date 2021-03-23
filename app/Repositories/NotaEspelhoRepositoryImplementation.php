@@ -9,6 +9,7 @@ namespace App\Repositories;
 
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
+use App\Models\NotaEspelho\NotaEspelho;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Contracts\NotaEspelhoRepository;
 
@@ -28,15 +29,24 @@ class NotaEspelhoRepositoryImplementation implements NotaEspelhoRepository
     }
 
     /**
-     * Retorna uma coleção de NotaEspelho baseado em uma associação.
+     * Retorna uma coleção de NotaEspelho.
      *
      * @param int $id
      * @param int $segundo_recurso
-     * @return Model|null
+     * @return Collection|null
      */
-    public function getNotaEspelhos(int $id, int $associacao): ?Collection
+    public function getNotaEspelhos(): ?Collection
     {
-        return collect();
+        return NotaEspelho::whereHas('nota_espelho_estado', function ($query) {
+            return $query->whereIn('id', [1, 4]);
+        })
+        ->with(['cliente:id,nome_fantasia', 'nota_espelho_estado:id,nome'])
+        ->withCount('patrimonios')
+        ->with('contrato', function ($query2) {
+            $query2->select('id', 'nome', 'medicao_tipo_id')->with('tipo_medicao:id,nome');
+        })
+        ->select('id', 'cliente_id', 'nota_espelho_estado_id', 'valor', 'data_emissao', 'contrato_id')
+        ->get();
     }
 
     /**

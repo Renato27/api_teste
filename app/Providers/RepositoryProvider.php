@@ -162,5 +162,11 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\CobrancaAtividadeRepository::class, function ($app) {
             return new \App\Repositories\CobrancaAtividadeRepositoryImplementation(new \App\Models\CobrancaAtividade\CobrancaAtividade());
         });
+        $this->app->bind(\App\Repositories\Contracts\NotaSerasaRepository::class, function ($app) {
+            return new \App\Repositories\NotaSerasaRepositoryImplementation(new \App\Models\NotaSerasa\NotaSerasa());
+        });
+        $this->app->bind(\App\Repositories\Contracts\ReajusteContratoRepository::class, function ($app) {
+            return new \App\Repositories\ReajusteContratoRepositoryImplementation(new \App\Models\ReajusteContrato\ReajusteContrato());
+        });
     }
 }

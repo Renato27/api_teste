@@ -10,14 +10,14 @@ namespace App\Http\Controllers\Api;
 use App\Events\PedidoItem;
 use Illuminate\Http\Request;
 use App\Models\Pedido\Pedido;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ListaPedidosResource;
 use App\Http\Resources\PedidoResource;
-use App\Services\ItemPedido\CadastrarItemPedido\Contracts\CadastrarItemPedidoService;
+use App\Http\Resources\ListaPedidosResource;
 use App\Services\Pedidos\ExcluirPedido\Contracts\ExcluirPedidoService;
 use App\Services\Pedidos\AtualizarPedido\Contracts\AtualizarPedidoService;
 use App\Services\Pedidos\CadastrarPedido\Contracts\CadastrarPedidoService;
-use Illuminate\Support\Facades\DB;
+use App\Services\ItemPedido\CadastrarItemPedido\Contracts\CadastrarItemPedidoService;
 
 class PedidoController extends Controller
 {
@@ -28,12 +28,10 @@ class PedidoController extends Controller
      */
     public function index()
     {
-
         $pedidos = Pedido::with(['endereco.cliente:cliente_id,nome_fantasia,cpf_cnpj', 'endereco:id,bairro', 'contato:id,nome', 'status:id,nome'])
-        ->with('itens' , function($query){
+        ->with('itens', function ($query) {
             $query->select(DB::raw('sum(valor) as valor'))->groupBy('pedido_id');
         })->select('id', 'data_entrega', 'status_pedido_id', 'endereco_id', 'contato_id')->get();
-
 
         return ListaPedidosResource::collection($pedidos);
     }

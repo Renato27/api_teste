@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Nota\GerarNota\Abstracts;
 
 use App\Models\Nota\Nota;
@@ -10,7 +15,7 @@ abstract class GerarNotaServiceAbstract extends GerarNotaServiceBase
     /**
      * Implementação do código.
      *
-     * @return boolean
+     * @return bool
      */
     protected function GerarNota() : ?Nota
     {

@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\LancamentoFuturoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\LancamentoFuturoRepository;
 
 class LancamentoFuturoRepositoryImplementation implements LancamentoFuturoRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna LancamentoFuturo baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getLancamentoFuturo(int $id): ?Model
@@ -25,8 +29,8 @@ class LancamentoFuturoRepositoryImplementation implements LancamentoFuturoReposi
     /**
      * Retorna uma coleção de LancamentoFuturo baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getLancamentoFuturosByContrato(int $contrato): ?Collection
@@ -37,8 +41,8 @@ class LancamentoFuturoRepositoryImplementation implements LancamentoFuturoReposi
     /**
      * Retorna uma coleção de LancamentoFuturo baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getLancamentoFuturosByContratoAndMonth(int $contrato, int $mes): ?Collection
@@ -47,7 +51,7 @@ class LancamentoFuturoRepositoryImplementation implements LancamentoFuturoReposi
     }
 
     /**
-     * Cria um novo LancamentoFuturo
+     * Cria um novo LancamentoFuturo.
      *
      * @param array $detalhes
      * @return Model|null
@@ -58,7 +62,7 @@ class LancamentoFuturoRepositoryImplementation implements LancamentoFuturoReposi
     }
 
     /**
-     * Atualiza um LancamentoFuturo
+     * Atualiza um LancamentoFuturo.
      *
      * @param int $id
      * @param array $detalhes
@@ -70,7 +74,7 @@ class LancamentoFuturoRepositoryImplementation implements LancamentoFuturoReposi
     }
 
     /**
-     * Deleta um LancamentoFuturo
+     * Deleta um LancamentoFuturo.
      *
      * @param int $id
      * @param array $detalhes

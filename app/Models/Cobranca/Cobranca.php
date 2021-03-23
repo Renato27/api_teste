@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\Cobranca;
 
-use App\Models\Clientes\cliente;
-use App\Models\CobrancaAtividade\CobrancaAtividade;
-use App\Models\CobrancaEstado\CobrancaEstado;
-use App\Models\CobrancaNota\CobrancaNota;
 use App\Models\Nota\Nota;
 use App\Models\Usuario\Usuario;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Clientes\cliente;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CobrancaNota\CobrancaNota;
+use App\Models\CobrancaEstado\CobrancaEstado;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\CobrancaAtividade\CobrancaAtividade;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cobranca extends Model
 {

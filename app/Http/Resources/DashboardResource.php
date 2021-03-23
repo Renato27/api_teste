@@ -20,6 +20,7 @@ class DashboardResource extends JsonResource
     public function toArray($request)
     {
         dd($this->resource);
+
         return [
             'id' => $this->id,
             'status_chamado' => $this->whenLoaded('status_chamado', $this->status_chamado->nome),

@@ -51,6 +51,7 @@ class ContratoSeeder extends Seeder
                 'dia_periodo_inicio_nota' => $contrato->dia_periodo_inicio,
                 'dia_periodo_fim_nota' => $contrato->dia_periodo_fim,
                 'responsavel' => $contrato->responsavel,
+                'tipo_inflacao' => $contrato->inflacao_detalhes,
             ]);
 
             ClienteContrato::create([

@@ -51,7 +51,7 @@ class NotaEspelhoSeeder extends Seeder
                         'pedido_id' => $espelhoRecorrentePatrimonio->venda_id,
                         'item_pedido_id' => $espelhoRecorrentePatrimonio->pedido_id,
                         'item_definido_id' => $espelhoRecorrentePatrimonio->pedido_item_id,
-                        'deleted_at' => $espelhoRecorrentePatrimonio->deleted_at
+                        'deleted_at' => $espelhoRecorrentePatrimonio->deleted_at,
                     ]
                 );
             }

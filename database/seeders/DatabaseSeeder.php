@@ -50,6 +50,9 @@ class DatabaseSeeder extends Seeder
             ExpedicaoTipoSeeder::class,
             LancamentoFuturoSeeder::class,
             CobrancaSeeder::class,
+            ClienteProcessoSeeder::class,
+            NotaSerasaSeeder::class,
+            ReajusteContratoSeeder::class,
         ]);
     }
 }

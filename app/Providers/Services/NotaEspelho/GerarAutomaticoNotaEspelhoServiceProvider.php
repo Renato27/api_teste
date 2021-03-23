@@ -10,11 +10,11 @@ namespace App\Providers\Services\NotaEspelho;
 use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\NotaEspelhoRepository;
 use App\Repositories\Contracts\NotaPatrimonioRepository;
+use App\Repositories\Contracts\LancamentoFuturoRepository;
 use App\Repositories\Contracts\EspelhoRecorrenteRepository;
 use App\Repositories\Contracts\PatrimonioAlugadoRepository;
 use App\Repositories\Contracts\NotaEspelhoPatrimonioRepository;
 use App\Repositories\Contracts\EspelhoRecorrentePatrimonioRepository;
-use App\Repositories\Contracts\LancamentoFuturoRepository;
 use App\Services\NotaEspelho\GerarAutomaticoNotaEspelho\GerarAutomaticoNotaEspelhoService;
 use App\Services\NotaEspelho\GerarAutomaticoNotaEspelho\Contracts\GerarAutomaticoNotaEspelhoService as ContractsGerarAutomaticoNotaEspelhoService;
 

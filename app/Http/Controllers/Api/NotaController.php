@@ -1,14 +1,19 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
-use App\Http\Resources\ListaNotasFatura;
 use App\Models\Nota\Nota;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\NotaResource;
-use App\Services\Nota\GerarNota\Contracts\GerarNotaService;
+use App\Http\Resources\ListaNotasFatura;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Services\Nota\GerarNota\Contracts\GerarNotaService;
 
 class NotaController extends Controller
 {

@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\CobrancaEstado;
 
 use App\Models\CobrancaEstado\CobrancaEstado;

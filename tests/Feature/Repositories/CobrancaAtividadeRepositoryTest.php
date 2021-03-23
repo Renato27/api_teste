@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\CobrancaAtividadeRepository;
 
@@ -28,46 +31,36 @@ class CobrancaAtividadeRepositoryTest extends TestCase
 
     /**
      * Retorna CobrancaAtividade baseado no ID.
-     *
      */
     public function testGetCobrancaAtividade()
     {
-
     }
 
     /**
      * Retorna uma coleção de CobrancaAtividade baseado em uma associação.
-     *
      */
     public function testGetCobrancaAtividades()
     {
-
     }
 
     /**
-     * Cria um novo CobrancaAtividade
-     *
-     */    
+     * Cria um novo CobrancaAtividade.
+     */
     public function testCreateCobrancaAtividade()
     {
-
     }
 
     /**
-     * Atualiza um CobrancaAtividade
-     *
-     */ 
+     * Atualiza um CobrancaAtividade.
+     */
     public function testUpdateCobrancaAtividade()
     {
-
     }
 
     /**
-     * Deleta um CobrancaAtividade
-     *
-     */ 
+     * Deleta um CobrancaAtividade.
+     */
     public function testDeleteCobrancaAtividade()
     {
-
     }
 }

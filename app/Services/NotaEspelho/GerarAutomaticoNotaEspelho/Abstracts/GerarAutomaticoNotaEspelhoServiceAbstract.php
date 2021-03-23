@@ -63,7 +63,9 @@ abstract class GerarAutomaticoNotaEspelhoServiceAbstract extends GerarAutomatico
 
             $patrimonios_recorrentes = $this->espelho_recorrente_patrimonio_repository->getPatrimoniosByEspelhoRecorrente($espelho_do_dia->id);
 
-            if(count($patrimonios_recorrentes) < 1) continue;
+            if (count($patrimonios_recorrentes) < 1) {
+                continue;
+            }
 
             $dados = $this->getDadosEspelho($espelho_do_dia);
             $espelho = $this->NotaEspelhoRepository->createNotaEspelho($dados);
@@ -154,7 +156,7 @@ abstract class GerarAutomaticoNotaEspelhoServiceAbstract extends GerarAutomatico
 
         $valor_total = 0;
 
-        foreach($lancamentos as $lancamento){
+        foreach ($lancamentos as $lancamento) {
             dd($lancamento);
             $valor_total += $lancamento->quantidade * $lancamento->valor_unitario;
             $lancamento->nota_espelho_id = $nota_espelho->id;

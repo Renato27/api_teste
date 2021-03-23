@@ -7,9 +7,13 @@
 
 namespace App\Repositories;
 
+use App\Models\Clientes\cliente;
+use App\Models\Nota\Nota;
+use App\Models\NotaEstado\NotaEstado;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Contracts\ClienteRepository;
+use Carbon\CarbonImmutable;
 
 class ClienteRepositoryImplementation implements ClienteRepository
 {

@@ -9,9 +9,9 @@ namespace App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\Base;
 
 use App\Models\NotaEspelho\NotaEspelho;
 use App\Repositories\Contracts\ContratosRepository;
-use App\Repositories\Contracts\LancamentoFuturoRepository;
 use App\Repositories\Contracts\NotaEspelhoRepository;
 use App\Repositories\Contracts\NotaPatrimonioRepository;
+use App\Repositories\Contracts\LancamentoFuturoRepository;
 use App\Repositories\Contracts\PatrimonioAlugadoRepository;
 use App\Repositories\Contracts\NotaEspelhoPatrimonioRepository;
 use App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\Contracts\GerarAutomaticoMedicaoNotaEspelhoService;
@@ -174,6 +174,7 @@ abstract class GerarAutomaticoMedicaoNotaEspelhoServiceBase implements GerarAuto
     public function setLancamentoFuturoRepository(LancamentoFuturoRepository $lancamentoFuturoRepository) : GerarAutomaticoMedicaoNotaEspelhoService
     {
         $this->lancamentoFuturoRepository = $lancamentoFuturoRepository;
+
         return $this;
     }
 }

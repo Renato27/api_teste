@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Nota\GerarNota\Contracts;
 
 use App\Models\Nota\Nota;
@@ -13,7 +18,7 @@ interface GerarNotaService
      * @param Nota
      * @return GerarNotaService
      */
-    public function setNota(Nota $Nota): GerarNotaService;
+    public function setNota(Nota $Nota): self;
 
     /**
      * Seta os dados para Nota.
@@ -21,7 +26,7 @@ interface GerarNotaService
      * @param array $dados
      * @return GerarNotaService;
      */
-    public function setDados(array $dados): GerarNotaService;
+    public function setDados(array $dados): self;
 
     /**
      * Seta o repositório de NotaRepository.
@@ -29,12 +34,12 @@ interface GerarNotaService
      * @param NotaRepository $NotaRepository
      * @return GerarNotaService
      */
-    public function setNotaRepository(NotaRepository $NotaRepository): GerarNotaService;
+    public function setNotaRepository(NotaRepository $NotaRepository): self;
 
     /**
-     * Processa os dados
+     * Processa os dados.
      *
-     * @return boolean
+     * @return bool
      */
     public function handle(): ?Nota;
 }

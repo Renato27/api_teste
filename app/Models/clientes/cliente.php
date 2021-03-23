@@ -17,6 +17,9 @@ use App\Models\UsuarioCliente\UsuarioCliente;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\ClienteContrato\ClienteContrato;
 use App\Models\ClienteEndereco\ClienteEndereco;
+use App\Models\ClienteProcesso\ClienteProcesso;
+use App\Models\Nota\Nota;
+use App\Models\NotaSerasa\NotaSerasa;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class cliente extends Model
@@ -47,4 +50,20 @@ class cliente extends Model
     {
         return $this->belongsToMany(Usuario::class, UsuarioCliente::class, 'cliente_id', 'usuario_id')->withTimestamps();
     }
+
+    public function notas_serasa()
+    {
+        return $this->hasMany(NotaSerasa::class, 'cliente_id', 'id');
+    }
+
+    public function notas()
+    {
+        return $this->hasMany(Nota::class, 'cliente_id', 'id');
+    }
+
+    public function processo()
+    {
+        return $this->hasOne(ClienteProcesso::class, 'cliente_id', 'id');
+    }
+
 }

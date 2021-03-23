@@ -20,6 +20,10 @@ class NotaEstado extends Model
 
     protected $fillable = ['nome'];
 
+    const A_VENCER  = 1;
+    const VENCIDA   = 2;
+    const PAGA      = 3;
+
     public function notas()
     {
         return $this->hasMany(Nota::class, 'nota_estado_id', 'id');

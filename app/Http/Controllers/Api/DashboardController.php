@@ -7,44 +7,50 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Chamado\Chamado;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
-use App\Models\Cobranca\Cobranca;
-use App\Models\Nota\Nota;
-use App\Models\NotaEspelho\NotaEspelho;
+use App\Repositories\Contracts\NotaRepository;
+use App\Repositories\Contracts\ChamadoRepository;
+use App\Repositories\Contracts\ClienteRepository;
 use App\Repositories\Contracts\CobrancaRepository;
 use App\Repositories\Contracts\ContratosRepository;
-use Carbon\CarbonImmutable;
+use App\Repositories\Contracts\NotaEspelhoRepository;
+use App\Repositories\Contracts\NotaSerasaRepository;
+use App\Repositories\Contracts\ReajusteContratoRepository;
 
 class DashboardController extends Controller
 {
     public function index(ContratosRepository $contratosRepository)
     {
         $cobrancaRespository = app(CobrancaRepository::class);
-
+        $notaRepository = app(NotaRepository::class);
+        $notaEspelhoRepository = app(NotaEspelhoRepository::class);
+        $chamadoRepository = app(ChamadoRepository::class);
+        $notaSerasaRepository = app(NotaSerasaRepository::class);
+        $reajusteContratoRepository = app(ReajusteContratoRepository::class);
 
         $usuario = JWTAuth::parseToken()->authenticate();
 
         if ($usuario->tipo_usuario_id == 5) {
             $dados = [];
 
-            $dados['Chamados'] = Chamado::whereHas('status_chamado', function ($query) {
-                return $query->where('id', '<>', 5)->where('id', '<>', 6);
-            })->with(['cliente:id,nome_fantasia', 'tipo_chamado:id,nome'])
-            ->select('id', 'data_acao', 'mensagem', 'cliente_id', 'status_chamado_id', 'tipo_chamado_id', 'created_at')->get();
+            $dados['Chamados'] = $chamadoRepository->getChamadosDashboard();
 
-            $dados['Espelhos'] = NotaEspelho::whereHas('nota_espelho_estado', function ($query) {
-                return $query->whereIn('id', [1, 5]);
-            })->get();
+            $dados['Espelhos'] = $notaEspelhoRepository->getNotaEspelhos();
 
-            $dados['Notas'] = Nota::with(['cliente:id,nome_fantasia', 'nota_estado:id,nome', 'contrato:id,nome'])
-                ->select('id', 'data_emissao', 'data_vencimento', 'data_pagamento', 'periodo_inicio', 'periodo_fim','valor',
-                 'nota_estado_id', 'cliente_id', 'contrato_id')->get();
+            $dados['Notas'] = $notaRepository->getNotas();
 
             $dados['Cobrancas'] = $cobrancaRespository->getCobrancaMonitoramento();
 
             $dados['Contratos'] = $contratosRepository->getContratosAVencer();
+
+            $dados['Notas_Grafico'] = $notaRepository->getNotasGrafico();
+
+            $dados['Cliente_Serasa'] = $notaRepository->getClientesNotaVencidaAMais10dias();
+
+            $dados['Notas_Serasa'] = $notaSerasaRepository->getClienteNotasProtesto();
+
+            $dados['Reajuste_Contrato'] = $reajusteContratoRepository->reajusteVencimento();
 
             return response()->json($dados);
         }

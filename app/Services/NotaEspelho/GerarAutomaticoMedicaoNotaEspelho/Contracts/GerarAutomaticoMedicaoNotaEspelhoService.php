@@ -9,9 +9,9 @@ namespace App\Services\NotaEspelho\GerarAutomaticoMedicaoNotaEspelho\Contracts;
 
 use App\Models\NotaEspelho\NotaEspelho;
 use App\Repositories\Contracts\ContratosRepository;
-use App\Repositories\Contracts\LancamentoFuturoRepository;
 use App\Repositories\Contracts\NotaEspelhoRepository;
 use App\Repositories\Contracts\NotaPatrimonioRepository;
+use App\Repositories\Contracts\LancamentoFuturoRepository;
 use App\Repositories\Contracts\PatrimonioAlugadoRepository;
 use App\Repositories\Contracts\NotaEspelhoPatrimonioRepository;
 

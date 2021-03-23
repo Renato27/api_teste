@@ -1,22 +1,26 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Models\Cobranca\Cobranca;
-use App\Repositories\Contracts\CobrancaRepository;
 use Carbon\CarbonImmutable;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Cobranca\Cobranca;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\CobrancaRepository;
 
 class CobrancaRepositoryImplementation implements CobrancaRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna Cobranca baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getCobranca(int $id): ?Model
@@ -27,8 +31,8 @@ class CobrancaRepositoryImplementation implements CobrancaRepository
     /**
      * Retorna uma coleção de Cobranca baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getCobrancasByCliente(int $cliente): ?Collection
@@ -39,8 +43,8 @@ class CobrancaRepositoryImplementation implements CobrancaRepository
     /**
      * Retorna uma coleção de Cobranca baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getCobrancasByUsuario(int $usuario): ?Collection
@@ -49,7 +53,7 @@ class CobrancaRepositoryImplementation implements CobrancaRepository
     }
 
     /**
-     * Cria um novo Cobranca
+     * Cria um novo Cobranca.
      *
      * @param array $detalhes
      * @return Model|null
@@ -60,7 +64,7 @@ class CobrancaRepositoryImplementation implements CobrancaRepository
     }
 
     /**
-     * Atualiza um Cobranca
+     * Atualiza um Cobranca.
      *
      * @param int $id
      * @param array $detalhes
@@ -72,7 +76,7 @@ class CobrancaRepositoryImplementation implements CobrancaRepository
     }
 
     /**
-     * Deleta um Cobranca
+     * Deleta um Cobranca.
      *
      * @param int $id
      * @param array $detalhes
@@ -99,11 +103,11 @@ class CobrancaRepositoryImplementation implements CobrancaRepository
         return Cobranca::whereHas('atividades')
             ->whereHas('notas')
             ->with('cliente:id,nome_fantasia')
-            ->with('notas', function($query){
+            ->with('notas', function ($query) {
                 $query->select('nota_id');
             })
             ->withCount('atividades')
-            ->withCount(['atividades', 'atividades as atividades_hoje' => function($query2){
+            ->withCount(['atividades', 'atividades as atividades_hoje' => function ($query2) {
                 $query2->whereDate('created_at', CarbonImmutable::today()->format('Y-m-d'));
             }])
             ->where('cobranca_estado_id', 1)

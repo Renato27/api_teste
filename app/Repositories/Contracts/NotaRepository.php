@@ -7,6 +7,7 @@
 
 namespace App\Repositories\Contracts;
 
+use App\Models\Nota\Nota;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,13 +22,13 @@ interface NotaRepository
     public function getNota(int $id): ?Model;
 
     /**
-     * Retorna uma coleção de Nota baseado em uma associação.
+     * Retorna uma coleção de Notas.
      *
      * @param int $id
      * @param int $segundo_recurso
      * @return Model|null
      */
-    public function getNotas(int $id, int $associacao): ?Collection;
+    public function getNotas(): ?Collection;
 
     /**
      * Cria um novo Nota.
@@ -54,4 +55,19 @@ interface NotaRepository
      * @return Model|null
      */
     public function deleteNota(int $id): bool;
+
+    /**
+     * Retorna os dados para gerar um gráfico de monitoramento das notas do mês.
+     *
+     * @return array|null
+     */
+    public function getNotasGrafico(): ?array;
+
+     /**
+	 * Retorna os clientes com notas vencidas a mais de 10 dias
+	 *
+	 * @param integer|null $cliente
+	 * @return Collection|null
+	 */
+	public function getClientesNotaVencidaAMais10dias(?int $cliente = null) : ?Collection;
 }

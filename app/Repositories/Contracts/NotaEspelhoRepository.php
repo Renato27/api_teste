@@ -21,13 +21,13 @@ interface NotaEspelhoRepository
     public function getNotaEspelho(int $id): ?Model;
 
     /**
-     * Retorna uma coleção de NotaEspelho baseado em uma associação.
+     * Retorna uma coleção de NotaEspelho.
      *
      * @param int $id
      * @param int $segundo_recurso
      * @return Model|null
      */
-    public function getNotaEspelhos(int $id, int $associacao): ?Collection;
+    public function getNotaEspelhos(): ?Collection;
 
     /**
      * Cria um novo NotaEspelho.

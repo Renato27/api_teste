@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers\Services\Nota;
 
-use App\Repositories\Contracts\NotaRepository;
-use App\Services\Nota\GerarNota\Contracts\GerarNotaService as ContractsGerarNotaService;
-use App\Services\Nota\GerarNota\GerarNotaService;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Contracts\NotaRepository;
+use App\Services\Nota\GerarNota\GerarNotaService;
+use App\Services\Nota\GerarNota\Contracts\GerarNotaService as ContractsGerarNotaService;
 
 class GerarNotaServiceProvider extends ServiceProvider
 {
