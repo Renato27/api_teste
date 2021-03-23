@@ -38,7 +38,8 @@ class CobrancaSeeder extends Seeder
                 'descricao' => $cobranca->descricao,
                 'usuario_id' => $cobranca->usuario_id,
                 'cliente_id' => $cobranca->cliente_id,
-                'cobranca_estado_id' => $cobranca->cliente_cobranca_estado_id
+                'cobranca_estado_id' => $cobranca->cliente_cobranca_estado_id,
+                'created_at'        => $cobranca->created_at
             ]);
         }
 
@@ -52,7 +53,8 @@ class CobrancaSeeder extends Seeder
                 'responsavel'   => $atividade->responsavel,
                 'detalhes'      => $atividade->detalhes,
                 'cobranca_id'   => $atividade->cliente_cobranca_id,
-                'usuario_id'    => $atividade->usuario_id
+                'usuario_id'    => $atividade->usuario_id,
+                'created_at'        => $atividade->created_at
             ]);
         }
 

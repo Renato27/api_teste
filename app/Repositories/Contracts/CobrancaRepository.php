@@ -22,7 +22,16 @@ interface CobrancaRepository
      * @param integer $segundo_recurso
      * @return Model|null
      */
-    public function getCobrancas(int $id, int $associacao): ?Collection;
+    public function getCobrancasByCliente(int $cliente): ?Collection;
+
+    /**
+     * Retorna uma coleção de Cobranca baseado em uma associação.
+     *
+     * @param integer $id
+     * @param integer $segundo_recurso
+     * @return Model|null
+     */
+    public function getCobrancasByUsuario(int $usuario): ?Collection;
 
     /**
      * Cria um novo Cobranca
@@ -50,5 +59,10 @@ interface CobrancaRepository
      */
     public function deleteCobranca(int $id): bool;
 
+    /**
+     * Retorna as cobrancas para a dashboard de gestão.
+     *
+     * @return Collection|null
+     */
     public function getCobrancaMonitoramento() : ?Collection;
 }

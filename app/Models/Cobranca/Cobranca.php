@@ -36,7 +36,7 @@ class Cobranca extends Model
 
     public function atividades()
     {
-        return $this->hasMany(CobrancaAtividade::class, 'cliente_cobranca_id', 'id');
+        return $this->hasMany(CobrancaAtividade::class, 'cobranca_id', 'id');
     }
 
     public function notas()

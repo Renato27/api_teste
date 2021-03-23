@@ -156,5 +156,11 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\NotaRepository::class, function ($app) {
             return new \App\Repositories\NotaRepositoryImplementation(new \App\Models\Nota\Nota());
         });
+        $this->app->bind(\App\Repositories\Contracts\CobrancaRepository::class, function ($app) {
+            return new \App\Repositories\CobrancaRepositoryImplementation(new \App\Models\Cobranca\Cobranca());
+        });
+        $this->app->bind(\App\Repositories\Contracts\CobrancaAtividadeRepository::class, function ($app) {
+            return new \App\Repositories\CobrancaAtividadeRepositoryImplementation(new \App\Models\CobrancaAtividade\CobrancaAtividade());
+        });
     }
 }

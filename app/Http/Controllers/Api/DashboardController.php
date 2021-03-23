@@ -13,12 +13,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Cobranca\Cobranca;
 use App\Models\Nota\Nota;
 use App\Models\NotaEspelho\NotaEspelho;
+use App\Repositories\Contracts\CobrancaRepository;
 use App\Repositories\Contracts\ContratosRepository;
+use Carbon\CarbonImmutable;
 
 class DashboardController extends Controller
 {
     public function index(ContratosRepository $contratosRepository)
     {
+        $cobrancaRespository = app(CobrancaRepository::class);
+
+
         $usuario = JWTAuth::parseToken()->authenticate();
 
         if ($usuario->tipo_usuario_id == 5) {
@@ -37,13 +42,7 @@ class DashboardController extends Controller
                 ->select('id', 'data_emissao', 'data_vencimento', 'data_pagamento', 'periodo_inicio', 'periodo_fim','valor',
                  'nota_estado_id', 'cliente_id', 'contrato_id')->get();
 
-            $dados['Cobrancas'] = Cobranca::whereHas('atividades', function($query){
-                return $query->count();
-            })->whereHas('notas', function($query2){
-                return $query2->select('id');
-            })->with(['cliente:id,nome_fantasia', 'nota:id'])
-            ->get();
-
+            $dados['Cobrancas'] = $cobrancaRespository->getCobrancaMonitoramento();
 
             $dados['Contratos'] = $contratosRepository->getContratosAVencer();
 
