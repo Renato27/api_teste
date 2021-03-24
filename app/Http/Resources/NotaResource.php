@@ -20,17 +20,19 @@ class NotaResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'data_emissao' => $this->data_emissao,
-            'data_vencimento' => $this->data_vencimento,
-            'periodo_inicio' => $this->periodo_inicio,
-            'periodo_fim' => $this->periodo_fim,
-            'descricao' => $this->descricao,
-            'valor' => $this->valor,
-            'nota_estado' => $this->nota_estado->nome,
-            'cliente' => new ClienteResource($this->cliente),
-            'contrato' => $this->contrato->nome,
-            'patrimonios' => NotaPatrimonioResource::collection($this->patrimonios),
+            'id' => $this[0]->id,
+            'data_emissao' => $this[0]->data_emissao,
+            'data_vencimento' => $this[0]->data_vencimento,
+            'periodo_inicio' => $this[0]->periodo_inicio,
+            'periodo_fim' => $this[0]->periodo_fim,
+            'descricao' => $this[0]->descricao,
+            'valor' => $this[0]->valor,
+            'nota_estado' => $this[0]->nota_estado->nome,
+            'cliente' => new ClienteResource($this[0]->cliente),
+            'endereco' => $this[1][0]->endereco,
+            'telefone' => $this[2]->contato->telefone,
+            'contrato' => $this[0]->contrato->nome,
+            'patrimonios' => NotaPatrimonioResource::collection($this[0]->patrimonios),
         ];
     }
 }
