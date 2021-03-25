@@ -133,11 +133,49 @@ class ChamadoRepositoryImplementation implements ChamadoRepository
      *
      * @return Collection|null
      */
-    public function getChamadosDashboard() : ?Collection
+    public function getChamadosDashboardGestao() : ?Collection
     {
         return Chamado::whereHas('status_chamado', function ($query) {
             return $query->where('id', '<>', 5)->where('id', '<>', 6);
         })->with(['cliente:id,nome_fantasia', 'tipo_chamado:id,nome'])
         ->select('id', 'data_acao', 'mensagem', 'cliente_id', 'status_chamado_id', 'tipo_chamado_id', 'created_at')->get();
+    }
+
+    /**
+     * Retorna uma coleção de chamados para a dashboard.
+     *
+     * @return Collection|null
+     */
+    public function getChamadosDashboardSuporteNivel2(?int $usuario = null) : ?Collection
+    {
+
+        if(is_null($usuario)){
+            return Chamado::whereHas('status_chamado', function ($query) {
+                return $query->where('id', 1);
+            })->with(['cliente:id,nome_fantasia', 'tipo_chamado:id,nome'])
+            ->select('id', 'cliente_id', 'tipo_chamado_id')->get();
+        }
+
+        return Chamado::whereHas('status_chamado', function ($query) {
+            return $query->where('id', 1);
+        })
+        ->where('usuario_id', $usuario)
+        ->with(['cliente:id,nome_fantasia', 'tipo_chamado:id,nome'])
+        ->select('id', 'cliente_id', 'tipo_chamado_id')->get();
+    }
+
+    /**
+     * Retorna os chamados para dashboard de assistente.
+     *
+     * @return Collection|null
+     */
+    public function getChamadosDashboardAssistente() : ?Collection
+    {
+        return Chamado::doesntHave('arquivos')
+            ->where('status_chamado_id', 2)
+            ->where('tipo_chamado_id', '<>', 7)
+            ->with(['cliente:id,nome_fantasia', 'tipo_chamado:id,nome'])
+            ->select('id', 'cliente_id', 'tipo_chamado_id')
+            ->get();
     }
 }

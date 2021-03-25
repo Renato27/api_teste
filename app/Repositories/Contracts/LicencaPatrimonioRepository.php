@@ -54,4 +54,11 @@ interface LicencaPatrimonioRepository
      * @return Model|null
      */
     public function deleteLicencaPatrimonio(int $id): bool;
+
+    /**
+     * Retorna as licenças para desvincular do patrimônio.
+     *
+     * @return Collection|null
+     */
+    public function getLicencasRetirar() : ?Collection;
 }

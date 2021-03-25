@@ -17,6 +17,7 @@ use App\Models\Contador\Contador;
 use App\Models\Endereco\Endereco;
 use App\Models\Retirada\Retirada;
 use App\Models\Auditoria\Auditoria;
+use App\Models\ChamadoArquivo\ChamadoArquivo;
 use App\Models\Corretiva\Corretiva;
 use App\Models\Preventiva\Preventiva;
 use App\Models\TipoChamado\TipoChamado;
@@ -107,5 +108,10 @@ class Chamado extends Model
     public function cliente()
     {
         return $this->belongsTo(Cliente::class, 'cliente_id');
+    }
+
+    public function arquivos()
+    {
+        return $this->hasMany(ChamadoArquivo::class, 'chamado_id', 'id');
     }
 }

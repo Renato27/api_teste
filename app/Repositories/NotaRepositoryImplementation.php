@@ -150,4 +150,21 @@ class NotaRepositoryImplementation implements NotaRepository
         ->with('cliente:id,nome_fantasia')
         ->select('id','data_vencimento', 'cliente_id')->get();
 	}
+
+    /**
+     * Undocumented function
+     *
+     * @return Collection|null
+     */
+    public function notasVencidas7Dias() : ?Collection
+    {
+        $hoje = CarbonImmutable::today()->format('Y-m-d');
+        $menos_7_dias = CarbonImmutable::today()->subDays(7)->format('Y-m-d');
+
+        return Nota::where('nota_estado_id', 2)
+            ->whereBetween('data_vencimento', [$menos_7_dias, $hoje])
+            ->with('cliente:id,nome_fantasia')
+            ->select('id', 'cliente_id', 'valor', 'data_vencimento')
+            ->get();
+    }
 }
