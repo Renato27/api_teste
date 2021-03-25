@@ -85,22 +85,6 @@ class ReajusteContratoRepositoryImplementation implements ReajusteContratoReposi
      */
     public function reajusteVencimento(): ?Collection
     {
-
-        // $reajusteVencimento = [];
-        // $reajustesProximos = \App\ReajusteContrato::where('atualizado', 1)->get();
-        // foreach ($reajustesProximos as $reajusteProximo) {
-        //     if(!is_null($reajusteProximo->data_final)){
-        //         $data = Carbon::parse($reajusteProximo->data_final);
-        //         $hoje = Carbon::today();
-        //         $diferencaDias = $hoje->diffInDays($data, false);
-        //         if($hoje->format('Y-m') >= $data->subMonthNoOverflow()->format('Y-m')){
-        //             $reajusteVencimento['viewProximosReajuste'][] = $reajusteProximo;
-        //             $reajusteVencimento['diasRestantes'][] = $diferencaDias;
-        //         }
-        //     }
-        // }
-        // return $reajusteVencimento;
-
         return ReajusteContrato::whereNotNull('data_final')
         ->whereMonth('data_final', '<=', CarbonImmutable::today()->addMonthNoOverflow()->format('m'))
         ->whereYear('data_final', '<=', CarbonImmutable::today()->addMonthNoOverflow()->format('Y'))

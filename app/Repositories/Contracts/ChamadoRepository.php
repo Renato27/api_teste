@@ -96,5 +96,19 @@ interface ChamadoRepository
      *
      * @return Collection|null
      */
-    public function getChamadosDashboard() : ?Collection;
+    public function getChamadosDashboardGestao() : ?Collection;
+
+     /**
+     * Retorna uma coleção de chamados para a dashboard.
+     *
+     * @return Collection|null
+     */
+    public function getChamadosDashboardSuporteNivel2(?int $usuario = null) : ?Collection;
+
+     /**
+     * Retorna os chamados para dashboard de assistente.
+     *
+     * @return Collection|null
+     */
+    public function getChamadosDashboardAssistente() : ?Collection;
 }

@@ -7,6 +7,7 @@
 
 namespace App\Repositories;
 
+use App\Models\LicencaPatrimonio\LicencaPatrimonio;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Contracts\LicencaPatrimonioRepository;
@@ -77,5 +78,18 @@ class LicencaPatrimonioRepositoryImplementation implements LicencaPatrimonioRepo
         }
 
         return true;
+    }
+
+     /**
+     * Retorna as licenças para desvincular do patrimônio.
+     *
+     * @return Collection|null
+     */
+    public function getLicencasRetirar() : ?Collection
+    {
+        return LicencaPatrimonio::where('retirar_licenca', 1)
+            ->with(['patrimonio:id,numero_patrimonio', 'licenca:id,email'])
+            ->select('id', 'host_name', 'patrimonio_id', 'licenca_id')
+            ->get();
     }
 }

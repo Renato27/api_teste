@@ -168,5 +168,11 @@ class RepositoryProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\ReajusteContratoRepository::class, function ($app) {
             return new \App\Repositories\ReajusteContratoRepositoryImplementation(new \App\Models\ReajusteContrato\ReajusteContrato());
         });
+        $this->app->bind(\App\Repositories\Contracts\LicencaRepository::class, function ($app) {
+            return new \App\Repositories\LicencaRepositoryImplementation(new \App\Models\Licenca\Licenca());
+        });
+        $this->app->bind(\App\Repositories\Contracts\LicencaPatrimonioRepository::class, function ($app) {
+            return new \App\Repositories\LicencaPatrimonioRepositoryImplementation(new \App\Models\LicencaPatrimonio\LicencaPatrimonio());
+        });
     }
 }

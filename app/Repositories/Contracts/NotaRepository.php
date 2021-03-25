@@ -70,4 +70,11 @@ interface NotaRepository
 	 * @return Collection|null
 	 */
 	public function getClientesNotaVencidaAMais10dias(?int $cliente = null) : ?Collection;
+
+     /**
+     * Undocumented function
+     *
+     * @return Collection|null
+     */
+    public function notasVencidas7Dias() : ?Collection;
 }
