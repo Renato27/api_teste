@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Services\{referencia_service}\{acao_service};
+
+use App\Services\{referencia_service}\{acao_service}\Abstracts\{service_name}Abstract;
+
+class {service_name} extends {service_name}Abstract
+{
+    /**
+     * Processa os dados
+     *
+     * @return boolean
+     */
+    public function handle(): bool
+    {
+
+    }
+}

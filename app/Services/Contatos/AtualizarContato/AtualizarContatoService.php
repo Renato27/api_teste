@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Contatos\AtualizarContato;
 
 use App\Models\Contato\Contato;
@@ -17,8 +22,7 @@ class AtualizarContatoService extends AtualizarContatoServiceAbstract
     {
         $contato = null;
 
-        DB::transaction(function() use(&$contato){
-            
+        DB::transaction(function () use (&$contato) {
             $contato = $this->atualizarContato();
         });
 

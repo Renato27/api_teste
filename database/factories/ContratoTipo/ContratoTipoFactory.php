@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\ContratoTipo;
 
 use App\Models\ContratoTipo\ContratoTipo;
@@ -22,7 +27,7 @@ class ContratoTipoFactory extends Factory
     public function definition()
     {
         return [
-            'nome'          => $this->faker->name()
+            'nome' => $this->faker->name(),
         ];
     }
 }

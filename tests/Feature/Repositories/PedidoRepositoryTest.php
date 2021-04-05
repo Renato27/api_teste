@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\Pedido\Pedido;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Pedido\Pedido;
 use App\Repositories\Contracts\PedidoRepository;
 use App\Repositories\PedidoRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class PedidoRepositoryTest extends TestCase
 
     /**
      * Retorna Pedido baseado no ID.
-     *
      */
     public function testGetPedido()
     {
@@ -49,7 +51,7 @@ class PedidoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de Pedido baseado em uma associação.
-     * ( Inativo no momento, retornando todos os valores da tabela, não necessário teste até o atual momento)
+     * ( Inativo no momento, retornando todos os valores da tabela, não necessário teste até o atual momento).
      */
     // public function testGetPedidos()
     // {
@@ -57,15 +59,14 @@ class PedidoRepositoryTest extends TestCase
     // }
 
     /**
-     * Cria um novo Pedido
-     *
+     * Cria um novo Pedido.
      */
     public function testCreatePedido()
     {
         $pedido = \App\Models\Pedido\Pedido::factory()->make();
         $detalhes = [
-            'data_entrega'          => $pedido->data_entrega,
-            'data_retirada'         => $pedido->data_retirada
+            'data_entrega' => $pedido->data_entrega,
+            'data_retirada' => $pedido->data_retirada,
         ];
 
         $retorno = $this->implementacao->createPedido($detalhes);
@@ -74,15 +75,14 @@ class PedidoRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um Pedido
-     *
+     * Atualiza um Pedido.
      */
     public function testUpdatePedido()
     {
         $pedido = \App\Models\Pedido\Pedido::factory()->create();
         $detalhes = [
-            'data_entrega'          => $pedido->data_entrega,
-            'data_retirada'         => $pedido->data_retirada
+            'data_entrega' => $pedido->data_entrega,
+            'data_retirada' => $pedido->data_retirada,
         ];
 
         $retorno = $this->implementacao->updatePedido($pedido->id, $detalhes);
@@ -91,8 +91,7 @@ class PedidoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um Pedido
-     *
+     * Deleta um Pedido.
      */
     public function testDeletePedido()
     {

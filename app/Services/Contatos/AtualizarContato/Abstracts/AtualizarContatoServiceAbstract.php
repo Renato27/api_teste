@@ -1,15 +1,19 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Contatos\AtualizarContato\Abstracts;
 
+use Exception;
 use App\Models\Contato\Contato;
 use App\Repositories\Contracts\ContatoRepository;
 use App\Services\Contatos\AtualizarContato\Contracts\AtualizarContatoService;
-use Exception;
 
 abstract class AtualizarContatoServiceAbstract implements AtualizarContatoService
 {
-
     /**
      * Dados a serem atualizados.
      *
@@ -20,7 +24,7 @@ abstract class AtualizarContatoServiceAbstract implements AtualizarContatoServic
     /**
      * ID do contato.
      *
-     * @var integer
+     * @var int
      */
     protected int $contato;
 
@@ -31,10 +35,10 @@ abstract class AtualizarContatoServiceAbstract implements AtualizarContatoServic
      */
     protected ContatoRepository $contatoRepository;
 
-     /**
+    /**
      * Seta um contato a ser atualizado.
      *
-     * @param integer $contato
+     * @param int $contato
      * @return AtualizarContatoService
      */
     public function setContato(int $contato) : AtualizarContatoService
@@ -79,14 +83,16 @@ abstract class AtualizarContatoServiceAbstract implements AtualizarContatoServic
     {
         $contato = $this->contatoRepository->getContato($this->contato);
 
-        if(!isset($contato->id))
-            throw new Exception("O contato solicitado para atualização não existe");
+        if (! isset($contato->id)) {
+            throw new Exception('O contato solicitado para atualização não existe');
+        }
 
         $contatoAtualizado = $this->contatoRepository->updateContato($contato->id, $this->dados);
-        
-        if(!isset($contatoAtualizado->id))
-            throw new Exception("Não foi possivel atualizar o contato solicitado. Revise os dados e tente novamente");
 
-        return $contatoAtualizado;    
+        if (! isset($contatoAtualizado->id)) {
+            throw new Exception('Não foi possivel atualizar o contato solicitado. Revise os dados e tente novamente');
+        }
+
+        return $contatoAtualizado;
     }
 }

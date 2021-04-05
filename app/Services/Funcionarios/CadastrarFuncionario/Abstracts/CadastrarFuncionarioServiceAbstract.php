@@ -1,17 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Funcionarios\CadastrarFuncionario\Abstracts;
 
+use Exception;
 use App\Models\Funcionario\Funcionario;
 use App\Repositories\Contracts\FuncionarioRepository;
 use App\Services\Funcionarios\CadastrarFuncionario\Contracts\CadastrarFuncionarioService;
-use Exception;
 
 abstract class CadastrarFuncionarioServiceAbstract implements CadastrarFuncionarioService
 {
-
     /**
-     * Dados a serem cadastrados;
+     * Dados a serem cadastrados;.
      *
      * @var array
      */
@@ -33,8 +37,8 @@ abstract class CadastrarFuncionarioServiceAbstract implements CadastrarFuncionar
     public function setDados(array $dados) : CadastrarFuncionarioService
     {
         $dadosContato = [
-            'nome'      => $dados['nome'],
-            'cargo'     => $dados['cargo'],
+            'nome' => $dados['nome'],
+            'cargo' => $dados['cargo'],
         ];
 
         $this->dados = $dadosContato;
@@ -64,8 +68,9 @@ abstract class CadastrarFuncionarioServiceAbstract implements CadastrarFuncionar
     {
         $funcionarioCadastrado = $this->funcionarioRepository->createFuncionario($this->dados);
 
-        if(!isset($funcionarioCadastrado->id))
-            throw new Exception("Não foi possível cadastrar o funcionario. Verifique os dados e tente novamente.");
+        if (! isset($funcionarioCadastrado->id)) {
+            throw new Exception('Não foi possível cadastrar o funcionario. Verifique os dados e tente novamente.');
+        }
 
         return $funcionarioCadastrado;
     }

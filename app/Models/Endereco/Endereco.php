@@ -1,22 +1,27 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\Endereco;
 
+use App\Models\Clientes\Cliente;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\ClienteEndereco\ClienteEndereco;
 use App\Models\ContatoEnderecos\ContatoEnderecos;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Endereco extends Model
 {
     use HasFactory;
-
     use SoftDeletes;
 
     protected $date = ['deleted_at'];
 
-    protected $fillable = ['rua', 'numero', 'bairro', 'complemento', 'cidade', 'estado', 'cep'];
+    protected $fillable = ['rua', 'numero', 'bairro', 'complemento', 'cidade', 'estado', 'cep', 'principal'];
 
     public function contatos()
     {
@@ -25,6 +30,6 @@ class Endereco extends Model
 
     public function cliente()
     {
-        return $this->hasOne(ClienteEndereco::class, 'endereco_id', 'id');
+        return $this->hasOneThrough(Cliente::class, ClienteEndereco::class, 'endereco_id', 'id', 'id', 'cliente_id');
     }
 }

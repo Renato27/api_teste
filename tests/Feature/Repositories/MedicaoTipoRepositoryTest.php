@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\MedicaoTipo\MedicaoTipo;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\MedicaoTipo\MedicaoTipo;
 use App\Repositories\Contracts\MedicaoTipoRepository;
 use App\Repositories\MedicaoTipoRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class MedicaoTipoRepositoryTest extends TestCase
 
     /**
      * Retorna MedicaoTipo baseado no ID.
-     *
      */
     public function testGetMedicaoTipo()
     {
@@ -49,7 +51,7 @@ class MedicaoTipoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de MedicaoTipo baseado em uma associação.
-     *  (Inativo, não necessário a implementação do teste até o atual momento)
+     *  (Inativo, não necessário a implementação do teste até o atual momento).
      */
     // public function testGetMedicaoTipos()
     // {
@@ -57,30 +59,28 @@ class MedicaoTipoRepositoryTest extends TestCase
     // }
 
     /**
-     * Cria um novo MedicaoTipo
-     *
+     * Cria um novo MedicaoTipo.
      */
     public function testCreateMedicaoTipo()
     {
         $medicaoTipo = \App\Models\MedicaoTipo\MedicaoTipo::factory()->make();
         $detalhes = [
-            'nome'          => $medicaoTipo->nome
+            'nome' => $medicaoTipo->nome,
         ];
 
         $retorno = $this->implementacao->createMedicaoTipo($detalhes);
 
-        $this->assertEquals($medicaoTipo->id ,$retorno->Id);
+        $this->assertEquals($medicaoTipo->id, $retorno->Id);
     }
 
     /**
-     * Atualiza um MedicaoTipo
-     *
+     * Atualiza um MedicaoTipo.
      */
     public function testUpdateMedicaoTipo()
     {
         $medicaoTipo = \App\Models\MedicaoTipo\MedicaoTipo::factory()->create();
         $detalhes = [
-            'nome'          => $medicaoTipo->nome
+            'nome' => $medicaoTipo->nome,
         ];
 
         $retorno = $this->implementacao->updateMedicaoTipo($medicaoTipo->id, $detalhes);
@@ -89,8 +89,7 @@ class MedicaoTipoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um MedicaoTipo
-     *
+     * Deleta um MedicaoTipo.
      */
     public function testDeleteMedicaoTipo()
     {
@@ -99,6 +98,5 @@ class MedicaoTipoRepositoryTest extends TestCase
         $retorno = $this->implementacao->deleteMedicaoTipo($medicaoTipo->id);
 
         $this->assertDeleted($medicaoTipo, [$retorno]);
-
     }
 }

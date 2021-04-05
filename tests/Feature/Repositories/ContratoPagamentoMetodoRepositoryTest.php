@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\ContratoPagamentoMetodo\ContratoPagamentoMetodo;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\ContratoPagamentoMetodo\ContratoPagamentoMetodo;
 use App\Repositories\Contracts\ContratoPagamentoMetodoRepository;
 use App\Repositories\ContratoPagamentoMetodoRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class ContratoPagamentoMetodoRepositoryTest extends TestCase
 
     /**
      * Retorna ContratoPagamentoMetodo baseado no ID.
-     *
      */
     public function testGetContratoPagamentoMetodo()
     {
@@ -55,7 +57,6 @@ class ContratoPagamentoMetodoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de ContratoPagamentoMetodo baseado em uma associação.
-     *
      */
     public function testGetContratoPagamentoMetodos()
     {
@@ -79,8 +80,7 @@ class ContratoPagamentoMetodoRepositoryTest extends TestCase
     }
 
     /**
-     * Cria um novo ContratoPagamentoMetodo
-     *
+     * Cria um novo ContratoPagamentoMetodo.
      */
     public function testCreateContratoPagamentoMetodo()
     {
@@ -88,8 +88,8 @@ class ContratoPagamentoMetodoRepositoryTest extends TestCase
         $pagamentoMetodo = \App\Models\PagamentoMetodo\PagamentoMetodo::factory()->create();
         $contrato = \App\Models\Contratos\Contrato::factory()->create();
         $detalhes = [
-            'contrato_id'          => $contrato->id,
-            'pagamento_metodo_id'  => $pagamentoMetodo->id
+            'contrato_id' => $contrato->id,
+            'pagamento_metodo_id' => $pagamentoMetodo->id,
         ];
 
         $retorno = $this->implementacao->createContratoPagamentoMetodo($detalhes);
@@ -98,8 +98,7 @@ class ContratoPagamentoMetodoRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um ContratoPagamentoMetodo
-     *
+     * Atualiza um ContratoPagamentoMetodo.
      */
     public function testUpdateContratoPagamentoMetodo()
     {
@@ -107,8 +106,8 @@ class ContratoPagamentoMetodoRepositoryTest extends TestCase
         $pagamentoMetodo = \App\Models\PagamentoMetodo\PagamentoMetodo::factory()->create();
         $contrato = \App\Models\Contratos\Contrato::factory()->create();
         $detalhes = [
-            'contrato_id'          => $contrato->id,
-            'pagamento_metodo_id'  => $pagamentoMetodo->id
+            'contrato_id' => $contrato->id,
+            'pagamento_metodo_id' => $pagamentoMetodo->id,
         ];
 
         $retorno = $this->implementacao->updateContratoPagamentoMetodo($contratoPagamentoMetodo->id, $detalhes);
@@ -117,8 +116,7 @@ class ContratoPagamentoMetodoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um ContratoPagamentoMetodo
-     *
+     * Deleta um ContratoPagamentoMetodo.
      */
     public function testDeleteContratoPagamentoMetodo()
     {

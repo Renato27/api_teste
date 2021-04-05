@@ -1,15 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\TipoContrato\TipoContrato;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\TipoContrato\TipoContrato;
 use App\Repositories\Contracts\TipoContratoRepository;
 use App\Repositories\TipoContratoRepositoryImplementation;
-use FactoryClass;
-use Faker\Factory;
 
 class TipoContratoRepositoryTest extends TestCase
 {
@@ -38,7 +39,6 @@ class TipoContratoRepositoryTest extends TestCase
 
     /**
      * Retorna TipoContrato baseado no ID.
-     *
      */
     public function testGetTipoContrato()
     {
@@ -63,7 +63,6 @@ class TipoContratoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de TipoContrato baseado em uma associação.
-     *
      */
     public function testGetTipoContratos()
     {
@@ -87,8 +86,7 @@ class TipoContratoRepositoryTest extends TestCase
     }
 
     /**
-     * Cria um novo TipoContrato
-     *
+     * Cria um novo TipoContrato.
      */
     public function testCreateTipoContrato()
     {
@@ -97,8 +95,8 @@ class TipoContratoRepositoryTest extends TestCase
         $contratoTipo = \App\Models\ContratoTipo\ContratoTipo::factory()->create();
 
         $detalhes = [
-            'contrato_id'           => $contrato->id,
-            'contrato_tipo_id'      => $contratoTipo->id
+            'contrato_id' => $contrato->id,
+            'contrato_tipo_id' => $contratoTipo->id,
         ];
 
         $retorno = $this->implementacao->createTipoContrato($detalhes);
@@ -107,12 +105,11 @@ class TipoContratoRepositoryTest extends TestCase
         $tipoContrato->contrato_tipo_id = $contratoTipo->id;
         $tipoContrato->save();
 
-        $this->assertEquals($tipoContrato->id-1, $retorno->id);
+        $this->assertEquals($tipoContrato->id - 1, $retorno->id);
     }
 
     /**
-     * Atualiza um TipoContrato
-     *
+     * Atualiza um TipoContrato.
      */
     public function testUpdateTipoContrato()
     {
@@ -121,8 +118,8 @@ class TipoContratoRepositoryTest extends TestCase
         $contratoTipo = \App\Models\ContratoTipo\ContratoTipo::factory()->create();
 
         $detalhes = [
-            'contrato_id'           => $contrato->id,
-            'contrato_tipo_id'      => $contratoTipo->id
+            'contrato_id' => $contrato->id,
+            'contrato_tipo_id' => $contratoTipo->id,
         ];
 
         $retorno = $this->implementacao->updateTipoContrato($tipoContrato->id, $detalhes);
@@ -131,15 +128,13 @@ class TipoContratoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um TipoContrato
-     *
+     * Deleta um TipoContrato.
      */
     public function testDeleteTipoContrato()
     {
         $tipoContrato = \App\Models\TipoContrato\TipoContrato::factory()->create();
         $contrato = \App\Models\Contratos\Contrato::factory()->create();
         $contratoTipo = \App\Models\ContratoTipo\ContratoTipo::factory()->create();
-
 
         $tipoContrato->contrato_id = $contrato->id;
         $tipoContrato->contrato_tipo_id = $contratoTipo->id;

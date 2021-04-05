@@ -1,12 +1,17 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Pedidos\AtualizarPedido;
 
 use App\Models\Pedido\Pedido;
-use App\Services\Pedidos\AtualizarPedido\Abstracts\AtualizarPedidoServiceAbstract;
 use Illuminate\Support\Facades\DB;
+use App\Services\Pedidos\AtualizarPedido\Abstracts\AtualizarPedidoServiceAbstract;
 
-class AtualizarPedidoService extends AtualizarPedidoServiceAbstract
+final class AtualizarPedidoService extends AtualizarPedidoServiceAbstract
 {
     /**
      * Processa a atualização do pedido.
@@ -17,8 +22,7 @@ class AtualizarPedidoService extends AtualizarPedidoServiceAbstract
     {
         $pedido = null;
 
-        DB::transaction(function() use(&$pedido){
-
+        DB::transaction(function () use (&$pedido) {
             $pedido = $this->atualizarPedido();
         });
 

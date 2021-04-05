@@ -1,8 +1,13 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateContatosTable extends Migration
 {
@@ -19,6 +24,7 @@ class CreateContatosTable extends Migration
             $table->string('cargo')->nullable();
             $table->string('telefone')->nullable();
             $table->string('celular')->nullable();
+            $table->boolean('principal')->nullable()->default(0);
             $table->timestamps();
 
             $table->softDeletes();

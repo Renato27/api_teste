@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\Pedido;
 
 use App\Models\Pedido\Pedido;
@@ -22,8 +27,8 @@ class PedidoFactory extends Factory
     public function definition()
     {
         return [
-            'data_entrega'      => $this->faker->date(),
-            'data_retirada'     => $this->faker->date()
+            'data_entrega' => $this->faker->date(),
+            'data_retirada' => $this->faker->date(),
         ];
     }
 }

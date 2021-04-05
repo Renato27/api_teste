@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\TipoContato\TipoContato;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\TipoContato\TipoContato;
 use App\Repositories\Contracts\TipoContatoRepository;
 use App\Repositories\TipoContatoRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class TipoContatoRepositoryTest extends TestCase
 
     /**
      * Retorna TipoContato baseado no ID.
-     *
      */
     public function testGetTipoContato()
     {
@@ -49,23 +51,21 @@ class TipoContatoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de TipoContato baseado em uma associação.
-     * (Não necessário teste, function inativa)
+     * (Não necessário teste, function inativa).
      */
     // public function testGetTipoContatos()
     // {
     // }
 
-
     /**
-     * Cria um novo TipoContato
-     *
+     * Cria um novo TipoContato.
      */
     public function testCreateTipoContato()
     {
         $tipoContato = \App\Models\TipoContato\TipoContato::factory()->make();
 
         $detalhes = [
-            'nome'          => $tipoContato->nome
+            'nome' => $tipoContato->nome,
         ];
 
         $retorno = $this->implementacao->createTipoContato($detalhes);
@@ -74,15 +74,14 @@ class TipoContatoRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um TipoContato
-     *
+     * Atualiza um TipoContato.
      */
     public function testUpdateTipoContato()
     {
         $tipoContato = \App\Models\TipoContato\TipoContato::factory()->create();
 
         $detalhes = [
-            'nome'          => $tipoContato->nome
+            'nome' => $tipoContato->nome,
         ];
 
         $retorno = $this->implementacao->updateTipoContato($tipoContato->id, $detalhes);
@@ -91,8 +90,7 @@ class TipoContatoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um TipoContato
-     *
+     * Deleta um TipoContato.
      */
     public function testDeleteTipoContato()
     {

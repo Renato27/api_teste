@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Funcionarios\AtualizarFuncionario\Contracts;
 
 use App\Models\Funcionario\Funcionario;
@@ -10,10 +15,10 @@ interface AtualizarFuncionarioService
     /**
      * Seta um Funcionario a ser atualizado.
      *
-     * @param integer $funcionario
+     * @param int $funcionario
      * @return AtualizarFuncionarioService
      */
-    public function setFuncionario(int $funcionario) : AtualizarFuncionarioService;
+    public function setFuncionario(int $funcionario) : self;
 
     /**
      * Seta os dados a serem atualizados.
@@ -21,7 +26,7 @@ interface AtualizarFuncionarioService
      * @param array $dados
      * @return AtualizarFuncionarioService
      */
-    public function setDados(array $dados) : AtualizarFuncionarioService;
+    public function setDados(array $dados) : self;
 
     /**
      * Seta o repositório de funcionario.
@@ -29,7 +34,7 @@ interface AtualizarFuncionarioService
      * @param FuncionarioRepository $funcionarioRepository
      * @return AtualizarFuncionarioService
      */
-    public function setFuncionarioRepository(FuncionarioRepository $funcionarioRepository) : AtualizarFuncionarioService;
+    public function setFuncionarioRepository(FuncionarioRepository $funcionarioRepository) : self;
 
     /**
      * Processa a atualização do funcionario.

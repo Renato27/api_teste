@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\TipoContrato;
 
 use App\Models\Contratos\Contrato;
@@ -24,8 +29,8 @@ class TipoContratoFactory extends Factory
     public function definition()
     {
         return [
-            'contrato_id'               => Contrato::factory()->create(),
-            'contrato_tipo_id'          => ContratoTipo::factory()->create()
+            'contrato_id' => Contrato::factory()->create(),
+            'contrato_tipo_id' => ContratoTipo::factory()->create(),
         ];
     }
 }

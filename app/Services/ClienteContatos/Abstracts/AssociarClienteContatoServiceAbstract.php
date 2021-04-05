@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\ClienteContatos\Abstracts;
 
 use Exception;
@@ -12,14 +17,14 @@ abstract class AssociarClienteContatoServiceAbstract implements AssociarClienteC
     /**
      * ID do contato.
      *
-     * @var integer
+     * @var int
      */
     protected int $contato;
 
     /**
      * ID do cliente.
      *
-     * @var integer
+     * @var int
      */
     protected int $cliente;
 
@@ -30,10 +35,10 @@ abstract class AssociarClienteContatoServiceAbstract implements AssociarClienteC
      */
     protected ClienteContatoRepository $clienteContatoRepository;
 
-     /**
+    /**
      * Seta um contato.
      *
-     * @param integer $contato
+     * @param int $contato
      * @return AssociarClienteContatoService
      */
     public function setContato(int $contato) : AssociarClienteContatoService
@@ -46,7 +51,7 @@ abstract class AssociarClienteContatoServiceAbstract implements AssociarClienteC
     /**
      * Seta um cliente.
      *
-     * @param integer $cliente
+     * @param int $cliente
      * @return AssociarClienteContatoService
      */
     public function setCliente(int $cliente) : AssociarClienteContatoService
@@ -76,13 +81,13 @@ abstract class AssociarClienteContatoServiceAbstract implements AssociarClienteC
      */
     protected function associarClienteContato() : ClienteContato
     {
-
         $associacao = $this->clienteContatoRepository->existeAlgumPrincipal($this->cliente);
 
-        if($associacao)
+        if ($associacao) {
             return $this->associarSemContatoPrincipal();
+        }
 
-        return $this->associarComContatoPrincipal();    
+        return $this->associarComContatoPrincipal();
     }
 
     /**
@@ -93,13 +98,14 @@ abstract class AssociarClienteContatoServiceAbstract implements AssociarClienteC
     private function associarComContatoPrincipal() : ClienteContato
     {
         $clienteAssociado = $this->clienteContatoRepository->createClienteContato([
-            'cliente_id'    => $this->cliente,
-            'contato_id'   => $this->contato,
-            'principal'     => 1
+            'cliente_id' => $this->cliente,
+            'contato_id' => $this->contato,
+            'principal' => 1,
         ]);
 
-        if(!isset($clienteAssociado->id))
-            throw new Exception("Não foi possível associar o endereço ao cliente");
+        if (! isset($clienteAssociado->id)) {
+            throw new Exception('Não foi possível associar o endereço ao cliente');
+        }
 
         return $clienteAssociado;
     }
@@ -112,12 +118,13 @@ abstract class AssociarClienteContatoServiceAbstract implements AssociarClienteC
     private function associarSemContatoPrincipal() : ClienteContato
     {
         $clienteAssociado = $this->clienteContatoRepository->createClienteContato([
-            'cliente_id'    => $this->cliente,
-            'contato_id'   => $this->contato,
+            'cliente_id' => $this->cliente,
+            'contato_id' => $this->contato,
         ]);
 
-        if(!isset($clienteAssociado->id))
-            throw new Exception("Não foi possível associar o endereço ao cliente");
+        if (! isset($clienteAssociado->id)) {
+            throw new Exception('Não foi possível associar o endereço ao cliente');
+        }
 
         return $clienteAssociado;
     }

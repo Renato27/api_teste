@@ -1,15 +1,19 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Funcionarios\AtualizarFuncionario\Abstracts;
 
+use Exception;
 use App\Models\Funcionario\Funcionario;
 use App\Repositories\Contracts\FuncionarioRepository;
 use App\Services\Funcionarios\AtualizarFuncionario\Contracts\AtualizarFuncionarioService;
-use Exception;
 
 abstract class AtualizarFuncionarioServiceAbstract implements AtualizarFuncionarioService
 {
-
     /**
      * Dados a serem atualizados.
      *
@@ -20,7 +24,7 @@ abstract class AtualizarFuncionarioServiceAbstract implements AtualizarFuncionar
     /**
      * ID do funcionario.
      *
-     * @var integer
+     * @var int
      */
     protected int $funcionario;
 
@@ -31,10 +35,10 @@ abstract class AtualizarFuncionarioServiceAbstract implements AtualizarFuncionar
      */
     protected FuncionarioRepository $funcionarioRepository;
 
-     /**
+    /**
      * Seta um funcionario a ser atualizado.
      *
-     * @param integer $funcionario
+     * @param int $funcionario
      * @return AtualizarFuncionarioService
      */
     public function setFuncionario(int $funcionario) : AtualizarFuncionarioService
@@ -79,13 +83,15 @@ abstract class AtualizarFuncionarioServiceAbstract implements AtualizarFuncionar
     {
         $funcionario = $this->funcionarioRepository->getFuncionario($this->funcionario);
 
-        if(!isset($funcionario->id))
-            throw new Exception("O funcionário solicitado para atualização não existe");
+        if (! isset($funcionario->id)) {
+            throw new Exception('O funcionário solicitado para atualização não existe');
+        }
 
         $funcionarioAtualizado = $this->funcionarioRepository->updateFuncionario($funcionario->id, $this->dados);
 
-        if(!isset($funcionarioAtualizado->id))
-            throw new Exception("Não foi possivel atualizar o funcionário solicitado. Revise os dados e tente novamente");
+        if (! isset($funcionarioAtualizado->id)) {
+            throw new Exception('Não foi possivel atualizar o funcionário solicitado. Revise os dados e tente novamente');
+        }
 
         return $funcionarioAtualizado;
     }

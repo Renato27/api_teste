@@ -1,15 +1,19 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Pedidos\AtualizarPedido\Abstracts;
 
+use Exception;
 use App\Models\Pedido\Pedido;
 use App\Repositories\Contracts\PedidoRepository;
 use App\Services\Pedidos\AtualizarPedido\Contracts\AtualizarPedidoService;
-use Exception;
 
 abstract class AtualizarPedidoServiceAbstract implements AtualizarPedidoService
 {
-
     /**
      * Dados a serem atualizados.
      *
@@ -20,7 +24,7 @@ abstract class AtualizarPedidoServiceAbstract implements AtualizarPedidoService
     /**
      * ID do pedido.
      *
-     * @var integer
+     * @var int
      */
     protected int $pedido;
 
@@ -31,10 +35,10 @@ abstract class AtualizarPedidoServiceAbstract implements AtualizarPedidoService
      */
     protected PedidoRepository $pedidoRepository;
 
-     /**
+    /**
      * Seta um pedido a ser atualizado.
      *
-     * @param integer $pedido
+     * @param int $pedido
      * @return AtualizarPedidoService
      */
     public function setPedido(int $pedido): AtualizarPedidoService
@@ -79,13 +83,15 @@ abstract class AtualizarPedidoServiceAbstract implements AtualizarPedidoService
     {
         $pedido = $this->pedidoRepository->getPedido($this->pedido);
 
-        if(!isset($pedido->id))
-            throw new Exception("O pedido solicitado para atualização não existe");
+        if (! isset($pedido->id)) {
+            throw new Exception('O pedido solicitado para atualização não existe');
+        }
 
         $pedidoAtualizado = $this->pedidoRepository->updatePedido($pedido->id, $this->dados);
 
-        if(!isset($pedidoAtualizado->id))
-            throw new Exception("Não foi possivel atualizar o pedido solicitado. Revise os dados e tente novamente");
+        if (! isset($pedidoAtualizado->id)) {
+            throw new Exception('Não foi possivel atualizar o pedido solicitado. Revise os dados e tente novamente');
+        }
 
         return $pedidoAtualizado;
     }

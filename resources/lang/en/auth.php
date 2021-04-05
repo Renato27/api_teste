@@ -1,7 +1,11 @@
 <?php
 
-return [
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
 
+return [
     /*
     |--------------------------------------------------------------------------
     | Authentication Language Lines
@@ -15,5 +19,4 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-
 ];

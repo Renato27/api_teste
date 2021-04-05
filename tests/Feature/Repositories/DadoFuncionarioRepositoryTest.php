@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\DadoFuncionario\DadoFuncionario;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\DadoFuncionario\DadoFuncionario;
 use App\Repositories\Contracts\DadoFuncionarioRepository;
 use App\Repositories\DadoFuncionarioRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class DadoFuncionarioRepositoryTest extends TestCase
 
     /**
      * Retorna DadoFuncionario baseado no ID.
-     *
      */
     public function testGetDadoFuncionario()
     {
@@ -49,27 +51,26 @@ class DadoFuncionarioRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de DadoFuncionario baseado em uma associação.
-     *  (Inativo, não necessário da realização de teste)
+     *  (Inativo, não necessário da realização de teste).
      */
     // public function testGetDadoFuncionarios()
     // {
     // }
 
     /**
-     * Cria um novo DadoFuncionario
-     *
+     * Cria um novo DadoFuncionario.
      */
     public function testCreateDadoFuncionario()
     {
         $dadoFuncionario = \App\Models\DadoFuncionario\DadoFuncionario::factory()->make();
         $detalhes = [
-            'telefone'                      => $dadoFuncionario->telefone,
-            'rg'                            => $dadoFuncionario->rg,
-            'cpf'                           => $dadoFuncionario->cpf,
-            'titulo_eleitor'                => $dadoFuncionario->titulo_eleitor,
-            'secao_titulo_eleitor'          => $dadoFuncionario->secao_titulo_eleitor,
-            'ctps'                          => $dadoFuncionario->ctps,
-            'email'                         => $dadoFuncionario->email
+            'telefone' => $dadoFuncionario->telefone,
+            'rg' => $dadoFuncionario->rg,
+            'cpf' => $dadoFuncionario->cpf,
+            'titulo_eleitor' => $dadoFuncionario->titulo_eleitor,
+            'secao_titulo_eleitor' => $dadoFuncionario->secao_titulo_eleitor,
+            'ctps' => $dadoFuncionario->ctps,
+            'email' => $dadoFuncionario->email,
         ];
 
         $retorno = $this->implementacao->createDadoFuncionario($detalhes);
@@ -78,20 +79,19 @@ class DadoFuncionarioRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um DadoFuncionario
-     *
+     * Atualiza um DadoFuncionario.
      */
     public function testUpdateDadoFuncionario()
     {
         $dadoFuncionario = \App\Models\DadoFuncionario\DadoFuncionario::factory()->create();
         $detalhes = [
-            'telefone'                      => $dadoFuncionario->telefone,
-            'rg'                            => $dadoFuncionario->rg,
-            'cpf'                           => $dadoFuncionario->cpf,
-            'titulo_eleitor'                => $dadoFuncionario->titulo_eleitor,
-            'secao_titulo_eleitor'          => $dadoFuncionario->secao_titulo_eleitor,
-            'ctps'                          => $dadoFuncionario->ctps,
-            'email'                         => $dadoFuncionario->email
+            'telefone' => $dadoFuncionario->telefone,
+            'rg' => $dadoFuncionario->rg,
+            'cpf' => $dadoFuncionario->cpf,
+            'titulo_eleitor' => $dadoFuncionario->titulo_eleitor,
+            'secao_titulo_eleitor' => $dadoFuncionario->secao_titulo_eleitor,
+            'ctps' => $dadoFuncionario->ctps,
+            'email' => $dadoFuncionario->email,
         ];
 
         $retorno = $this->implementacao->updateDadoFuncionario($dadoFuncionario->id, $detalhes);
@@ -100,8 +100,7 @@ class DadoFuncionarioRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um DadoFuncionario
-     *
+     * Deleta um DadoFuncionario.
      */
     public function testDeleteDadoFuncionario()
     {

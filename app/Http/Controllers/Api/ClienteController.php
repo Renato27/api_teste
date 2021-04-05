@@ -1,17 +1,22 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ClienteRequest;
-use App\Http\Resources\ClienteContatoEnderecoResource;
-use App\Http\Resources\ClienteResource;
+use App\Events\ClienteEvent;
+use Illuminate\Http\Request;
 use App\Models\Clientes\Cliente;
-use App\Repositories\Contracts\ClienteRepository;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ClienteResource;
+use App\Http\Resources\ClienteContatoEnderecoResource;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Services\Clientes\ExcluirCliente\Contracts\ExcluirClienteService;
 use App\Services\Clientes\AtualizarCliente\Contracts\AtualizarClienteService;
 use App\Services\Clientes\CadastrarCliente\Contracts\CadastrarClienteService;
-use App\Services\Clientes\ExcluirCliente\Contracts\ExcluirClienteService;
-use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
@@ -20,9 +25,10 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ClienteRepository $clienteRepository)
+    public function index(Request $request)
     {
-        $clientes = $clienteRepository->getclientes();
+        $clientes = Cliente::get();
+
         return ClienteResource::collection($clientes);
     }
 
@@ -32,15 +38,16 @@ class ClienteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ClienteRequest $clienteRequest, CadastrarClienteService $serviceCliente)
+    public function store(Request $request, CadastrarClienteService $serviceCliente)
     {
         try {
+            $cliente = $serviceCliente->setDados($request->cliente)->handle();
 
-            $cliente = $serviceCliente->setDados($clienteRequest->all())->handle();
+            event(new ClienteEvent($cliente, $request->endereco, $request->contato));
 
-            return new ClienteContatoEnderecoResource($cliente);
+            return new ClienteResource($cliente);
         } catch (\Throwable $th) {
-            throw $th;
+            throw new HttpException(400, $th->getMessage());
         }
     }
 
@@ -62,7 +69,7 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Cliente $cliente, Request $request,  AtualizarClienteService $serviceCliente)
+    public function update(Cliente $cliente, Request $request, AtualizarClienteService $serviceCliente)
     {
         try {
             $serviceCliente->setCliente($cliente->id);

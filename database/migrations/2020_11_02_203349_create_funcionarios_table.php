@@ -1,8 +1,13 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateFuncionariosTable extends Migration
 {
@@ -23,7 +28,7 @@ class CreateFuncionariosTable extends Migration
             $table->string('titulo_eleitor')->nullable();
             $table->string('secao_titulo_eleitor')->nullable();
             $table->string('ctps')->nullable();
-            $table->string('email')->unique()->nullable();
+            $table->string('email')->nullable();
 
             $table->timestamps();
 

@@ -1,15 +1,20 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\FuncionarioResource;
 use App\Models\Funcionario\Funcionario;
+use App\Http\Resources\FuncionarioResource;
 use App\Repositories\Contracts\FuncionarioRepository;
+use App\Services\Funcionarios\ExcluirFuncionario\Contracts\ExcluirFuncionarioService;
 use App\Services\Funcionarios\AtualizarFuncionario\Contracts\AtualizarFuncionarioService;
 use App\Services\Funcionarios\CadastrarFuncionario\Contracts\CadastrarFuncionarioService;
-use App\Services\Funcionarios\ExcluirFuncionario\Contracts\ExcluirFuncionarioService;
-use Illuminate\Http\Request;
 
 class FuncionarioController extends Controller
 {

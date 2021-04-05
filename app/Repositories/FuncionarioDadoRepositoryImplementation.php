@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\FuncionarioDadoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\FuncionarioDadoRepository;
 
 class FuncionarioDadoRepositoryImplementation implements FuncionarioDadoRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna FuncionarioDado baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getFuncionarioDado(int $funcionario): ?Model
@@ -25,8 +29,8 @@ class FuncionarioDadoRepositoryImplementation implements FuncionarioDadoReposito
     /**
      * Retorna uma coleção de FuncionarioDado baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getFuncionarioDados(int $id, int $associacao): ?Collection
@@ -35,40 +39,42 @@ class FuncionarioDadoRepositoryImplementation implements FuncionarioDadoReposito
     }
 
     /**
-     * Cria um novo FuncionarioDado
+     * Cria um novo FuncionarioDado.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createFuncionarioDado(array $detalhes): ?Model
     {
         return $this->create($detalhes);
     }
 
     /**
-     * Atualiza um FuncionarioDado
+     * Atualiza um FuncionarioDado.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateFuncionarioDado(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
     }
 
     /**
-     * Deleta um FuncionarioDado
+     * Deleta um FuncionarioDado.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteFuncionarioDado(int $id): bool
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

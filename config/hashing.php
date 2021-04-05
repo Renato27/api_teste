@@ -1,7 +1,11 @@
 <?php
 
-return [
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
 
+return [
     /*
     |--------------------------------------------------------------------------
     | Default Hash Driver
@@ -48,5 +52,4 @@ return [
         'threads' => 2,
         'time' => 2,
     ],
-
 ];

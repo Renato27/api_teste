@@ -1,17 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Pedidos\CadastrarPedido\Abstracts;
 
+use Exception;
 use App\Models\Pedido\Pedido;
 use App\Repositories\Contracts\PedidoRepository;
 use App\Services\Pedidos\CadastrarPedido\Contracts\CadastrarPedidoService;
-use Exception;
 
 abstract class CadastrarPedidoServiceAbstract implements CadastrarPedidoService
 {
-
     /**
-     * Dados a serem cadastrados;
+     * Dados a serem cadastrados;.
      *
      * @var array
      */
@@ -33,8 +37,11 @@ abstract class CadastrarPedidoServiceAbstract implements CadastrarPedidoService
     public function setDados(array $dados) : CadastrarPedidoService
     {
         $dadosPedido = [
-            'data_entrega'      => $dados['data_entrega'],
-            'data_retirada'     => $dados['data_retirada']
+            'data_entrega' => $dados['data_entrega'],
+            'data_retirada' => $dados['data_retirada'],
+            'status_pedido_id' => $dados['status_pedido_id'],
+            'contato_id' => $dados['contato_id'],
+            'endereco_id' => $dados['endereco_id'],
         ];
 
         $this->dados = $dadosPedido;
@@ -64,8 +71,9 @@ abstract class CadastrarPedidoServiceAbstract implements CadastrarPedidoService
     {
         $contatoCadastrado = $this->contatoRepository->createPedido($this->dados);
 
-        if(!isset($contatoCadastrado->id))
-            throw new Exception("Não foi possível cadastrar o pedido. Verifique os dados e tente novamente.");
+        if (! isset($contatoCadastrado->id)) {
+            throw new Exception('Não foi possível cadastrar o pedido. Verifique os dados e tente novamente.');
+        }
 
         return $contatoCadastrado;
     }

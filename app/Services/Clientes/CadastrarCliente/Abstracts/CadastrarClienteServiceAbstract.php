@@ -1,7 +1,13 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Clientes\CadastrarCliente\Abstracts;
 
+use Exception;
 use App\Models\Clientes\Cliente;
 use App\Repositories\Contracts\ClienteRepository;
 use App\Services\ClienteContatos\Contracts\AssociarClienteContatoService;
@@ -9,11 +15,9 @@ use App\Services\ClienteEnderecos\Contracts\AssociarClienteEnderecoService;
 use App\Services\Clientes\CadastrarCliente\Contracts\CadastrarClienteService;
 use App\Services\Contatos\CadastrarContato\Contracts\CadastrarContatoService;
 use App\Services\Enderecos\CadastrarEndereco\Contracts\CadastrarEnderecoService;
-use Exception;
 
 abstract class CadastrarClienteServiceAbstract implements CadastrarClienteService
 {
-
     /**
      * Dados.
      *
@@ -22,7 +26,7 @@ abstract class CadastrarClienteServiceAbstract implements CadastrarClienteServic
     protected array $dados;
 
     /**
-     * Dados do cliente;
+     * Dados do cliente;.
      */
     protected array $dadosCliente;
 
@@ -48,14 +52,14 @@ abstract class CadastrarClienteServiceAbstract implements CadastrarClienteServic
     protected CadastrarContatoService $cadastrarContatoService;
 
     /**
-     * Serviço para associar cliente a um endereço
+     * Serviço para associar cliente a um endereço.
      *
      * @var AssociarClienteContatoService
      */
     protected AssociarClienteContatoService $associarClienteContatoService;
 
     /**
-     * Serviço para associar cliente a um contato
+     * Serviço para associar cliente a um contato.
      *
      * @var AssociarClienteEnderecoService
      */
@@ -85,11 +89,11 @@ abstract class CadastrarClienteServiceAbstract implements CadastrarClienteServic
     private function setDadosCliente(array $dados) : CadastrarClienteService
     {
         $dadosCliente = [
-            'razao_social'          => $dados['razao_social'],
-            'nome_fantasia'         => $dados['nome_fantasia'],
-            'cpf_cnpj'              => $dados['cpf_cnpj'],
-            'inscricao_estadual'    => $dados['inscricao_estadual'],
-            'inscricao_municipal'   => $dados['inscricao_municipal']
+            'razao_social' => $dados['razao_social'],
+            'nome_fantasia' => $dados['nome_fantasia'],
+            'cpf_cnpj' => $dados['cpf_cnpj'],
+            'inscricao_estadual' => $dados['inscricao_estadual'],
+            'inscricao_municipal' => $dados['inscricao_municipal'],
         ];
 
         $this->dadosCliente = $dadosCliente;
@@ -147,7 +151,7 @@ abstract class CadastrarClienteServiceAbstract implements CadastrarClienteServic
     }
 
     /**
-     * Serviço que associa um cliente a um contato
+     * Serviço que associa um cliente a um contato.
      *
      * @param AssociarClienteContatoService $associarClienteContatoService
      * @return CadastrarClienteService
@@ -181,9 +185,10 @@ abstract class CadastrarClienteServiceAbstract implements CadastrarClienteServic
     {
         $clienteCadastrado = $this->clienteRepository->createcliente($this->getDadosCliente());
 
-        if(!isset($clienteCadastrado->id))
-            throw new Exception("Erro ao cadastrar o cliente. Verifique as informações e tente novamente");
+        if (! isset($clienteCadastrado->id)) {
+            throw new Exception('Erro ao cadastrar o cliente. Verifique as informações e tente novamente');
+        }
 
-        return $clienteCadastrado;    
+        return $clienteCadastrado;
     }
 }

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style_email.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Document</title>
+</head>
+<body>
+
+<div class="segundo">
+    <table class="body-wrap">
+        <tr>
+            <td class="container">
+                <div class="primeiro">
+
+                    <img class="imagem" src="../../public/assets/img/LogoLogica.png" alt="image">
+
+            </div>
+
+                <table>
+                    <tr>
+                        <td class="content">
+                            <div class="terceiro"></div>
+                                <h2 class="titulo_comum">Olá {{$chamado->contato->nome}},</h2>
+
+                                <p>
+                                    Seu chamado de suporte</strong>, registrado com o n° <strong>{{$chamado->idchamados}}</strong>, recebeu uma nova interação.<br/>
+                                    <br/>
+                                    O técnico {{$interacao->tecnico->funcionario->nome}} escreveu: <i>{{$interacao->detalhes}}</i><br/>
+                                    O atendimento foi realizado entre {{\Carbon\Carbon::parse($interacao->inicio)->format('d/m/Y H:i:s')}} e {{\Carbon\Carbon::parse($interacao->fim)->format('d/m/Y H:i:s')}}
+                                    <br/><br/>
+                                    Acesse o <a style="text-decoration: underline;" target="_blank" href="https://painel.intranetlogica.com.br">painel Lógica</a> e verifique.
+                                </p>
+
+
+
+                            <h6 style="font-size: 10px">Recomendamos o uso de navegadores como Google Chrome, Mozilla Firefox ou Opera.</h6>
+
+                            <p>
+                                Atenciosamente,
+                            </p>
+                            <p>
+                                Suporte Técnico<br/>
+                                Lógica Tecnologia<br/>
+                                (21) 2223-1939
+                            </p>
+
+                        </td>
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+</body>
+</html>

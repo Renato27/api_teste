@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
@@ -13,7 +18,10 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\Automatizacoes\MakeRepositoryCommand::class
+        Commands\Automatizacoes\MakeRepositoryCommand::class,
+        Commands\Automatizacoes\MakeServiceCommand::class,
+        Commands\Automatizacoes\GerarEspelhosSemMedicao::class,
+        Commands\Automatizacoes\GerarEspelhosComMedicao::class,
     ];
 
     /**

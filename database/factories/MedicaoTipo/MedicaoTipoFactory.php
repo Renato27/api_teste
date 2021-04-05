@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\MedicaoTipo;
 
 use App\Models\MedicaoTipo\MedicaoTipo;
@@ -22,7 +27,7 @@ class MedicaoTipoFactory extends Factory
     public function definition()
     {
         return [
-            'nome'              => $this->faker->name(1)
+            'nome' => $this->faker->name(1),
         ];
     }
 }

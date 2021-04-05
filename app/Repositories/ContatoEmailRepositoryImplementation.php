@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ContatoEmailRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ContatoEmailRepository;
 
 class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
 {
@@ -13,7 +18,7 @@ class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
     /**
      * Retorna ContatoEmail baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getContatoEmail(int $contato): ?Model
@@ -24,8 +29,8 @@ class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
     /**
      * Retorna uma coleção de ContatoEmail baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getContatoEmails(int $contato): ?Collection
@@ -34,7 +39,7 @@ class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
     }
 
     /**
-     * Cria um novo ContatoEmail
+     * Cria um novo ContatoEmail.
      *
      * @param array $detalhes
      * @return Model|null
@@ -45,7 +50,7 @@ class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
     }
 
     /**
-     * Atualiza um ContatoEmail
+     * Atualiza um ContatoEmail.
      *
      * @param int $id
      * @param array $detalhes
@@ -59,7 +64,7 @@ class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
     }
 
     /**
-     * Deleta um ContatoEmail
+     * Deleta um ContatoEmail.
      *
      * @param int $id
      * @param array $detalhes
@@ -69,7 +74,34 @@ class ContatoEmailRepositoryImplementation implements ContatoEmailRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Verifica se o email cadastrado para o usuário pertence à algum contrato, caso não pertença a um contato, faz a criação.
+     *
+     * @param int $id
+     * @param array $detalhes
+     * @return Model|null
+     */
+    public function usuarioTemEmailContato(int $contatoId, string $usuarioEmail): bool
+    {
+        $contatoEmails = $this->getContatoEmails($contatoId);
+        foreach ($contatoEmails as $email) {
+            if ($email == $usuarioEmail) {
+                return false;
+            }
+        }
+
+        $this->createContatoEmail([
+            'email' => $usuarioEmail,
+            'principal' => 0,
+            'contato_id' => $contatoId,
+        ]);
 
         return true;
     }

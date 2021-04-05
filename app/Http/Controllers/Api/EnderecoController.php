@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\EnderecoResource;
+use Illuminate\Http\Request;
 use App\Models\Clientes\Cliente;
 use App\Models\Endereco\Endereco;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\EnderecoResource;
 use App\Repositories\Contracts\EnderecoRepository;
+use App\Services\Enderecos\ExcluirEndereco\Contracts\ExcluirEnderecoService;
 use App\Services\Enderecos\AtualizarEndereco\Contracts\AtualizarEnderecoService;
 use App\Services\Enderecos\CadastrarEndereco\Contracts\CadastrarEnderecoService;
-use App\Services\Enderecos\ExcluirEndereco\Contracts\ExcluirEnderecoService;
-use Illuminate\Http\Request;
 
 class EnderecoController extends Controller
 {
@@ -67,7 +72,7 @@ class EnderecoController extends Controller
         try {
             $service->setEndereco($endereco->id);
             $enderecoAtualizado = $service->setDados($request->all())->handle();
-            
+
             return new EnderecoResource($enderecoAtualizado);
         } catch (\Throwable $th) {
             throw $th;
@@ -83,7 +88,6 @@ class EnderecoController extends Controller
     public function destroy(Cliente $cliente, Endereco $endereco, ExcluirEnderecoService $service)
     {
         try {
-        
             $cliente->enderecos()->detach($endereco->id);
             $service->setEndereco($endereco->id);
             $service->handle();

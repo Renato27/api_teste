@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\ContatoTipo;
 
 use App\Models\Contato\Contato;
@@ -24,8 +29,8 @@ class ContatoTipoFactory extends Factory
     public function definition()
     {
         return [
-            'contato_id'            => Contato::factory()->create(),
-            'tipo_contato_id'       => TipoContato::factory()->create()
+            'contato_id' => Contato::factory()->create(),
+            'tipo_contato_id' => TipoContato::factory()->create(),
         ];
     }
 }

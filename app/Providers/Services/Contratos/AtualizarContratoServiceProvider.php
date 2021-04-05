@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers\Services\Contratos;
 
+use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\ContratosRepository;
 use App\Services\Contratos\AtualizarContrato\AtualizarContratoService;
 use App\Services\Contratos\AtualizarContrato\Contracts\AtualizarContratoService as ContractsAtualizarContratoService;
-use Illuminate\Support\ServiceProvider;
 
 class AtualizarContratoServiceProvider extends ServiceProvider
 {
@@ -29,7 +34,7 @@ class AtualizarContratoServiceProvider extends ServiceProvider
         $service = new AtualizarContratoService();
         $service->setContratoRepository(app(ContratosRepository::class));
 
-        $this->app->bind(ContractsAtualizarContratoService::class, function($app) use($service){
+        $this->app->bind(ContractsAtualizarContratoService::class, function ($app) use ($service) {
             return $service;
         });
     }

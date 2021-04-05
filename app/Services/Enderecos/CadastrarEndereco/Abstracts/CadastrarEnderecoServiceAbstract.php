@@ -1,15 +1,19 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Enderecos\CadastrarEndereco\Abstracts;
 
+use Exception;
 use App\Models\Endereco\Endereco;
 use App\Repositories\Contracts\EnderecoRepository;
 use App\Services\Enderecos\CadastrarEndereco\Contracts\CadastrarEnderecoService;
-use Exception;
 
 abstract class CadastrarEnderecoServiceAbstract implements CadastrarEnderecoService
 {
-
     /**
      * Dados do endereço.
      *
@@ -33,14 +37,13 @@ abstract class CadastrarEnderecoServiceAbstract implements CadastrarEnderecoServ
     public function setDados(array $dados) : CadastrarEnderecoService
     {
         $dadosEndereco = [
-            'rua'           => $dados['rua'],
-            'numero'        => $dados['numero'],
-            'bairro'        => $dados['bairro'],
-            'complemento'   => $dados['complemento'],
-            'cidade'        => $dados['cidade'],
-            'estado'        => $dados['estado'],
-            'cep'           => $dados['cep'],
-          
+            'rua' => $dados['rua'],
+            'numero' => $dados['numero'],
+            'bairro' => $dados['bairro'],
+            'complemento' => $dados['complemento'],
+            'cidade' => $dados['cidade'],
+            'estado' => $dados['estado'],
+            'cep' => $dados['cep'],
         ];
 
         $this->dados = $dadosEndereco;
@@ -70,9 +73,10 @@ abstract class CadastrarEnderecoServiceAbstract implements CadastrarEnderecoServ
     {
         $enderecoCadastrado = $this->enderecoRepository->createEndereco($this->dados);
 
-        if(!isset($enderecoCadastrado->id))
-            throw new Exception("Não foi possível cadastrar os dados do endereço.");
+        if (! isset($enderecoCadastrado->id)) {
+            throw new Exception('Não foi possível cadastrar os dados do endereço.');
+        }
 
-        return $enderecoCadastrado;    
+        return $enderecoCadastrado;
     }
 }

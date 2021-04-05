@@ -1,13 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\ClienteEndereco\ClienteEndereco;
-use App\Repositories\ClienteEnderecoRepositoryImplementation;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\ClienteEndereco\ClienteEndereco;
 use App\Repositories\Contracts\ClienteEnderecoRepository;
+use App\Repositories\ClienteEnderecoRepositoryImplementation;
 
 class ClienteEnderecoRepositoryTest extends TestCase
 {
@@ -36,7 +39,6 @@ class ClienteEnderecoRepositoryTest extends TestCase
 
     /**
      * Retorna ClienteEndereco baseado no ID.
-     *
      */
     public function testGetClienteEndereco()
     {
@@ -51,12 +53,10 @@ class ClienteEnderecoRepositoryTest extends TestCase
         $retorno = $this->implementacao->getClienteEndereco($cliente->id);
 
         $this->assertEquals($associacao->id, $retorno->id);
-
     }
 
     /**
      * Retorna uma coleção de ClienteEndereco baseado em uma associação.
-     *
      */
     public function testGetClienteEnderecos()
     {
@@ -80,8 +80,7 @@ class ClienteEnderecoRepositoryTest extends TestCase
     }
 
     /**
-     * Cria um novo ClienteEndereco
-     *
+     * Cria um novo ClienteEndereco.
      */
     public function testCreateClienteEndereco()
     {
@@ -89,20 +88,19 @@ class ClienteEnderecoRepositoryTest extends TestCase
         $cliente = \App\Models\Clientes\Cliente::factory()->create();
         $endereco = \App\Models\Endereco\Endereco::factory()->create();
         $detalhes = [
-            'cliente_id'            => $cliente->id,
-            'endereco_id'           => $endereco->id
+            'cliente_id' => $cliente->id,
+            'endereco_id' => $endereco->id,
         ];
 
         $retorno = $this->implementacao->createClienteEndereco($detalhes);
 
         $associacao = \App\Models\ClienteEndereco\ClienteEndereco::factory()->create();
 
-        $this->assertEquals($associacao->id-1, $retorno->id);
+        $this->assertEquals($associacao->id - 1, $retorno->id);
     }
 
     /**
-     * Atualiza um ClienteEndereco
-     *
+     * Atualiza um ClienteEndereco.
      */
     public function testUpdateClienteEndereco()
     {
@@ -110,8 +108,8 @@ class ClienteEnderecoRepositoryTest extends TestCase
         $cliente = \App\Models\Clientes\Cliente::factory()->create();
         $endereco = \App\Models\Endereco\Endereco::factory()->create();
         $detalhes = [
-            'cliente_id'            => $cliente->id,
-            'endereco_id'           => $endereco->id
+            'cliente_id' => $cliente->id,
+            'endereco_id' => $endereco->id,
         ];
 
         $retorno = $this->implementacao->updateClienteEndereco($associacao->id, $detalhes);
@@ -120,8 +118,7 @@ class ClienteEnderecoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um ClienteEndereco
-     *
+     * Deleta um ClienteEndereco.
      */
     public function testDeleteClienteEndereco()
     {

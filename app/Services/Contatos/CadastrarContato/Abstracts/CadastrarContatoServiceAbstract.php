@@ -1,18 +1,22 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Contatos\CadastrarContato\Abstracts;
 
-use App\Models\Contato\Contato;
-use App\Repositories\Contracts\ContatoEmailRepository;
-use App\Repositories\Contracts\ContatoRepository;
-use App\Services\Contatos\CadastrarContato\Contracts\CadastrarContatoService;
 use Exception;
+use App\Models\Contato\Contato;
+use App\Repositories\Contracts\ContatoRepository;
+use App\Repositories\Contracts\ContatoEmailRepository;
+use App\Services\Contatos\CadastrarContato\Contracts\CadastrarContatoService;
 
 abstract class CadastrarContatoServiceAbstract implements CadastrarContatoService
 {
-
     /**
-     * Dados a serem cadastrados;
+     * Dados a serem cadastrados;.
      *
      * @var array
      */
@@ -41,19 +45,17 @@ abstract class CadastrarContatoServiceAbstract implements CadastrarContatoServic
     public function setDados(array $dados) : CadastrarContatoService
     {
         $dadosContato = [
-
             'contato' => [
-                'nome'      => $dados['nome'],
-                'cargo'     => $dados['cargo'],
-                'telefone'  => $dados['telefone'],
-                'celular'   => $dados['celular']
+                'nome' => $dados['nome'],
+                'cargo' => $dados['cargo'],
+                'telefone' => $dados['telefone'],
+                'celular' => $dados['celular'],
             ],
-            
+
             'email' => [
-                'email'     => $dados['email'],
+                'email' => $dados['email'],
                 'principal' => $dados['principal'] ?? 0,
-            ]
-          
+            ],
         ];
 
         $this->dados = $dadosContato;
@@ -96,19 +98,25 @@ abstract class CadastrarContatoServiceAbstract implements CadastrarContatoServic
     {
         $contatoCadastrado = $this->contatoRepository->createContato($this->dados['contato']);
 
-        if(!isset($contatoCadastrado->id)) 
-            throw new Exception("Não foi possível cadastrar o contato. Verifique os dados e tente novamente.");
+        if (! isset($contatoCadastrado->id)) {
+            throw new Exception('Não foi possível cadastrar o contato. Verifique os dados e tente novamente.');
+        }
 
-        return $contatoCadastrado;    
+        return $contatoCadastrado;
     }
 
     protected function cadastrarEmailContato(Contato $contato) : bool
     {
-        $emailCadastrado = $this->contatoEmailRepository->createContatoEmail([$this->dados['email'], 'contato_id' => $contato->id]);
+        $emailCadastrado = $this->contatoEmailRepository->createContatoEmail([
+            'email' => $this->dados['email']['email'],
+            'princiapl' => $this->dados['email']['principal'],
+            'contato_id' => $contato->id,
+        ]);
 
-        if(!isset($emailCadastrado->id)) 
+        if (! isset($emailCadastrado->id)) {
             throw new Exception("Não foi possível cadastrar o email para o contato {$contato->nome}. Verifique os dados e tente novamente.");
+        }
 
-        return true;    
+        return true;
     }
 }

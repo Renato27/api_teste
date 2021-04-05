@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ContratoTipoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ContratoTipoRepository;
 
 class ContratoTipoRepositoryImplementation implements ContratoTipoRepository
 {
@@ -13,7 +18,7 @@ class ContratoTipoRepositoryImplementation implements ContratoTipoRepository
     /**
      * Retorna ContratoTipo baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getContratoTipo(int $id): ?Model
@@ -24,8 +29,8 @@ class ContratoTipoRepositoryImplementation implements ContratoTipoRepository
     /**
      * Retorna uma coleção de ContratoTipo baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getContratoTipos(int $id, int $associacao): ?Collection
@@ -34,40 +39,42 @@ class ContratoTipoRepositoryImplementation implements ContratoTipoRepository
     }
 
     /**
-     * Cria um novo ContratoTipo
+     * Cria um novo ContratoTipo.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createContratoTipo(array $detalhes): ?Model
     {
         return $this->create($detalhes);
     }
 
     /**
-     * Atualiza um ContratoTipo
+     * Atualiza um ContratoTipo.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateContratoTipo(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
     }
 
     /**
-     * Deleta um ContratoTipo
+     * Deleta um ContratoTipo.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteContratoTipo(int $id): bool
     {
         $returno = $this->delete($id);
 
-        if(!$returno) return false;
+        if (! $returno) {
+            return false;
+        }
 
         return true;
     }

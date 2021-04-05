@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\FuncionarioEndereco\FuncionarioEndereco;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\FuncionarioEndereco\FuncionarioEndereco;
 use App\Repositories\Contracts\FuncionarioEnderecoRepository;
 use App\Repositories\FuncionarioEnderecoRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class FuncionarioEnderecoRepositoryTest extends TestCase
 
     /**
      * Retorna FuncionarioEndereco baseado no ID.
-     *
      */
     public function testGetFuncionarioEndereco()
     {
@@ -55,7 +57,7 @@ class FuncionarioEnderecoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de FuncionarioEndereco baseado em uma associação.
-     *  (Inativa, não necessário realizar o teste)
+     *  (Inativa, não necessário realizar o teste).
      */
     // public function testGetFuncionarioEnderecos()
     // {
@@ -63,8 +65,7 @@ class FuncionarioEnderecoRepositoryTest extends TestCase
     // }
 
     /**
-     * Cria um novo FuncionarioEndereco
-     *
+     * Cria um novo FuncionarioEndereco.
      */
     public function testCreateFuncionarioEndereco()
     {
@@ -72,8 +73,8 @@ class FuncionarioEnderecoRepositoryTest extends TestCase
         $funcionario = \App\Models\Funcionario\Funcionario::factory()->create();
         $enderecoFuncionario = \App\Models\EnderecoFuncionario\EnderecoFuncionario::factory()->create();
         $detalhes = [
-            'funcionario_id'            => $funcionario->id,
-            'endereco_funcionario_id'   => $enderecoFuncionario->id
+            'funcionario_id' => $funcionario->id,
+            'endereco_funcionario_id' => $enderecoFuncionario->id,
         ];
 
         $retorno = $this->implementacao->createFuncionarioEndereco($detalhes);
@@ -82,12 +83,11 @@ class FuncionarioEnderecoRepositoryTest extends TestCase
         $associacao->endereco_funcionario_id = $enderecoFuncionario->id;
         $associacao->save();
 
-        $this->assertEquals($associacao->id-1, $retorno->id);
+        $this->assertEquals($associacao->id - 1, $retorno->id);
     }
 
     /**
-     * Atualiza um FuncionarioEndereco
-     *
+     * Atualiza um FuncionarioEndereco.
      */
     public function testUpdateFuncionarioEndereco()
     {
@@ -95,8 +95,8 @@ class FuncionarioEnderecoRepositoryTest extends TestCase
         $funcionario = \App\Models\Funcionario\Funcionario::factory()->create();
         $enderecoFuncionario = \App\Models\EnderecoFuncionario\EnderecoFuncionario::factory()->create();
         $detalhes = [
-            'funcionario_id'            => $funcionario->id,
-            'endereco_funcionario_id'   => $enderecoFuncionario->id
+            'funcionario_id' => $funcionario->id,
+            'endereco_funcionario_id' => $enderecoFuncionario->id,
         ];
 
         $associacao = \App\Models\FuncionarioEndereco\FuncionarioEndereco::factory()->create();
@@ -111,8 +111,7 @@ class FuncionarioEnderecoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um FuncionarioEndereco
-     *
+     * Deleta um FuncionarioEndereco.
      */
     public function testDeleteFuncionarioEndereco()
     {
@@ -127,6 +126,5 @@ class FuncionarioEnderecoRepositoryTest extends TestCase
         $retorno = $this->implementacao->deleteFuncionarioEndereco($associacao->id);
 
         $this->assertDeleted($associacao, [$retorno]);
-
     }
 }

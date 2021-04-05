@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\Contratos\Contrato;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Contratos\Contrato;
 use App\Repositories\Contracts\ContratosRepository;
 use App\Repositories\ContratosRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class ContratosRepositoryTest extends TestCase
 
     /**
      * Retorna Contratos baseado no ID.
-     *
      */
     public function testGetContratos()
     {
@@ -49,30 +51,29 @@ class ContratosRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de Contratos baseado em uma associação.
-     *  (Não necessário de implementacao de teste)
+     *  (Não necessário de implementacao de teste).
      */
     // public function testGetContratoss()
     // {
     // }
 
     /**
-     * Cria um novo Contratos
-     *
+     * Cria um novo Contratos.
      */
     public function testCreateContratos()
     {
         $contrato = \App\Models\Contratos\Contrato::factory()->make();
         $detalhes = [
-            'nome'                      =>$contrato->nome,
-            'inicio'                    =>$contrato->inicio,
-            'fim'                       =>$contrato->fim,
-            'detalhes'                  =>$contrato->detalhes,
-            'detalhes_nota'             =>$contrato->detalhes_nota,
-            'dia_emissao_nota'          =>$contrato->dia_emissao_nota,
-            'dia_vencimento_nota'       =>$contrato->dia_vencimento_nota,
-            'dia_periodo_inicio_nota'   =>$contrato->dia_periodo_inicio_nota,
-            'dia_periodo_fim_nota'      =>$contrato->dia_periodo_fim_nota,
-            'responsavel'               =>$contrato->responsavel
+            'nome' => $contrato->nome,
+            'inicio' => $contrato->inicio,
+            'fim' => $contrato->fim,
+            'detalhes' => $contrato->detalhes,
+            'detalhes_nota' => $contrato->detalhes_nota,
+            'dia_emissao_nota' => $contrato->dia_emissao_nota,
+            'dia_vencimento_nota' => $contrato->dia_vencimento_nota,
+            'dia_periodo_inicio_nota' => $contrato->dia_periodo_inicio_nota,
+            'dia_periodo_fim_nota' => $contrato->dia_periodo_fim_nota,
+            'responsavel' => $contrato->responsavel,
         ];
 
         $retorno = $this->implementacao->createContrato($detalhes);
@@ -81,23 +82,22 @@ class ContratosRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um Contratos
-     *
+     * Atualiza um Contratos.
      */
     public function testUpdateContratos()
     {
         $contrato = \App\Models\Contratos\Contrato::factory()->create();
         $detalhes = [
-            'nome'                      =>$contrato->nome,
-            'inicio'                    =>$contrato->inicio,
-            'fim'                       =>$contrato->fim,
-            'detalhes'                  =>$contrato->detalhes,
-            'detalhes_nota'             =>$contrato->detalhes_nota,
-            'dia_emissao_nota'          =>$contrato->dia_emissao_nota,
-            'dia_vencimento_nota'       =>$contrato->dia_vencimento_nota,
-            'dia_periodo_inicio_nota'   =>$contrato->dia_periodo_inicio_nota,
-            'dia_periodo_fim_nota'      =>$contrato->dia_periodo_fim_nota,
-            'responsavel'               =>$contrato->responsavel
+            'nome' => $contrato->nome,
+            'inicio' => $contrato->inicio,
+            'fim' => $contrato->fim,
+            'detalhes' => $contrato->detalhes,
+            'detalhes_nota' => $contrato->detalhes_nota,
+            'dia_emissao_nota' => $contrato->dia_emissao_nota,
+            'dia_vencimento_nota' => $contrato->dia_vencimento_nota,
+            'dia_periodo_inicio_nota' => $contrato->dia_periodo_inicio_nota,
+            'dia_periodo_fim_nota' => $contrato->dia_periodo_fim_nota,
+            'responsavel' => $contrato->responsavel,
         ];
 
         $retorno = $this->implementacao->updateContrato($contrato->id, $detalhes);
@@ -106,8 +106,7 @@ class ContratosRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um Contratos
-     *
+     * Deleta um Contratos.
      */
     public function testDeleteContratos()
     {

@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\TipoContato;
 
 use App\Models\TipoContato\TipoContato;
@@ -22,7 +27,7 @@ class TipoContatoFactory extends Factory
     public function definition()
     {
         return [
-            'nome'          => $this->faker->name()
+            'nome' => $this->faker->name(),
         ];
     }
 }
