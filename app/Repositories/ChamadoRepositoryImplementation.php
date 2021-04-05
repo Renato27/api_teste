@@ -11,6 +11,7 @@ use App\Models\Chamado\Chamado;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Contracts\ChamadoRepository;
+use Illuminate\Support\Facades\DB;
 
 class ChamadoRepositoryImplementation implements ChamadoRepository
 {
@@ -137,8 +138,20 @@ class ChamadoRepositoryImplementation implements ChamadoRepository
     {
         return Chamado::whereHas('status_chamado', function ($query) {
             return $query->where('id', '<>', 5)->where('id', '<>', 6);
-        })->with(['cliente:id,nome_fantasia', 'tipo_chamado:id,nome'])
-        ->select('id', 'data_acao', 'mensagem', 'cliente_id', 'status_chamado_id', 'tipo_chamado_id', 'created_at')->get();
+        })->with('suporte', function($query2){
+            $query2->with('interacoes', function($query21){
+                $query21->select('id', 'suporte_id')
+                ->selectRaw(DB::raw('TIMESTAMPDIFF(HOUR,created_at, CURRENT_TIMESTAMP()) as horas'))
+                ->latest()->first();
+            })->select('id', 'chamado_id');
+        })
+        ->with('usuario', function($query3){
+            $query3->whereNotNull('funcionario_id')
+            ->with('funcionario:id,nome')
+            ->select('id', 'funcionario_id');
+        })
+        ->with(['cliente:id,nome_fantasia', 'tipo_chamado:id,nome'])
+        ->select('id', 'data_acao', 'mensagem', 'cliente_id', 'status_chamado_id', 'tipo_chamado_id', 'created_at', 'usuario_id')->get();
     }
 
     /**

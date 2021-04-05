@@ -20,8 +20,8 @@ class CreateSuporteInteracaosTable extends Migration
     {
         Schema::create('suporte_interacaos', function (Blueprint $table) {
             $table->id();
-            $table->date('inicio')->nullable();
-            $table->date('fim')->nullable();
+            $table->dateTime('inicio')->nullable();
+            $table->dateTime('fim')->nullable();
             $table->text('detalhes')->nullable();
             $table->foreignId('suporte_id')->nullable()->constrained('suportes');
             $table->foreignId('usuario_id')->nullable()->constrained('usuarios');
