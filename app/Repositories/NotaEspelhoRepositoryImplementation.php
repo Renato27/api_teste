@@ -41,11 +41,11 @@ class NotaEspelhoRepositoryImplementation implements NotaEspelhoRepository
             return $query->whereIn('id', [1, 4]);
         })
         ->with(['cliente:id,nome_fantasia', 'nota_espelho_estado:id,nome'])
-        ->withCount('patrimonios')
         ->with('contrato', function ($query2) {
             $query2->select('id', 'nome', 'medicao_tipo_id')->with('tipo_medicao:id,nome');
         })
         ->select('id', 'cliente_id', 'nota_espelho_estado_id', 'valor', 'data_emissao', 'contrato_id')
+        ->withCount('patrimonios')
         ->get();
     }
 

@@ -289,6 +289,7 @@ class ChamadoSeeder extends Seeder
                         $entrega1 = Entrega::create([
                             'chamado_id' => $chamado->idchamados,
                             'expedicao_id' => null,
+                            'created_at' => $chamado->created,
                         ]);
                         foreach ($entregas as $entrega) {
                             EntregaPatrimonio::create([
@@ -306,6 +307,7 @@ class ChamadoSeeder extends Seeder
 
                         $retirada1 = Retirada::create([
                             'chamado_id' => $chamado->idchamados,
+                            'created_at' => $chamado->created,
                         ]);
                         foreach ($retiradas as $retirada) {
                             RetiradaPatrimonio::create([
@@ -322,6 +324,7 @@ class ChamadoSeeder extends Seeder
 
                         $preventiva1 = Preventiva::create([
                             'chamado_id' => $chamado->idchamados,
+                            'created_at' => $chamado->created,
                         ]);
                         foreach ($preventivas as $preventiva) {
                             PreventivaPatrimonio::create([
@@ -338,6 +341,7 @@ class ChamadoSeeder extends Seeder
 
                         $contador1 = Contador::create([
                             'chamado_id' => $chamado->idchamados,
+                            'created_at' => $chamado->created,
                         ]);
 
                             foreach ($contadores as $contador) {
@@ -356,6 +360,7 @@ class ChamadoSeeder extends Seeder
 
                         $corretiva1 = Corretiva::create([
                             'chamado_id' => $chamado->idchamados,
+                            'created_at' => $chamado->created,
                         ]);
 
                         foreach ($corretivas as $corretiva) {
@@ -380,6 +385,7 @@ class ChamadoSeeder extends Seeder
 
                         $suprimento1 = Suprimento::create([
                             'chamado_id' => $chamado->idchamados,
+                            'created_at' => $chamado->created,
                         ]);
 
                         foreach ($suprimentos as $suprimento) {
@@ -393,20 +399,28 @@ class ChamadoSeeder extends Seeder
                     case 7:
 
                         $tarefas = DB::connection('mysql2')
-                        ->select('select * from tarefas inner join interacoes as i on i.tarefas_idtarefas = tarefas.idtarefas where chamados_idchamados = ?', [$chamado->idchamados]);
+                        ->select('select * from tarefas where chamados_idchamados = ?', [$chamado->idchamados]);
 
                         $suporte = Suporte::create([
                             'chamado_id' => $chamado->idchamados,
+                            'created_at' => $chamado->created,
                         ]);
 
                         foreach ($tarefas as $tarefa) {
-                            SuporteInteracao::create([
-                                'inicio' => $tarefa->inicio,
-                                'fim' => $tarefa->fim,
-                                'detalhes' => $tarefa->detalhes,
-                                'suporte_id' => $suporte->id,
-                                'usuario_id' => $tarefa->usuarios_idusuarios,
-                            ]);
+
+                            $interacoes = DB::connection('mysql2')
+                            ->select('select * from interacoes where tarefas_idtarefas = ?', [$tarefa->idtarefas]);
+
+                            foreach($interacoes as $interacao){
+                                SuporteInteracao::create([
+                                    'inicio' => $interacao->inicio,
+                                    'fim' => $interacao->fim,
+                                    'detalhes' => $interacao->detalhes,
+                                    'suporte_id' => $suporte->id,
+                                    'usuario_id' => $interacao->usuarios_idusuarios,
+                                    'created_at' => $interacao->created,
+                                ]);
+                            }
 
                             if (! is_null($suporte->id_team_viewer) && ! is_null($suporte->senha_team_viewer)) {
                                 $suporte2 = Suporte::where('chamado_id', $chamado->idchamados)->first();
@@ -427,6 +441,7 @@ class ChamadoSeeder extends Seeder
 
                         $troca = Troca::create([
                             'chamado_id' => $chamado->idchamados,
+                            'created_at' => $chamado->created,
                         ]);
 
                         foreach ($entregas as $entrega) {
@@ -455,6 +470,7 @@ class ChamadoSeeder extends Seeder
 
                         $auditoria1 = Auditoria::create([
                             'chamado_id' => $chamado->idchamados,
+                            'created_at' => $chamado->created,
                         ]);
 
                         foreach ($auditorias as $auditoria) {
