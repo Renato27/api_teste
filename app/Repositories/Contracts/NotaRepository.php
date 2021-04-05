@@ -77,4 +77,28 @@ interface NotaRepository
      * @return Collection|null
      */
     public function notasVencidas7Dias() : ?Collection;
+
+    /**
+     * Retorna Endereco e contato (telefone e celular) para o nota show.
+     *
+     * @param Nota $nota
+     * @return Collection|null
+     */
+    public function showNota(Nota $nota) : ?Collection;
+
+    /**
+     * Undocumented function
+     *
+     * @param integer $cliente
+     * @return Collection|null
+     */
+    public function notaEndereco(int $cliente) : ?Collection;
+
+    /**
+     * Undocumented function
+     *
+     * @param integer $cliente
+     * @return model|null
+     */
+    public function notaTelefoneOuCelular(int $cliente) : ?model;
 }

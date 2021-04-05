@@ -15,6 +15,7 @@ use App\Http\Resources\ListaNotasFatura;
 use App\Models\ClienteContato\ClienteContato;
 use App\Models\ClienteEndereco\ClienteEndereco;
 use App\Models\Endereco\Endereco;
+use App\Repositories\Contracts\NotaRepository;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use App\Services\Nota\GerarNota\Contracts\GerarNotaService;
 
@@ -57,36 +58,11 @@ class NotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Nota $nota)
+    public function show(Nota $nota, NotaRepository $notaRepository)
     {
-        $array = collect();
-        $array->add($nota);
+        $show = $notaRepository->showNota($nota);
 
-        $endereco = ClienteEndereco::where('cliente_id', $nota->cliente_id)
-        ->whereHas('endereco', function($query) {
-            $query->where('principal', 1);
-        })->with('endereco:id,rua,numero,bairro,cep,cidade,estado')->get();
-
-        $contato = ClienteContato::where('cliente_id', $nota->cliente_id)
-        ->whereHas('contato', function($query2) {
-            $query2->where('principal', 1);
-        })->with('contato:id,telefone,celular')->first();
-
-        if(isEmpty($contato)){
-            $contato = ClienteContato::where('cliente_id', $nota->cliente_id)
-            ->whereHas('contato', function($query2) {
-                $query2->whereNotNull('telefone');
-            })->with('contato:id,telefone,celular')->first();
-        }
-
-        $array->add($endereco);
-        $array->add($contato);
-        // $a = Nota::where('cliente', function($query) {
-        //     $query->where('enderecos', function($query2) {
-        //         $query2->where('principal', 1);
-        //     })->get();
-        // })->get();
-        return new NotaResource($array);
+        return new NotaResource($show);
     }
 
     /**

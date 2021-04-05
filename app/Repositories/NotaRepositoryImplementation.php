@@ -7,6 +7,8 @@
 
 namespace App\Repositories;
 
+use App\Models\ClienteContato\ClienteContato;
+use App\Models\ClienteEndereco\ClienteEndereco;
 use App\Models\Nota\Nota;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Collection;
@@ -166,5 +168,65 @@ class NotaRepositoryImplementation implements NotaRepository
             ->with('cliente:id,nome_fantasia')
             ->select('id', 'cliente_id', 'valor', 'data_vencimento')
             ->get();
+    }
+
+    /**
+     * Retorna Endereco e contato (telefone e celular) para o nota show.
+     *
+     * @param Nota $nota
+     * @return Collection|null
+     */
+    public function showNota(Nota $nota) : ?Collection
+    {
+        $array = collect();
+
+        $array->add($nota);
+        $array->add($this->notaEndereco($nota->cliente_id));
+        $array->add($this->notaTelefoneOuCelular($nota->cliente_id));
+        return $array;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param integer $cliente
+     * @return Collection|null
+     */
+    public function notaEndereco(int $cliente) : ?Collection
+    {
+        $endereco = ClienteEndereco::where('cliente_id', $cliente)
+        ->whereHas('endereco', function($query) {
+            $query->where('principal', 1);
+        })->with('endereco:id,rua,numero,bairro,cep,cidade,estado')->get();
+
+
+        return $endereco;
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param integer $cliente
+     * @return model|null
+     */
+    public function notaTelefoneOuCelular(int $cliente) : ?model
+    {
+        $contato = ClienteContato::where('cliente_id', $cliente)
+        ->whereHas('contato', function($query2) {
+            $query2->where('principal', 1);
+        })->with('contato:id,telefone,celular')->first();
+
+        if(is_null($contato)){
+            $contato = ClienteContato::where('cliente_id', $cliente)
+            ->whereHas('contato', function($query2) {
+                $query2->whereNotNull('telefone');
+            })->with('contato:id,telefone,celular')->first();
+        }
+
+        if(is_null($contato)){
+            return null;
+        }
+        return $contato;
+
     }
 }
