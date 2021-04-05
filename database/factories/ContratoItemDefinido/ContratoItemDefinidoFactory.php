@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\ContratoItemDefinido;
 
-use App\Models\ContratoItemDefinido\ContratoItemDefinido;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\ContratoItemDefinido\ContratoItemDefinido;
 
 class ContratoItemDefinidoFactory extends Factory
 {

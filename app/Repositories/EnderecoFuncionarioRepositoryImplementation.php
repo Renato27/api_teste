@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\EnderecoFuncionarioRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\EnderecoFuncionarioRepository;
 
 class EnderecoFuncionarioRepositoryImplementation implements EnderecoFuncionarioRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna EnderecoFuncionario baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getEnderecoFuncionario(int $id): ?Model
@@ -25,8 +29,8 @@ class EnderecoFuncionarioRepositoryImplementation implements EnderecoFuncionario
     /**
      * Retorna uma coleção de EnderecoFuncionario baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getEnderecoFuncionarios(int $id, int $associacao): ?Collection
@@ -35,40 +39,42 @@ class EnderecoFuncionarioRepositoryImplementation implements EnderecoFuncionario
     }
 
     /**
-     * Cria um novo EnderecoFuncionario
+     * Cria um novo EnderecoFuncionario.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createEnderecoFuncionario(array $detalhes): ?Model
     {
         return $this->create($detalhes);
     }
 
     /**
-     * Atualiza um EnderecoFuncionario
+     * Atualiza um EnderecoFuncionario.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateEnderecoFuncionario(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
     }
 
     /**
-     * Deleta um EnderecoFuncionario
+     * Deleta um EnderecoFuncionario.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteEnderecoFuncionario(int $id): bool
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

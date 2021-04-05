@@ -1,15 +1,19 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Contratos\AtualizarContrato\Abstracts;
 
+use Exception;
 use App\Models\Contratos\Contrato;
 use App\Repositories\Contracts\ContratosRepository;
 use App\Services\Contratos\AtualizarContrato\Contracts\AtualizarContratoService;
-use Exception;
 
 abstract class AtualizarContratoServiceAbstract implements AtualizarContratoService
 {
-
     /**
      * Dados a serem atualizados.
      *
@@ -20,7 +24,7 @@ abstract class AtualizarContratoServiceAbstract implements AtualizarContratoServ
     /**
      * ID do contrato.
      *
-     * @var integer
+     * @var int
      */
     protected int $contrato;
 
@@ -31,10 +35,10 @@ abstract class AtualizarContratoServiceAbstract implements AtualizarContratoServ
      */
     protected ContratosRepository $contratoRepository;
 
-     /**
+    /**
      * Seta um contrato a ser atualizado.
      *
-     * @param integer $contrato
+     * @param int $contrato
      * @return AtualizarContratoService
      */
     public function setContrato(int $contrato) : AtualizarContratoService
@@ -79,13 +83,15 @@ abstract class AtualizarContratoServiceAbstract implements AtualizarContratoServ
     {
         $contrato = $this->contratoRepository->getContrato($this->contrato);
 
-        if(!isset($contrato->id))
-            throw new Exception("O contrato solicitado para atualização não existe");
+        if (! isset($contrato->id)) {
+            throw new Exception('O contrato solicitado para atualização não existe');
+        }
 
         $contratoAtualizado = $this->contratoRepository->updateContrato($contrato->id, $this->dados);
 
-        if(!isset($contratoAtualizado->id))
-            throw new Exception("Não foi possivel atualizar o contrato solicitado. Revise os dados e tente novamente");
+        if (! isset($contratoAtualizado->id)) {
+            throw new Exception('Não foi possivel atualizar o contrato solicitado. Revise os dados e tente novamente');
+        }
 
         return $contratoAtualizado;
     }

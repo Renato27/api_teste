@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers\Services\Pedidos;
 
+use Illuminate\Support\ServiceProvider;
 use App\Repositories\Contracts\PedidoRepository;
 use App\Services\Pedidos\AtualizarPedido\AtualizarPedidoService;
 use App\Services\Pedidos\AtualizarPedido\Contracts\AtualizarPedidoService as ContractsAtualizarPedidoService;
-use Illuminate\Support\ServiceProvider;
 
 class AtualizarPedidoServiceProvider extends ServiceProvider
 {
@@ -29,7 +34,7 @@ class AtualizarPedidoServiceProvider extends ServiceProvider
         $service = new AtualizarPedidoService();
         $service->setPedidoRepository(app(PedidoRepository::class));
 
-        $this->app->bind(ContractsAtualizarPedidoService::class, function($app) use($service){
+        $this->app->bind(ContractsAtualizarPedidoService::class, function ($app) use ($service) {
             return $service;
         });
     }

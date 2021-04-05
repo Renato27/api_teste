@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Enderecos\AtualizarEndereco\Contracts;
 
 use App\Models\Endereco\Endereco;
@@ -10,10 +15,10 @@ interface AtualizarEnderecoService
     /**
      * Seta um endereço.
      *
-     * @param integer $endereco
+     * @param int $endereco
      * @return AtualizarEnderecoService
      */
-    public function setEndereco(int $endereco) : AtualizarEnderecoService;
+    public function setEndereco(int $endereco) : self;
 
     /**
      * Seta os dados a serem atualizados.
@@ -21,7 +26,7 @@ interface AtualizarEnderecoService
      * @param array $dados
      * @return AtualizarEnderecoService
      */
-    public function setDados(array $dados) : AtualizarEnderecoService;
+    public function setDados(array $dados) : self;
 
     /**
      * Seta o repositório de endereço.
@@ -29,7 +34,7 @@ interface AtualizarEnderecoService
      * @param EnderecoRepository $enderecoRepository
      * @return AtualizarEnderecoService
      */
-    public function setEnderecoRepository(EnderecoRepository $enderecoRepository) : AtualizarEnderecoService;
+    public function setEnderecoRepository(EnderecoRepository $enderecoRepository) : self;
 
     /**
      * Processa a atualização do endereço.

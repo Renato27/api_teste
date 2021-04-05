@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\PedidoStatusPedido\PedidoStatusPedido;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\PedidoStatusPedido\PedidoStatusPedido;
 use App\Repositories\Contracts\PedidoStatusPedidoRepository;
 use App\Repositories\PedidoStatusPedidoRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class PedidoStatusPedidoRepositoryTest extends TestCase
 
     /**
      * Retorna PedidoStatusPedido baseado no ID.
-     *
      */
     public function testGetPedidoStatusPedido()
     {
@@ -57,12 +59,10 @@ class PedidoStatusPedidoRepositoryTest extends TestCase
         $retorno = $this->implementacao->getPedidoStatusPedido($pedido->id);
 
         $this->assertIsInt(2, $retorno);
-
     }
 
     /**
      * Retorna uma coleção de PedidoStatusPedido baseado em uma associação.
-     *
      */
     public function testGetPedidoStatusPedidos()
     {
@@ -86,8 +86,7 @@ class PedidoStatusPedidoRepositoryTest extends TestCase
     }
 
     /**
-     * Cria um novo PedidoStatusPedido
-     *
+     * Cria um novo PedidoStatusPedido.
      */
     public function testCreatePedidoStatusPedido()
     {
@@ -96,8 +95,8 @@ class PedidoStatusPedidoRepositoryTest extends TestCase
         $associacao = \App\Models\PedidoStatusPedido\PedidoStatusPedido::factory()->make();
 
         $detalhes = [
-            'pedido_id'             => $pedido->id,
-            'status_pedido_id'      => $statusPedido->id
+            'pedido_id' => $pedido->id,
+            'status_pedido_id' => $statusPedido->id,
         ];
 
         $retorno = $this->implementacao->createPedidoStatusPedido($detalhes);
@@ -106,12 +105,11 @@ class PedidoStatusPedidoRepositoryTest extends TestCase
         $associacao->status_pedido_id = $statusPedido->id;
         $associacao->save();
 
-        $this->assertEquals($associacao->id-1, $retorno->id);
+        $this->assertEquals($associacao->id - 1, $retorno->id);
     }
 
     /**
-     * Atualiza um PedidoStatusPedido
-     *
+     * Atualiza um PedidoStatusPedido.
      */
     public function testUpdatePedidoStatusPedido()
     {
@@ -120,19 +118,17 @@ class PedidoStatusPedidoRepositoryTest extends TestCase
         $associacao = \App\Models\PedidoStatusPedido\PedidoStatusPedido::factory()->make();
 
         $detalhes = [
-            'pedido_id'             => $pedido->id,
-            'status_pedido_id'      => $statusPedido->id
+            'pedido_id' => $pedido->id,
+            'status_pedido_id' => $statusPedido->id,
         ];
 
         $retorno = $this->implementacao->createPedidoStatusPedido($detalhes);
 
         $this->assertIsInt($retorno->id);
-
     }
 
     /**
-     * Deleta um PedidoStatusPedido
-     *
+     * Deleta um PedidoStatusPedido.
      */
     public function testDeletePedidoStatusPedido()
     {

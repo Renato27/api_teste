@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ContatoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ContatoRepository;
 
 class ContatoRepositoryImplementation implements ContatoRepository
 {
-
     use  BaseEloquentRepository;
 
     /**
      * Retorna Contato baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getContato(int $id): ?Model
@@ -25,8 +29,8 @@ class ContatoRepositoryImplementation implements ContatoRepository
     /**
      * Retorna uma coleção de Contato baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getContatos(): ?Collection
@@ -35,40 +39,42 @@ class ContatoRepositoryImplementation implements ContatoRepository
     }
 
     /**
-     * Cria um novo Contato
+     * Cria um novo Contato.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createContato(array $detalhes): ?Model
     {
         return $this->create($detalhes);
     }
 
     /**
-     * Atualiza um Contato
+     * Atualiza um Contato.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateContato(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
     }
 
     /**
-     * Deleta um Contato
+     * Deleta um Contato.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteContato(int $id): bool
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

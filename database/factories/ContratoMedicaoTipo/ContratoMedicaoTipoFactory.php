@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\ContratoMedicaoTipo;
 
-use App\Models\ContratoMedicaoTipo\ContratoMedicaoTipo;
 use App\Models\Contratos\Contrato;
 use App\Models\MedicaoTipo\MedicaoTipo;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\ContratoMedicaoTipo\ContratoMedicaoTipo;
 
 class ContratoMedicaoTipoFactory extends Factory
 {
@@ -24,8 +29,8 @@ class ContratoMedicaoTipoFactory extends Factory
     public function definition()
     {
         return [
-            'contrato_id'               => Contrato::factory()->create(),
-            'medicao_tipo_id'           => MedicaoTipo::factory()->create()
+            'contrato_id' => Contrato::factory()->create(),
+            'medicao_tipo_id' => MedicaoTipo::factory()->create(),
         ];
     }
 }

@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Seeders;
 
-use App\Models\MedicaoTipo\MedicaoTipo;
 use Illuminate\Database\Seeder;
+use App\Models\MedicaoTipo\MedicaoTipo;
 
 class MedicaoTipoSeeder extends Seeder
 {
@@ -15,13 +20,13 @@ class MedicaoTipoSeeder extends Seeder
     public function run()
     {
         MedicaoTipo::create([
-            'nome' => 'Sem Medição'
+            'nome' => 'Sem Medição',
         ]);
         MedicaoTipo::create([
-            'nome' => 'Vencida'
+            'nome' => 'Vencida',
         ]);
         MedicaoTipo::create([
-            'nome' => 'A Vencer'
+            'nome' => 'A Vencer',
         ]);
     }
 }

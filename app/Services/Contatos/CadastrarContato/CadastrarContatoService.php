@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Contatos\CadastrarContato;
 
 use App\Models\Contato\Contato;
-use App\Services\Contatos\CadastrarContato\Abstracts\CadastrarContatoServiceAbstract;
 use Illuminate\Support\Facades\DB;
+use App\Services\Contatos\CadastrarContato\Abstracts\CadastrarContatoServiceAbstract;
 
 class CadastrarContatoService extends CadastrarContatoServiceAbstract
 {
@@ -17,8 +22,7 @@ class CadastrarContatoService extends CadastrarContatoServiceAbstract
     {
         $contato = null;
 
-        DB::transaction(function () use(&$contato){
-            
+        DB::transaction(function () use (&$contato) {
             $contato = $this->cadastrarContato();
             $this->cadastrarEmailContato($contato);
         });

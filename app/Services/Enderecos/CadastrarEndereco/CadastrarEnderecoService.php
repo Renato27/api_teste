@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Enderecos\CadastrarEndereco;
 
 use App\Models\Endereco\Endereco;
-use App\Services\Enderecos\CadastrarEndereco\Abstracts\CadastrarEnderecoServiceAbstract;
 use Illuminate\Support\Facades\DB;
+use App\Services\Enderecos\CadastrarEndereco\Abstracts\CadastrarEnderecoServiceAbstract;
 
 class CadastrarEnderecoService extends CadastrarEnderecoServiceAbstract
 {
@@ -17,8 +22,7 @@ class CadastrarEnderecoService extends CadastrarEnderecoServiceAbstract
     {
         $endereco = null;
 
-        DB::transaction(function () use(&$endereco){
-            
+        DB::transaction(function () use (&$endereco) {
             $endereco = $this->cadastrarEndereco();
         });
 

@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\PedidoItem\PedidoItem;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\PedidoItem\PedidoItem;
 use App\Repositories\Contracts\PedidoItemRepository;
 use App\Repositories\PedidoItemRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class PedidoItemRepositoryTest extends TestCase
 
     /**
      * Retorna PedidoItem baseado no ID.
-     *
      */
     public function testGetPedidoItem()
     {
@@ -61,7 +63,6 @@ class PedidoItemRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de PedidoItem baseado em uma associação.
-     *
      */
     public function testGetPedidoItems()
     {
@@ -85,8 +86,7 @@ class PedidoItemRepositoryTest extends TestCase
     }
 
     /**
-     * Cria um novo PedidoItem
-     *
+     * Cria um novo PedidoItem.
      */
     public function testCreatePedidoItem()
     {
@@ -94,8 +94,8 @@ class PedidoItemRepositoryTest extends TestCase
         $pedido = \App\Models\Pedido\Pedido::factory()->create();
         $itemPedido = \App\Models\ItemPedido\ItemPedido::factory()->create();
         $detalhes = [
-            'pedido_id'         => $pedido->id,
-            'item_pedido_id'    => $itemPedido->id
+            'pedido_id' => $pedido->id,
+            'item_pedido_id' => $itemPedido->id,
         ];
 
         $retorno = $this->implementacao->createPedidoItem($detalhes);
@@ -104,12 +104,11 @@ class PedidoItemRepositoryTest extends TestCase
         $pedidoItem->item_pedido_id = $itemPedido->id;
         $pedidoItem->save();
 
-        $this->assertEquals($pedidoItem->id-1, $retorno->id);
+        $this->assertEquals($pedidoItem->id - 1, $retorno->id);
     }
 
     /**
-     * Atualiza um PedidoItem
-     *
+     * Atualiza um PedidoItem.
      */
     public function testUpdatePedidoItem()
     {
@@ -117,8 +116,8 @@ class PedidoItemRepositoryTest extends TestCase
         $pedido = \App\Models\Pedido\Pedido::factory()->create();
         $itemPedido = \App\Models\ItemPedido\ItemPedido::factory()->create();
         $detalhes = [
-            'pedido_id'         => $pedido->id,
-            'item_pedido_id'    => $itemPedido->id
+            'pedido_id' => $pedido->id,
+            'item_pedido_id' => $itemPedido->id,
         ];
 
         $retorno = $this->implementacao->updatePedidoItem($pedidoItem->id, $detalhes);
@@ -127,8 +126,7 @@ class PedidoItemRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um PedidoItem
-     *
+     * Deleta um PedidoItem.
      */
     public function testDeletePedidoItem()
     {

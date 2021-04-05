@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\TransportadoraRepository;
 
@@ -28,46 +31,36 @@ class TransportadoraRepositoryTest extends TestCase
 
     /**
      * Retorna Transportadora baseado no ID.
-     *
      */
     public function testGetTransportadora()
     {
-
     }
 
     /**
      * Retorna uma coleção de Transportadora baseado em uma associação.
-     *
      */
     public function testGetTransportadoras()
     {
-
     }
 
     /**
-     * Cria um novo Transportadora
-     *
-     */    
+     * Cria um novo Transportadora.
+     */
     public function testCreateTransportadora()
     {
-
     }
 
     /**
-     * Atualiza um Transportadora
-     *
-     */ 
+     * Atualiza um Transportadora.
+     */
     public function testUpdateTransportadora()
     {
-
     }
 
     /**
-     * Deleta um Transportadora
-     *
-     */ 
+     * Deleta um Transportadora.
+     */
     public function testDeleteTransportadora()
     {
-
     }
 }

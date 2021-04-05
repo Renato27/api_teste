@@ -1,15 +1,23 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
+use App\Events\PedidoItem;
+use Illuminate\Http\Request;
+use App\Models\Pedido\Pedido;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PedidoResource;
-use App\Models\Pedido\Pedido;
-use App\Repositories\Contracts\PedidoRepository;
+use App\Http\Resources\ListaPedidosResource;
+use App\Services\Pedidos\ExcluirPedido\Contracts\ExcluirPedidoService;
 use App\Services\Pedidos\AtualizarPedido\Contracts\AtualizarPedidoService;
 use App\Services\Pedidos\CadastrarPedido\Contracts\CadastrarPedidoService;
-use App\Services\Pedidos\ExcluirPedido\Contracts\ExcluirPedidoService;
-use Illuminate\Http\Request;
+use App\Services\ItemPedido\CadastrarItemPedido\Contracts\CadastrarItemPedidoService;
 
 class PedidoController extends Controller
 {
@@ -18,11 +26,14 @@ class PedidoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(PedidoRepository $pedidoRepository)
+    public function index()
     {
-        $pedidos = $pedidoRepository->getPedidos();
+        $pedidos = Pedido::with(['endereco.cliente:cliente_id,nome_fantasia,cpf_cnpj', 'endereco:id,bairro', 'contato:id,nome', 'status:id,nome'])
+        ->with('itens', function ($query) {
+            $query->select(DB::raw('sum(valor) as valor'))->groupBy('pedido_id');
+        })->select('id', 'data_entrega', 'status_pedido_id', 'endereco_id', 'contato_id')->get();
 
-        return PedidoResource::collection($pedidos);
+        return ListaPedidosResource::collection($pedidos);
     }
 
     /**
@@ -31,10 +42,17 @@ class PedidoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, CadastrarPedidoService $service)
+    public function store(Request $request, CadastrarPedidoService $service, CadastrarItemPedidoService $serviceItem)
     {
         try {
             $pedido = $service->setDados($request->all())->handle();
+            event(new PedidoItem($pedido, null, $request->contrato_id));
+
+            foreach ($request->itens as $item) {
+                $item = $serviceItem->setDados($item)->handle();
+
+                event(new PedidoItem($pedido, $item, null));
+            }
 
             return new PedidoResource($pedido);
         } catch (\Throwable $th) {

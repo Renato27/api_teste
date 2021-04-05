@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\ContratoTipo\ContratoTipo;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\ContratoTipo\ContratoTipo;
 use App\Repositories\Contracts\ContratoTipoRepository;
 use App\Repositories\ContratoTipoRepositoryImplementation;
 
@@ -36,7 +39,7 @@ class ContratoTipoRepositoryTest extends TestCase
 
     /**
      * Retorna ContratoTipo baseado no ID.
-     *  (inativo, não necessário a iplementação de teste)
+     *  (inativo, não necessário a iplementação de teste).
      */
     // public function testGetContratoTipo()
     // {
@@ -49,22 +52,21 @@ class ContratoTipoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de ContratoTipo baseado em uma associação.
-     *  (inativo, não necessário a iplementação de teste)
+     *  (inativo, não necessário a iplementação de teste).
      */
     // public function testGetContratoTipos()
     // {
     // }
 
     /**
-     * Cria um novo ContratoTipo
-     *
+     * Cria um novo ContratoTipo.
      */
     public function testCreateContratoTipo()
     {
         $contratoTipo = \App\Models\ContratoTipo\ContratoTipo::factory()->make();
 
         $detalhes = [
-            'nome'                  => $contratoTipo->nome
+            'nome' => $contratoTipo->nome,
         ];
 
         $retorno = $this->implementacao->createContratoTipo($detalhes);
@@ -73,15 +75,14 @@ class ContratoTipoRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um ContratoTipo
-     *
+     * Atualiza um ContratoTipo.
      */
     public function testUpdateContratoTipo()
     {
         $contratoTipo = \App\Models\ContratoTipo\ContratoTipo::factory()->create();
 
         $detalhes = [
-            'nome'                  => $contratoTipo->nome
+            'nome' => $contratoTipo->nome,
         ];
 
         $retorno = $this->implementacao->updateContratoTipo($contratoTipo->id, $detalhes);
@@ -90,8 +91,7 @@ class ContratoTipoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um ContratoTipo
-     *
+     * Deleta um ContratoTipo.
      */
     public function testDeleteContratoTipo()
     {

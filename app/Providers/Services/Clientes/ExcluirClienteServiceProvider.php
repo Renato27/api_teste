@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers\Services\Clientes;
 
-use App\Repositories\Contracts\ClienteRepository;
-use App\Services\Clientes\ExcluirCliente\Contracts\ExcluirClienteService as ContractsExcluirClienteService;
-use App\Services\Clientes\ExcluirCliente\ExcluirClienteService;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Contracts\ClienteRepository;
+use App\Services\Clientes\ExcluirCliente\ExcluirClienteService;
+use App\Services\Clientes\ExcluirCliente\Contracts\ExcluirClienteService as ContractsExcluirClienteService;
 
 class ExcluirClienteServiceProvider extends ServiceProvider
 {
@@ -30,7 +35,7 @@ class ExcluirClienteServiceProvider extends ServiceProvider
 
         $service->setClienteRepository(app(ClienteRepository::class));
 
-        $this->app->bind(ContractsExcluirClienteService::class, function($app) use($service){
+        $this->app->bind(ContractsExcluirClienteService::class, function ($app) use ($service) {
             return $service;
         });
     }

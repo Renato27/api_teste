@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\TipoContratoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\TipoContratoRepository;
 
 class TipoContratoRepositoryImplementation implements TipoContratoRepository
 {
@@ -13,7 +18,7 @@ class TipoContratoRepositoryImplementation implements TipoContratoRepository
     /**
      * Retorna TipoContrato baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getTipoContrato(int $contrato): ?Model
@@ -24,8 +29,8 @@ class TipoContratoRepositoryImplementation implements TipoContratoRepository
     /**
      * Retorna uma coleção de TipoContrato baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getTipoContratos(int $tipo): ?Collection
@@ -34,7 +39,7 @@ class TipoContratoRepositoryImplementation implements TipoContratoRepository
     }
 
     /**
-     * Cria um novo TipoContrato
+     * Cria um novo TipoContrato.
      *
      * @param array $detalhes
      * @return Model|null
@@ -45,7 +50,7 @@ class TipoContratoRepositoryImplementation implements TipoContratoRepository
     }
 
     /**
-     * Atualiza um TipoContrato
+     * Atualiza um TipoContrato.
      *
      * @param int $id
      * @param array $detalhes
@@ -57,7 +62,7 @@ class TipoContratoRepositoryImplementation implements TipoContratoRepository
     }
 
     /**
-     * Deleta um TipoContrato
+     * Deleta um TipoContrato.
      *
      * @param int $id
      * @param array $detalhes
@@ -67,7 +72,9 @@ class TipoContratoRepositoryImplementation implements TipoContratoRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

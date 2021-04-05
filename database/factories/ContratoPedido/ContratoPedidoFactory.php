@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\ContratoPedido;
 
-use App\Models\ContratoPedido\ContratoPedido;
-use App\Models\Contratos\Contrato;
 use App\Models\Pedido\Pedido;
+use App\Models\Contratos\Contrato;
+use App\Models\ContratoPedido\ContratoPedido;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ContratoPedidoFactory extends Factory
@@ -24,8 +29,8 @@ class ContratoPedidoFactory extends Factory
     public function definition()
     {
         return [
-            'pedido_id'                 => Pedido::factory()->create(),
-            'contrato_id'               => Contrato::factory()->create()
+            'pedido_id' => Pedido::factory()->create(),
+            'contrato_id' => Contrato::factory()->create(),
         ];
     }
 }

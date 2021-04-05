@@ -1,12 +1,17 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Pedidos\CadastrarPedido;
 
 use App\Models\Pedido\Pedido;
-use App\Services\Pedidos\CadastrarPedido\Abstracts\CadastrarPedidoServiceAbstract;
 use Illuminate\Support\Facades\DB;
+use App\Services\Pedidos\CadastrarPedido\Abstracts\CadastrarPedidoServiceAbstract;
 
-class CadastrarPedidoService extends CadastrarPedidoServiceAbstract
+final class CadastrarPedidoService extends CadastrarPedidoServiceAbstract
 {
     /**
      * Processa os dados para cadastrar um pedido.
@@ -17,8 +22,7 @@ class CadastrarPedidoService extends CadastrarPedidoServiceAbstract
     {
         $pedido = null;
 
-        DB::transaction(function () use(&$pedido){
-
+        DB::transaction(function () use (&$pedido) {
             $pedido = $this->cadastrarPedidos();
         });
 

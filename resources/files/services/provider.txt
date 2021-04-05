@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Providers\Services\{referencia_service};
+
+use App\Repositories\Contracts\{modelRepository}Repository;
+use App\Services\{referencia_service}\{acao_service}\{service_name};
+use App\Services\{referencia_service}\{acao_service}\Contracts\{service_name} as Contracts{service_name};
+use Illuminate\Support\ServiceProvider;
+
+class {service_name}Provider extends ServiceProvider
+{
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $service = new {service_name}();
+
+        $service->set{modelRepository}Repository(app({modelRepository}Repository::class));
+
+        $this->app->bind(Contracts{service_name}::class, function($app) use($service){
+            return $service;
+        });
+    }
+}

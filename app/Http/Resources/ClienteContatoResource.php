@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -16,7 +21,7 @@ class ClienteContatoResource extends JsonResource
     {
         return [
             'cliente' => new ClienteResource($this->resource),
-            'contato' => ContatoResource::collection($this->resource)
+            'contato' => ContatoResource::collection($this->resource),
         ];
     }
 }

@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Pedidos\CadastrarPedido\Contracts;
 
 use App\Models\Pedido\Pedido;
@@ -13,7 +18,7 @@ interface CadastrarPedidoService
      * @param array $dados
      * @return CadastrarPedidoService
      */
-    public function setDados(array $dados) : CadastrarPedidoService;
+    public function setDados(array $dados) : self;
 
     /**
      * Seta o repositório de pedido.
@@ -21,7 +26,7 @@ interface CadastrarPedidoService
      * @param PedidoRepository $pedidoRepository
      * @return CadastrarContatoService
      */
-    public function setPedidoRepository(PedidoRepository $pedidoRepository) : CadastrarPedidoService;
+    public function setPedidoRepository(PedidoRepository $pedidoRepository) : self;
 
     /**
      * Processa os dados para cadastrar um pedido.

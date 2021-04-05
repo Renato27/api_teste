@@ -1,8 +1,13 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateEnderecosTable extends Migration
 {
@@ -22,7 +27,7 @@ class CreateEnderecosTable extends Migration
             $table->string('cidade')->nullable();
             $table->string('estado')->nullable();
             $table->string('cep')->nullable();
-            $table->boolean('principal')->default(0);
+            $table->boolean('principal')->nullable()->default(0);
             $table->timestamps();
 
             $table->softDeletes();

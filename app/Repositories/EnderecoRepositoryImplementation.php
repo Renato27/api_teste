@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\EnderecoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\EnderecoRepository;
 
 class EnderecoRepositoryImplementation implements EnderecoRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna Endereco baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getEndereco(int $id): ?Model
@@ -25,8 +29,8 @@ class EnderecoRepositoryImplementation implements EnderecoRepository
     /**
      * Retorna uma coleção de Endereco baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getEnderecos(): ?Collection
@@ -35,7 +39,7 @@ class EnderecoRepositoryImplementation implements EnderecoRepository
     }
 
     /**
-     * Cria um novo Endereco
+     * Cria um novo Endereco.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +50,7 @@ class EnderecoRepositoryImplementation implements EnderecoRepository
     }
 
     /**
-     * Atualiza um Endereco
+     * Atualiza um Endereco.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +62,7 @@ class EnderecoRepositoryImplementation implements EnderecoRepository
     }
 
     /**
-     * Deleta um Endereco
+     * Deleta um Endereco.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +72,9 @@ class EnderecoRepositoryImplementation implements EnderecoRepository
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

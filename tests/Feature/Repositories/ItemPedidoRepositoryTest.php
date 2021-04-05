@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\ItemPedido\ItemPedido;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\ItemPedido\ItemPedido;
 use App\Repositories\Contracts\ItemPedidoRepository;
 use App\Repositories\ItemPedidoRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class ItemPedidoRepositoryTest extends TestCase
 
     /**
      * Retorna ItemPedido baseado no ID.
-     *
      */
     public function testGetItemPedido()
     {
@@ -49,7 +51,7 @@ class ItemPedidoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de ItemPedido baseado em uma associação.
-     *  (Inativo, não necessário a implementação do teste no atual momento)
+     *  (Inativo, não necessário a implementação do teste no atual momento).
      */
     // public function testGetItemPedidos()
     // {
@@ -57,34 +59,32 @@ class ItemPedidoRepositoryTest extends TestCase
     // }
 
     /**
-     * Cria um novo ItemPedido
-     *
+     * Cria um novo ItemPedido.
      */
     public function testCreateItemPedido()
     {
         $itemPedido = \App\Models\ItemPedido\ItemPedido::factory()->make();
         $detalhes = [
-            'valor'         =>$itemPedido->valor,
-            'quantidade'    =>$itemPedido->quantidade
+            'valor' => $itemPedido->valor,
+            'quantidade' => $itemPedido->quantidade,
         ];
 
         $retorno = $this->implementacao->createItemPedido($detalhes);
 
         $itemPedido = \App\Models\ItemPedido\ItemPedido::factory()->create();
 
-        $this->assertEquals($itemPedido->id-1, $retorno->id);
+        $this->assertEquals($itemPedido->id - 1, $retorno->id);
     }
 
     /**
-     * Atualiza um ItemPedido
-     *
+     * Atualiza um ItemPedido.
      */
     public function testUpdateItemPedido()
     {
         $itemPedido = \App\Models\ItemPedido\ItemPedido::factory()->create();
         $detalhes = [
-            'valor'         =>$itemPedido->valor,
-            'quantidade'    =>$itemPedido->quantidade
+            'valor' => $itemPedido->valor,
+            'quantidade' => $itemPedido->quantidade,
         ];
 
         $retorno = $this->implementacao->updateItemPedido($itemPedido->id, $detalhes);
@@ -93,8 +93,7 @@ class ItemPedidoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um ItemPedido
-     *
+     * Deleta um ItemPedido.
      */
     public function testDeleteItemPedido()
     {

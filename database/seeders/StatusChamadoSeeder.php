@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Seeders;
 
-use App\Models\StatusChamado\StatusChamado;
 use Illuminate\Database\Seeder;
+use App\Models\StatusChamado\StatusChamado;
 
 class StatusChamadoSeeder extends Seeder
 {
@@ -15,19 +20,25 @@ class StatusChamadoSeeder extends Seeder
     public function run()
     {
         StatusChamado::create([
-            'nome' => 'Aberto'
+            'nome' => 'Aberto',
         ]);
         StatusChamado::create([
-            'nome' => 'Fechado'
+            'nome' => 'Fechado',
         ]);
         StatusChamado::create([
-            'nome' => 'Encerrado'
+            'nome' => 'Excluir',
         ]);
         StatusChamado::create([
-            'nome' => 'Cancelado'
+            'nome' => 'Excluir2',
         ]);
         StatusChamado::create([
-            'nome' => 'Em Andamento'
+            'nome' => 'Encerrado',
+        ]);
+        StatusChamado::create([
+            'nome' => 'Cancelado',
+        ]);
+        StatusChamado::create([
+            'nome' => 'Em Andamento',
         ]);
     }
 }

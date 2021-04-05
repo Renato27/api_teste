@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\Endereco\Endereco;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Endereco\Endereco;
 use App\Repositories\Contracts\EnderecoRepository;
 use App\Repositories\EnderecoRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class EnderecoRepositoryTest extends TestCase
 
     /**
      * Retorna Endereco baseado no ID.
-     *
      */
     public function testGetEndereco()
     {
@@ -49,27 +51,26 @@ class EnderecoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de Endereco baseado em uma associação.
-     *  (Inativo, não necessário implementação do teste)
+     *  (Inativo, não necessário implementação do teste).
      */
     // public function testGetEnderecos()
     // {
     // }
 
     /**
-     * Cria um novo Endereco
-     *
+     * Cria um novo Endereco.
      */
     public function testCreateEndereco()
     {
         $endereco = \App\Models\Endereco\Endereco::factory()->make();
         $detalhes = [
-            'rua'               => $endereco->rua,
-            'numero'            => $endereco->numero,
-            'bairro'            => $endereco->bairro,
-            'complemento'       => $endereco->complemento,
-            'cidade'            => $endereco->cidade,
-            'estado'            => $endereco->estado,
-            'cep'               => $endereco->cep
+            'rua' => $endereco->rua,
+            'numero' => $endereco->numero,
+            'bairro' => $endereco->bairro,
+            'complemento' => $endereco->complemento,
+            'cidade' => $endereco->cidade,
+            'estado' => $endereco->estado,
+            'cep' => $endereco->cep,
         ];
 
         $retorno = $this->implementacao->createEndereco($detalhes);
@@ -78,31 +79,28 @@ class EnderecoRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um Endereco
-     *
+     * Atualiza um Endereco.
      */
     public function testUpdateEndereco()
     {
         $endereco = \App\Models\Endereco\Endereco::factory()->create();
         $detalhes = [
-            'rua'               => $endereco->rua,
-            'numero'            => $endereco->numero,
-            'bairro'            => $endereco->bairro,
-            'complemento'       => $endereco->complemento,
-            'cidade'            => $endereco->cidade,
-            'estado'            => $endereco->estado,
-            'cep'               => $endereco->cep
+            'rua' => $endereco->rua,
+            'numero' => $endereco->numero,
+            'bairro' => $endereco->bairro,
+            'complemento' => $endereco->complemento,
+            'cidade' => $endereco->cidade,
+            'estado' => $endereco->estado,
+            'cep' => $endereco->cep,
         ];
 
         $retorno = $this->implementacao->updateEndereco($endereco->id, $detalhes);
 
         $this->assertEquals($endereco->id, $retorno->id);
-
     }
 
     /**
-     * Deleta um Endereco
-     *
+     * Deleta um Endereco.
      */
     public function testDeleteEndereco()
     {

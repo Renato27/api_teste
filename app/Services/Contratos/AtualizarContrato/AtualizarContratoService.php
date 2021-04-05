@@ -1,11 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Contratos\AtualizarContrato;
 
 use App\Models\Contratos\Contrato;
-use App\Services\Contratos\AtualizarContrato\Abstracts\AtualizarContratoServiceAbstract;
 use Illuminate\Support\Facades\DB;
-
+use App\Services\Contratos\AtualizarContrato\Abstracts\AtualizarContratoServiceAbstract;
 
 class AtualizarContratoService extends AtualizarContratoServiceAbstract
 {
@@ -18,8 +22,7 @@ class AtualizarContratoService extends AtualizarContratoServiceAbstract
     {
         $contrato = null;
 
-        DB::transaction(function() use(&$contrato){
-
+        DB::transaction(function () use (&$contrato) {
             $contrato = $this->atualizarContrato();
         });
 

@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Funcionarios\CadastrarFuncionario\Contracts;
 
 use App\Models\Funcionario\Funcionario;
@@ -13,7 +18,7 @@ interface CadastrarFuncionarioService
      * @param array $dados
      * @return CadastrarFuncionarioService
      */
-    public function setDados(array $dados) : CadastrarFuncionarioService;
+    public function setDados(array $dados) : self;
 
     /**
      * Seta o repositório de funcionario.
@@ -21,7 +26,7 @@ interface CadastrarFuncionarioService
      * @param FuncionarioRepository $funcionarioRepository
      * @return CadastrarFuncionarioService
      */
-    public function setFuncionarioRepository(FuncionarioRepository $funcionarioRepository) : CadastrarFuncionarioService;
+    public function setFuncionarioRepository(FuncionarioRepository $funcionarioRepository) : self;
 
     /**
      * Processa os dados para cadastrar um funcionario.

@@ -1,17 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Contratos\CadastrarContrato\Abstracts;
 
 use App\Models\Contratos\Contrato;
 use App\Repositories\Contracts\ContratosRepository;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use App\Services\Contratos\CadastrarContrato\Contracts\CadastrarContratoService;
-use Exception;
 
 abstract class CadastrarContratoServiceAbstract implements CadastrarContratoService
 {
-
     /**
-     * Dados a serem cadastrados;
+     * Dados a serem cadastrados;.
      *
      * @var array
      */
@@ -33,16 +37,19 @@ abstract class CadastrarContratoServiceAbstract implements CadastrarContratoServ
     public function setDados(array $dados) : CadastrarContratoService
     {
         $dadosContrato = [
-            'nome'      => $dados['nome'],
-            'inicio'     => $dados['inicio'],
-            'fim'  => $dados['fim'],
-            'detalhes'   => $dados['detalhes'],
-            'detalhes_nota'   => $dados['detalhes_nota'],
-            'dia_emissao_nota'   => $dados['dia_emissao_nota'],
-            'dia_vencimento_nota'   => $dados['dia_vencimento_nota'],
-            'dia_periodo_inicio_nota'   => $dados['dia_periodo_inicio_nota'],
-            'dia_periodo_fim_nota'   => $dados['dia_periodo_fim_nota'],
-            'responsavel'   => $dados['responsavel']
+            'nome' => $dados['nome'],
+            'inicio' => $dados['inicio'],
+            'fim' => $dados['fim'],
+            'medicao_tipo_id' => $dados['medicao_tipo_id'],
+            'pagamento_metodo_id' => $dados['pagamento_metodo_id'],
+            'contrato_tipo_id' => $dados['contrato_tipo_id'],
+            'detalhes' => $dados['detalhes'],
+            'detalhes_nota' => $dados['detalhes_nota'],
+            'dia_emissao_nota' => $dados['dia_emissao_nota'],
+            'dia_vencimento_nota' => $dados['dia_vencimento_nota'],
+            'dia_periodo_inicio_nota' => $dados['dia_periodo_inicio_nota'],
+            'dia_periodo_fim_nota' => $dados['dia_periodo_fim_nota'],
+            'responsavel' => $dados['responsavel'],
         ];
 
         $this->dados = $dadosContrato;
@@ -72,8 +79,9 @@ abstract class CadastrarContratoServiceAbstract implements CadastrarContratoServ
     {
         $contratoCadastrado = $this->contratoRepository->createContrato($this->dados);
 
-        if(!isset($contratoCadastrado->id))
-            throw new Exception("Não foi possível cadastrar o contrato. Verifique os dados e tente novamente.");
+        if (! isset($contratoCadastrado->id)) {
+            throw new HttpException('Não foi possível cadastrar o contrato. Verifique os dados e tente novamente.');
+        }
 
         return $contratoCadastrado;
     }

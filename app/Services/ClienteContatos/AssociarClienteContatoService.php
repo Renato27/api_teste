@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\ClienteContatos;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\ClienteContato\ClienteContato;
 use App\Services\ClienteContatos\Abstracts\AssociarClienteContatoServiceAbstract;
-use Illuminate\Support\Facades\DB;
 
 class AssociarClienteContatoService extends AssociarClienteContatoServiceAbstract
 {
@@ -17,8 +22,7 @@ class AssociarClienteContatoService extends AssociarClienteContatoServiceAbstrac
     {
         $clienteContato = null;
 
-        DB::transaction(function () use(&$clienteContato){
-            
+        DB::transaction(function () use (&$clienteContato) {
             $clienteContato = $this->associarClienteContato();
         });
 

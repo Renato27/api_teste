@@ -1,86 +1,106 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
-use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\Http\Controllers\Controller;
-use App\Models\Usuario\Usuario;
-use Illuminate\Support\Facades\Hash;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use App\Repositories\Contracts\UsuarioRepository;
+use App\Repositories\Contracts\NotaRepository;
+use App\Repositories\Contracts\ChamadoRepository;
+use App\Repositories\Contracts\ClienteRepository;
+use App\Repositories\Contracts\CobrancaRepository;
+use App\Repositories\Contracts\ContratosRepository;
+use App\Repositories\Contracts\LicencaPatrimonioRepository;
+use App\Repositories\Contracts\NotaEspelhoRepository;
+use App\Repositories\Contracts\NotaSerasaRepository;
+use App\Repositories\Contracts\ReajusteContratoRepository;
 
 class DashboardController extends Controller
 {
-    /**
-     * Undocumented variable
-     *
-     * @var array
-     */
-    protected array $data = [];
-
-
-    public function __construct()
+    public function index(ContratosRepository $contratosRepository)
     {
-        $this->data = [
-            'status'    => false,
-            'code'      => 401,
-            'data'      => null,
-            'err'       => [
-                'code'      => 1,
-                'message'   => 'Não autorizado!'
-            ]
-        ];
+        $cobrancaRespository = app(CobrancaRepository::class);
+        $notaRepository = app(NotaRepository::class);
+        $notaEspelhoRepository = app(NotaEspelhoRepository::class);
+        $chamadoRepository = app(ChamadoRepository::class);
+        $notaSerasaRepository = app(NotaSerasaRepository::class);
+        $reajusteContratoRepository = app(ReajusteContratoRepository::class);
+        $licencaPatrimonioRepository = app(LicencaPatrimonioRepository::class);
 
-        $this->middleware('api', ['except' => ['login']]);
-    }
+        $usuario = JWTAuth::parseToken()->authenticate();
 
-    public function login(Request $request, UsuarioRepository $usuarioRepository) : JsonResponse
-    {
-        $credentials = $request->only('email', 'senha');
+        if ($usuario->tipo_usuario_id == 5) {
+            $dados = [];
 
-        $usuario = $usuarioRepository->verificarCredenciasUsuario($credentials['email'], $credentials['senha']);
+            $dados['Chamados'] = $chamadoRepository->getChamadosDashboardGestao();
 
-        try {
-            if(!$token = JWTAuth::fromUser($usuario)){
-                throw new Exception('Credencial Inválida!');
-            }
+            $dados['Espelhos'] = $notaEspelhoRepository->getNotaEspelhos();
 
-            $this->data = [
-                'status'    => true,
-                'code'      => 200,
-                'data'      => [
-                    '_token'    => $token
-                ],
-                'err'       => null
-            ];
-        } catch (\Throwable $th) {
-            $this->data['err']['message'] = $th->getMessage();
-            $this->data['code'] = 401;
+            $dados['Notas'] = $notaRepository->getNotas();
 
-        } catch(JWTException $e){
-            $this->data['err']['message'] = 'Não foi possível criar um token.';
-            $this->data['code'] = 500;
+            $dados['Cobrancas'] = $cobrancaRespository->getCobrancaMonitoramento();
+
+            $dados['Contratos'] = $contratosRepository->getContratosAVencer();
+
+            $dados['Notas_Grafico'] = $notaRepository->getNotasGrafico();
+
+            $dados['Cliente_Serasa'] = $notaRepository->getClientesNotaVencidaAMais10dias();
+
+            $dados['Notas_Serasa'] = $notaSerasaRepository->getClienteNotasProtesto();
+
+            $dados['Reajuste_Contrato'] = $reajusteContratoRepository->reajusteVencimento();
+
+            return response()->json($dados);
         }
 
-        return response()->json($this->data, $this->data['code']);
-    }
+        if($usuario->tipo_usuario_id == 4){
+            $dados = [];
 
-    public function logout() : JsonResponse
-    {
-        auth()->logout();
+            $dados['Chamados_Fechados'] = $chamadoRepository->getChamadosDashboardAssistente();
 
-        $data = [
-            'status' => true,
-            'code'   => 200,
-            'data'   => [
-                'message'   => 'Logout feito com sucesso!'
-            ],
-            'err'    => null
-        ];
+            $dados['Cobrancas'] = $cobrancaRespository->getCobrancaMonitoramento();
 
-        return response()->json($data);
+            $dados['Notas_Vencidas_Sete_Dias'] = $notaRepository->notasVencidas7Dias();
+
+            return response()->json($dados);
+        }
+
+        if($usuario->tipo_usuario_id == 3){
+            $dados = [];
+
+            $dados['Chamados_Pendentes'] = $chamadoRepository->getChamadosDashboardSuporteNivel2();
+
+            $dados['Seus_Chamados_Estoquista'] = $chamadoRepository->getChamadosDashboardSuporteNivel2($usuario->id);
+
+            $dados['Estoque_Pendencias'] = collect();
+
+            return response()->json($dados);
+        }
+
+        if($usuario->tipo_usuario_id == 2){
+            $dados = [];
+
+            $dados['Chamados_Pendentes'] = $chamadoRepository->getChamadosDashboardSuporteNivel2();
+
+            $dados['Seus_Chamados_Nivel2'] = $chamadoRepository->getChamadosDashboardSuporteNivel2($usuario->id);
+
+            $dados['Licenca_Pendencias'] = $licencaPatrimonioRepository->getLicencasRetirar();
+
+            return response()->json($dados);
+        }
+
+        if($usuario->tipo_usuario_id == 1){
+            $dados = [];
+
+            $dados['Chamados_Pendentes'] = $chamadoRepository->getChamadosDashboardSuporteNivel2();
+
+            $dados['Seus_Chamados_Nivel1'] = $chamadoRepository->getChamadosDashboardSuporteNivel2($usuario->id);
+
+            return response()->json($dados);
+        }
     }
 }

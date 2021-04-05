@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Clientes\AtualizarCliente;
 
 use App\Models\Clientes\Cliente;
-use App\Services\Clientes\AtualizarCliente\Abstracts\AtualizarClienteServiceAbstract;
 use Illuminate\Support\Facades\DB;
+use App\Services\Clientes\AtualizarCliente\Abstracts\AtualizarClienteServiceAbstract;
 
 class AtualizarClienteService extends AtualizarClienteServiceAbstract
 {
@@ -17,11 +22,10 @@ class AtualizarClienteService extends AtualizarClienteServiceAbstract
     {
         $cliente = null;
 
-        DB::transaction(function() use(&$cliente) {
-            
+        DB::transaction(function () use (&$cliente) {
             $cliente = $this->atualizarCliente();
         });
-        
+
         return $cliente;
     }
 }

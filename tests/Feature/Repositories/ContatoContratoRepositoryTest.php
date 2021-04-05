@@ -1,14 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\Contato\Contato;
-use App\Models\ContatoContrato\ContatoContrato;
-use App\Repositories\ContatoContratoRepositoryImplementation;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\ContatoContrato\ContatoContrato;
 use App\Repositories\Contracts\ContatoContratoRepository;
+use App\Repositories\ContatoContratoRepositoryImplementation;
 
 class ContatoContratoRepositoryTest extends TestCase
 {
@@ -37,7 +39,6 @@ class ContatoContratoRepositoryTest extends TestCase
 
     /**
      * Retorna ContatoContrato baseado no ID.
-     *
      */
     public function testGetContatoContrato()
     {
@@ -56,7 +57,6 @@ class ContatoContratoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de ContatoContrato baseado em uma associação.
-     *
      */
     public function testGetContratosByContato()
     {
@@ -80,8 +80,7 @@ class ContatoContratoRepositoryTest extends TestCase
     }
 
     /**
-     * Cria um novo ContatoContrato
-     *
+     * Cria um novo ContatoContrato.
      */
     public function testCreateContatoContrato()
     {
@@ -89,8 +88,8 @@ class ContatoContratoRepositoryTest extends TestCase
         $contato = \App\Models\Contato\Contato::factory()->create();
         $contrato = \App\Models\Contratos\Contrato::factory()->create();
         $detalhes = [
-            'contato_id'            => $contato->id,
-            'contrato_id'           => $contrato->id
+            'contato_id' => $contato->id,
+            'contrato_id' => $contrato->id,
         ];
 
         $retorno = $this->implementacao->createContatoContrato($detalhes);
@@ -99,8 +98,7 @@ class ContatoContratoRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um ContatoContrato
-     *
+     * Atualiza um ContatoContrato.
      */
     public function testUpdateContatoContrato()
     {
@@ -108,8 +106,8 @@ class ContatoContratoRepositoryTest extends TestCase
         $contato = \App\Models\Contato\Contato::factory()->create();
         $contrato = \App\Models\Contratos\Contrato::factory()->create();
         $detalhes = [
-            'contato_id'            => $contato->id,
-            'contrato_id'           => $contrato->id
+            'contato_id' => $contato->id,
+            'contrato_id' => $contrato->id,
         ];
 
         $associacao->contato_id = $contato->id;
@@ -122,8 +120,7 @@ class ContatoContratoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um ContatoContrato
-     *
+     * Deleta um ContatoContrato.
      */
     public function testDeleteContatoContrato()
     {

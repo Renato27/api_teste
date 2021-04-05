@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Enderecos\ExcluirEndereco\Contracts;
 
 use App\Repositories\Contracts\EnderecoRepository;
@@ -9,10 +14,10 @@ interface ExcluirEnderecoService
     /**
      * Seta um endereço.
      *
-     * @param integer $endereco
+     * @param int $endereco
      * @return ExcluirEnderecoService
      */
-    public function setEndereco(int $endereco) : ExcluirEnderecoService;
+    public function setEndereco(int $endereco) : self;
 
     /**
      * Seta o repositório de endereço.
@@ -20,12 +25,12 @@ interface ExcluirEnderecoService
      * @param EnderecoRepository $enderecoRepository
      * @return ExcluirEnderecoService
      */
-    public function setEnderecoRepository(EnderecoRepository $enderecoRepository) : ExcluirEnderecoService;
+    public function setEnderecoRepository(EnderecoRepository $enderecoRepository) : self;
 
     /**
      * Processa a exclusão de um endereço.
      *
-     * @return boolean
+     * @return bool
      */
     public function handle() : bool;
 }

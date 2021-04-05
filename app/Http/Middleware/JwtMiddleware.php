@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Middleware;
 
 use Closure;
@@ -22,56 +27,31 @@ class JwtMiddleware extends BaseMiddleware
         try {
             $usuario = JWTAuth::parseToken()->authenticate();
 
-            if(!$usuario)
+            if (! $usuario) {
                 throw new Exception('Usuário não encontrado!');
-
+            }
         } catch (\Throwable $th) {
-            if($th instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
-
+            if ($th instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException) {
                 return response()->json([
-                    'data'      => null,
-                    'status'    => false,
-                    'err_'      => [
-                        'message' => 'Token Inválido',
-                        'code'    => 1
-                    ]
+                    'message' => 'Token Inválido',
                 ]);
-
-            }else if($th instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException){
-
+            } elseif ($th instanceof \Tymon\JWTAuth\Exceptions\TokenExpiredException) {
                 return response()->json([
-                    'data'      => null,
-                    'status'    => false,
-                    'err_'      => [
-                        'message'   => 'Token Expirado!',
-                        'code'      => 1
-                    ]
+                    'message' => 'Token Expirado!',
                 ]);
-
-            }else{
-
-                if($th->getMessage() === 'Usuário não encontrado!'){
-
+            } else {
+                if ($th->getMessage() === 'Usuário não encontrado!') {
                     return response()->json([
-                        'data'      => null,
-                        'status'    => false,
-                        'err_'      => [
-                            'message'   => 'Usuário não encontrado!',
-                            'code'      => 1
-                        ]
+                        'message' => 'Usuário não encontrado!',
                     ]);
                 }
             }
 
             return response()->json([
-                'data'      => null,
-                'status'    => false,
-                'err_'      => [
-                    'message'   => 'Token de autorização não encontrado!',
-                    'code'      => 1
-                ]
+                'message' => 'Token de autorização não encontrado!',
             ]);
         }
+
         return $next($request);
     }
 }

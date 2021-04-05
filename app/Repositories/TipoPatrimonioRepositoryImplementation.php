@@ -1,68 +1,68 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\TipoPatrimonioRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\TipoPatrimonioRepository;
 
 class TipoPatrimonioRepositoryImplementation implements TipoPatrimonioRepository
 {
     /**
      * Retorna TipoPatrimonio baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getTipoPatrimonio(int $id): ?Model
     {
-
     }
 
     /**
      * Retorna uma coleção de TipoPatrimonio baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getTipoPatrimonios(int $id, int $associacao): ?Collection
     {
-
     }
 
     /**
-     * Cria um novo TipoPatrimonio
+     * Cria um novo TipoPatrimonio.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createTipoPatrimonio(array $detalhes): ?Model
     {
-
     }
 
     /**
-     * Atualiza um TipoPatrimonio
+     * Atualiza um TipoPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateTipoPatrimonio(int $id, array $detalhes): ?Model
     {
-
     }
 
     /**
-     * Deleta um TipoPatrimonio
+     * Deleta um TipoPatrimonio.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteTipoPatrimonio(int $id): bool
     {
-
     }
 }

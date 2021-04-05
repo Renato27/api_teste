@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Contatos\CadastrarContato\Contracts;
 
 use App\Models\Contato\Contato;
-use App\Repositories\Contracts\ContatoEmailRepository;
 use App\Repositories\Contracts\ContatoRepository;
+use App\Repositories\Contracts\ContatoEmailRepository;
 
 interface CadastrarContatoService
 {
@@ -14,7 +19,7 @@ interface CadastrarContatoService
      * @param array $dados
      * @return CadastrarContatoService
      */
-    public function setDados(array $dados) : CadastrarContatoService;
+    public function setDados(array $dados) : self;
 
     /**
      * Seta o repositório de contato.
@@ -22,7 +27,7 @@ interface CadastrarContatoService
      * @param ContatoRepository $contatoRepository
      * @return CadastrarContatoService
      */
-    public function setContatoRepository(ContatoRepository $contatoRepository) : CadastrarContatoService;
+    public function setContatoRepository(ContatoRepository $contatoRepository) : self;
 
     /**
      * Seta o repositório de contato email.
@@ -30,7 +35,7 @@ interface CadastrarContatoService
      * @param ContatoEmailRepository $contatoEmailRepository
      * @return CadastrarContatoService
      */
-    public function setContatoEmailRepository(ContatoEmailRepository $contatoEmailRepository) : CadastrarContatoService;
+    public function setContatoEmailRepository(ContatoEmailRepository $contatoEmailRepository) : self;
 
     /**
      * Processa os dados para cadastrar um contato.

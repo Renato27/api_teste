@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\Funcionario\Funcionario;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Funcionario\Funcionario;
 use App\Repositories\Contracts\FuncionarioRepository;
 use App\Repositories\FuncionarioRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class FuncionarioRepositoryTest extends TestCase
 
     /**
      * Retorna Funcionario baseado no ID.
-     *
      */
     public function testGetFuncionario()
     {
@@ -49,39 +51,37 @@ class FuncionarioRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de Funcionario baseado em uma associação.
-     *  (Inativo, Não necessário no atual momento)
+     *  (Inativo, Não necessário no atual momento).
      */
     // public function testGetFuncionarios()
     // {
     // }
 
     /**
-     * Cria um novo Funcionario
-     *
+     * Cria um novo Funcionario.
      */
     public function testCreateFuncionario()
     {
         $funcionario = \App\Models\Funcionario\Funcionario::factory()->make();
         $detalhes = [
-            'nome'          => $funcionario->nome,
-            'cargo'         => $funcionario->cargo
+            'nome' => $funcionario->nome,
+            'cargo' => $funcionario->cargo,
         ];
 
-        $retorno  = $this->implementacao->createFuncionario($detalhes);
+        $retorno = $this->implementacao->createFuncionario($detalhes);
 
         $this->assertIsInt($retorno->id);
     }
 
     /**
-     * Atualiza um Funcionario
-     *
+     * Atualiza um Funcionario.
      */
     public function testUpdateFuncionario()
     {
         $funcionario = \App\Models\Funcionario\Funcionario::factory()->create();
         $detalhes = [
-            'nome'          => $funcionario->nome,
-            'cargo'         => $funcionario->cargo
+            'nome' => $funcionario->nome,
+            'cargo' => $funcionario->cargo,
         ];
 
         $retorno = $this->implementacao->updateFuncionario($funcionario->id, $detalhes);
@@ -90,8 +90,7 @@ class FuncionarioRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um Funcionario
-     *
+     * Deleta um Funcionario.
      */
     public function testDeleteFuncionario()
     {

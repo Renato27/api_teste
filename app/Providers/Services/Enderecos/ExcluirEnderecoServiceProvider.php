@@ -1,11 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Providers\Services\Enderecos;
 
-use App\Repositories\Contracts\EnderecoRepository;
-use App\Services\Enderecos\ExcluirEndereco\Contracts\ExcluirEnderecoService as ContractsExcluirEnderecoService;
-use App\Services\Enderecos\ExcluirEndereco\ExcluirEnderecoService;
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\Contracts\EnderecoRepository;
+use App\Services\Enderecos\ExcluirEndereco\ExcluirEnderecoService;
+use App\Services\Enderecos\ExcluirEndereco\Contracts\ExcluirEnderecoService as ContractsExcluirEnderecoService;
 
 class ExcluirEnderecoServiceProvider extends ServiceProvider
 {
@@ -29,7 +34,7 @@ class ExcluirEnderecoServiceProvider extends ServiceProvider
         $service = new ExcluirEnderecoService();
         $service->setEnderecoRepository(app(EnderecoRepository::class));
 
-        $this->app->bind(ContractsExcluirEnderecoService::class, function($app) use($service){
+        $this->app->bind(ContractsExcluirEnderecoService::class, function ($app) use ($service) {
             return $service;
         });
     }

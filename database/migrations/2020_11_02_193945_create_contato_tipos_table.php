@@ -1,8 +1,13 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateContatoTiposTable extends Migration
 {
@@ -15,8 +20,8 @@ class CreateContatoTiposTable extends Migration
     {
         Schema::create('contato_tipos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('contato_id');
-            $table->foreignId('tipo_contato_id');
+            $table->foreignId('contato_id')->nullable();
+            $table->foreignId('tipo_contato_id')->nullable();
 
             $table->foreign('contato_id')->references('id')->on('contatos');
             $table->foreign('tipo_contato_id')->references('id')->on('tipo_contatos');

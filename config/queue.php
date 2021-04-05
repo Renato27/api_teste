@@ -1,7 +1,11 @@
 <?php
 
-return [
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
 
+return [
     /*
     |--------------------------------------------------------------------------
     | Default Queue Connection Name
@@ -29,7 +33,6 @@ return [
     */
 
     'connections' => [
-
         'sync' => [
             'driver' => 'sync',
         ],
@@ -66,7 +69,6 @@ return [
             'retry_after' => 90,
             'block_for' => null,
         ],
-
     ],
 
     /*
@@ -85,5 +87,4 @@ return [
         'database' => env('DB_CONNECTION', 'mysql'),
         'table' => 'failed_jobs',
     ],
-
 ];

@@ -1,17 +1,22 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Clientes\ExcluirCliente\Abstracts;
 
+use Exception;
 use App\Repositories\Contracts\ClienteRepository;
 use App\Services\Clientes\ExcluirCliente\Contracts\ExcluirClienteService;
-use Exception;
 
 abstract class ExcluirClienteServiceAbstract implements ExcluirClienteService
 {
     /**
      * ID do cliente.
      *
-     * @var integer
+     * @var int
      */
     protected int $cliente;
 
@@ -25,7 +30,7 @@ abstract class ExcluirClienteServiceAbstract implements ExcluirClienteService
     /**
      * Seta o cliente a ser excluído.
      *
-     * @param integer $cliente
+     * @param int $cliente
      * @return void
      */
     public function setCliente(int $cliente)
@@ -51,20 +56,22 @@ abstract class ExcluirClienteServiceAbstract implements ExcluirClienteService
     /**
      * Processa a exclusão de um cliente.
      *
-     * @return boolean
+     * @return bool
      */
     protected function excluirCliente() : bool
     {
         $cliente = $this->clienteRepository->getcliente($this->cliente);
 
-        if(!isset($cliente->id))
-            throw new Exception("O cliente solicitado para exclusão não existe.");
+        if (! isset($cliente->id)) {
+            throw new Exception('O cliente solicitado para exclusão não existe.');
+        }
 
         $clienteExcluido = $this->clienteRepository->deletecliente($cliente->id);
-        
-        if(!$clienteExcluido)
-            throw new Exception("Não foi possível excluir o cliente solicitado.");
 
-        return $clienteExcluido;    
+        if (! $clienteExcluido) {
+            throw new Exception('Não foi possível excluir o cliente solicitado.');
+        }
+
+        return $clienteExcluido;
     }
 }

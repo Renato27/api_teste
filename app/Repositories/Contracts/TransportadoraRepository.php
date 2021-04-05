@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface TransportadoraRepository
 {
     /**
      * Retorna Transportadora baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getTransportadora(int $id): ?Model;
@@ -18,35 +23,35 @@ interface TransportadoraRepository
     /**
      * Retorna uma coleção de Transportadora baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
-    public function getTransportadoras(int $id, int $associacao): ?Collection;
-    
+    public function getTransportadoras(): ?Collection;
+
     /**
-     * Cria um novo Transportadora
+     * Cria um novo Transportadora.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createTransportadora(array $detalhes): ?Model;
 
     /**
-     * Atualiza um Transportadora
+     * Atualiza um Transportadora.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateTransportadora(int $id, array $detalhes): ?Model;
 
     /**
-     * Deleta um Transportadora
+     * Deleta um Transportadora.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteTransportadora(int $id): bool;
 }

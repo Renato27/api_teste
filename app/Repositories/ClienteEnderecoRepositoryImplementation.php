@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ClienteEnderecoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ClienteEnderecoRepository;
 
 class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna ClienteEndereco baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getClienteEndereco(int $cliente): ?Model
@@ -25,21 +29,22 @@ class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoReposito
     /**
      * Retorna uma coleção de ClienteEndereco baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getClienteEnderecos(int $cliente): ?Collection
     {
         $associacoes = $this->where(['cliente_id' => $cliente])->get();
 
-        if(is_null($associacoes)) return null;
+        if (is_null($associacoes)) {
+            return null;
+        }
 
         $enderecos = collect();
 
-        foreach($associacoes as $associacao){
-
-            if(!is_null($associacao->endereco)){
+        foreach ($associacoes as $associacao) {
+            if (! is_null($associacao->endereco)) {
                 $enderecos->add($associacao->endereco);
             }
         }
@@ -48,63 +53,65 @@ class ClienteEnderecoRepositoryImplementation implements ClienteEnderecoReposito
     }
 
     /**
-     * Cria um novo ClienteEndereco
+     * Cria um novo ClienteEndereco.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createClienteEndereco(array $detalhes): ?Model
     {
         return $this->create($detalhes);
     }
 
     /**
-     * Atualiza um ClienteEndereco
+     * Atualiza um ClienteEndereco.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateClienteEndereco(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
     }
 
     /**
-     * Deleta um ClienteEndereco
+     * Deleta um ClienteEndereco.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteClienteEndereco(int $id): bool
     {
-        $retorno =  $this->delete($id);
+        $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }
 
-    /**
-     * Verifica se existe algum endereço principal.
-     *
-     * @param integer $cliente
-     * @return boolean
-     */
-    public function existeAlgumPrincipal(int $cliente) : bool
-    {
-        $associacoes = $this->where(['cliente_id' => $cliente])->get();
+    // /**
+    //  * Verifica se existe algum endereço principal.
+    //  *
+    //  * @param integer $cliente
+    //  * @return boolean
+    //  */
+    // public function existeAlgumPrincipal(int $cliente) : bool
+    // {
+    //     $associacoes = $this->where(['cliente_id' => $cliente])->get();
 
-        if(count($associacoes) > 0){
+    //     if(count($associacoes) > 0){
 
-            foreach($associacoes as $associacao){
+    //         foreach($associacoes as $associacao){
 
-                if($associacao->principal == 1) 
-                    return true;
-            }
-        }
+    //             if($associacao->principal == 1)
+    //                 return true;
+    //         }
+    //     }
 
-        return false;
-    }
+    //     return false;
+    // }
 }

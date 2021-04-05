@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ContatoEnderecosRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ContatoEnderecosRepository;
 
 class ContatoEnderecosRepositoryImplementation implements ContatoEnderecosRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna ContatoEnderecos baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getContatoEndereco(int $endereco): ?Model
@@ -25,8 +29,8 @@ class ContatoEnderecosRepositoryImplementation implements ContatoEnderecosReposi
     /**
      * Retorna uma coleção de ContatoEnderecos baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getContatosEnderecos(int $contato): ?Collection
@@ -35,7 +39,7 @@ class ContatoEnderecosRepositoryImplementation implements ContatoEnderecosReposi
     }
 
     /**
-     * Cria um novo ContatoEnderecos
+     * Cria um novo ContatoEnderecos.
      *
      * @param array $detalhes
      * @return Model|null
@@ -46,7 +50,7 @@ class ContatoEnderecosRepositoryImplementation implements ContatoEnderecosReposi
     }
 
     /**
-     * Atualiza um ContatoEnderecos
+     * Atualiza um ContatoEnderecos.
      *
      * @param int $id
      * @param array $detalhes
@@ -58,7 +62,7 @@ class ContatoEnderecosRepositoryImplementation implements ContatoEnderecosReposi
     }
 
     /**
-     * Deleta um ContatoEnderecos
+     * Deleta um ContatoEnderecos.
      *
      * @param int $id
      * @param array $detalhes
@@ -68,7 +72,9 @@ class ContatoEnderecosRepositoryImplementation implements ContatoEnderecosReposi
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

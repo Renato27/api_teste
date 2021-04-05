@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
+use App\Models\Contato\Contato;
+use App\Models\Clientes\Cliente;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ContatoResource;
-use App\Models\Clientes\Cliente;
-use App\Models\Contato\Contato;
 use App\Repositories\Contracts\ContatoRepository;
+use App\Services\Contatos\ExcluirContato\Contracts\ExcluirContatoService;
 use App\Services\Contatos\AtualizarContato\Contracts\AtualizarContatoService;
 use App\Services\Contatos\CadastrarContato\Contracts\CadastrarContatoService;
-use App\Services\Contatos\ExcluirContato\Contracts\ExcluirContatoService;
-use Illuminate\Http\Request;
 
 class ContatoController extends Controller
 {
@@ -82,7 +87,6 @@ class ContatoController extends Controller
     public function destroy(Cliente $cliente, Contato $contato, ExcluirContatoService $service)
     {
         try {
-
             $cliente->contatos()->detach($contato->id);
             $service->setContato($contato->id);
             $service->handle();

@@ -1,52 +1,56 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface ChamadoArquivoRepository
 {
     /**
      * Retorna ChamadoArquivo baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
-    public function getChamadoArquivo(int $id): ?Model;
+    public function getArquivosByChamado(int $chamado): ?Collection;
 
     /**
-     * Retorna uma coleção de ChamadoArquivo baseado em uma associação.
+     * Retorna ChamadoArquivo baseado no ID.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
      * @return Model|null
      */
-    public function getChamadoArquivos(int $id, int $associacao): ?Collection;
-    
+    public function getArquivosByUsuario(int $usuario): ?Collection;
+
     /**
-     * Cria um novo ChamadoArquivo
+     * Cria um novo ChamadoArquivo.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createChamadoArquivo(array $detalhes): ?Model;
 
     /**
-     * Atualiza um ChamadoArquivo
+     * Atualiza um ChamadoArquivo.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateChamadoArquivo(int $id, array $detalhes): ?Model;
 
     /**
-     * Deleta um ChamadoArquivo
+     * Deleta um ChamadoArquivo.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteChamadoArquivo(int $id): bool;
 }

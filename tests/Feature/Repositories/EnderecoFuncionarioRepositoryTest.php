@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\EnderecoFuncionario\EnderecoFuncionario;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\EnderecoFuncionario\EnderecoFuncionario;
 use App\Repositories\Contracts\EnderecoFuncionarioRepository;
 use App\Repositories\EnderecoFuncionarioRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class EnderecoFuncionarioRepositoryTest extends TestCase
 
     /**
      * Retorna EnderecoFuncionario baseado no ID.
-     *
      */
     public function testGetEnderecoFuncionario()
     {
@@ -49,26 +51,25 @@ class EnderecoFuncionarioRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de EnderecoFuncionario baseado em uma associação.
-     *  (Inativo, não necessário a implementação de teste)
+     *  (Inativo, não necessário a implementação de teste).
      */
     // public function testGetEnderecoFuncionarios()
     // {
     // }
 
     /**
-     * Cria um novo EnderecoFuncionario
-     *
+     * Cria um novo EnderecoFuncionario.
      */
     public function testCreateEnderecoFuncionario()
     {
         $enderecoFuncionario = \App\Models\EnderecoFuncionario\EnderecoFuncionario::factory()->make();
         $detalhes = [
-            'rua'                   => $enderecoFuncionario->rua,
-            'numero'                => $enderecoFuncionario->numero,
-            'bairro'                => $enderecoFuncionario->bairro,
-            'complemento'           => $enderecoFuncionario->complemento,
-            'cidade'                => $enderecoFuncionario->cidade,
-            'cep'                   => $enderecoFuncionario->cep
+            'rua' => $enderecoFuncionario->rua,
+            'numero' => $enderecoFuncionario->numero,
+            'bairro' => $enderecoFuncionario->bairro,
+            'complemento' => $enderecoFuncionario->complemento,
+            'cidade' => $enderecoFuncionario->cidade,
+            'cep' => $enderecoFuncionario->cep,
         ];
 
         $retorno = $this->implementacao->createEnderecoFuncionario($detalhes);
@@ -77,19 +78,18 @@ class EnderecoFuncionarioRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um EnderecoFuncionario
-     *
+     * Atualiza um EnderecoFuncionario.
      */
     public function testUpdateEnderecoFuncionario()
     {
         $enderecoFuncionario = \App\Models\EnderecoFuncionario\EnderecoFuncionario::factory()->create();
         $detalhes = [
-            'rua'                   => $enderecoFuncionario->rua,
-            'numero'                => $enderecoFuncionario->numero,
-            'bairro'                => $enderecoFuncionario->bairro,
-            'complemento'           => $enderecoFuncionario->complemento,
-            'cidade'                => $enderecoFuncionario->cidade,
-            'cep'                   => $enderecoFuncionario->cep
+            'rua' => $enderecoFuncionario->rua,
+            'numero' => $enderecoFuncionario->numero,
+            'bairro' => $enderecoFuncionario->bairro,
+            'complemento' => $enderecoFuncionario->complemento,
+            'cidade' => $enderecoFuncionario->cidade,
+            'cep' => $enderecoFuncionario->cep,
         ];
 
         $retorno = $this->implementacao->updateEnderecoFuncionario($enderecoFuncionario->id, $detalhes);
@@ -98,8 +98,7 @@ class EnderecoFuncionarioRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um EnderecoFuncionario
-     *
+     * Deleta um EnderecoFuncionario.
      */
     public function testDeleteEnderecoFuncionario()
     {

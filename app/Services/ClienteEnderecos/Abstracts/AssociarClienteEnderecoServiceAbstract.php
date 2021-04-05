@@ -1,39 +1,44 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\ClienteEnderecos\Abstracts;
 
+use Exception;
 use App\Models\ClienteEndereco\ClienteEndereco;
 use App\Repositories\Contracts\ClienteEnderecoRepository;
 use App\Services\ClienteEnderecos\Contracts\AssociarClienteEnderecoService;
-use Exception;
 
 abstract class AssociarClienteEnderecoServiceAbstract implements AssociarClienteEnderecoService
 {
-
     /**
      * ID do endereço.
      *
-     * @var integer
+     * @var int
      */
     protected int $endereco;
 
     /**
      * ID do cliente caso exista.
      *
-     * @var integer|null
+     * @var int|null
      */
     protected ?int $cliente;
 
     /**
-     * Repositório de cliente endereço
+     * Repositório de cliente endereço.
      *
      * @var ClienteEnderecoRepository
      */
     protected ClienteEnderecoRepository $clienteEnderecoRepository;
+
     /**
      * Seta o um endereço.
      *
-     * @param integer $endereco
+     * @param int $endereco
      * @return AssociarClienteEnderecoService
      */
     public function setEndereco(int $endereco) : AssociarClienteEnderecoService
@@ -46,7 +51,7 @@ abstract class AssociarClienteEnderecoServiceAbstract implements AssociarCliente
     /**
      * Set um cliente.
      *
-     * @param integer $cliente
+     * @param int $cliente
      * @return AssociarClienteEnderecoService
      */
     public function setCliente(int $cliente) : AssociarClienteEnderecoService
@@ -77,13 +82,14 @@ abstract class AssociarClienteEnderecoServiceAbstract implements AssociarCliente
     protected function associarClienteEndereco() : ClienteEndereco
     {
         $clienteAssociado = $this->clienteEnderecoRepository->createClienteEndereco([
-            'cliente_id'    => $this->cliente,
-            'endereco_id'   => $this->endereco,
-            'principal'     => 1
+            'cliente_id' => $this->cliente,
+            'endereco_id' => $this->endereco,
+            'principal' => 1,
         ]);
 
-        if(!isset($clienteAssociado->id))
-            throw new Exception("Não foi possível associar o endereço ao cliente");
+        if (! isset($clienteAssociado->id)) {
+            throw new Exception('Não foi possível associar o endereço ao cliente');
+        }
 
         return $clienteAssociado;
     }

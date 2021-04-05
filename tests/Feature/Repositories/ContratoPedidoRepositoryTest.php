@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\ContratoPedido\ContratoPedido;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\ContratoPedido\ContratoPedido;
 use App\Repositories\Contracts\ContratoPedidoRepository;
 use App\Repositories\ContratoPedidoRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class ContratoPedidoRepositoryTest extends TestCase
 
     /**
      * Retorna ContratoPedido baseado no ID.
-     *
      */
     public function testGetContratoPedido()
     {
@@ -48,7 +50,6 @@ class ContratoPedidoRepositoryTest extends TestCase
         $associacao->contrato_id = $contrato->id;
         $associacao->save();
 
-
         $retorno = $this->implementacao->getContratoPedido($pedido->id);
 
         $this->assertEquals($associacao->id, $retorno->id);
@@ -56,7 +57,6 @@ class ContratoPedidoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de ContratoPedido baseado em uma associação.
-     *
      */
     public function testGetContratoPedidos()
     {
@@ -74,34 +74,30 @@ class ContratoPedidoRepositoryTest extends TestCase
         $associacao2->contrato_id = $contrato->id;
         $associacao2->save();
 
-
         $retorno = $this->implementacao->getContratoPedidos($contrato->id);
 
         $this->assertCount(2, $retorno);
     }
 
     /**
-     * Cria um novo ContratoPedido
-     *
+     * Cria um novo ContratoPedido.
      */
     public function testCreateContratoPedido()
     {
         $pedido = \App\Models\Pedido\Pedido::factory()->create();
         $contrato = \App\Models\Contratos\Contrato::factory()->create();
         $detalhes = [
-            'pedido_id'                 => $pedido->id,
-            'contrato_id'               => $contrato->id
+            'pedido_id' => $pedido->id,
+            'contrato_id' => $contrato->id,
         ];
 
         $retorno = $this->implementacao->createContratoPedido($detalhes);
 
         $this->assertIsInt($retorno->id);
-
     }
 
     /**
-     * Atualiza um ContratoPedido
-     *
+     * Atualiza um ContratoPedido.
      */
     public function testUpdateContratoPedido()
     {
@@ -109,8 +105,8 @@ class ContratoPedidoRepositoryTest extends TestCase
         $pedido = \App\Models\Pedido\Pedido::factory()->create();
         $contrato = \App\Models\Contratos\Contrato::factory()->create();
         $detalhes = [
-            'pedido_id'                 => $pedido->id,
-            'contrato_id'               => $contrato->id
+            'pedido_id' => $pedido->id,
+            'contrato_id' => $contrato->id,
         ];
 
         $retorno = $this->implementacao->updateContratoPedido($associacao->id, $detalhes);
@@ -119,8 +115,7 @@ class ContratoPedidoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um ContratoPedido
-     *
+     * Deleta um ContratoPedido.
      */
     public function testDeleteContratoPedido()
     {

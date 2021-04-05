@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Funcionarios\CadastrarFuncionario;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Funcionario\Funcionario;
 use App\Services\Funcionarios\CadastrarFuncionario\Abstracts\CadastrarFuncionarioServiceAbstract;
-use Illuminate\Support\Facades\DB;
 
 class CadastrarFuncionarioService extends CadastrarFuncionarioServiceAbstract
 {
@@ -17,8 +22,7 @@ class CadastrarFuncionarioService extends CadastrarFuncionarioServiceAbstract
     {
         $funcionario = null;
 
-        DB::transaction(function () use(&$funcionario){
-
+        DB::transaction(function () use (&$funcionario) {
             $funcionario = $this->cadastrarFuncionario();
         });
 

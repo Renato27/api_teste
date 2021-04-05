@@ -1,21 +1,26 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Clientes\AtualizarCliente\Abstracts;
 
+use Exception;
 use App\Models\Clientes\Cliente;
 use App\Repositories\Contracts\ClienteRepository;
 use App\Services\Clientes\AtualizarCliente\Contracts\AtualizarClienteService;
-use Exception;
 
 abstract class AtualizarClienteServiceAbstract implements AtualizarClienteService
 {
-
     /**
-     * ID do Cliente
+     * ID do Cliente.
      *
-     * @var integer
+     * @var int
      */
     protected int $cliente;
+
     /**
      * Dados para atualizar.
      *
@@ -33,7 +38,7 @@ abstract class AtualizarClienteServiceAbstract implements AtualizarClienteServic
     /**
      * Seta o cliente.
      *
-     * @param integer $cliente
+     * @param int $cliente
      * @return AtualizarClienteService
      */
     public function setCliente(int $cliente) : AtualizarClienteService
@@ -52,11 +57,11 @@ abstract class AtualizarClienteServiceAbstract implements AtualizarClienteServic
     public function setDados(array $dados) : AtualizarClienteService
     {
         $dadosCliente = [
-            'razao_social'          => $dados['razao_social'],
-            'nome_fantasia'         => $dados['nome_fantasia'],
-            'cpf_cnpj'              => $dados['cpf_cnpj'],
-            'inscricao_estadual'    => $dados['inscricao_estadual'],
-            'inscricao_municipal'   => $dados['inscricao_municipal']
+            'razao_social' => $dados['razao_social'],
+            'nome_fantasia' => $dados['nome_fantasia'],
+            'cpf_cnpj' => $dados['cpf_cnpj'],
+            'inscricao_estadual' => $dados['inscricao_estadual'],
+            'inscricao_municipal' => $dados['inscricao_municipal'],
         ];
 
         $this->dados = $dadosCliente;
@@ -86,14 +91,16 @@ abstract class AtualizarClienteServiceAbstract implements AtualizarClienteServic
     {
         $cliente = $this->clienteRepository->getcliente($this->cliente);
 
-        if(!isset($cliente->id))
-            throw new Exception("O cliente solicitado para atualização não existe");
+        if (! isset($cliente->id)) {
+            throw new Exception('O cliente solicitado para atualização não existe');
+        }
 
         $clienteAtualizado = $this->clienteRepository->updatecliente($cliente->id, $this->dados);
-        
-        if(!isset($clienteAtualizado->id))
-            throw new Exception("Não foi possivel atualizar o cliente solicitado. Revise os dados e tente novamente");
 
-        return $clienteAtualizado;    
+        if (! isset($clienteAtualizado->id)) {
+            throw new Exception('Não foi possivel atualizar o cliente solicitado. Revise os dados e tente novamente');
+        }
+
+        return $clienteAtualizado;
     }
 }

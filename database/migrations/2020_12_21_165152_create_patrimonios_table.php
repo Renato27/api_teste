@@ -1,8 +1,13 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreatePatrimoniosTable extends Migration
 {
@@ -15,7 +20,7 @@ class CreatePatrimoniosTable extends Migration
     {
         Schema::create('patrimonios', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('numero_patrimonio')->unique();
+            $table->bigInteger('numero_patrimonio')->nullable();
             $table->string('numero_serie')->nullable();
             $table->foreignId('modelo_id')->nullable();
             $table->foreignId('tipo_patrimonio_id')->nullable();

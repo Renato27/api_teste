@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\TipoLicencaRepository;
 
@@ -28,46 +31,36 @@ class TipoLicencaRepositoryTest extends TestCase
 
     /**
      * Retorna TipoLicenca baseado no ID.
-     *
      */
     public function testGetTipoLicenca()
     {
-
     }
 
     /**
      * Retorna uma coleção de TipoLicenca baseado em uma associação.
-     *
      */
     public function testGetTipoLicencas()
     {
-
     }
 
     /**
-     * Cria um novo TipoLicenca
-     *
-     */    
+     * Cria um novo TipoLicenca.
+     */
     public function testCreateTipoLicenca()
     {
-
     }
 
     /**
-     * Atualiza um TipoLicenca
-     *
-     */ 
+     * Atualiza um TipoLicenca.
+     */
     public function testUpdateTipoLicenca()
     {
-
     }
 
     /**
-     * Deleta um TipoLicenca
-     *
-     */ 
+     * Deleta um TipoLicenca.
+     */
     public function testDeleteTipoLicenca()
     {
-
     }
 }

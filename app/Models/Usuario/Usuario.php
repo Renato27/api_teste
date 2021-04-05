@@ -1,44 +1,40 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Models\Usuario;
 
-use App\Models\Clientes\Cliente;
-use App\Models\ClienteVisualizacaoPatrimonio\ClienteVisualizacaoPatrimonio;
 use App\Models\Contato\Contato;
+use App\Models\Clientes\Cliente;
 use App\Models\Funcionario\Funcionario;
 use App\Models\TipoUsuario\TipoUsuario;
-use App\Models\UsuarioCliente\UsuarioCliente;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use IlluminateNotificationsNotifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Notifications\Notifiable;
+use App\Models\UsuarioCliente\UsuarioCliente;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Usuario extends Authenticatable implements JWTSubject
 {
     use HasFactory, SoftDeletes, Notifiable;
 
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
-
     protected $date = ['deleted_at'];
 
-    protected $fillable = ['email', 'senha', 'tipo_usuario_id', 'funcionario_id', 'contato_id',
-    'cliente_visualizacao_patrimonio_id'];
+    protected $fillable = ['email', 'password', 'tipo_usuario_id', 'funcionario_id', 'contato_id'];
 
     protected $hidden = [
-        'senha',
+        'password',
         'remember_token',
     ];
+
+    public function getJWTIdentifier()
+    {
+        return $this->id;
+    }
 
     public function tipo_usuario()
     {
@@ -60,8 +56,27 @@ class Usuario extends Authenticatable implements JWTSubject
         return $this->belongsTo(Contato::class, 'contato_id');
     }
 
-    public function cliente_visualizacao_patrimonio()
+    public function getJWTCustomClaims()
     {
-        return $this->belongsTo(ClienteVisualizacaoPatrimonio::class, 'cliente_visualizacao_patrimonio_id');
+        $contato = Contato::find($this->contato_id);
+        $tipo_usuario = TipoUsuario::find($this->tipo_usuario_id);
+
+        if ($this->tipo_usuario_id == 6) {
+            return [
+                'name' => $contato->nome,
+                'tipo_usuario_id' => $this->tipo_usuario_id,
+                'tipo_usuario' => $tipo_usuario->nome,
+                'email' => $this->email,
+            ];
+        }
+
+        $funcionario = Funcionario::find($this->funcionario_id);
+
+        return [
+            'name' => $funcionario->nome,
+            'tipo_usuario_id' => $this->tipo_usuario_id,
+            'tipo_usuario' => $tipo_usuario->nome,
+            'email' => $this->email,
+        ];
     }
 }

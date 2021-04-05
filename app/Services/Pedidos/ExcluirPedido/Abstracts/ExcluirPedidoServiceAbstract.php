@@ -1,17 +1,22 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Pedidos\ExcluirPedido\Abstracts;
 
+use Exception;
 use App\Repositories\Contracts\PedidoRepository;
 use App\Services\Pedidos\ExcluirPedido\Contracts\ExcluirPedidoService;
-use Exception;
 
 abstract class ExcluirPedidoServiceAbstract implements ExcluirPedidoService
 {
     /**
      * ID do pedido.
      *
-     * @var integer
+     * @var int
      */
     protected int $pedido;
 
@@ -25,7 +30,7 @@ abstract class ExcluirPedidoServiceAbstract implements ExcluirPedidoService
     /**
      * Seta o pedido a ser excluído.
      *
-     * @param integer $pedido
+     * @param int $pedido
      * @return ExcluirPedidoService
      */
     public function setPedido(int $pedido) : ExcluirPedidoService
@@ -52,13 +57,15 @@ abstract class ExcluirPedidoServiceAbstract implements ExcluirPedidoService
     {
         $pedido = $this->pedidoRepository->getPedido($this->pedido);
 
-        if(!isset($pedido->id))
-            throw new Exception("O pedido a ser excluído não existe.");
+        if (! isset($pedido->id)) {
+            throw new Exception('O pedido a ser excluído não existe.');
+        }
 
         $pedidoExcluído = $this->pedidoRepository->deletePedido($pedido->id);
 
-        if(!$pedidoExcluído)
-            throw new Exception("Não foi possivel excluir o pedido solicitado.");
+        if (! $pedidoExcluído) {
+            throw new Exception('Não foi possivel excluir o pedido solicitado.');
+        }
 
         return $pedidoExcluído;
     }

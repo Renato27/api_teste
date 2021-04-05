@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -24,8 +29,8 @@ class PedidoRequest extends FormRequest
     public function rules()
     {
         return [
-            'data_entrega'      => 'required|date',
-            'data_retirada'     => 'required|date'
+            'data_entrega' => 'required|date',
+            'data_retirada' => 'required|date',
         ];
     }
 }

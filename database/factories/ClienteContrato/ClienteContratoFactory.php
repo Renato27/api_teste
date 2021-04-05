@@ -1,10 +1,15 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\ClienteContrato;
 
-use App\Models\ClienteContrato\ClienteContrato;
 use App\Models\Clientes\Cliente;
 use App\Models\Contratos\Contrato;
+use App\Models\ClienteContrato\ClienteContrato;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ClienteContratoFactory extends Factory
@@ -24,8 +29,8 @@ class ClienteContratoFactory extends Factory
     public function definition()
     {
         return [
-            'cliente_id'                => Cliente::factory()->create(),
-            'contrato_id'               => Contrato::factory()->create()
+            'cliente_id' => Cliente::factory()->create(),
+            'contrato_id' => Contrato::factory()->create(),
         ];
     }
 }

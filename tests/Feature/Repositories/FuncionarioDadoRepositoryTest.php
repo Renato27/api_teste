@@ -1,11 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\FuncionarioDado\FuncionarioDado;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\FuncionarioDado\FuncionarioDado;
 use App\Repositories\Contracts\FuncionarioDadoRepository;
 use App\Repositories\FuncionarioDadoRepositoryImplementation;
 
@@ -36,7 +39,6 @@ class FuncionarioDadoRepositoryTest extends TestCase
 
     /**
      * Retorna FuncionarioDado baseado no ID.
-     *
      */
     public function testGetFuncionarioDado()
     {
@@ -55,34 +57,31 @@ class FuncionarioDadoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de FuncionarioDado baseado em uma associação.
-     *  (Não necessita de implementação de teste.)
+     *  (Não necessita de implementação de teste.).
      */
     // public function testGetFuncionarioDados()
     // {
     // }
 
     /**
-     * Cria um novo FuncionarioDado
-     *
+     * Cria um novo FuncionarioDado.
      */
     public function testCreateFuncionarioDado()
     {
         $funcionario = \App\Models\Funcionario\Funcionario::factory()->create();
         $dadoFuncionario = \App\Models\DadoFuncionario\DadoFuncionario::factory()->create();
         $detalhes = [
-            'funcionario_id'            => $funcionario->id,
-            'dado_funcionario_id'       => $dadoFuncionario->id
+            'funcionario_id' => $funcionario->id,
+            'dado_funcionario_id' => $dadoFuncionario->id,
         ];
 
         $retorno = $this->implementacao->createFuncionarioDado($detalhes);
 
         $this->assertIsInt($retorno->id);
-
     }
 
     /**
-     * Atualiza um FuncionarioDado
-     *
+     * Atualiza um FuncionarioDado.
      */
     public function testUpdateFuncionarioDado()
     {
@@ -90,8 +89,8 @@ class FuncionarioDadoRepositoryTest extends TestCase
         $funcionario = \App\Models\Funcionario\Funcionario::factory()->create();
         $dadoFuncionario = \App\Models\DadoFuncionario\DadoFuncionario::factory()->create();
         $detalhes = [
-            'funcionario_id'            => $funcionario->id,
-            'dado_funcionario_id'       => $dadoFuncionario->id
+            'funcionario_id' => $funcionario->id,
+            'dado_funcionario_id' => $dadoFuncionario->id,
         ];
 
         $retorno = $this->implementacao->updateFuncionarioDado($associacao->id, $detalhes);
@@ -101,12 +100,10 @@ class FuncionarioDadoRepositoryTest extends TestCase
         $associacao->save();
 
         $this->assertEquals($associacao->id, $retorno->id);
-
     }
 
     /**
-     * Deleta um FuncionarioDado
-     *
+     * Deleta um FuncionarioDado.
      */
     public function testDeleteFuncionarioDado()
     {

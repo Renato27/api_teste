@@ -1,9 +1,14 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\FornecedorEndereco;
 
-use App\Models\FornecedorEndereco\FornecedorEndereco;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\FornecedorEndereco\FornecedorEndereco;
 
 class FornecedorEnderecoFactory extends Factory
 {

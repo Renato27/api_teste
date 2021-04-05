@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Contatos\ExcluirContato\Abstracts;
 
 use Exception;
@@ -11,7 +16,7 @@ abstract class ExcluirContatoServiceAbstract implements ExcluirContatoService
     /**
      * ID do contato.
      *
-     * @var integer
+     * @var int
      */
     protected int $contato;
 
@@ -25,7 +30,7 @@ abstract class ExcluirContatoServiceAbstract implements ExcluirContatoService
     /**
      * Seta o contato a ser excluído.
      *
-     * @param integer $contato
+     * @param int $contato
      * @return ExcluirContatoService
      */
     public function setContato(int $contato) : ExcluirContatoService
@@ -52,14 +57,16 @@ abstract class ExcluirContatoServiceAbstract implements ExcluirContatoService
     {
         $contato = $this->contatoRepository->getContato($this->contato);
 
-        if(!isset($contato->id))
-            throw new Exception("O contato a ser excluído não existe.");
+        if (! isset($contato->id)) {
+            throw new Exception('O contato a ser excluído não existe.');
+        }
 
         $contatoExcluído = $this->contatoRepository->deleteContato($contato->id);
-        
-        if(!$contatoExcluído)
-            throw new Exception("Não foi possivel excluir o contato solicitado.");
 
-        return $contatoExcluído;    
+        if (! $contatoExcluído) {
+            throw new Exception('Não foi possivel excluir o contato solicitado.');
+        }
+
+        return $contatoExcluído;
     }
 }

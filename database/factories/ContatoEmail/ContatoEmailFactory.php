@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Database\Factories\ContatoEmail;
 
 use App\Models\Contato\Contato;
@@ -23,9 +28,9 @@ class ContatoEmailFactory extends Factory
     public function definition()
     {
         return [
-            'email'             => $this->faker->email,
-            'principal'         => $this->faker->numberBetween(0,1),
-            'contato_id'        => Contato::factory()->create()
+            'email' => $this->faker->email,
+            'principal' => $this->faker->numberBetween(0, 1),
+            'contato_id' => Contato::factory()->create(),
         ];
     }
 }

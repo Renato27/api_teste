@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ContratoPagamentoMetodoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ContratoPagamentoMetodoRepository;
 
 class ContratoPagamentoMetodoRepositoryImplementation implements ContratoPagamentoMetodoRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna ContratoPagamentoMetodo baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getContratoPagamentoMetodo(int $contrato): ?Model
@@ -25,8 +29,8 @@ class ContratoPagamentoMetodoRepositoryImplementation implements ContratoPagamen
     /**
      * Retorna uma coleção de ContratoPagamentoMetodo baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getPagamentoMetodoContratos(int $metodo): ?Collection
@@ -35,40 +39,42 @@ class ContratoPagamentoMetodoRepositoryImplementation implements ContratoPagamen
     }
 
     /**
-     * Cria um novo ContratoPagamentoMetodo
+     * Cria um novo ContratoPagamentoMetodo.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createContratoPagamentoMetodo(array $detalhes): ?Model
     {
         return $this->create($detalhes);
     }
 
     /**
-     * Atualiza um ContratoPagamentoMetodo
+     * Atualiza um ContratoPagamentoMetodo.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateContratoPagamentoMetodo(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
     }
 
     /**
-     * Deleta um ContratoPagamentoMetodo
+     * Deleta um ContratoPagamentoMetodo.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteContratoPagamentoMetodo(int $id): bool
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }

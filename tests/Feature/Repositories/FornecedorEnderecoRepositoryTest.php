@@ -1,9 +1,12 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Repositories\Contracts\FornecedorEnderecoRepository;
 
@@ -28,46 +31,36 @@ class FornecedorEnderecoRepositoryTest extends TestCase
 
     /**
      * Retorna FornecedorEndereco baseado no ID.
-     *
      */
     public function testGetFornecedorEndereco()
     {
-
     }
 
     /**
      * Retorna uma coleção de FornecedorEndereco baseado em uma associação.
-     *
      */
     public function testGetFornecedorEnderecos()
     {
-
     }
 
     /**
-     * Cria um novo FornecedorEndereco
-     *
-     */    
+     * Cria um novo FornecedorEndereco.
+     */
     public function testCreateFornecedorEndereco()
     {
-
     }
 
     /**
-     * Atualiza um FornecedorEndereco
-     *
-     */ 
+     * Atualiza um FornecedorEndereco.
+     */
     public function testUpdateFornecedorEndereco()
     {
-
     }
 
     /**
-     * Deleta um FornecedorEndereco
-     *
-     */ 
+     * Deleta um FornecedorEndereco.
+     */
     public function testDeleteFornecedorEndereco()
     {
-
     }
 }

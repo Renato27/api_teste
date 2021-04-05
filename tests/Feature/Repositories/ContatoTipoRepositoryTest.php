@@ -1,13 +1,16 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace Tests\Feature\Repositories;
 
-use App\Models\ContatoTipo\ContatoTipo;
-use App\Repositories\ContatoTipoRepositoryImplementation;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\ContatoTipo\ContatoTipo;
 use App\Repositories\Contracts\ContatoTipoRepository;
+use App\Repositories\ContatoTipoRepositoryImplementation;
 
 class ContatoTipoRepositoryTest extends TestCase
 {
@@ -36,7 +39,6 @@ class ContatoTipoRepositoryTest extends TestCase
 
     /**
      * Retorna ContatoTipo baseado no ID.
-     *
      */
     public function testGetContatoTipo()
     {
@@ -55,7 +57,6 @@ class ContatoTipoRepositoryTest extends TestCase
 
     /**
      * Retorna uma coleção de ContatoTipo baseado em uma associação.
-     *
      */
     public function testGetTipoContatos()
     {
@@ -79,8 +80,7 @@ class ContatoTipoRepositoryTest extends TestCase
     }
 
     /**
-     * Cria um novo ContatoTipo
-     *
+     * Cria um novo ContatoTipo.
      */
     public function testCreateContatoTipo()
     {
@@ -88,8 +88,8 @@ class ContatoTipoRepositoryTest extends TestCase
         $contato = \App\Models\Contato\Contato::factory()->create();
         $tipoContato = \App\Models\TipoContato\TipoContato::factory()->create();
         $detalhes = [
-            'contato_id'            => $contato->id,
-            'tipo_contato_id'       => $tipoContato->id
+            'contato_id' => $contato->id,
+            'tipo_contato_id' => $tipoContato->id,
         ];
 
         $retorno = $this->implementacao->createContatoTipo($detalhes);
@@ -98,8 +98,7 @@ class ContatoTipoRepositoryTest extends TestCase
     }
 
     /**
-     * Atualiza um ContatoTipo
-     *
+     * Atualiza um ContatoTipo.
      */
     public function testUpdateContatoTipo()
     {
@@ -107,8 +106,8 @@ class ContatoTipoRepositoryTest extends TestCase
         $contato = \App\Models\Contato\Contato::factory()->create();
         $tipoContato = \App\Models\TipoContato\TipoContato::factory()->create();
         $detalhes = [
-            'contato_id'            => $contato->id,
-            'tipo_contato_id'       => $tipoContato->id
+            'contato_id' => $contato->id,
+            'tipo_contato_id' => $tipoContato->id,
         ];
 
         $retorno = $this->implementacao->updateContatoTipo($associacao->id, $detalhes);
@@ -117,8 +116,7 @@ class ContatoTipoRepositoryTest extends TestCase
     }
 
     /**
-     * Deleta um ContatoTipo
-     *
+     * Deleta um ContatoTipo.
      */
     public function testDeleteContatoTipo()
     {

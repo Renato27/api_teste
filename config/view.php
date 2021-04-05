@@ -1,7 +1,11 @@
 <?php
 
-return [
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
 
+return [
     /*
     |--------------------------------------------------------------------------
     | View Storage Paths
@@ -32,5 +36,4 @@ return [
         'VIEW_COMPILED_PATH',
         realpath(storage_path('framework/views'))
     ),
-
 ];

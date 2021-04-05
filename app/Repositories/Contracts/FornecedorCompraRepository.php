@@ -1,16 +1,21 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 interface FornecedorCompraRepository
 {
     /**
      * Retorna FornecedorCompra baseado no ID.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getFornecedorCompra(int $id): ?Model;
@@ -18,35 +23,35 @@ interface FornecedorCompraRepository
     /**
      * Retorna uma coleção de FornecedorCompra baseado em uma associação.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getFornecedorCompras(int $id, int $associacao): ?Collection;
-    
+
     /**
-     * Cria um novo FornecedorCompra
+     * Cria um novo FornecedorCompra.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createFornecedorCompra(array $detalhes): ?Model;
 
     /**
-     * Atualiza um FornecedorCompra
+     * Atualiza um FornecedorCompra.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateFornecedorCompra(int $id, array $detalhes): ?Model;
 
     /**
-     * Deleta um FornecedorCompra
+     * Deleta um FornecedorCompra.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteFornecedorCompra(int $id): bool;
 }

@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Services\Contratos\AtualizarContrato\Contracts;
 
 use App\Models\Contratos\Contrato;
@@ -10,10 +15,10 @@ interface AtualizarContratoService
     /**
      * Seta um contrato a ser atualizado.
      *
-     * @param integer $contrato
+     * @param int $contrato
      * @return AtualizarContratoService
      */
-    public function setContrato(int $contrato) : AtualizarContratoService;
+    public function setContrato(int $contrato) : self;
 
     /**
      * Seta os dados a serem atualizados.
@@ -21,7 +26,7 @@ interface AtualizarContratoService
      * @param array $dados
      * @return AtualizarContratoService
      */
-    public function setDados(array $dados) : AtualizarContratoService;
+    public function setDados(array $dados) : self;
 
     /**
      * Seta o repositório de contrato.
@@ -29,7 +34,7 @@ interface AtualizarContratoService
      * @param ContratosRepository $contratoRepository
      * @return AtualizarContratoService
      */
-    public function setContratoRepository(ContratosRepository $contratoRepository) : AtualizarContratoService;
+    public function setContratoRepository(ContratosRepository $contratoRepository) : self;
 
     /**
      * Processa a atualização do contrato.

@@ -1,20 +1,24 @@
 <?php
 
+/*
+ * Esse arquivo faz parte de Lógica Tecnologia/SGL
+ * (c) Renato Maldonado mallldonado@gmail.com
+ */
+
 namespace App\Repositories;
 
-use App\Repositories\Contracts\ContatoContratoRepository;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
+use App\Repositories\Contracts\ContatoContratoRepository;
 
 class ContatoContratoRepositoryImplementation implements ContatoContratoRepository
 {
-
     use BaseEloquentRepository;
 
     /**
      * Retorna ContatoContrato baseado no contrato.
      *
-     * @param integer $id
+     * @param int $id
      * @return Model|null
      */
     public function getContatoContrato(int $contrato): ?Model
@@ -27,21 +31,22 @@ class ContatoContratoRepositoryImplementation implements ContatoContratoReposito
     /**
      * Retorna uma coleção de ContatoContrato baseado em um contato.
      *
-     * @param integer $id
-     * @param integer $segundo_recurso
+     * @param int $id
+     * @param int $segundo_recurso
      * @return Model|null
      */
     public function getContratosByContato(int $contato): ?Collection
     {
         $associacoes = $this->where(['contato_id' => $contato])->get();
 
-        if(is_null($associacoes)) return null;
+        if (is_null($associacoes)) {
+            return null;
+        }
 
         $contratos = collect();
 
-        foreach($associacoes as $associacao){
-
-            if(!is_null($associacao->contrato)){
+        foreach ($associacoes as $associacao) {
+            if (! is_null($associacao->contrato)) {
                 $contratos->add($associacao->contrato);
             }
         }
@@ -50,40 +55,42 @@ class ContatoContratoRepositoryImplementation implements ContatoContratoReposito
     }
 
     /**
-     * Cria um novo ContatoContrato
+     * Cria um novo ContatoContrato.
      *
      * @param array $detalhes
      * @return Model|null
-     */    
+     */
     public function createContatoContrato(array $detalhes): ?Model
     {
         return $this->create($detalhes);
     }
 
     /**
-     * Atualiza um ContatoContrato
+     * Atualiza um ContatoContrato.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function updateContatoContrato(int $id, array $detalhes): ?Model
     {
         return $this->update($id, $detalhes);
     }
 
     /**
-     * Deleta um ContatoContrato
+     * Deleta um ContatoContrato.
      *
      * @param int $id
      * @param array $detalhes
      * @return Model|null
-     */ 
+     */
     public function deleteContatoContrato(int $id): bool
     {
         $retorno = $this->delete($id);
 
-        if(!$retorno) return false;
+        if (! $retorno) {
+            return false;
+        }
 
         return true;
     }
