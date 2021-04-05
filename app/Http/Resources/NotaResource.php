@@ -30,8 +30,8 @@ class NotaResource extends JsonResource
             'nota_estado' => $this[0]->nota_estado->nome,
             'cliente' => new ClienteResource($this[0]->cliente),
             'endereco' => $this[1][0]->endereco,
-            'telefone' => $this[2]->contato->telefone,
-            'contrato' => $this[0]->contrato->nome,
+            'contato' => is_null($this[2]) ? null : $this[2]->contato,
+            'contrato' => is_null($this[0]->contrato) ? null : $this[0]->contrato->nome,
             'patrimonios' => NotaPatrimonioResource::collection($this[0]->patrimonios),
         ];
     }
